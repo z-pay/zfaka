@@ -19,8 +19,9 @@ define('REQUEST_FILE',APP_PATH.'/log/request/'.CUR_DATE.'.log');
 define('SQL_FILE',APP_PATH.'/log/sqld/'.CUR_DATE.'.log');
 define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 
+error_reporting(1);
 error_reporting(E_ALL ^E_NOTICE);
-ini_set('display_errors', 'off');
+ini_set('display_errors', 'on');
 ini_set('log_errors', 'on');
 ini_set('error_log', LOG_FILE);
 define('ADMIN_VERIFY', TRUE);//后台登录二次验证

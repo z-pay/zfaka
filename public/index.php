@@ -1,5 +1,4 @@
 <?php
-error_reporting(1);
 header('content-Type:text/html;charset=utf-8;');
 define('APP_PATH',  realpath(dirname(__FILE__) . '/../'));
 \Yaf\Loader::import(APP_PATH.'/application/init.php');
