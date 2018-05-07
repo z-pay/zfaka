@@ -38,18 +38,11 @@ class PcBasicController extends BasicController {
 		//3.登录的判断,加入登录超时判断
         $uinfo = $this->getSession('uinfo');
 		if(is_array($uinfo) AND !empty($uinfo) AND $uinfo['expiretime']>time()){
-			// 4.单点登录判断
-			$websession=$this->load('user')->SelectByID('web_session',$uinfo['id']);
-			if(is_array($websession) AND ($websession['web_session']!=session_id())){
-				$data['login']=$this->login=false;
-				$this->unsetSession('uinfo');
-			}else{
-				$uinfo['expiretime']= time() + 15*60;
-				$this->setSession('uinfo',$uinfo);
-				$data['login']=$this->login=true;
-				$data['uinfo']= $this->uinfo=$uinfo;
-				$this->userid=$uinfo['id'];
-			}
+			$uinfo['expiretime']= time() + 15*60;
+			$this->setSession('uinfo',$uinfo);
+			$data['login']=$this->login=true;
+			$data['uinfo']= $this->uinfo=$uinfo;
+			$this->userid=$uinfo['id'];
 		}else{
 			$data['login']=$this->login=false;
 			$this->unsetSession('uinfo');
