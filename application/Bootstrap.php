@@ -18,8 +18,8 @@ class Bootstrap extends Yaf\Bootstrap_Abstract{
         $router = new RouterPlugin();
         $dispatcher->registerPlugin($router);
 		
-        $sms = new SmsPlugin();
-        $dispatcher->registerPlugin($sms);
-        Yaf\Registry::set('smsPlugin', $sms);
+        ///$sms = new SmsPlugin();
+        //$dispatcher->registerPlugin($sms);
+       // Yaf\Registry::set('smsPlugin', $sms);
     }
 }
