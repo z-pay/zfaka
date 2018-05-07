@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Chongqing');
-//define('ENV', strtoupper(ini_get('yaf.environ')));
+define('ENV', strtoupper(ini_get('yaf.environ')));
 define('URL_KEY', 'faG2#@@1');
 define('CUR_DATE', date('Y-m-d'));
 define('CUR_DATETIME', date('Y-m-d H:i:s'));
