@@ -7,3 +7,4 @@ $app = new Yaf\Application(APP_PATH.'/conf/application.ini');
 $app->getDispatcher()->throwException(TRUE);
 $app->bootstrap()->run();
 var_dump($app);exit();
+//测试
