@@ -1,0 +1,35 @@
+<?php include COMMON_PATH.'/header.html'; ?>
+<?php include COMMON_PATH.'/top.html'; ?>
+<?php include COMMON_PATH.'/menus.html'; ?>
+<div class="container">
+    <div class="tipspage tipspage_warp">
+        <div class="tp_content center">
+            <div class="tipspage_tit">
+                <div class="notfound_title">
+                    <img src="/res/v2/images/404.png" width="260" height="117">
+                    <div class="notfound_title" id="countdown">Sorry，您当前访问的页面不在地球上...<span><b >5</b>秒后自动跳转到首页</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+(function() {
+    var countDiv = document.getElementById('countdown');
+    var bText = countDiv.getElementsByTagName('b')[0];
+    var aNumber = parseInt(bText.innerHTML);
+
+    function countDown() {
+        aNumber--;
+        if (aNumber > 0) {
+            bText.innerHTML = aNumber;
+            timer = setTimeout(countDown, 1000);
+        } else {
+            location.href = location.protocol + "//" + location.hostname + (window.location.port ? ':' + window.location.port: '');
+        }
+    }
+    var timer = setTimeout(countDown, 1000);
+})();
+</script>
+<!--引入公共底文件-->
+<?php include COMMON_PATH.'/footer.html';?>
