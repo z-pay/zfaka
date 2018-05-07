@@ -22,10 +22,11 @@ define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 error_reporting(1);
 error_reporting(E_ALL ^E_NOTICE);
 ini_set('display_errors', 'on');
+ini_set('display_startup_errors',1);//php启动错误信息
 ini_set('log_errors', 'on');
 ini_set('error_log', LOG_FILE);
-define('ADMIN_VERIFY', TRUE);//后台登录二次验证
 define('DEBUG',FALSE );//调试模式关闭
+
 define('HOME_URL','https://www.mtrp2p.com/');//主站点地址
 define('IMG_URL','https://res.mtrp2p.com/');//图片资源地址
 define('SITE_URL','https://www.mtrp2p.com/');//当前站点外部地址(当前站点)
