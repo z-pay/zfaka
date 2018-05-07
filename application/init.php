@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL ^E_NOTICE);
 date_default_timezone_set('Asia/Chongqing');
 define('ENV', strtoupper(ini_get('yaf.environ')));
 define('URL_KEY', 'faG2#@@1');
@@ -20,32 +19,15 @@ define('REQUEST_FILE',APP_PATH.'/log/request/'.CUR_DATE.'.log');
 define('SQL_FILE',APP_PATH.'/log/sqld/'.CUR_DATE.'.log');
 define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 
-switch(ENV){
-	//生产环境配置
-    case 'PRODUCT':
-        ini_set('display_errors', 'off');
-        ini_set('log_errors', 'on');
-        ini_set('error_log', LOG_FILE);
-		define('ADMIN_VERIFY', TRUE);//后台登录二次验证
-		define('DEBUG',FALSE );//调试模式关闭
-		define('HOME_URL','https://www.mtrp2p.com/');//主站点地址
-		define('IMG_URL','https://res.mtrp2p.com/');//图片资源地址
-		define('SITE_URL','https://www.mtrp2p.com/');//当前站点外部地址(当前站点)
-		define('RPC_URL','http://192.168.1.134:9004');//RPC服务器地址(RPC服务)
-		define('MOBILE_URL','https://m.mtrp2p.com');//移动端站点地址(微信、移动端)
-		define('ADMIN_URL','https://admin.mtrp2p.com');//管理后台站点地址(后台)
-		break;
-	//开发测试环境
-	default:
-        ini_set('display_errors', 'on');
-        ini_set('log_errors', 'on');
-        ini_set('error_log',LOG_FILE);
-		define('ADMIN_VERIFY', FALSE);//后台登录二次验证
-		define('DEBUG', TRUE);//调试模式开启
-		define('HOME_URL','http://test.mtrp2p.com:8010/');//主站点地址
-		define('IMG_URL','http://mtrp2p-test.oss-cn-shenzhen.aliyuncs.com/');//图片资源地址
-		define('SITE_URL','http://test.mtrp2p.com:8010/');//当前站点外部地址(当前站点)
-		define('RPC_URL','http://192.168.1.195:9004');//RPC服务器地址(RPC服务)
-		define('MOBILE_URL','http://test.mtrp2p.com:8020');//移动端站点地址(微信、移动端)
-		define('ADMIN_URL','http://test.mtrp2p.com:8030');//管理后台站点地址(后台)
-}
+error_reporting(E_ALL ^E_NOTICE);
+ini_set('display_errors', 'off');
+ini_set('log_errors', 'on');
+ini_set('error_log', LOG_FILE);
+define('ADMIN_VERIFY', TRUE);//后台登录二次验证
+define('DEBUG',FALSE );//调试模式关闭
+define('HOME_URL','https://www.mtrp2p.com/');//主站点地址
+define('IMG_URL','https://res.mtrp2p.com/');//图片资源地址
+define('SITE_URL','https://www.mtrp2p.com/');//当前站点外部地址(当前站点)
+define('RPC_URL','http://192.168.1.134:9004');//RPC服务器地址(RPC服务)
+define('MOBILE_URL','https://m.mtrp2p.com');//移动端站点地址(微信、移动端)
+define('ADMIN_URL','https://admin.mtrp2p.com');//管理后台站点地址(后台)
