@@ -7,15 +7,15 @@
 class CaptchaController extends BasicController {
 
     public function init(){
-		//\Yaf\Dispatcher::getInstance()->disableView();
+		\Yaf\Dispatcher::getInstance()->disableView();
     }
 
     public function indexAction(){ 
         $t = $this->get('t');
 		$l_captcha = new \Captcha\Captcha();
-		echo $code=$l_captcha->getPhrase();
-		//$this->setSession($t.'Captcha',$code);
-		//$l_captcha->build()->output();
+		$code=$l_captcha->getPhrase();
+		$this->setSession($t.'Captcha',$code);
+		$l_captcha->build()->output();
 		exit();
     }
 
