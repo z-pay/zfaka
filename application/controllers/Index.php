@@ -6,7 +6,11 @@ class IndexController extends PcBasicController {
 	}
 
 	public function indexAction(){
-		$data=array();
-		$this->getView()->assign($data);
+		if(!$this->login OR empty($this->uinfo)){
+			$this->redirect("/member/login/");
+		}else{
+			$this->redirect("/member/center/");
+		}
+		return FALSE;
 	}
 }
