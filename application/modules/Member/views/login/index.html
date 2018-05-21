@@ -10,7 +10,7 @@
       <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
           <div class="layui-form layui-form-pane">
-            <form method="post">
+            <form method="post" action="/member/login/do">
               <div class="layui-form-item">
                 <label for="L_email" class="layui-form-label">邮箱</label>
                 <div class="layui-input-inline">
@@ -20,7 +20,7 @@
               <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label">密码</label>
                 <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+                  <input type="password" id="L_pass" name="password" required lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
               </div>
               <div class="layui-form-item">
@@ -29,7 +29,7 @@
                   <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请输入图形验证码" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid">
-                  <span style="color: #c00;"><img src="/Captcha?t=register" alt="图片验证码" width="100%" height="38" class="loadcode"></span>
+                  <span style="color: #c00;"><img src="/Captcha?t=login" alt="图片验证码" width="100%" height="38" class="loadcode"></span>
                 </div>
               </div>
               <div class="layui-form-item">
