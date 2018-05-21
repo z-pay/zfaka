@@ -22,7 +22,7 @@ class M_User extends Model {
 	public function checkLogin($email, $password){
 		$field = array('id', 'email','password');
 		if(isEmail($email)){
-			$where = array('email' => $mobile);
+			$where = array('email' => $email);
 		}else{
 			return FALSE;
 		}
