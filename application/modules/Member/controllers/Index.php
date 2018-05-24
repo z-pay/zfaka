@@ -6,7 +6,7 @@
  * time:20180509
  */
 
-class CenterController extends PcBasicController
+class IndexController extends PcBasicController
 {
 
     public function init()

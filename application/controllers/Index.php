@@ -9,7 +9,7 @@ class IndexController extends PcBasicController {
 		if(!$this->login OR empty($this->uinfo)){
 			$this->redirect("/member/login/");
 		}else{
-			$this->redirect("/member/center/");
+			$this->redirect("/member/");
 		}
 		return FALSE;
 	}
