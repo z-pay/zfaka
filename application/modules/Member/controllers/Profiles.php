@@ -19,11 +19,8 @@ class ProfilesController extends PcBasicController
     public function indexAction()
     {
 		$data = array();
-		$uinfo = $this->m_user->SelectByID('',$this->userid);
-		print_r($uinfo);
-		print_r($this->uinfo);
+		$uinfo = $this->m_user->SelectByID('nickname,email,qq,tag,createtime',$this->userid);
 		$data['uinfo'] = $this->uinfo = array_merge($this->uinfo, $uinfo);
-		print_r($this->uinfo);
         $this->getView()->assign($data);
     }
 
