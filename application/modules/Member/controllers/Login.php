@@ -19,7 +19,7 @@ class LoginController extends PcBasicController
     public function indexAction()
     {
         if (false != $this->login AND $this->userid) {
-            $this->redirect("/member/center/");
+            $this->redirect("/member/");
             return FALSE;
         }
 		
@@ -43,7 +43,7 @@ class LoginController extends PcBasicController
 		if($email AND $password){
 			$checkUser = $this->m_user->checkLogin($email,$password);
 			if($checkUser){
-				$this->redirect("/member/center/");
+				$this->redirect("/member/");
 				return FALSE;
 			}else{
 				echo "登录失败";
