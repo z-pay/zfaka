@@ -8,7 +8,6 @@
     <div class="layui-tab layui-tab-brief" lay-filter="user">
       <ul class="layui-tab-title" id="LAY_mine">
         <li class="layui-this" lay-id="info">我的资料</li>
-        <li lay-id="avatar">头像</li>
         <li lay-id="pass">密码</li>
         <li lay-id="bind">帐号绑定</li>
       </ul>
@@ -18,7 +17,7 @@
             <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">邮箱</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_email" readonly="readonly" lay-verify="email" autocomplete="off" value="<?php echo $uinfo['nickname'];?>" class="layui-input">
+                <input type="text" id="L_email" readonly="readonly" lay-verify="email" autocomplete="off" value="<?php echo $uinfo['email'];?>" class="layui-input">
               </div>
             </div>
             <div class="layui-form-item">

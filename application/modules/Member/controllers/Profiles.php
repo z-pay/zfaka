@@ -24,8 +24,7 @@ class ProfilesController extends PcBasicController
         $this->getView()->assign($data);
     }
 
-
-	public function headimgAction(){
+	public function passwordAction(){
 		$data = array();
         $this->getView()->assign($data);
 	}
