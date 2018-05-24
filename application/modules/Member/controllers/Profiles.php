@@ -20,6 +20,7 @@ class ProfilesController extends PcBasicController
     {
 		$data = array();
 		$uinfo = $this->m_user->SelectByID('',$this->userid);
+		$data['uinfo'] = $this->uinfo = array_merge($this->uinfo, $uinfo);
 		$data['uinfo'] = $uinfo;
         $this->getView()->assign($data);
     }
