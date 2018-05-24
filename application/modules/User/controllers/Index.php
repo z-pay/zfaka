@@ -8,15 +8,20 @@
 
 class IndexController extends PcBasicController
 {
-
+	private $m_user;
+	
     public function init()
     {
         parent::init();
+		$this->m_user = $this->load('user');
     }
 
     public function indexAction()
     {
 		$data = array();
+		$itmes = $this->m_user->Select();
+		$data['itmes'] =$itmes;
+		
         $this->getView()->assign($data);
     }
 }
