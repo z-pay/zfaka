@@ -8,15 +8,19 @@
 
 class ProfilesController extends PcBasicController
 {
-
-    public function init()
+    private $m_user;
+	
+	public function init()
     {
         parent::init();
+		$this->m_user = $this->load('user');
     }
 
     public function indexAction()
     {
 		$data = array();
+		$uinfo = $this->m_user->SelectByID('',$this->userid);
+		$data['uinfo'] = $uinfo;
         $this->getView()->assign($data);
     }
 

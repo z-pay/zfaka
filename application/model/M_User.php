@@ -20,7 +20,7 @@ class M_User extends Model {
 	 * @return params on success or 0 or failure
 	 */
 	public function checkLogin($email, $password){
-		$field = array('id', 'email','password');
+		$field = array('id', 'email','password','nickname','groupid');
 		if(isEmail($email)){
 			$where = array('email' => $email);
 		}else{
