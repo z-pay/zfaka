@@ -8,6 +8,12 @@
   <meta name="description" content="羞羞猴正在由资料空白开发">
   <link rel="stylesheet" href="/res/layui/css/layui.css">
   <link rel="stylesheet" href="/res/css/global.css">
+	<script>
+		var TOKEN="<?php echo $csrf_token;?>";
+        if (self != top) {
+            top.location = self.location;
+        }
+    </script>
 </head>
 <body>
 

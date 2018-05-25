@@ -36,7 +36,7 @@ class LoginController extends PcBasicController
         $this->getView()->assign($data);
     }
 	
-	public function ajaxAction()
+	public function dologinAction()
 	{
 		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password',false);
@@ -54,4 +54,29 @@ class LoginController extends PcBasicController
 			exit();
 		}
 	}
+	
+	public function ajaxAction()
+	{
+		$email    = $this->getPost('email',false);
+		$password = $this->getPost('password',false);
+		$vercode = $this->getPost('vercode',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		if($email AND $password AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$checkUser = $this->m_user->checkLogin($email,$password);
+				if($checkUser){
+					$data = array('code' => 1, 'msg' =>'success');
+				}else{
+					$data = array('code' => 1002, 'msg' =>'账户密码错误');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
+	
 }
