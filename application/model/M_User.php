@@ -37,7 +37,42 @@ class M_User extends Model {
 		return FALSE;
 	}
 
+	public function newRegister($params){
+		$m=array();
+		$m['email'] = $params['email'];
+		$m['nickname'] = $params['nickname'];
+		$m['createtime']= time(); 
+		$m['password'] = md5($params['password']);
+		
+		if(isset($params['groupid'])){
+			$m['groupid'] = $params['groupid'];
+		}else{
+			$m['groupid'] = 4;
+		}
+		
+		if(isset($params['agentid'])){
+			$m['agentid'] = $params['agentid'];
+		}else{
+			$m['agentid'] = 0;
+		}
+		
+		if(isset($params['qq'])){
+			$m['qq'] = $params['qq'];
+		}else{
+			$m['qq'] = '';
+		}
+		
+		$m['money'] = $m['integral'] = 0;
 
+        if($uid=$this->Insert($m)){
+			$m['id'] = $uid;
+			unset($m['password']);
+			$this->_session($m);
+            return $result;
+        }else{
+            return FALSE;
+        }
+	}
 
 	/**
 	* 登录session处理
