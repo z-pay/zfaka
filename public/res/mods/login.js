@@ -20,4 +20,4 @@ layui.define(['layer', 'form'], function(exports){
 	});
 
 	exports('login',null)
-}
+});
