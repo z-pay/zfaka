@@ -11,7 +11,7 @@ layui.define(['layer', 'form'], function(exports){
 	form.verify({
 		passwd: [/^[\S]{6,16}$/,'密码必须6到16位，除空格外的任意字符'],
 		repasswd: function(value){
-			var passwd = $('#L_pass')val();
+			var passwd = $('#L_pass').val();
 			if (value!=passwd) {
 				return '两次输入的密码不一致';
 			}
