@@ -1,15 +1,15 @@
-½Ó¿ÚµØÖ·£º  /member/register/ajax/
+ï»¿æ¥å£åœ°å€ï¼š  /member/register/ajax/
 
-²ÎÊı£º     
-email  ÓÊÏä
-password  ÃÜÂë
-nickname   êÇ³Æ
-vercode   Í¼ĞÎÑéÖ¤Âë
+å‚æ•°ï¼š     
+email  é‚®ç®±
+password  å¯†ç 
+nickname   æ˜µç§°
+vercode   å›¾å½¢éªŒè¯ç 
 csrf_token token 
 
-·µ»Ø£º
-json¸ñÊ½  code,msg
+è¿”å›ï¼š
+jsonæ ¼å¼  code,msg
 
-×¢²á³É¹¦ code 1       ³É¹¦ºó£¬ÇëÌø×ªµ½  /member
+æ³¨å†ŒæˆåŠŸ code 1       æˆåŠŸåï¼Œè¯·è·³è½¬åˆ°  /member
 
-×¢²áÊ§°Ü code 1000-1002
+æ³¨å†Œå¤±è´¥ code 1000-1002
