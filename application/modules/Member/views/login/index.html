@@ -6,10 +6,10 @@
                 <li class="layui-this">登入</li>
                 <li><a href="/member/register/">注册</a></li>
             </ul>
-            <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+            <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
-                    <div class="layui-form layui-form-pane">
-                        <form method="post" action="/member/login/dologin">
+                    <div class="layui-form-pane">
+                        <form class="layui-form" method="post" action="/member/login/dologin">
                             <div class="layui-form-item">
                                 <label for="L_email" class="layui-form-label">邮箱</label>
                                 <div class="layui-input-inline">
@@ -19,7 +19,7 @@
                             <div class="layui-form-item">
                                 <label for="L_pass" class="layui-form-label">密码</label>
                                 <div class="layui-input-inline">
-                                    <input type="password" id="L_pass" name="password" required lay-verify="required|pass" autocomplete="off" class="layui-input">
+                                    <input type="password" id="L_pass" name="password" required lay-verify="required|passwd" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">

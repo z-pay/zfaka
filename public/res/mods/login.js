@@ -4,7 +4,7 @@ layui.define(['layer', 'form'], function(exports){
 	var form = layui.form;
 
 	form.verify({
-		pass: [/^[\S]{6,12}$/,'密码必须6到12位，且不能出现空格'],
+		passwd: [/^[\S]{6,12}$/,'密码必须6到12位，且不能出现空格'],
 		vercode: [/^[0-9a-zA-Z]{4}$/,'图形验证码错误']
 	});
 	form.on('submit(login)', function(data){
