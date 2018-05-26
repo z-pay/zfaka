@@ -22,7 +22,7 @@ layui.define(['layer', 'form'], function(exports){
 	form.on('submit(register)', function(data){
 
 		data.field.csrf_token = TOKEN;
-		var i = layer.load(1);
+		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
 			url: data.form.action,
 			type: data.form.method,
