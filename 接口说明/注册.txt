@@ -1,11 +1,11 @@
 ﻿接口地址：  /member/register/ajax/
 
-参数：     
+参数：
 email  邮箱
 password  密码
 nickname   昵称
 vercode   图形验证码
-csrf_token token 
+csrf_token token
 
 返回：
 json格式  code,msg

@@ -5,20 +5,27 @@ layui.define(['layer', 'form'], function(exports){
 
 	$('.loadcode').on('click', function(event) {
 		event.preventDefault();
-		$(this).attr('src','/Captcha?t=login&n=' + Math.random())
+		$(this).attr('src','/Captcha?t=register&n=' + Math.random())
 	});
 
 	form.verify({
+		passwd: [/^[\S]{6,16}$/,'密码必须6到16位，除空格外的任意字符'],
+		repasswd: function(value){
+			var passwd = $('#L_pass')val();
+			if (value!=passwd) {
+				return '两次输入的密码不一致';
+			}
+		},
 		vercode: [/^[0-9a-zA-Z]{4}$/,'图形验证码错误']
 	});
 
-	form.on('submit(login)', function(data){
+	form.on('submit(register)', function(data){
 
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(1);
 		$.ajax({
-			url: '/member/login/ajax/',
-			type: 'POST',
+			url: data.form.action,
+			type: data.form.method,
 			dataType: 'json',
 			data: data.field,
 		})
@@ -39,5 +46,5 @@ layui.define(['layer', 'form'], function(exports){
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
 
-	exports('login',null)
+	exports('register',null)
 });
