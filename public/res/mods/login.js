@@ -22,11 +22,11 @@ layui.define(['layer', 'form'], function(exports){
 			if (res.code == '1') {
 				location.pathname = '/member'
 			} else {
-				layer.msg(res.msg,{icon:1});
+				layer.msg(res.msg,{icon:2,time:5000});
 			}
 		})
 		.fail(function() {
-			layer.msg('服务器连接失败，请联系管理员',{icon:1});
+			layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
 		})
 		.always(function() {
 			layer.close(i);
