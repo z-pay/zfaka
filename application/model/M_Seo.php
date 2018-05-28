@@ -34,10 +34,7 @@ class M_Seo extends Model {
     		$data['config'] = $config = $this->_getData();
     		$data['expire_time'] = time() + 600;
     		
-    			$fp = fopen($file_path, "w");
-	    		fwrite($fp, json_encode($data));
-	    		fclose($fp);
-    
+			file_put_contents($file_path,json_encode($data));
     	}
 		
 
