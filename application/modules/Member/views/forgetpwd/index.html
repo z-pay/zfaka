@@ -9,46 +9,6 @@
       </ul>
       <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
-          <!-- 重置密码 -->
-          <!--
-          <div class="fly-msg">{{d.username}}，请重置您的密码</div>
-          <div class="layui-form layui-form-pane"  style="margin-top: 30px;">
-            <form action="/user/repass" method="post">
-              <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">密码</label>
-                <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">6到16个字符</div>
-              </div>
-              <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">确认密码</label>
-                <div class="layui-input-inline">
-                  <input type="password" id="L_repass" name="repass" required lay-verify="required" autocomplete="off" class="layui-input">
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <label for="L_vercode" class="layui-form-label">人类验证</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid">
-                  <span style="color: #c00;">{{d.vercode}}</span>
-                </div>
-              </div>
-              <div class="layui-form-item">
-                <input type="hidden" name="username" value="{{d.username}}">
-                <input type="hidden" name="email" value="{{d.email}}">
-                <button class="layui-btn" alert="1" lay-filter="*" lay-submit>提交</button>
-              </div>
-            </form>
-          </div>
-
-
-          <div class="fly-error">该重置密码链接已失效，请重新校验您的信息</div>
-          <div class="fly-error">非法链接，请重新校验您的信息</div>
-          -->
-          
           <div class="layui-form layui-form-pane">
             <form method="post">
               <div class="layui-form-item">
@@ -63,7 +23,7 @@
                   <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请输入图形验证码" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid">
-                  <span style="color: #c00;"><img src="/Captcha?t=register" alt="图片验证码" width="100%" height="38" class="loadcode"></span>
+                  <span style="color: #c00;"><img src="/Captcha?t=forgetpwd" alt="图片验证码" width="100%" height="38" class="loadcode"></span>
                 </div>
               </div>
               <div class="layui-form-item">
@@ -73,6 +33,27 @@
           </div>
           
         </div>
+		
+		<!-- 发送成功以后显示这个 -->
+        <div class="layui-tab-item">
+          <div class="layui-form layui-form-pane">
+				<ul class="layui-form">
+				  <li class="layui-form-li" style="margin-top: 20px; line-height: 26px;">
+					<div>
+					  1. 如果您未收到邮件，或验证链接失效，您可以刷新本页面后，重新发送邮件 ，或者更换邮箱；
+					</div>
+					<div>
+					  2. 如果您始终没有收到 平台发送的邮件，请注意查看您邮箱中的垃圾邮件；
+					</div>
+					<div>
+					  3. 如果你实在无法激活邮件，您还可以联系：admin@xx.com
+					</div>
+				  </li>
+				</ul>
+			</div>
+		</div>
+		
+		
       </div>
     </div>
   </div>

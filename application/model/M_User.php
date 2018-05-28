@@ -74,6 +74,28 @@ class M_User extends Model {
         }
 	}
 
+	public function checkEmail($email){
+		$field = array('id');
+		$where = array('email' => $email);
+		$result=$this->Field($field)->Where($where)->SelectOne();
+		if($result){
+            return TRUE;
+		}
+		return FALSE;
+	}
+	
+    /*
+     * 修改密码
+     */
+	public function changePWD($userid,$password){
+		if($userid AND $password){
+			$new=md5($password);
+			return $this->Where(array('id'=>$userid))->Update(array('password'=>$new));
+		}else{
+			return FALSE;
+		}
+    }
+	
 	/**
 	* 登录session处理
 	* @param $params
