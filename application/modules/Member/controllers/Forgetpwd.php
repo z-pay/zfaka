@@ -25,7 +25,6 @@ class ForgetpwdController extends PcBasicController
 		
     }
 	
-	
 	public function resetAction(){
         $key = $this->get('key', false);
 		$data = array();
@@ -64,7 +63,7 @@ class ForgetpwdController extends PcBasicController
 	}
 	
 	//找回密码 2.重设
-	public fucntion resetajaxAction(){
+	public function resetajaxAction(){
 		$email = $this->getPost('email',false);
 		$code = $this->getPost('code',false);
 		$password = $this->getPost('password',false);
