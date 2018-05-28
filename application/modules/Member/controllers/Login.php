@@ -3,7 +3,7 @@
 /*
  * 功能：会员中心－登录类
  * author:资料空白
- * time:20150902
+ * time:20180528
  */
 
 class LoginController extends PcBasicController
@@ -35,13 +35,22 @@ class LoginController extends PcBasicController
 		$vercode = $this->getPost('vercode',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
-		if($email AND $password AND $csrf_token){
+		if($email AND $password AND $csrf_token AND $vercode){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$checkUser = $this->m_user->checkLogin($email,$password);
-				if($checkUser){
-					$data = array('code' => 1, 'msg' =>'success');
+				if(isEmail($email)){
+					if(strtolower($this->getSession('loginCaptcha')) ==strtolower($vercode)){
+						$this->unsetSession('loginCaptcha');
+						$checkUser = $this->m_user->checkLogin($email,$password);
+						if($checkUser){
+							$data = array('code' => 1, 'msg' =>'success');
+						}else{
+							$data = array('code' => 1002, 'msg' =>'账户密码错误');
+						}
+					}else{
+						$data=array('code'=>1004,'msg'=>'图形验证码错误');
+					}
 				}else{
-					$data = array('code' => 1002, 'msg' =>'账户密码错误');
+					 $data = array('code' => 1003, 'msg' => '邮箱账户有误!');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
