@@ -107,19 +107,19 @@ class ForgetpwdController extends PcBasicController
 		
 		if($email AND $vercode AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$checkEmail = $this->m_user->checkEmail($email);
-				if($checkEmail){
+				$checkEmailUser = $this->m_user->checkEmail($email);
+				if(!empty($checkEmailUser)){
                         //1.查询该用户当天找回密码次数
 						$startTime = strtotime(date('Y-m-d 0:0:0'));
 						$endTime   = strtotime(date('Y-m-d 23:59:59'));
-                        $email_code = $this->m_email_code->Where(array('userid' => $this->userid,'action'=>'forgetpwd'))->Where("addtime>{$startTime} and  addtime<{$endTime}")->Total();
+                        $email_code = $this->m_email_code->Where(array('userid' => $checkEmailUser['id'],'action'=>'forgetpwd'))->Where("addtime>{$startTime} and  addtime<{$endTime}")->Total();
                         if ($email_code>4) {
 							$data = array('code' => 1002, 'msg' =>'找回密码次数过多，请明天再试');
 						}else{
                             //2.如果不存在则写入
                             $m = array(
 								'action'=>'forgetpwd',
-                                'userid' => $this->userid,
+                                'userid' => $checkEmailUser['id'],
                                 'email' => $email,
                                 'code' => getRandom(8, 5),
 								'ip' =>getClientIP(),

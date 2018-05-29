@@ -79,9 +79,9 @@ class M_User extends Model {
 		$where = array('email' => $email);
 		$result=$this->Field($field)->Where($where)->SelectOne();
 		if($result){
-            return TRUE;
+            return array('id'=>$result['id']);
 		}
-		return FALSE;
+		return array();
 	}
 	
     /*
