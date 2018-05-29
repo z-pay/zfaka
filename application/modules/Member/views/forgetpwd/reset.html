@@ -8,7 +8,7 @@
                     <!--重置密码-->
                 </li>
             </ul>
-            <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+            <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <?php if($code>1):?>
                     <div class="fly-error">
@@ -17,8 +17,8 @@
                     <?php else:?>
                     <!-- 重置密码 -->
                     <div class="fly-msg">请重置您的密码</div>
-                    <div class="layui-form layui-form-pane" style="margin-top: 30px;">
-                        <form action="/member/forgetpwd/resetajax" method="post">
+                    <div class="layui-form-pane" style="margin-top: 30px;">
+                        <form class="layui-form" method="post">
                             <div class="layui-form-item">
                                 <label for="L_pass" class="layui-form-label">密码</label>
                                 <div class="layui-input-inline">
