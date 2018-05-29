@@ -16,6 +16,10 @@ class ProductController extends PcBasicController
 
     public function indexAction()
     {
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
 		$data = array();
         $this->getView()->assign($data);
     }

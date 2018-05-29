@@ -15,7 +15,11 @@ class LoggerController extends PcBasicController
 
     public function indexAction()
     {
-       $data = array();
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		$data = array();
         $this->getView()->assign($data);
     }
 

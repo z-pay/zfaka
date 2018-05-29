@@ -22,7 +22,10 @@ class ForgetpwdController extends PcBasicController
 
     public function indexAction()
     {
-		
+        if (false != $this->login AND $this->userid) {
+            $this->redirect("/member/");
+            return FALSE;
+        }
     }
 	
 	public function resetAction(){
