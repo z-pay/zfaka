@@ -619,9 +619,16 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
   // });
 
   //个人中心侧边导航
-  var href = location.href;
-  var navItemLen = $('.fly-user-main .layui-nav .layui-nav-item').length;
-  console.log(href,navItemLen)
+  var href = location.href + '/';
+  var navItem = $('.fly-user-main .layui-nav .layui-nav-item');
+  var navItemLen = navItem.length;
+  for (var i = navItemLen - 1; i > 0; i--) {
+    var page = navItem.eq(i).find('a').attr('href');
+    if (href.indexOf(page)>-1) {
+      navItem.eq(i).addClass('layui-this').siblings().removeClass('layui-this');
+      break;
+    }
+  }
 
   exports('fly', fly);
 
