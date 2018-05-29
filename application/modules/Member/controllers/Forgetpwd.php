@@ -107,65 +107,74 @@ class ForgetpwdController extends PcBasicController
 		
 		if($email AND $vercode AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$checkEmailUser = $this->m_user->checkEmail($email);
-				if(!empty($checkEmailUser)){
-                        //1.查询该用户当天找回密码次数
-						$startTime = strtotime(date('Y-m-d 0:0:0'));
-						$endTime   = strtotime(date('Y-m-d 23:59:59'));
-                        $email_code = $this->m_email_code->Where(array('userid' => $checkEmailUser['id'],'action'=>'forgetpwd'))->Where("addtime>{$startTime} and  addtime<{$endTime}")->Total();
-                        if ($email_code>4) {
-							$data = array('code' => 1002, 'msg' =>'找回密码次数过多，请明天再试');
-						}else{
-                            //2.如果不存在则写入
-                            $m = array(
-								'action'=>'forgetpwd',
-                                'userid' => $checkEmailUser['id'],
-                                'email' => $email,
-                                'code' => getRandom(8, 5),
-								'ip' =>getClientIP(),
-								'result'=>'',
-                                'addtime' => time(),
-                                'status' => 0,
-								'checkedStatus'=>0
-                            );
-                            $m['id'] = $this->m_email_code->Insert($m);
-							
-							//3.发送邮件
-							try {
-								$key=base64_encode("{$m['code']}-{$m['id']}-{$email}");
-								$str = "key={$key}";
-								$url = siteUrl(SITE_URL, "/member/forgetpwd/reset", $str);
-								$content = '尊敬的' . $email . ':请点击此链接重置密码<a href="' . $url . '">' . $url . '</a>';
-								$emainConfig = $this->m_email->getConfig();
-								$config=array();
-								$config['smtp_host'] = 'ssl://' . $emainConfig['host'];
-								$config['smtp_user'] = $emainConfig['mailaddress'];
-								$config['smtp_pass'] = $emainConfig['mailpassword'];
-								$config['smtp_port'] = $emainConfig['port'];
-								$lib_email = new Email($config);
-								$lib_email->from($emainConfig['sendmail'], $emainConfig['sendname']);
-								$lib_email->to($email);
-								$lib_email->subject('密码重置通知!');
-								$lib_email->message($content);
-								$isSend = $lib_email->send();
-								if($isSend){
-									$data = array('code' => 1, 'msg' => '邮件发送成功，请稍候！');
+				if(isEmail($email)){
+					if(strtolower($this->getSession('loginCaptcha')) ==strtolower($vercode)){
+						$checkEmailUser = $this->m_user->checkEmail($email);
+						if(!empty($checkEmailUser)){
+								//1.查询该用户当天找回密码次数
+								$startTime = strtotime(date('Y-m-d 0:0:0'));
+								$endTime   = strtotime(date('Y-m-d 23:59:59'));
+								$email_code = $this->m_email_code->Where(array('userid' => $checkEmailUser['id'],'action'=>'forgetpwd'))->Where("addtime>{$startTime} and  addtime<{$endTime}")->Total();
+								if ($email_code>4) {
+									$data = array('code' => 1002, 'msg' =>'找回密码次数过多，请明天再试');
 								}else{
-									$data = array('code' => 1007, 'msg' => '失败'.strip_tags ($lib_email->print_debugger()));
+									//2.如果不存在则写入
+									$m = array(
+										'action'=>'forgetpwd',
+										'userid' => $checkEmailUser['id'],
+										'email' => $email,
+										'code' => getRandom(8, 5),
+										'ip' =>getClientIP(),
+										'result'=>'',
+										'addtime' => time(),
+										'status' => 0,
+										'checkedStatus'=>0
+									);
+									$m['id'] = $this->m_email_code->Insert($m);
+									
+									//3.发送邮件
+									try {
+										$key=base64_encode("{$m['code']}-{$m['id']}-{$email}");
+										$str = "key={$key}";
+										$url = siteUrl(SITE_URL, "/member/forgetpwd/reset", $str);
+										$content = '尊敬的' . $email . ':请点击此链接重置密码<a href="' . $url . '">' . $url . '</a>';
+										$emainConfig = $this->m_email->getConfig();
+										$config=array();
+										$config['smtp_host'] = 'ssl://' . $emainConfig['host'];
+										$config['smtp_user'] = $emainConfig['mailaddress'];
+										$config['smtp_pass'] = $emainConfig['mailpassword'];
+										$config['smtp_port'] = $emainConfig['port'];
+										$lib_email = new Email($config);
+										$lib_email->from($emainConfig['sendmail'], $emainConfig['sendname']);
+										$lib_email->to($email);
+										$lib_email->subject('密码重置通知!');
+										$lib_email->message($content);
+										$isSend = $lib_email->send();
+										if($isSend){
+											$data = array('code' => 1, 'msg' => '邮件发送成功，请稍候！');
+										}else{
+											$data = array('code' => 1007, 'msg' => '失败'.strip_tags ($lib_email->print_debugger()));
+										}
+									} catch (\Exception $e) {
+										$data = array('code' => 1006, 'msg' => $e->getMessage());
+									}
+									
+									//4.记录发送失败
+									if($data['code']>1){
+										$this->m_email_code->UpdateByID(array('status'=>0,'result'=>$data['msg']),$m['id']);
+									}else{
+										$this->m_email_code->UpdateByID(array('status'=>1,'result'=>$data['msg']),$m['id']);
+									}
 								}
-							} catch (\Exception $e) {
-								$data = array('code' => 1006, 'msg' => $e->getMessage());
-							}
-							
-							//4.记录发送失败
-							if($data['code']>1){
-								$this->m_email_code->UpdateByID(array('status'=>0,'result'=>$data['msg']),$m['id']);
-							}else{
-								$this->m_email_code->UpdateByID(array('status'=>1,'result'=>$data['msg']),$m['id']);
-							}
+								
+						}else{
+							$data = array('code' => 1002, 'msg' =>'邮箱不存在');
 						}
-				}else{
-					$data = array('code' => 1002, 'msg' =>'邮箱不存在');
+					}else{
+						 $data = array('code' => 1003, 'msg' => '邮箱账户有误!');
+					}
+				} else {
+					$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
