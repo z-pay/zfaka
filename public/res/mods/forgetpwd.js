@@ -31,7 +31,7 @@ layui.define(['layer', 'form'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				$('.layui-tab-item').removeClass('layui-show').eq(':last').addClass('layui-show');
+				$('.layui-tab-item.layui-show').removeClass('layui-show').siblings().addClass('layui-show');
 			} else {
 				$('.loadcode').attr('src','/Captcha?t=forgetpwd&n=' + Math.random());
 				layer.msg(res.msg,{icon:2,time:5000});
