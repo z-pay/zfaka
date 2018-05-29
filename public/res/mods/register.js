@@ -5,7 +5,7 @@ layui.define(['layer', 'form'], function(exports){
 
 	$('.loadcode').on('click', function(event) {
 		event.preventDefault();
-		$(this).attr('src','/Captcha?t=register&n=' + Math.random())
+		$(this).attr('src','/Captcha?t=register&n=' + Math.random());
 	});
 
 	form.verify({
@@ -33,6 +33,7 @@ layui.define(['layer', 'form'], function(exports){
 			if (res.code == '1') {
 				location.pathname = '/member'
 			} else {
+				$('.loadcode').attr('src','/Captcha?t=register&n=' + Math.random());
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
 		})
