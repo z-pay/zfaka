@@ -607,16 +607,21 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
   });
   
   //固定Bar
-  util.fixbar({
-    bar1: '&#xe642;'
-    ,bgcolor: '#009688'
-    ,click: function(type){
-      if(type === 'bar1'){
-        layer.msg('打开 index.js，开启发表新帖的路径');
-        //location.href = 'jie/add.html';
-      }
-    }
-  });
+  // util.fixbar({
+  //   bar1: '&#xe642;'
+  //   ,bgcolor: '#009688'
+  //   ,click: function(type){
+  //     if(type === 'bar1'){
+  //       layer.msg('打开 index.js，开启发表新帖的路径');
+  //       //location.href = 'jie/add.html';
+  //     }
+  //   }
+  // });
+
+  //个人中心侧边导航
+  var href = location.href;
+  var navItemLen = $('.fly-user-main .layui-nav .layui-nav-item').length;
+  console.log(href,navItemLen)
 
   exports('fly', fly);
 
