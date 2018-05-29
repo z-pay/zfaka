@@ -68,7 +68,7 @@ class M_User extends Model {
 			$m['id'] = $uid;
 			unset($m['password']);
 			$this->_session($m);
-            return $result;
+            return TRUE;
         }else{
             return FALSE;
         }
