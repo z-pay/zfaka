@@ -29,6 +29,7 @@ class ForgetpwdController extends PcBasicController
         $key = $this->get('key', false);
 		$data = array();
         if (false != $key) {
+			$key=base64_decode($key);
             $key_array = explode('-', $key);
             if (isset($key_array[2]) AND false != $key_array[2]) {
                 $code = $key_array[0];
@@ -38,7 +39,7 @@ class ForgetpwdController extends PcBasicController
                 if (false != $code AND is_numeric($id) AND $id > 0 AND isEmail($email)) {
                     //从数据库中读取
                     $where = array('email' => $email, 'id' => $id, 'code' => $code, 'status' => 1,'action'=>'forgetpwd');
-                    $email_code = $this->m_email_code->getListOne('', $where);
+                    $email_code = $this->m_email_code->Where($where)->SelectOne();
                     if (!empty($email_code)) {
 						if($email_code['checkedStatus']>0){
 							$data = array('code'=>1001,'msg'=>'该重置密码链接已失效，请重新校验您的信息');
@@ -131,7 +132,8 @@ class ForgetpwdController extends PcBasicController
 							
 							//3.发送邮件
 							try {
-								$str = "key={$m['code']}-{$m['id']}-{$email}";
+								$key=base64_encode("{$m['code']}-{$m['id']}-{$email}");
+								$str = "key={$key}";
 								$url = siteUrl(SITE_URL, "/member/forgetpwd/reset", $str);
 								$content = '尊敬的' . $email . ':请点击此链接重置密码<a href="' . $url . '">' . $url . '</a>';
 								$emainConfig = $this->m_email->getConfig();
