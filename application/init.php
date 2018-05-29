@@ -27,9 +27,5 @@ ini_set('log_errors', 'on');
 ini_set('error_log', LOG_FILE);
 define('DEBUG',FALSE );//调试模式关闭
 
-define('HOME_URL','https://www.mtrp2p.com/');//主站点地址
-define('IMG_URL','https://res.mtrp2p.com/');//图片资源地址
-define('SITE_URL','https://www.mtrp2p.com/');//当前站点外部地址(当前站点)
-define('RPC_URL','http://192.168.1.134:9004');//RPC服务器地址(RPC服务)
-define('MOBILE_URL','https://m.mtrp2p.com');//移动端站点地址(微信、移动端)
-define('ADMIN_URL','https://admin.mtrp2p.com');//管理后台站点地址(后台)
+
+define('SITE_URL','http://xiuxiuhou.com/');//当前站点外部地址(当前站点)
