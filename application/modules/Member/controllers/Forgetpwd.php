@@ -76,7 +76,7 @@ class ForgetpwdController extends PcBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
                 //从数据库中读取
                 $where = array('email' => $email, 'code' => $code, 'status' => 1,'action'=>'forgetpwd' ,'checkedStatus'=>0);
-                $email_code = $this->m_email_code->getListOne('', $where);
+                $email_code = $this->m_email_code->Where($where)->SelectOne();
                 if (!empty($email_code)) {
 					$change = $this->m_user->changePWD($email_code['userid'], $password);
 					if($change){
