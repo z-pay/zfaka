@@ -20,7 +20,7 @@ class RegisterController extends PcBasicController
     public function indexAction()
     {
         if (false != $this->login AND false != $this->userid) {
-            $this->redirect("/member/center/");
+            $this->redirect("/member/");
             return FALSE;
         }
 		$data = array();
