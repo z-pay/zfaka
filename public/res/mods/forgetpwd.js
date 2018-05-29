@@ -59,7 +59,18 @@ layui.define(['layer', 'form'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				location.href = '/member/login/';
+				layer.open({
+					title: '提示',
+					content: '密码已修改成功！',
+					btn: ['确定'],
+					yes: function(index, layero){
+					    location.href = '/member/login/';
+					},
+					cancel: function(){ 
+					    location.href = '/member/login/';
+					}
+				});
+				
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
