@@ -41,7 +41,7 @@ class ProfilesController extends PcBasicController
 			Helper::response($data);
         }
 		
-		if($nickname AND $qq AND $csrf_token){
+		if($nickname AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$this->m_user->UpdateByID(array('nickname'=>$nickname,'qq'=>$qq,'tag'=>$tag),$this->userid);
 				$data = array('code' => 1, 'msg' => '更新成功');
