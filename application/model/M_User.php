@@ -61,14 +61,21 @@ class M_User extends Model {
 		}else{
 			$m['qq'] = '';
 		}
-		
+		if(isset($params['tag'])){
+			$m['tag'] = $params['tag'];
+		}else{
+			$m['tag'] = '';
+		}
 		$m['groupid'] = 1;
 		$m['money'] = $m['integral'] = 0;
 
         if($uid=$this->Insert($m)){
-			$m['id'] = $uid;
-			unset($m['password']);
-			$this->_session($m);
+			if(isset($params['method']) and $params['method']=='agentadd'){
+			}else{
+				$m['id'] = $uid;
+				unset($m['password']);
+				$this->_session($m);
+			}
             return TRUE;
         }else{
             return FALSE;

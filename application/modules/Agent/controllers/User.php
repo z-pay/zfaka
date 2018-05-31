@@ -91,7 +91,51 @@ class UserController extends PcBasicController
             $this->redirect("/member/");
             return FALSE;
 		}
-
     }
+	
+	public function addajaxAction()
+	{
+		$email    = $this->getPost('email',false);
+		$password = $this->getPost('password',false);
+		$nickname = $this->getPost('nickname',false);
+		$qq = $this->getPost('qq',false);
+		$tag = $this->getPost('tag',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		if($email AND $password AND $nickname AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				if(isEmail($email)){
+					//检查邮箱是否已经使用
+					$checkEmailUser = $this->m_user->checkEmail($email);
+					if(empty($checkEmailUser)){
+						$m = array(
+							'email'=>$email,
+							'password'=>$password,
+							'nickname'=>$nickname,
+							'qq'=>$qq,
+							'tag'=>$tag,
+							'agentid'=>$this->userid
+							'method'=>'agentadd'
+						);
+						$newUser = $this->m_user->newRegister($m);
+						if($newUser){
+							$data = array('code' => 1, 'msg' =>'success');
+						}else{
+							$data = array('code' => 1002, 'msg' =>'注册失败');
+						}
+					}else{
+						$data=array('code'=>1004,'msg'=>'邮箱账户已经存在');
+					}
+				}else{
+					 $data = array('code' => 1003, 'msg' => '邮箱账户有误!');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
 	
 }
