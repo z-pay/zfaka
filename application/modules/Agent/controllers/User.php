@@ -76,4 +76,39 @@ class UserController extends PcBasicController
 		Helper::response($data);
 	}
 	
+	
+    public function addAction()
+    {
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		
+		if($this->uinfo['isagent']>0){
+			$data = array();
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/member/");
+            return FALSE;
+		}
+
+    }
+	
+	
+    public function settingAction()
+    {
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		
+		if($this->uinfo['isagent']>0){
+			$data = array();
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/member/");
+            return FALSE;
+		}
+
+    }
 }
