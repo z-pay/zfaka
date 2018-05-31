@@ -1,0 +1,41 @@
+<?php include COMMON_PATH.'/header.html';?>
+
+<div class="layui-container fly-marginTop fly-user-main">
+<?php include COMMON_PATH.'/user-nav.html';?>
+  
+  
+  <div class="fly-panel fly-panel-user" pad20>
+    <div class="layui-tab layui-tab-brief" lay-filter="user">
+      <ul class="layui-tab-title" id="LAY_mine">
+        <li class="layui-this" lay-id="info">管理设置</li>
+      </ul>
+      <div class="layui-tab-content" style="padding: 20px 0;">
+        <div class="layui-form layui-form-pane layui-tab-item layui-show">
+          <form method="post">
+            <div class="layui-form-item">
+              <label for="L_email" class="layui-form-label">是否开始代理商充值</label>
+              <div class="layui-input-inline">
+                <input type="text" id="L_email" lay-verify="email" autocomplete="off" value="" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label for="L_username" class="layui-form-label">代理商折扣设置</label>
+              <div class="layui-input-inline">
+                <input type="text" id="L_username" name="nickname" required lay-verify="required" autocomplete="off" value="" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <button class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认提交</button>
+            </div>
+          </div>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--引入公共底文件-->
+<?php include COMMON_PATH.'/footer.html';?>
