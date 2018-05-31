@@ -84,7 +84,8 @@ class ProfilesController extends PcBasicController
 
 								$update = $this->m_user->changePWD($this->userid, $password);
 								if ($update) {
-									$data = array('code' => 1, 'msg' => '修改密码');
+									$data = array('code' => 1, 'msg' => '修改密码成功');
+									$this->unsetSession('uinfo');
 								} else {
 									$data = array('code' => 1004, 'msg' => '数据更新异常');
 								}
