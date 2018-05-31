@@ -8,7 +8,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 
 	table.render({
 		elem: '#question',
-		url: '/demo/table/user/',
+		url: '/help/index/ajax',
 		page: true,
 		cols: [[
 			{field: 'title', title: 'ID', width:80, sort: true, fixed: 'left'},
