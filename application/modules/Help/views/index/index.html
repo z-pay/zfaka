@@ -12,8 +12,21 @@
                         <p>敬请期待!</p>
                     </div> -->
                     <table class="layui-table" id="question"></table>
+                    <script type="text/javascript">
+                        function createTime(v){
+                            var date = new Date();
+                            date.setTime(v);
+                            var y = date.getFullYear();
+                            var m = date.getMonth()+1;
+                            m = m<10?'0'+m:m;
+                            var d = date.getDate();
+                            d = d<10?("0"+d):d;
+                            var str = y+"-"+m+"-"+d;
+                            return str;
+                        }
+                    </script>
                     <script type="text/html" id="addtime">
-                        {{# util.toDateString( d.addtime , "yyyy-MM-dd") }}
+                        {{# createTime(d.addtime) }}
                     </script>
                 </div>
             </div>
