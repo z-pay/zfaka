@@ -20,14 +20,9 @@ class IndexController extends PcBasicController
             $this->redirect("/member/login");
             return FALSE;
         }
-		
-		if($this->uinfo['isagent']>0){
-            $this->redirect("/agent/");
-            return FALSE;
-		}else{
-			$data = array();
-			$this->getView()->assign($data);
-		}
+
+		$data = array();
+		$this->getView()->assign($data);
     }
 
 
