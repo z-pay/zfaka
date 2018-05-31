@@ -20,7 +20,7 @@ class M_User extends Model {
 	 * @return params on success or 0 or failure
 	 */
 	public function checkLogin($email, $password){
-		$field = array('id', 'email','password','nickname','groupid');
+		$field = array('id', 'email','password','nickname','groupid','isagent');
 		if(isEmail($email)){
 			$where = array('email' => $email);
 		}else{
@@ -44,10 +44,10 @@ class M_User extends Model {
 		$m['createtime']= time(); 
 		$m['password'] = md5($params['password']);
 		
-		if(isset($params['groupid'])){
-			$m['groupid'] = $params['groupid'];
+		if(isset($params['isagent'])){
+			$m['isagent'] = $params['isagent'];
 		}else{
-			$m['groupid'] = 4;
+			$m['isagent'] = 0;
 		}
 		
 		if(isset($params['agentid'])){
@@ -62,6 +62,7 @@ class M_User extends Model {
 			$m['qq'] = '';
 		}
 		
+		$m['groupid'] = 1;
 		$m['money'] = $m['integral'] = 0;
 
         if($uid=$this->Insert($m)){
