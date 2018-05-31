@@ -114,8 +114,8 @@ class UserController extends PcBasicController
 							'nickname'=>$nickname,
 							'qq'=>$qq,
 							'tag'=>$tag,
-							'agentid'=>$this->userid
-							'method'=>'agentadd'
+							'agentid'=>$this->userid,
+							'method'=>'agentadd',
 						);
 						$newUser = $this->m_user->newRegister($m);
 						if($newUser){
