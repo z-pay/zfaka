@@ -38,7 +38,7 @@ class PcBasicController extends BasicController {
 		//3.登录的判断,加入登录超时判断
         $uinfo = $this->getSession('uinfo');
 		if(is_array($uinfo) AND !empty($uinfo) AND $uinfo['expiretime']>time()){
-			$groupName=array(1=>'管理员',2=>'代理商',3=>'直接用户',4=>'注册用户');
+			$groupName=$this->load('user_group')->getConfig();
 			$uinfo['groupName'] = $groupName[$uinfo['groupid']];
 			$uinfo['expiretime'] = time() + 15*60;
 			$this->setSession('uinfo',$uinfo);

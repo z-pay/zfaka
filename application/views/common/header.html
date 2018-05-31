@@ -29,9 +29,9 @@
         <a href="/member"><i class="iconfont icon-iconmingxinganli"></i>首页</a>
       </li>
 	  
-	  <?php if($uinfo['groupid']<3):?>
+	  <?php if($uinfo['isagent']>0):?>
       <li class="layui-nav-item">
-        <a href="/user"><i class="iconfont icon-iconmingxinganli"></i>用户管理</a>
+        <a href="/agent"><i class="iconfont icon-iconmingxinganli"></i>代理商入</a>
       </li>
       <li class="layui-nav-item">
         <a href="/product"><i class="iconfont icon-iconmingxinganli"></i>产品中心</a>
