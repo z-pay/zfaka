@@ -1,9 +1,9 @@
 
-layui.define(['layer', 'table', 'form'], function(exports){
+layui.define(['layer', 'table', 'util'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var table = layui.table;
-	var form = layui.form;
+	var util = layui.util;
 
 
 	table.render({
@@ -11,8 +11,8 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		url: '/help/index/ajax',
 		page: true,
 		cols: [[
-			{field: 'title', title: 'ID', width:80, sort: true, fixed: 'left'},
-			{field: 'addtime', title: '用户名', width:80}
+			{field: 'title', title: '常见问题'},
+			{field: 'addtime', title: '发布时间', width:160}
 		]]
 	});
 
