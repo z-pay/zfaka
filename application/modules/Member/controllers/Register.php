@@ -40,12 +40,18 @@ class RegisterController extends PcBasicController
 				if(isEmail($email)){
 					if(strtolower($this->getSession('registerCaptcha')) ==strtolower($vercode)){
 						$this->unsetSession('registerCaptcha');
-						$m = array('email'=>$email,'password'=>$password,'nickname'=>$nickname);
-						$newUser = $this->m_user->newRegister($m);
-						if($newUser){
-							$data = array('code' => 1, 'msg' =>'success');
+						//检查邮箱是否已经使用
+						$checkEmailUser = $this->m_user->checkEmail($email);
+						if(empty($checkEmailUser)){
+							$m = array('email'=>$email,'password'=>$password,'nickname'=>$nickname);
+							$newUser = $this->m_user->newRegister($m);
+							if($newUser){
+								$data = array('code' => 1, 'msg' =>'success');
+							}else{
+								$data = array('code' => 1002, 'msg' =>'注册失败');
+							}
 						}else{
-							$data = array('code' => 1002, 'msg' =>'注册失败');
+							$data=array('code'=>1005,'msg'=>'邮箱已存在');
 						}
 					}else{
 						$data=array('code'=>1004,'msg'=>'图形验证码错误');
