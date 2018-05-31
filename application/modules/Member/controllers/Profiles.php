@@ -57,6 +57,10 @@ class ProfilesController extends PcBasicController
 	
 	
 	public function passwordAction(){
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
 		$data = array();
         $this->getView()->assign($data);
 	}
@@ -107,6 +111,10 @@ class ProfilesController extends PcBasicController
 	}
 	
 	public function thirdloginAction(){
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
 		$data = array();
         $this->getView()->assign($data);
 	}
