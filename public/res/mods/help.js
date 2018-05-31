@@ -12,7 +12,7 @@ layui.define(['layer', 'table', 'util'], function(exports){
 		page: true,
 		cols: [[
 			{field: 'title', title: '常见问题'},
-			{field: 'addtime', title: '发布时间', width:160}
+			{field: 'addtime', title: '发布时间', width:160, templet: '#addtime'}
 		]]
 	});
 
