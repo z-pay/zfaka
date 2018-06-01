@@ -45,6 +45,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		elem: '#userlist',
 		url: '/agent/user/ajax',
 		page: true,
+		cellMinWidth:60,
 		cols: [[
 			{field: 'id', title: 'ID'},
 			{field: 'email', title: '邮箱', minWidth:160},
