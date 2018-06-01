@@ -47,14 +47,14 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		page: true,
 		cols: [[
 			{field: 'id', title: 'ID'},
-			{field: 'email', title: '邮箱'},
+			{field: 'email', title: '邮箱', minWidth:160},
 			{field: 'nickname', title: '昵称'},
-			{field: 'mobilephone', title: '手机号码',align:'center'},
-			{field: 'qq', title: 'QQ', width:160, align:'center'},
+			{field: 'mobilephone', title: '手机号码', width:120,align:'center'},
+			{field: 'qq', title: 'QQ', width:120, align:'center'},
 			{field: 'groupid', title: '分组'},
 			{field: 'money', title: '余额'},
 			{field: 'integral', title: '积分'},
-			{field: 'createtime', title: '注册时间', templet: '#createtime',align:'center'}
+			{field: 'createtime', title: '注册时间', width:160, templet: '#createtime',align:'center'}
 		]]
 	});
 
