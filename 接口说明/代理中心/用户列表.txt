@@ -1,6 +1,6 @@
-½Ó¿ÚµØÖ·£º /agent/user/ajax
-ÇëÇó·½Ê½ get
-²ÎÊı£ºÎŞ
-·µ»Ø¸ñÊ½£ºjson
-·µ»Ø²ÎÊı£º code,count,data,msg
+æ¥å£åœ°å€ï¼š /agent/user/ajax
+è¯·æ±‚æ–¹å¼ get
+å‚æ•°ï¼šæ— 
+è¿”å›æ ¼å¼ï¼šjson
+è¿”å›å‚æ•°ï¼š code,count,data,msg
 

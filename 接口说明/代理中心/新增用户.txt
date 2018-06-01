@@ -1,12 +1,11 @@
-½Ó¿ÚµØÖ·£º /agent/user/addajax
-ÇëÇó·½Ê½ post
-²ÎÊı
+æ¥å£åœ°å€ï¼š /agent/user/addajax
+è¯·æ±‚æ–¹å¼ post
+å‚æ•°
 email
 password
 nickname
 qq
 tag
 csrf_token
-·µ»Ø¸ñÊ½£ºjson
-·µ»Ø²ÎÊı£º code,msg
-
+è¿”å›æ ¼å¼ï¼šjson
+è¿”å›å‚æ•°ï¼š code,msg
