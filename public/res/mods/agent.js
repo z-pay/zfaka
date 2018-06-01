@@ -1,6 +1,7 @@
-layui.define(['layer', 'form'], function(exports){
+layui.define(['layer', 'table', 'form'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
+	var table = layui.table;
 	var form = layui.form;
 
 	form.verify({
@@ -17,7 +18,7 @@ layui.define(['layer', 'form'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/agent/user/ajax',
+			url: '/agent/user/addajax',
 			type: 'post',
 			dataType: 'json',
 			data: data.field,
@@ -38,6 +39,25 @@ layui.define(['layer', 'form'], function(exports){
 
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
+
+
+	table.render({
+		elem: '#userlist',
+		url: '/agent/user/ajax',
+		page: true,
+		cols: [[
+			{field: 'id', title: 'ID'},
+			{field: 'email', title: '邮箱'},
+			{field: 'nickname', title: '昵称'},
+			{field: 'mobilephone', title: '手机号码',align:'center'},
+			{field: 'qq', title: 'QQ', width:160, align:'center'},
+			{field: 'groupid', title: '分组'},
+			{field: 'money', title: '余额'},
+			{field: 'integral', title: '积分'},
+			{field: 'createtime', title: '注册时间', templet: '#createtime',align:'center'}
+		]]
+	});
+
 
 	exports('agent',null)
 });
