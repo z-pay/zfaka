@@ -65,4 +65,14 @@ class TicketController extends PcBasicController
         }
 		Helper::response($data);
 	}
+	
+    public function addAction()
+    {
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		$data = array();
+        $this->getView()->assign($data);
+    }
 }
