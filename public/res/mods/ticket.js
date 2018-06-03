@@ -25,7 +25,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				layer.msg(res.msg,{icon:2,time:5000});
+				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
