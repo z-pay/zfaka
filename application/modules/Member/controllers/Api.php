@@ -36,5 +36,54 @@ class ApiController extends PcBasicController
         }
 		$data = array();
         $this->getView()->assign($data);
-    }	
+    }
+	
+	public function ajaxAction()
+	{
+        if ($this->login==FALSE AND !$this->userid) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$method_array = array('on','off');
+		$method = $this->getPost('method',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		if($method AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				if(in_array($method,$method_array)){
+					//检查是否已经使用api
+					$checkApi = $this->m_api->Where(array('userid'=>$this->userid,'status'=>1))->SelectOne;
+					if(empty($checkApi)){
+						$apikey=date("YmdHis").str_pad($this->userid,3,"1", STR_PAD_LEFT);
+						$apisecret=md5($apikey.$this->uinfo['email']).rand(10,90);
+						
+						$m = array(
+							'userid'=>$this->userid,
+							'apikey'=>$apikey,
+							'apisecret'=>$apisecret,
+							'allowip'=>'',
+							'addtime'=>time(),
+							'expirytime'=>strtotime("+1 year"),
+							'status'=>1,
+						);
+						$newApi = $this->m_api->Insert($m);
+						if($newApi){
+							$data = array('code' => 1, 'msg' =>'success');
+						}else{
+							$data = array('code' => 1002, 'msg' =>'申请失败');
+						}
+					}else{
+						$data=array('code'=>1004,'msg'=>'API已经存在');
+					}
+				}else{
+					 $data = array('code' => 1003, 'msg' => '方法错误!');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
 }
