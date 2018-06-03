@@ -1,0 +1,346 @@
+<?php include COMMON_PATH.'/header.html';?>
+
+<div class="layui-container fly-marginTop fly-user-main">
+<?php include COMMON_PATH.'/member-nav.html';?>
+  
+  <div class="fly-panel fly-panel-user" pad20>
+    <div class="layui-tab layui-tab-brief" lay-filter="api">
+		<ul class="layui-tab-title" id="LAY_mine">
+			<li lay-id="api"><a href="/member/api/">API配置</a></li>
+			<li class="layui-this" lay-id="api_info">API说明</li>
+		</ul>
+		<div class="layui-tab-content" style="padding: 20px 0;">
+          <div class="layui-form layui-form-pane layui-tab-item layui-show">
+            <div class="layui-form-item layui-show">
+				<div class="layui-elem-quote">
+					<p>API版本：20180603</p>
+					<p>本接口请谨慎使用。</p>
+				</div>
+				
+				<fieldset class="layui-elem-field layui-field-title site-title">
+				  <legend><a name="grid">用户接口</a></legend>
+				</fieldset>
+				<div class="site-text">
+					  <p>为了丰富网页布局，简化 HTML/CSS 代码的耦合，并提升多终端的适配能力，layui 在 2.0 的版本中引进了自己的一套具备响应式能力的栅格系统。我们将容器进行了 12 等分，预设了 4*12 种 CSS 排列类，它们在移动设备、平板、桌面中/大尺寸四种不同的屏幕下发挥着各自的作用。</p>
+					  
+					  <a name="grid-rule"></a>
+					  <p>一、栅格布局规则：</p>
+					  <hr>
+					  <table class="layui-table">
+						<colgroup>
+						  <col width="50">
+						  <col>
+						</colgroup>
+						<tbody>
+						  <tr>
+							<td>1.</td>
+							<td>采用 <em>layui-row</em> 来定义行，如：<em>&lt;div class="layui-row"&gt;&lt;/div&gt;</em> </td>
+						  </tr>
+						  <tr>
+							<td>2.</td>
+							<td>
+							  采用类似 <em>layui-col-md*</em> 这样的预设类来定义一组列（column），且放在行（row）内。其中：
+							  <div class="layui-text">
+								<ul>
+								  <li>变量<em>md</em> 代表的是不同屏幕下的标记（可选值见下文）</li>
+								  <li>变量<em>*</em> 代表的是该列所占用的12等分数（如6/12），可选值为 1 - 12</li>
+								  <li>如果多个列的“等分数值”总和等于12，则刚好满行排列。如果大于12，多余的列将自动另起一行。</li>
+								</ul>
+							  </div>
+							</td>
+						  </tr>
+						  <tr>
+							<td>3.</td>
+							<td>列可以同时出现最多四种不同的组合，分别是：<em>xs</em>（超小屏幕，如手机）、<em>sm</em>（小屏幕，如平板）、<em>md</em>（桌面中等屏幕）、<em>lg</em>（桌面大型屏幕），以呈现更加动态灵活的布局。</td>
+						  </tr>
+						  <tr>
+							<td>4.</td>
+							<td>可对列追加类似 <em>layui-col-space5</em>、 <em>layui-col-md-offset3</em> 这样的预设类来定义列的间距和偏移。</td>
+						  </tr>
+						  <tr>
+							<td>5.</td>
+							<td>最后，在列（column）元素中放入你自己的任意元素填充内容，完成布局！</td>
+						  </tr>
+						</tbody>
+					  </table>
+					  
+					  <p>示例（这里只是大致列举两个，更多实例请前往 <a href="/demo/grid.html" target="_blank">示例-栅格</a> 查看）</p>
+					  
+					  <div class="layui-row">
+						<div class="layui-col-md9">
+						  <div class="grid-demo">你的内容 9/12</div>
+						</div>
+						<div class="layui-col-md3">
+						  <div class="grid-demo grid-demo-bg1">你的内容 3/12</div>
+						</div>
+					  </div>
+					  
+					  <br>
+					  
+					  <div class="layui-row">
+						<div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+						  <div class="grid-demo grid-demo-bg1">50% | 33.33% | 33.33%</div>
+						</div>
+						<div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+						  <div class="grid-demo">50% | 66.67% | 33.33%</div>
+						</div>
+						<div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
+						  <div class="grid-demo grid-demo-bg1">33.33% | 100% | 33.33%</div>
+						</div>
+						<div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
+						  <div class="grid-demo grid-demo-bg2">33.33% | 50% | 66.67%</div>
+						</div>
+						<div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
+						  <div class="grid-demo">33.33% | 50% | 33.33%</div>
+						</div>
+					  </div>
+					  
+					  <pre class="layui-code layui-box layui-code-view" lay-title="示例"><h3 class="layui-code-h3">示例<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;div class="layui-container"&gt;  </li><li>  常规布局（以中型屏幕桌面为例）：</li><li>  &lt;div class="layui-row"&gt;</li><li>    &lt;div class="layui-col-md9"&gt;</li><li>      你的内容 9/12</li><li>    &lt;/div&gt;</li><li>    &lt;div class="layui-col-md3"&gt;</li><li>      你的内容 3/12</li><li>    &lt;/div&gt;</li><li>  &lt;/div&gt;</li><li>   </li><li>  移动设备、平板、桌面端的不同表现：</li><li>  &lt;div class="layui-row"&gt;</li><li>    &lt;div class="layui-col-xs6 layui-col-sm6 layui-col-md4"&gt;</li><li>      移动：6/12 | 平板：6/12 | 桌面：4/12</li><li>    &lt;/div&gt;</li><li>    &lt;div class="layui-col-xs6 layui-col-sm6 layui-col-md4"&gt;</li><li>      移动：6/12 | 平板：6/12 | 桌面：4/12</li><li>    &lt;/div&gt;</li><li>    &lt;div class="layui-col-xs4 layui-col-sm12 layui-col-md4"&gt;</li><li>      移动：4/12 | 平板：12/12 | 桌面：4/12</li><li>    &lt;/div&gt;</li><li>    &lt;div class="layui-col-xs4 layui-col-sm7 layui-col-md8"&gt;</li><li>      移动：4/12 | 平板：7/12 | 桌面：8/12</li><li>    &lt;/div&gt;</li><li>    &lt;div class="layui-col-xs4 layui-col-sm5 layui-col-md4"&gt;</li><li>      移动：4/12 | 平板：5/12 | 桌面：4/12</li><li>    &lt;/div&gt;</li><li>  &lt;/div&gt;</li><li>&lt;/div&gt;</li><li>      </li></ol></pre>
+					  
+					  <a name="grid-resp"></a>
+					  <br>
+					  <p>二、响应式规则：</p>
+					  <hr>
+					  <p>栅格的响应式能力，得益于CSS3媒体查询（Media Queries）的强力支持，从而针对四类不同尺寸的屏幕，进行相应的适配处理</p>
+					  <table class="layui-table">
+						<colgroup>
+						  <col width="160">
+						</colgroup>
+						<thead>
+						  <tr><th></th>
+						  <th>超小屏幕<br>(手机&lt;768px)</th>
+						  <th>小屏幕<br>(平板≥768px)</th>
+						  <th>中等屏幕<br>(桌面≥992px)</th>
+						  <th>大型屏幕<br>(桌面≥1200px)</th>
+						</tr></thead>
+						<tbody>
+						  <tr>
+							<td><em>.layui-container</em>的值</td>
+							<td>auto</td>
+							<td>750px</td>
+							<td>970px</td>
+							<td>1170px</td>
+						  </tr>
+						  <tr>
+							<td>标记</td>
+							<td>xs</td>
+							<td>sm</td>
+							<td>md</td>
+							<td>lg</td>
+						  </tr>
+						  <tr>
+							<td>列对应类<br>* 为1-12的等分数值</td>
+							<td>layui-col-xs*</td>
+							<td>layui-col-sm*</td>
+							<td>layui-col-md*</td>
+							<td>layui-col-lg*</td>
+						  </tr>
+						  <tr>
+							<td>总列数</td>
+							<td colspan="4">12</td>
+						  </tr>
+						  <tr>
+							<td>响应行为</td>
+							<td>始终按设定的比例水平排列</td>
+							<td colspan="3">在当前屏幕下水平排列，如果屏幕大小低于临界值则堆叠排列</td>
+						  </tr>
+						</tbody>
+					  </table>
+					  
+					  <a name="grid-class"></a>
+					  <br>
+					  <p>三、响应式公共类：</p>
+					  <hr>
+					   <table class="layui-table">
+						<colgroup>
+						  <col width="150">
+						  <col>
+						</colgroup>
+						<thead>
+						  <tr>
+							<th>类名（class）</th>
+							<th>说明</th>
+						  </tr> 
+						</thead>
+						<tbody>
+						  <tr>
+							<td>layui-show-*-block</td>
+							<td class="layui-text">定义不同设备下的 display: block; * 可选值有：xs、sm、md、lg</td>
+						  </tr>
+						  <tr>
+							<td>layui-show-*-inline</td>
+							<td>定义不同设备下的 display: inline; * 可选值同上</td>
+						  </tr>
+						  <tr>
+							<td>layui-show-*-inline-block</td>
+							<td>定义不同设备下的 display: inline-block; * 可选值同上</td>
+						  </tr>
+						  <tr>
+							<td>layui-hide-*</td>
+							<td>定义不同设备下的隐藏类，即： display: none; * 可选值同上</td>
+						  </tr>
+						</tbody>
+					  </table>
+					  
+					  <a name="grid-container"></a>
+					  <br>
+					  <p>四、布局容器：</p>
+					  <hr>
+					  <p>将栅格放入一个带有 <em>class="layui-container"</em> 的特定的容器中，以便在小屏幕以上的设备中固定宽度，让列可控。</p>
+					  <pre class="layui-code layui-box layui-code-view"><h3 class="layui-code-h3">code<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;div class="layui-container"&gt;</li><li>  &lt;div class="layui-row"&gt;</li><li>    ……</li><li>  &lt;/div&gt;</li><li>&lt;/div&gt;      </li><li>      </li></ol></pre>  
+					  <p>当然，你还可以不固定容器宽度。将栅格或其它元素放入一个带有 <em>class="layui-fluid"</em> 的容器中，那么宽度将不会固定，而是 100% 适应</p>
+					  <pre class="layui-code layui-box layui-code-view"><h3 class="layui-code-h3">code<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;div class="layui-fluid"&gt;</li><li>  ……</li><li>&lt;/div&gt;      </li><li>      </li></ol></pre> 
+					  
+					  <a name="grid-space"></a>
+					  <br>
+					  <p>五、列间距：</p>
+					  <hr>
+					  <table class="layui-table">
+						<colgroup>
+						  <col width="200">
+						  <col>
+						</colgroup>
+						<tbody>
+						  <tr>
+							<td colspan="2">通过“列间距”的预设类，来设定列之间的间距。且一行中最左的列不会出现左边距，最右的列不会出现右边距。列间距在保证排版美观的同时，还可以进一步保证分列的宽度精细程度。我们结合网页常用的边距，预设了 12 种不同尺寸的边距，分别是：</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space1</td>
+							<td>列之间间隔 1px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space3</td>
+							<td>列之间间隔 3px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space5</td>
+							<td>列之间间隔 5px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space8</td>
+							<td>列之间间隔 8px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space10</td>
+							<td>列之间间隔 10px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space12</td>
+							<td>列之间间隔 12px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space15</td>
+							<td>列之间间隔 15px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space18</td>
+							<td>列之间间隔 18px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space20</td>
+							<td>列之间间隔 20px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space22</td>
+							<td>列之间间隔 22px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space28</td>
+							<td>列之间间隔 28px</td>
+						  </tr>
+						  <tr>
+							<td>layui-col-space30</td>
+							<td>列之间间隔 30px</td>
+						  </tr>
+						</tbody>
+					  </table>
+					  <p>下面是一个简单的例子，列间距为10px：</p>
+					  <div class="layui-row layui-col-space10">
+						<div class="layui-col-md4">
+						  <div class="grid-demo grid-demo-bg1">1/3</div>
+						</div>
+						<div class="layui-col-md4">
+						  <div class="grid-demo">1/3</div>
+						</div>
+						<div class="layui-col-md4">
+						  <div class="grid-demo grid-demo-bg1">1/3</div>
+						</div>
+					  </div>
+					  <pre class="layui-code layui-box layui-code-view"><h3 class="layui-code-h3">code<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;div class="layui-row layui-col-space10"&gt;</li><li>  &lt;div class="layui-col-md4"&gt;</li><li>    1/3</li><li>  &lt;/div&gt;</li><li>  &lt;div class="layui-col-md4"&gt;</li><li>    1/3</li><li>  &lt;/div&gt;</li><li>  &lt;div class="layui-col-md4"&gt;</li><li>    1/3</li><li>  &lt;/div&gt;</li><li>&lt;/div&gt;</li><li>      </li></ol></pre>
+					  <p>如果需要的间距高于30px（一般不常见），请采用偏移，下文继续讲解</p>
+					  
+					  <a name="grid-offset"></a>
+					  <br>
+					  <p>六、列偏移：</p>
+					  <hr>
+					  <p>
+						对列追加 类似 <em>layui-col-md-offset*</em> 的预设类，从而让列向右偏移。其中 <em>*</em> 号代表的是偏移占据的列数，可选中为 1 - 12。
+						<br>如：<em>layui-col-md-offset3</em>，即代表在“中型桌面屏幕”下，让该列向右偏移3个列宽度
+					  </p>
+					  <p>下面是一个采用“列偏移”机制让两个列左右对齐的实例</p>
+					  <div class="layui-row">
+						<div class="layui-col-md4">
+						  <div class="grid-demo grid-demo-bg1">4/12</div>
+						</div>
+						<div class="layui-col-md4 layui-col-md-offset4">
+						  <div class="grid-demo">偏移4列，从而在最右</div>
+						</div>
+					  </div>
+					  <pre class="layui-code layui-box layui-code-view"><h3 class="layui-code-h3">code<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;div class="layui-row"&gt;</li><li>  &lt;div class="layui-col-md4"&gt;</li><li>    4/12</li><li>  &lt;/div&gt;</li><li>  &lt;div class="layui-col-md4 layui-col-md-offset4"&gt;</li><li>    偏移4列，从而在最右</li><li>  &lt;/div&gt;</li><li>&lt;/div&gt;</li><li>      </li></ol></pre>
+					  <p>请注意，列偏移可针对不同屏幕的标准进行设定，比如上述的例子，只会在桌面屏幕下有效，当低于桌面屏幕的规定的临界值，就会堆叠排列。</p>
+					  
+					  <a name="grid-nesting"></a>
+					  <br>
+					  <p>七、栅格嵌套：</p>
+					  <hr>
+					  <p>理论上，你可以对栅格进行无穷层次的嵌套，这更加增强了栅格的表现能力。而嵌套的使用非常简单。在列元素（<em>layui-col-md*</em>）中插入一个行元素（<em>layui-row</em>），即可完成嵌套。下面是一个简单的例子：</p>
+					  <div class="layui-row layui-col-space5">
+						<div class="layui-col-md5">
+						  <div class="layui-row grid-demo">
+							<div class="layui-col-md3">
+							  <div class="grid-demo grid-demo-bg1">内部列</div>
+							</div>
+							<div class="layui-col-md9">
+							  <div class="grid-demo grid-demo-bg2">内部列</div>
+							</div>
+							<div class="layui-col-md12">
+							  <div class="grid-demo grid-demo-bg3">内部列</div>
+							</div>
+						  </div>
+						</div>
+						<div class="layui-col-md7">
+						  <div class="layui-row grid-demo grid-demo-bg1">
+							<div class="layui-col-md12">
+							  <div class="grid-demo">内部列</div>
+							</div>
+							<div class="layui-col-md9">
+							  <div class="grid-demo grid-demo-bg2">内部列</div>
+							</div>
+							<div class="layui-col-md3">
+							  <div class="grid-demo grid-demo-bg3">内部列</div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					  <pre class="layui-code layui-box layui-code-view"><h3 class="layui-code-h3">code<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;div class="layui-row layui-col-space5"&gt;</li><li>  &lt;div class="layui-col-md5"&gt;</li><li>    &lt;div class="layui-row grid-demo"&gt;</li><li>      &lt;div class="layui-col-md3"&gt;</li><li>        内部列</li><li>      &lt;/div&gt;</li><li>      &lt;div class="layui-col-md9"&gt;</li><li>        内部列</li><li>      &lt;/div&gt;</li><li>      &lt;div class="layui-col-md12"&gt;</li><li>        内部列</li><li>      &lt;/div&gt;</li><li>    &lt;/div&gt;</li><li>  &lt;/div&gt;</li><li>  &lt;div class="layui-col-md7"&gt;</li><li>    &lt;div class="layui-row grid-demo grid-demo-bg1"&gt;</li><li>      &lt;div class="layui-col-md12"&gt;</li><li>        内部列</li><li>      &lt;/div&gt;</li><li>      &lt;div class="layui-col-md9"&gt;</li><li>        内部列</li><li>      &lt;/div&gt;</li><li>      &lt;div class="layui-col-md3"&gt;</li><li>        内部列</li><li>      &lt;/div&gt;</li><li>    &lt;/div&gt;</li><li>  &lt;/div&gt;</li><li>&lt;/div&gt;</li><li>      </li></ol></pre>
+					  <a name="grid-iepatch"></a>
+					  <br>
+					  <p>八、让IE8/9兼容栅格：</p>
+					  <hr>
+					  <p>事实上IE8和IE9并不支持媒体查询（Media Queries），但你可以使用下面的补丁完美兼容！该补丁来自于开源社区：</p>
+					  <pre class="layui-code layui-box layui-code-view"><h3 class="layui-code-h3">code<a href="http://www.layui.com/doc/modules/code.html" target="_blank">layui.code</a></h3><ol class="layui-code-ol"><li>&lt;!-- 让IE8/9支持媒体查询，从而兼容栅格 --&gt;</li><li>&lt;!--[if lt IE 9]&gt;</li><li>  &lt;script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"&gt;&lt;/script&gt;</li><li>  &lt;script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"&gt;&lt;/script&gt;</li><li>&lt;![endif]--&gt;</li><li>      </li></ol></pre>
+					  <p>将上述代码放入你页面 <em>&lt;body&gt;</em> 标签内的任意位置</p>
+					</div>
+				
+				
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--引入公共底文件-->
+<?php include COMMON_PATH.'/footer.html';?>
