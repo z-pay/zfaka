@@ -9,11 +9,13 @@
 class LoginController extends PcBasicController
 {
 	private $m_user;
+	private $m_user_login_logs;
 	
     public function init()
     {
         parent::init();
 		$this->m_user = $this->load('user');
+		$this->m_user_login_logs = $this->load('user_login_logs');
     }
 
     public function indexAction()
@@ -42,6 +44,10 @@ class LoginController extends PcBasicController
 						$this->unsetSession('loginCaptcha');
 						$checkUser = $this->m_user->checkLogin($email,$password);
 						if($checkUser){
+							//写入登录日志 
+							$m=array('userid'=>$checkUser['id'],'ip'=>getClientIP(),'addtime'=>time());
+							$this->m_user_login_logs->Insert($m);
+							
 							$data = array('code' => 1, 'msg' =>'success');
 						}else{
 							$data = array('code' => 1002, 'msg' =>'账户密码错误');
