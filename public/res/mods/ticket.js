@@ -18,14 +18,14 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/agent/user/addajax',
+			url: '/help/ticket/addajax',
 			type: 'post',
 			dataType: 'json',
 			data: data.field,
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				location.pathname = '/member'
+				layer.msg(res.msg,{icon:2,time:5000});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
