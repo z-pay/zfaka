@@ -14,8 +14,9 @@
           <div class="layui-form layui-form-pane layui-tab-item layui-show">
             <div class="layui-form-item layui-show">
 				<?php if(is_array($api) AND !empty($api)):?>
-				
-				
+				<div class="layui-elem-quote">
+					<p>您已经成功申请API，您还需要配置安全IP，才可以正常使用</p>
+				</div>
 				<?php else:?>
 				<div class="layui-elem-quote">
 					<p>申请API，您可以自主管理</p>
