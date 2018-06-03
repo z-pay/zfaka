@@ -47,7 +47,18 @@
 			})
 			.done(function(res) {
 				if (res.code == '1') {
-					layer.msg(res.msg,{icon:1,time:5000});
+					layer.open({
+					title: '提示',
+					icon: 1,
+					content: res.msg,
+					btn: ['确定'],
+					yes: function(index, layero){
+					    location.reload;
+					},
+					cancel: function(){
+					    location.reload;
+					}
+				});
 				} else {
 					layer.msg(res.msg,{icon:2,time:5000});
 				}
