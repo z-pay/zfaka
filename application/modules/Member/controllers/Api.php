@@ -8,15 +8,22 @@
 
 class ApiController extends PcBasicController
 {
-
+	private $m_api;
     public function init()
     {
         parent::init();
+		$this->m_api = $this->load('api');
     }
 
     public function indexAction()
     {
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
 		$data = array();
+		$api = $this->m_api->Where(array('userid'=>$this->userid))->SelectOne();
+		$data['api'] = $api;
         $this->getView()->assign($data);
     }
 
