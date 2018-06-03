@@ -32,4 +32,20 @@ class ProductController extends PcBasicController
     }
 	
 
+    public function buyAction()
+    {
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		
+		if($this->uinfo['isagent']>0){
+			$data = array();
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/member/");
+            return FALSE;
+		}
+
+    }
 }
