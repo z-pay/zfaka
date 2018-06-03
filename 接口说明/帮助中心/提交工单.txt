@@ -1,0 +1,11 @@
+﻿接口地址： /help/ticket/addajax
+请求方式 post
+参数:
+priority
+subject
+typeid
+content
+csrf_token
+返回格式：json
+返回参数： code,data,msg
+

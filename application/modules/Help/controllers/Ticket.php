@@ -75,4 +75,31 @@ class TicketController extends PcBasicController
 		$data = array();
         $this->getView()->assign($data);
     }
+	
+	public function addajaxAction()
+	{
+        if ($this->login==FALSE AND !$this->userid) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		$priority = $this->getPost('priority',false);
+		$subject = $this->getPost('subject',false);
+		$typeid = $this->getPost('typeid',false);
+		$content = $this->getPost('content',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		if(is_numeric($priority) AND $subject AND is_numeric($typeid) AND $content AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$m = array('userid'=>$this->userid,'typeid'=>$typeid,'priority'=>$priority,'subject'=>$subject,'content'=>$content,'status'=>0,'addtime'=>time());
+				$tid=$this->m_ticket->Insert($m);
+				$data = array('code' => 1, 'msg' => 'success','data'=>array('tid'=>$tid));
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
 }
