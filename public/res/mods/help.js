@@ -12,8 +12,8 @@ layui.define(['layer', 'table', 'element'], function(exports){
 		page: true,
 		cols: [[
 			{field: 'title', title: '常见问题'},
-
-			{title: '详情', width:100, align:'center', templet: '#detail'}
+			{field: 'addtime', title: '发布时间', width:160, templet: '#addtime',align:'center'},
+			{fixed:'right', title: '详情', width:100, templet: '#details', align:'center'}
 		]]
 	});
 
