@@ -21,10 +21,15 @@ class ApiController extends PcBasicController
             $this->redirect("/member/login");
             return FALSE;
         }
-		$data = array();
-		$api = $this->m_api->Where(array('userid'=>$this->userid))->SelectOne();
-		$data['api'] = $api;
-        $this->getView()->assign($data);
+		if($this->uinfo['isagent']>0){
+			$data = array();
+			$api = $this->m_api->Where(array('userid'=>$this->userid))->SelectOne();
+			$data['api'] = $api;
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/member/");
+            return FALSE;
+		}
     }
 
 
@@ -34,8 +39,13 @@ class ApiController extends PcBasicController
             $this->redirect("/member/login");
             return FALSE;
         }
-		$data = array();
-        $this->getView()->assign($data);
+		if($this->uinfo['isagent']>0){
+			$data = array();
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/member/");
+            return FALSE;
+		}
     }
 	
 	public function ajaxAction()
@@ -44,6 +54,11 @@ class ApiController extends PcBasicController
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
+		
+		if($this->uinfo['isagent']<1){
+            $data = array('code' => 1000, 'msg' => '无权限');
+			Helper::response($data);
+		}
 		$method_array = array('on','off');
 		$method = $this->getPost('method',false);
 		$csrf_token = $this->getPost('csrf_token', false);
