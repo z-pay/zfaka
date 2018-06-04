@@ -102,6 +102,7 @@
 			return false; //阻止表单跳转。
 		});
 		form.on('submit(shutdown)', function(data){
+			data.field = {};
 			data.field.method = 'off';
 			data.field.csrf_token = TOKEN;
 			var i = layer.load(2,{shade: [0.5,'#fff']});
@@ -113,18 +114,19 @@
 			})
 			.done(function(res) {
 				if (res.code == '1') {
-					layer.open({
-					title: '提示',
-					icon: 1,
-					content: res.msg,
-					btn: ['确定'],
-					yes: function(index, layero){
-					    location.reload;
-					},
-					cancel: function(){
-					    location.reload;
-					}
-				});
+					var n = layer.open({
+						title: '提示',
+						icon: 1,
+						content: res.msg,
+						btn: ['确定'],
+						yes: function(index, layero){
+						    location.reload;
+						    layer.close(n);
+						},
+						cancel: function(){
+						    location.reload;
+						}
+					});
 				} else {
 					layer.msg(res.msg,{icon:2,time:5000});
 				}
