@@ -47,12 +47,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		page: true,
 		cellMinWidth:60,
 		cols: [[
-			{field: 'content', title: 'content'},
-			{field: 'priority', title: 'priority'},
-			{field: 'status', title: 'status',align:'center'},
-			{field: 'subject', title: 'subject',align:'center'},
-			{field: 'typeid', title: 'typeid',align:'center'},
-			{field: 'userid', title: 'userid',align:'center'},
+			{field: 'subject', title: '标题'},
 			{field: 'addtime', title: '添加时间', width:160, templet: '#addtime',align:'center'},
 			{title: '详情', width:100, templet: '#details', align:'center'}
 		]]
