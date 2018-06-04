@@ -1,9 +1,9 @@
 
-layui.define(['layer', 'table', 'util'], function(exports){
+layui.define(['layer', 'table', 'element'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var table = layui.table;
-	var util = layui.util;
+	var element = layui.element;
 
 
 	table.render({
