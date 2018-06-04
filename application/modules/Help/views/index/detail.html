@@ -8,14 +8,14 @@
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
-					<div class="site-title">
-					  <a name="use"></a>
-					  <fieldset><legend><?php echo $items['title'];?></legend></fieldset>
+
+					<div class="site-text">
+						<blockquote class="site-text layui-elem-quote">
+						  <p><?php echo $items['title'];?></p>
+						</blockquote>
+						<p><?php echo $items['content'];?></p>
 					</div>
 					
-					<blockquote class="site-text layui-elem-quote">
-					  <p>模块加载名称：<em><?php echo $items['content'];?></em></p>
-					</blockquote>
                 </div>
             </div>
         </div>
