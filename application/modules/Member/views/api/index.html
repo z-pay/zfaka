@@ -12,7 +12,7 @@
                     <div class="layui-form-item layui-show">
                         <?php if(is_array($api) AND !empty($api)):?>
                         <div class="layui-elem-quote">
-                            <p>您已经成功申请API，您还需要配置安全IP，才可以正常使用</p>
+                            <p>您已经成功申请API，您还需要配置安全IP，才可以正常使用。点击<a href="javascript:;">关闭</a>API接口</p>
                         </div>
 						
 						<form class="layui-form layui-show" method="post">
@@ -29,9 +29,9 @@
 								</div>
 							</div>
 							<div class="layui-form-item">
-								<label for="qq" class="layui-form-label">QQ</label>
+								<label for="expirytime" class="layui-form-label">到期时间</label>
 								<div class="layui-input-inline">
-									<input type="text" id="qq" name="qq" autocomplete="off" lay-verify="qq" value="<?php echo $uinfo['qq'];?>" class="layui-input">
+									<input type="text" id="expirytime" name="expirytime" disabled autocomplete="off" lay-verify="expirytime" value="<?php echo date('Y-m-d H:i:s',$api['expirytime']);?>" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-form-item layui-form-text">
