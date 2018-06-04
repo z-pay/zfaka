@@ -13,7 +13,7 @@ layui.define(['layer', 'table', 'element'], function(exports){
 		cols: [[
 			{field: 'title', title: '常见问题'},
 			{field: 'addtime', title: '发布时间', width:160, templet: '#addtime',align:'center'},
-			{fixed: 'right', title: '详情', width:120, templet: '#details', align:'center'}
+			{title: '详情', width:120, templet: '#details', align:'center'}
 		]]
 	});
 
