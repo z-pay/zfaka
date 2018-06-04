@@ -26,19 +26,8 @@ class LoggerController extends PcBasicController
     }
 
 	
-	//登录日志 
-    public function loginAction()
-    {
-        if ($this->login==FALSE AND !$this->userid) {
-            $this->redirect("/member/login");
-            return FALSE;
-        }
-		$data = array();
-        $this->getView()->assign($data);
-    }	
-	
 	//登录日志ajax
-	public function loginajaxAction(){
+	public function ajaxAction(){
         if ($this->login==FALSE AND !$this->userid) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);

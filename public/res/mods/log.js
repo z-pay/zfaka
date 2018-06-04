@@ -6,7 +6,7 @@ layui.define(['layer', 'table'], function(exports){
 
 	table.render({
 		elem: '#login',
-		url: '/member/logger/loginajax',
+		url: '/member/logger/ajax',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
