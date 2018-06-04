@@ -1,0 +1,6 @@
+﻿接口地址： /help/ticket/ajax
+请求方式 get
+参数：无
+返回格式：json
+返回参数： code,count,data,msg
+

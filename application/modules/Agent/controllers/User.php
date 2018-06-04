@@ -95,6 +95,15 @@ class UserController extends PcBasicController
 	
 	public function addajaxAction()
 	{
+        if ($this->login==FALSE AND !$this->userid) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		if($this->uinfo['isagent']<1){
+            $data = array('code' => 1000, 'msg' => '无权限');
+			Helper::response($data);
+		}
 		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password',false);
 		$nickname = $this->getPost('nickname',false);
