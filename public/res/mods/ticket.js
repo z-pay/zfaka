@@ -43,18 +43,18 @@ layui.define(['layer', 'table', 'form'], function(exports){
 
 	table.render({
 		elem: '#ticketlist',
-		url: '/agent/user/ajax',
+		url: '/help/ticket/ajax',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
-			{field: 'content', title: 'content', width:160},
+			{field: 'content', title: 'content'},
 			{field: 'priority', title: 'priority'},
-			{field: 'status', title: 'status', width:120,align:'center'},
-			{field: 'subject', title: 'subject', width:120,align:'center'},
-			{field: 'typeid', title: 'typeid', width:120,align:'center'},
-			{field: 'userid', title: 'userid', width:120,align:'center'},
+			{field: 'status', title: 'status',align:'center'},
+			{field: 'subject', title: 'subject',align:'center'},
+			{field: 'typeid', title: 'typeid',align:'center'},
+			{field: 'userid', title: 'userid',align:'center'},
 			{field: 'addtime', title: '添加时间', width:160, templet: '#addtime',align:'center'},
-			{title: '详情', width:120, templet: '#details', align:'center'}
+			{title: '详情', width:100, templet: '#details', align:'center'}
 		]]
 	});
 
