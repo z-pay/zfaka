@@ -63,4 +63,22 @@ class IndexController extends PcBasicController
         }
 		Helper::response($data);
 	}
+	
+	public function detailAction(){
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		$id=$this->get('id');
+		if(is_array($id) AND $id>0){
+			$where = array('isactive'=>1);
+			$items=$this->m_help->Where($where)->SelectByID('',$id);
+			$data = array();
+			$data['items'] = $items;
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/help/");
+            return FALSE;
+		}
+	}
 }
