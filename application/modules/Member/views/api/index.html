@@ -12,9 +12,9 @@
                     <div class="layui-form-item layui-show">
                         <?php if(is_array($api) AND !empty($api)):?>
                         <div class="layui-elem-quote">
-                            <p>您已经成功申请API，您还需要配置安全IP，才可以正常使用。<button class="layui-btn layui-btn-sm layui-btn-danger">关闭API</button></p>
+                            <p>您已经成功申请API，您还需要配置安全IP，才可以正常使用。<button class="layui-btn layui-btn-sm layui-btn-danger" lay-filter="shutdown" lay-submit>关闭API</button></p>
                         </div>
-						
+
 						<form class="layui-form layui-show" method="post">
 							<div class="layui-form-item">
 								<label for="apikey" class="layui-form-label">apikey</label>
@@ -65,8 +65,44 @@
 		var form = layui.form;
 		var layer = layui.layer;
 		form.on('submit(api)', function(data){
-
 			data.field.method = 'on';
+			data.field.csrf_token = TOKEN;
+			var i = layer.load(2,{shade: [0.5,'#fff']});
+			$.ajax({
+				url: '/member/api/ajax',
+				type: 'post',
+				dataType: 'json',
+				data: data.field,
+			})
+			.done(function(res) {
+				if (res.code == '1') {
+					layer.open({
+					title: '提示',
+					icon: 1,
+					content: res.msg,
+					btn: ['确定'],
+					yes: function(index, layero){
+					    location.reload;
+					},
+					cancel: function(){
+					    location.reload;
+					}
+				});
+				} else {
+					layer.msg(res.msg,{icon:2,time:5000});
+				}
+			})
+			.fail(function() {
+				layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
+			})
+			.always(function() {
+				layer.close(i);
+			});
+
+			return false; //阻止表单跳转。
+		});
+		form.on('submit(shutdown)', function(data){
+			data.field.method = 'off';
 			data.field.csrf_token = TOKEN;
 			var i = layer.load(2,{shade: [0.5,'#fff']});
 			$.ajax({
