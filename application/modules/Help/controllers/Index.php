@@ -70,7 +70,7 @@ class IndexController extends PcBasicController
             return FALSE;
         }
 		$id=$this->get('id');
-		if(is_array($id) AND $id>0){
+		if(is_numeric($id) AND $id>0){
 			$where = array('isactive'=>1);
 			$items=$this->m_help->Where($where)->SelectByID('',$id);
 			$data = array();
