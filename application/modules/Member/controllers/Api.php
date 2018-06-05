@@ -23,7 +23,7 @@ class ApiController extends PcBasicController
         }
 		if($this->uinfo['isagent']>0){
 			$data = array();
-			$api = $this->m_api->Where(array('userid'=>$this->userid))->SelectOne();
+			$api = $this->m_api->Where(array('userid'=>$this->userid,'status'=>1))->SelectOne();
 			$data['api'] = $api;
 			$this->getView()->assign($data);
 		}else{
