@@ -67,28 +67,41 @@ class ApiController extends PcBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(in_array($method,$method_array)){
 					//检查是否已经使用api
-					$checkApi = $this->m_api->Where(array('userid'=>$this->userid,'status'=>1))->SelectOne;
-					if(empty($checkApi)){
-						$apikey=date("YmdHis").str_pad($this->userid,3,"1", STR_PAD_LEFT);
-						$apisecret=md5($apikey.$this->uinfo['email']).rand(10,90);
-						
-						$m = array(
-							'userid'=>$this->userid,
-							'apikey'=>$apikey,
-							'apisecret'=>$apisecret,
-							'allowip'=>'',
-							'addtime'=>time(),
-							'expirytime'=>strtotime("+1 year"),
-							'status'=>1,
-						);
-						$newApi = $this->m_api->Insert($m);
-						if($newApi){
-							$data = array('code' => 1, 'msg' =>'success');
+					$checkApi = $this->m_api->Where(array('userid'=>$this->userid,'status'=>1))->SelectOne();
+					if($method=='on'){
+						if(empty($checkApi)){
+							$apikey=date("YmdHis").str_pad($this->userid,3,"1", STR_PAD_LEFT);
+							$apisecret=md5($apikey.$this->uinfo['email']).rand(10,90);
+							
+							$m = array(
+								'userid'=>$this->userid,
+								'apikey'=>$apikey,
+								'apisecret'=>$apisecret,
+								'allowip'=>'',
+								'addtime'=>time(),
+								'expirytime'=>strtotime("+1 year"),
+								'status'=>1,
+							);
+							$newApi = $this->m_api->Insert($m);
+							if($newApi){
+								$data = array('code' => 1, 'msg' =>'success');
+							}else{
+								$data = array('code' => 1002, 'msg' =>'申请失败');
+							}
 						}else{
-							$data = array('code' => 1002, 'msg' =>'申请失败');
+							$data=array('code'=>1004,'msg'=>'API已经存在');
 						}
 					}else{
-						$data=array('code'=>1004,'msg'=>'API已经存在');
+						if(empty($checkApi)){
+							$data=array('code'=>1004,'msg'=>'API不存在');
+						}else{
+							$newApi = $this->m_api->UpdateByID(array('status'=>0),$checkApi['id']);
+							if($newApi){
+								$data = array('code' => 1, 'msg' =>'success');
+							}else{
+								$data = array('code' => 1002, 'msg' =>'暂停失败');
+							}
+						}	
 					}
 				}else{
 					 $data = array('code' => 1003, 'msg' => '方法错误!');
