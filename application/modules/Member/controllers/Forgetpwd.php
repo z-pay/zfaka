@@ -111,7 +111,7 @@ class ForgetpwdController extends PcBasicController
 		if($email AND $vercode AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isEmail($email)){
-					if(strtolower($this->getSession('loginCaptcha')) ==strtolower($vercode)){
+					if(strtolower($this->getSession('forgetpwdCaptcha')) ==strtolower($vercode)){
 						$checkEmailUser = $this->m_user->checkEmail($email);
 						if(!empty($checkEmailUser)){
 								//1.查询该用户当天找回密码次数
@@ -174,7 +174,7 @@ class ForgetpwdController extends PcBasicController
 							$data = array('code' => 1002, 'msg' =>'邮箱不存在');
 						}
 					}else{
-						 $data = array('code' => 1003, 'msg' => '邮箱账户有误!');
+						 $data = array('code' => 1003, 'msg' => '验证码错误!');
 					}
 				} else {
 					$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
