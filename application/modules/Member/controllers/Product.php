@@ -12,7 +12,7 @@ class ProductController extends PcBasicController
     public function init()
     {
         parent::init();
-		$this->m_products_type = $this->load('products_type')
+		$this->m_products_type = $this->load('products_type');
     }
 
     public function indexAction()
