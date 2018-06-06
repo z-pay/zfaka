@@ -25,25 +25,13 @@
 	
 	<?php if($login):?>
     <ul class="layui-nav fly-nav layui-hide-xs">
-	  <?php if($uinfo['isagent']>0):?>
+
       <li class="layui-nav-item">
         <a href="/member"><i class="iconfont icon-iconmingxinganli"></i>我的账户</a>
       </li>
       <li class="layui-nav-item">
-        <a href="/agent/user"><i class="iconfont icon-iconmingxinganli"></i>用户管理</a>
+        <a href="/member/product"><i class="iconfont icon-iconmingxinganli"></i>购买商品</a>
       </li>
-      <li class="layui-nav-item">
-        <a href="/agent/product"><i class="iconfont icon-iconmingxinganli"></i>产品管理</a>
-      </li>
-	  
-	  <?php else:?>
-      <li class="layui-nav-item">
-        <a href="/member"><i class="iconfont icon-iconmingxinganli"></i>我的账户</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="/member/product"><i class="iconfont icon-iconmingxinganli"></i>我的产品</a>
-      </li>
-	  <?php endif;?>
       <li class="layui-nav-item">
         <a href="/help"><i class="iconfont icon-ui"></i>帮助中心</a>
       </li>
