@@ -8,10 +8,11 @@
 
 class ProductController extends PcBasicController
 {
-
+	private $m_products_type;
     public function init()
     {
         parent::init();
+		$this->m_products_type = $this->load('products_type')
     }
 
     public function indexAction()
@@ -21,6 +22,8 @@ class ProductController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$products_type = $this->m_products_type->Select();
+		$data['products_type'] = $products_type;
         $this->getView()->assign($data);
     }
 }

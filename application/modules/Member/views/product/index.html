@@ -13,11 +13,11 @@
                             <div class="layui-input-block">
                                 <select name="typeid" lay-verify="required">
                                     <option value=""></option>
-                                    <option value="0">账户</option>
-                                    <option value="1">账单</option>
-                                    <option value="2">产品</option>
-                                    <option value="3">建议</option>
-                                    <option value="4">投诉</option>
+									<?php if(!empty($products_type)):?>
+									<?php foreach($products_type AS $type):?>
+                                    <option value="<?php echo $type['id'];?>"><?php echo $type['name'];?></option>
+									<?php endforeach;?>
+									<?php endif;?>
                                 </select>
                             </div>
                         </div>
@@ -26,11 +26,6 @@
                             <div class="layui-input-block">
                                 <select name="typeid" lay-verify="required">
                                     <option value=""></option>
-                                    <option value="0">账户</option>
-                                    <option value="1">账单</option>
-                                    <option value="2">产品</option>
-                                    <option value="3">建议</option>
-                                    <option value="4">投诉</option>
                                 </select>
                             </div>
                         </div>
