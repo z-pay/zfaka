@@ -1,14 +1,65 @@
 <?php include COMMON_PATH.'/header.html';?>
 
 <div class="layui-container fly-marginTop fly-user-main">
-	<div style="padding: 20px; background-color: #F2F2F2;">
+
 	  <div class="layui-row layui-col-space15">
 		<div class="layui-col-md6">
 		  <div class="layui-card">
 			<div class="layui-card-header">购买商品</div>
 			<div class="layui-card-body">
-			  卡片式面板面板通常用于非白色背景色的主体内<br>
-			  从而映衬出边框投影
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品分类</label>
+                            <div class="layui-input-block">
+                                <select name="typeid" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">账户</option>
+                                    <option value="1">账单</option>
+                                    <option value="2">产品</option>
+                                    <option value="3">建议</option>
+                                    <option value="4">投诉</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品列表</label>
+                            <div class="layui-input-block">
+                                <select name="typeid" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">账户</option>
+                                    <option value="1">账单</option>
+                                    <option value="2">产品</option>
+                                    <option value="3">建议</option>
+                                    <option value="4">投诉</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品单价</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="subject" readonly disabled class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品库存</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="subject" readonly disabled class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">购买数量</label>
+                            <div class="layui-input-block">
+                                <input type="num" name="subject"   class="layui-input">
+                            </div>
+                        </div>
+						
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="ticket">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
 			</div>
 		  </div>
 		</div>
@@ -22,7 +73,6 @@
 		  </div>
 		</div>
 	  </div>
-	</div> 
 </div>
 
 
