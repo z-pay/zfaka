@@ -20,7 +20,7 @@ class M_User extends Model {
 	 * @return params on success or 0 or failure
 	 */
 	public function checkLogin($email, $password){
-		$field = array('id', 'email','password','nickname','groupid','isagent');
+		$field = array('id', 'email','password','nickname','groupid');
 		if(isEmail($email)){
 			$where = array('email' => $email);
 		}else{
@@ -43,19 +43,7 @@ class M_User extends Model {
 		$m['nickname'] = $params['nickname'];
 		$m['createtime']= time(); 
 		$m['password'] = md5($params['password']);
-		
-		if(isset($params['isagent'])){
-			$m['isagent'] = $params['isagent'];
-		}else{
-			$m['isagent'] = 0;
-		}
-		
-		if(isset($params['agentid'])){
-			$m['agentid'] = $params['agentid'];
-		}else{
-			$m['agentid'] = 0;
-		}
-		
+
 		if(isset($params['qq'])){
 			$m['qq'] = $params['qq'];
 		}else{
@@ -70,12 +58,9 @@ class M_User extends Model {
 		$m['money'] = $m['integral'] = 0;
 
         if($uid=$this->Insert($m)){
-			if(isset($params['method']) and $params['method']=='agentadd'){
-			}else{
-				$m['id'] = $uid;
-				unset($m['password']);
-				$this->_session($m);
-			}
+			$m['id'] = $uid;
+			unset($m['password']);
+			$this->_session($m);
             return TRUE;
         }else{
             return FALSE;
