@@ -16,12 +16,16 @@
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
 						<div class="" style="margin-bottom: 0;text-align:center">
-							<?php if(!empty($payments)):?>
-								<?php foreach($payments AS $payment):?>
-									<button class="layui-btn site-demo-active <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
-								<?php endforeach;?>
+							<?php if($code>1):?>
+								<p><?php echo $msg;?></p>
 							<?php else:?>
-							<p>站长正在加紧配置，请耐心等待....</p>
+								<?php if(!empty($payments)):?>
+									<?php foreach($payments AS $payment):?>
+										<button class="layui-btn site-demo-active <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
+									<?php endforeach;?>
+								<?php else:?>
+								<p>站长正在加紧配置，请耐心等待....</p>
+								<?php endif;?>
 							<?php endif;?>
 						</div>
                     </div>
