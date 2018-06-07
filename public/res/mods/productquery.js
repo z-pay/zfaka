@@ -1,8 +1,25 @@
-layui.define(['layer','table', 'form'], function(exports){
+layui.define(['layer', 'form'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
-
+	function createTime(v){
+								var date = new Date();
+								date.setTime(parseInt(v)*1000);
+								var y = date.getFullYear();
+								var m = date.getMonth()+1;
+								m = m<10?'0'+m:m;
+								var d = date.getDate();
+								d = d<10?("0"+d):d;
+								var h = date.getHours();
+								h = h<10?("0"+h):h;
+								var M = date.getMinutes();
+								M = M<10?("0"+M):M;
+								var s = date.getSeconds();
+								s = s<10?("0"+s):s;
+								var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
+								return str;
+	}
+	
 	form.on('submit(query)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
@@ -17,21 +34,9 @@ layui.define(['layer','table', 'form'], function(exports){
 				var html = "";
 				var list = res.data;
 				for (var i = 0, j = list.length; i < j; i++) {
-					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+list[i].addtime+'</td><td>'+list[i].status+'</td></tr>';
+					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+list[i].status+'</td></tr>';
 				}
-				$("#query-table2 tbody").prepend(html);
-				table.render({
-					elem: '#query-table',
-					page: true,
-					cellMinWidth:60,
-					cols: [[
-						{field: 'productname', title: '订单名称'},
-						{field: 'number', title: '数量'},
-						{field: 'money', title: '金额'},
-						{field: 'addtime', title: '下单时间', width:160, templet: '#addtime',align:'center'},
-						{field: 'stauts', width:100, title: '状态', align:'center'}
-					]]
-				});
+				$("#query-table tbody").prepend(html);
 				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
