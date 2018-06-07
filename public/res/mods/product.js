@@ -19,9 +19,9 @@ layui.define(['layer', 'form'], function(exports){
 					for (var i = 0, j = data.length; i < j; i++) {
 						html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
 					}
-					$('#glist').html("<option value=\"0\">请选择商品</option>" + html);
+					$('#productlist').html("<option value=\"0\">请选择商品</option>" + html);
 				} else {
-					$('#glist').html("<option value=\"0\">该分类下没有商品</option>");
+					$('#productlist').html("<option value=\"0\">该分类下没有商品</option>");
 				}
 			}
 
