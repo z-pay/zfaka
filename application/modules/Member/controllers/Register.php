@@ -29,6 +29,10 @@ class RegisterController extends PcBasicController
 
 	public function ajaxAction()
 	{
+		if(!REGISTER){
+			$data = array('code' => 1000, 'msg' => '本系统关闭注册功能');
+			Helper::response($data);
+		}
 		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password',false);
 		$nickname = $this->getPost('nickname',false);
