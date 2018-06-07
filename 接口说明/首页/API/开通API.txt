@@ -1,5 +1,0 @@
-接口地址： /member/api/ajax
-参数：
-method  (这里请直接提交值 on)
-csrf_token
-

@@ -1,7 +1,0 @@
-接口地址： /member/profiles/profilesajax
-参数：
-nickname
-qq
-tag
-csrf_token
-

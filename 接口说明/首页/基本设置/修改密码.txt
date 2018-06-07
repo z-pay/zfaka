@@ -1,6 +1,0 @@
-接口地址： /member/profiles/passwordajax
-参数：
-password 
-oldpassword
-csrf_token
-

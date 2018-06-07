@@ -9,13 +9,13 @@ layui.define(['layer', 'form'], function(exports){
 			url: '/product/get/proudctlist',
 			type: 'POST',
 			dataType: 'json',
-			data: {typeid: $("#typeid").val()},
+			data: {tid: $("#typeid").val()},
 			beforeSend: function () {
 			},
 			success: function (result) {
 				if (result.code == '1') {
 					var html = "";
-					var data = result.data;
+					var data = result.data.products;
 					for (var i = 0, j = data.length; i < j; i++) {
 						html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
 					}
@@ -29,5 +29,29 @@ layui.define(['layer', 'form'], function(exports){
 
 	});
 
+	$("#productlist").change(function () {
+		if ($("#productlist").val() == 0) return;
+		$.ajax({
+			url: '/product/get/proudctinfo',
+			type: 'POST',
+			dataType: 'json',
+			data: {pid: $("#productlist").val()},
+			beforeSend: function () {
+			},
+			success: function (result) {
+				if (result.code == '1') {
+					var data = result.data.product;
+					$('#price').val(data.price);
+					$('#qty').val(data.qty);
+					$('#prodcut_description').html(data.description);
+				} else {
+					
+				}
+			}
+		});
+
+	});
+	
+	
 	exports('product',null)
 });
