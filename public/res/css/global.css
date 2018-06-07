@@ -23,10 +23,15 @@ i{font-style: normal;}
   url('iconfont.svg?t=1512007250695#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-input:disabled  input[disabled] input.disabled{
+input:disabled{
 	background-color:#F5F5F5;
 }
-
+input[disabled]{
+	background-color:#F5F5F5;
+}
+input.disabled{
+	background-color:#F5F5F5;
+}
 
 .iconfont {
   font-family:"layui-icon-fly" !important;
