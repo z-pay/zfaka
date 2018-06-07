@@ -42,7 +42,7 @@ class OrderController extends PcBasicController
 						if($this->login AND $this->userid){
 							$userid = $this->userid;
 						}else{
-							$uinfo = $this->user->Where(array('email'=>$email))->SelectOne();
+							$uinfo = $this->m_user->Where(array('email'=>$email))->SelectOne();
 							if(!empty($uinfo)){
 								$userid = $uinfo['id'];
 							}else{
