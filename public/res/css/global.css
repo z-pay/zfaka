@@ -23,6 +23,7 @@ i{font-style: normal;}
   url('iconfont.svg?t=1512007250695#iconfont') format('svg'); /* iOS 4.1- */
 }
 
+/*我自己添加的*/
 input:disabled{
 	background-color:#F5F5F5;
 }
@@ -41,6 +42,17 @@ input[readonly]{
 input.readonly{
 	background-color:#F5F5F5;
 }
+.layui-btn.disabled, .layui-btn[disabled], fieldset[disabled] .layui-btn {
+    pointer-events: none;
+    cursor: not-allowed;
+    box-shadow: none;
+    background-color:#F5F5F5;
+}
+
+
+
+
+
 .iconfont {
   font-family:"layui-icon-fly" !important;
   font-size:16px;
