@@ -10,11 +10,13 @@ class OrderController extends PcBasicController
 {
 	private $m_products;
 	private $m_order;
+	private $m_user;
     public function init()
     {
         parent::init();
 		$this->m_products = $this->load('products');
 		$this->m_order = $this->load('order');
+		$this->m_user = $this->load('user');
     }
 
     public function buyAction()
@@ -36,8 +38,20 @@ class OrderController extends PcBasicController
 					if($total>1){
 						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
 					}else{
+						//记录用户uid
+						if($login AND $this->userid){
+							$userid = $this->userid;
+						}else{
+							$uinfo = $this->user->Where(array('email'=>$email))->SelectOne();
+							if(!empty($uinfo)){
+								$userid = $uinfo['id'];
+							}else{
+								$userid = 0;
+							}
+						}
+						
 						$m=array(
-							'userid'=>$this->userid,
+							'userid'=>$userid,
 							'email'=>$email,
 							'number'=>$number,
 							'productname'=>$product['name'],
