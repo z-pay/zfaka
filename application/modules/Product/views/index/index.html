@@ -2,19 +2,6 @@
 
 <div class="layui-container fly-marginTop fly-user-main">
 
-	<div class="layui-tab-item layui-show">
-    
-      <div class="layui-carousel" id="test1" lay-anim="fade" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 200px;">
-        <div carousel-item="">
-          <div class="layui-this"><p class="layui-bg-green demo-carousel">在这里，你将以最直观的形式体验 layui！</p></div>
-          <div class=""><p class="layui-bg-red demo-carousel">在编辑器中可以执行 layui 相关的一切代码</p></div>
-          <div class=""><p class="layui-bg-blue demo-carousel">你也可以点击左侧导航针对性地试验我们提供的示例</p></div>
-          <div class=""><p class="layui-bg-orange demo-carousel">如果最左侧的导航的高度超出了你的屏幕</p></div>
-          <div class=""><p class="layui-bg-cyan demo-carousel">你可以将鼠标移入导航区域，然后滑动鼠标滚轮即可</p></div>
-        </div>
-      <div class="layui-carousel-ind"><ul><li class="layui-this"></li><li class=""></li><li class=""></li><li class=""></li><li class=""></li></ul></div><button class="layui-icon layui-carousel-arrow" lay-type="sub"></button><button class="layui-icon layui-carousel-arrow" lay-type="add"></button></div>
-    </div>
-
 	  <div class="layui-row layui-col-space15">
 		<div class="layui-col-md6">
 		  <div class="layui-card">
@@ -24,8 +11,8 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品分类</label>
                             <div class="layui-input-block">
-                                <select name="typeid" lay-verify="required">
-                                    <option value=""></option>
+                                <select name="typeid" id="typeid" lay-verify="required">
+                                    <option value="0"></option>
 									<?php if(!empty($products_type)):?>
 									<?php foreach($products_type AS $type):?>
                                     <option value="<?php echo $type['id'];?>"><?php echo $type['name'];?></option>
@@ -37,8 +24,8 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品列表</label>
                             <div class="layui-input-block">
-                                <select name="typeid" lay-verify="required">
-                                    <option value=""></option>
+                                <select name="productlist" id="productlist" lay-verify="required">
+                                    <option value="0"></option>
                                 </select>
                             </div>
                         </div>
@@ -84,13 +71,30 @@
 </div>
 
 <script>
-layui.use(['carousel'], function(){
-  var carousel = layui.carousel 
-  //常规轮播
-  carousel.render({
-    elem: '#test1'
-    ,arrow: 'always'
-  });
+$("#typeid").change(function () {
+    if ($("#typeid").val() == 0) return;
+    $.ajax({
+        url: '/product/get/proudctlist',
+        type: 'POST',
+        dataType: 'json',
+        data: {typeid: $("#typeid").val()},
+        beforeSend: function () {
+        },
+        success: function (result) {
+            if (result.code == '1') {
+				var html = "";
+				var data = result.data;
+				for (var i = 0, j = data.length; i < j; i++) {
+					html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
+				}
+                $('#glist').html("<option value=\"0\">请选择商品</option>" + html);
+            } else {
+                $('#glist').html("<option value=\"0\">该分类下没有商品</option>");
+            }
+        }
+
+    });
+
 });
 </script>
 <!--引入公共底文件-->

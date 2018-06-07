@@ -15,9 +15,9 @@ class GetController extends PcBasicController
 		$this->m_products = $this->load('products');
     }
 
-    public function bytypeidAction()
+    public function proudctlistAction()
     {
-		$typeid = $this->get('typeid');
+		$typeid = $this->getPost('typeid');
 		$data = array();
 		$products = $this->m_products->Where(array('typeid'=>$typeid))->Select();
 		$data['products'] = $products;
