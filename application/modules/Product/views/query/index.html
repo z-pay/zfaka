@@ -1,8 +1,11 @@
 <?php include COMMON_PATH.'/header.html';?>
-
-<div class="layui-container fly-marginTop fly-user-main">
-
-	<blockquote class="layui-elem-quote">注意：下述演示中的颜色只是做一个区分作用，并非栅格内置。</blockquote>
+<div class="layui-container fly-marginTop">
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="user">
+			<blockquote class="layui-elem-quote">注意：下述演示中的颜色只是做一个区分作用，并非栅格内置。</blockquote>
+            <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-form-pane">
                         <form class="layui-form">
                             <div class="layui-form-item">
                                 <label for="L_email" class="layui-form-label">邮箱</label>
@@ -16,7 +19,12 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 <!--引入公共底文件-->
