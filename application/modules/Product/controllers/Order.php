@@ -33,10 +33,12 @@ class OrderController extends PcBasicController
 						'userid'=>$this->userid,
 						'email'=>$email,
 						'pid'=>$pid,
-						'addtime'=>time()
+						'addtime'=>time(),
+						'ip'=>getClientIP(),
+						'status'=>0,
 					);
 					$id=$this->m_order->Insert($m);
-					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('ordeid'=>$id));
+					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$id));
 				}
 			}else{
 				$data = array('code' => 1001, 'msg' => '商品不存在');
