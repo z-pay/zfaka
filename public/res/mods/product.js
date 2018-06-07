@@ -54,7 +54,7 @@ layui.define(['layer', 'form'], function(exports){
 						}
 					}
 					$('#prodcut_description').html(product.description);
-					//form.render('select');
+					form.render();
 				} else {
 					
 				}
