@@ -19,7 +19,7 @@ layui.define(['layer', 'form'], function(exports){
 					for (var i = 0, j = list.length; i < j; i++) {
 						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
 					}
-					$('#productlist').html(html);
+					$('#productlist').html("<option value=\"0\">请选择</option>" + html);
 					form.render('select');
 				} else {
 				}
