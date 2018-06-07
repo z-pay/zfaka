@@ -83,6 +83,15 @@
 	  </div>
 </div>
 
-
+<script>
+layui.use(['carousel'], function(){
+  var carousel = layui.carousel 
+  //常规轮播
+  carousel.render({
+    elem: '#test1'
+    ,arrow: 'always'
+  });
+});
+</script>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
