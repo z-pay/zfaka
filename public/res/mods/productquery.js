@@ -32,6 +32,7 @@ layui.define(['layer','table', 'form'], function(exports){
 						{field: 'stauts', width:100, title: '状态', align:'center'}
 					]]
 				});
+				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
