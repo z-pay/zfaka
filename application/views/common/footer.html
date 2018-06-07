@@ -3,6 +3,7 @@
 	</div>
 	
 <script src="/res/layui/layui.js"></script>
+<?php if($login):?>
 <script>
 layui.cache.page = 'user';
 layui.cache.user = {
@@ -24,5 +25,6 @@ layui.use('element', function(){
   
 });
 </script>
+<?php endif;?>
 </body>
 </html>
