@@ -1,0 +1,23 @@
+<?php include COMMON_PATH.'/header.html';?>
+
+<div class="layui-container fly-marginTop fly-user-main">
+
+	<blockquote class="layui-elem-quote">注意：下述演示中的颜色只是做一个区分作用，并非栅格内置。</blockquote>
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <label for="L_email" class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_email" name="email" required lay-verify="required|email" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-filter="query" lay-submit>查询</button>
+                            </div>
+                        </div>
+                    </form>
+</div>
+
+
+<!--引入公共底文件-->
+<?php include COMMON_PATH.'/footer.html';?>
