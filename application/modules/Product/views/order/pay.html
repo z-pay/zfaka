@@ -57,6 +57,8 @@ layui.use('layer', function(){ //独立版的layer无需执行这一句
         ,moveType: 1 //拖拽模式，0或者1
         ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">我都不知道说什么了，赶紧付款吧</div>'
         ,success: function(layero){
+			
+		
           var btn = layero.find('.layui-layer-btn');
           btn.find('.layui-layer-btn0').attr({
 				href: '/product/query'

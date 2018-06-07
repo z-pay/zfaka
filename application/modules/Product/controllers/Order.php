@@ -101,4 +101,13 @@ class OrderController extends PcBasicController
 		}
 		$this->getView()->assign($data);
 	}
+	
+	public function payajaxAction()
+	{
+		$zfbf2f = new \Pay\alipay\zfbf2f();
+		$params =array('orderid'=>1,'money'=>11,'productname'=>'test');
+		$payconfig = array('email'=>'fdsafas@qq.com','appid'=>'d','appsecret'=>'dd');
+		$data = $zfbf2f->pay($payconfig,$params);
+		Helper::response($data);
+	}
 }

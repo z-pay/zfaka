@@ -28,4 +28,4 @@ ini_set('error_log', LOG_FILE);
 define('DEBUG',FALSE );//调试模式关闭
 
 define('REGISTER',FALSE);//关闭注册功能
-define('SITE_URL','http://xiuxiuhou.com/');//当前站点外部地址(当前站点)
+define('SITE_URL','http://fuwuguanjia.com/');//当前站点外部地址(当前站点)
