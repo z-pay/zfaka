@@ -77,7 +77,7 @@
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				location.pathname = '/product/order/pay/?oid='+res.data.orderid;
+				location.href = '/product/order/pay/?oid='+res.data.orderid;
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
