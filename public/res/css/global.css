@@ -47,6 +47,8 @@ input.readonly{
     cursor: not-allowed;
     box-shadow: none;
     background-color:#F5F5F5;
+    border: 1px solid #C9C9C9;
+    color: #C9C9C9;
 }
 
 

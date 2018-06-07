@@ -20,6 +20,9 @@ layui.define(['layer', 'form'], function(exports){
 						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
 					}
 					$('#productlist').html("<option value=\"0\">请选择</option>" + html);
+					$('#price').val('');
+					$('#qty').val('');
+					$('#prodcut_description').html('');
 					form.render('select');
 				} else {
 				}
