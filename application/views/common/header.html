@@ -69,9 +69,11 @@
       <li class="layui-nav-item">
         <a href="/member/login/">登入</a>
       </li>
-      <li class="layui-nav-item">
-        <a href="/member/register/">注册</a>
-      </li>
+		  <?php if(REGISTER):?>
+		  <li class="layui-nav-item">
+			<a href="/member/register/">注册</a>
+		  </li>
+		  <?php endif;?>
 	 <?php endif;?>
       
     </ul>

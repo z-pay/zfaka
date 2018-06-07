@@ -7,9 +7,11 @@
         <li><a href="/member/login/">登入</a></li>
         <li class="layui-this">注册</li>
       </ul>
+	  
       <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
           <div class="layui-form-pane">
+			<?php if(REGISTER):?>
             <form class="layui-form" method="post" action="/member/register/ajax">
               <div class="layui-form-item">
                 <label for="L_email" class="layui-form-label">邮箱</label>
@@ -50,6 +52,11 @@
                 <button class="layui-btn" lay-filter="register" lay-submit>立即注册</button>
               </div>
             </form>
+			<?php else:?>
+			<blockquote class="layui-elem-quote">
+				<p>本系统已经关闭注册功能；</p>
+			</blockquote>
+			<?php endif;?.
           </div>
         </div>
       </div>
