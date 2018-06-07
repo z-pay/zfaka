@@ -39,7 +39,7 @@ class OrderController extends PcBasicController
 						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
 					}else{
 						//记录用户uid
-						if($login AND $this->userid){
+						if($this->login AND $this->userid){
 							$userid = $this->userid;
 						}else{
 							$uinfo = $this->user->Where(array('email'=>$email))->SelectOne();
