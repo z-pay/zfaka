@@ -25,19 +25,54 @@
                                     <input type="text" id="L_email" name="email" required lay-verify="required|email" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
-
+                            <div class="layui-form-item">
+                                <label for="L_chapwd" class="layui-form-label">查询密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_chapwd" name="chapwd" required lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_vercode" class="layui-form-label">图形验证</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_vercode" name="vercode" required lay-verify="required|vercode" placeholder="请输入图形验证码" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid">
+                                    <img src="/Captcha?t=productquery" alt="图片验证码" width="100%" height="38" class="loadcode">
+                                </div>
+                            </div>
                             <div class="layui-form-item">
                                 <button class="layui-btn" lay-filter="query" lay-submit>查询</button>
                             </div>
-                        </div>
-                    </form>
+						</form>
+							<table class="layui-table">
+							  <colgroup>
+								<col width="150">
+								<col width="200">
+								<col>
+							  </colgroup>
+							  <thead>
+								<tr>
+								  <th>订单名称</th>
+								  <th>数量</th>
+								  <th>金额</th>
+								  <th>下单时间</th>
+								  <th>状态</th>
+								</tr> 
+							  </thead>
+							  <tbody>
+								<tr>
+								</tr>
+							  </tbody>
+							</table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
+<script>
+    layui.use('productquery');
+</script>
