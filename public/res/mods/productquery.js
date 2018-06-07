@@ -25,13 +25,13 @@ layui.define(['layer', 'form'], function(exports){
 		var str = "";
 		switch(s)
 		{
-			case 0:
+			case '0':
 				str = "待付款";
 				break;
-			case 1:
+			case '1':
 				str = "待处理";
 				break;
-			case 2:
+			case '2':
 				str = "已完成";
 				break;
 			default:
