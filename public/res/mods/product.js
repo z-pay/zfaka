@@ -3,21 +3,21 @@ layui.define(['layer', 'form'], function(exports){
 	var layer = layui.layer;
 	var form = layui.form;
 
-	$("#typeid").change(function () {
-		if ($("#typeid").val() == 0) return;
+	form.on('select(typeid)', function(data){
+		if (data.value == 0) return;
 		$.ajax({
 			url: '/product/get/proudctlist',
 			type: 'POST',
 			dataType: 'json',
-			data: {tid: $("#typeid").val()},
+			data: {tid: data.value},
 			beforeSend: function () {
 			},
 			success: function (result) {
 				if (result.code == '1') {
 					var html = "";
-					var data = result.data.products;
-					for (var i = 0, j = data.length; i < j; i++) {
-						html += '<option value='+data[i].id+'>'+data[i].name+'</option>';
+					var list = result.data.products;
+					for (var i = 0, j = list.length; i < j; i++) {
+						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
 					}
 					$('#productlist').html("<option value=\"0\">请选择商品</option>" + html);
 				} else {
@@ -26,24 +26,23 @@ layui.define(['layer', 'form'], function(exports){
 			}
 
 		});
-
 	});
 
-	$("#productlist").change(function () {
-		if ($("#productlist").val() == 0) return;
+	form.on('select(productlist)', function(data){
+		if (data.value == 0) return;
 		$.ajax({
 			url: '/product/get/proudctinfo',
 			type: 'POST',
 			dataType: 'json',
-			data: {pid: $("#productlist").val()},
+			data: {pid: data.value},
 			beforeSend: function () {
 			},
 			success: function (result) {
 				if (result.code == '1') {
-					var data = result.data.product;
-					$('#price').val(data.price);
-					$('#qty').val(data.qty);
-					$('#prodcut_description').html(data.description);
+					var product = result.data.product;
+					$('#price').val(product.price);
+					$('#qty').val(product.qty);
+					$('#prodcut_description').html(product.description);
 				} else {
 					
 				}
