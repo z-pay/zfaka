@@ -7,7 +7,7 @@ class IndexController extends PcBasicController {
 
 	public function indexAction(){
 		if(!$this->login OR empty($this->uinfo)){
-			$this->redirect("/member/login/");
+			$this->redirect("/product/");
 		}else{
 			$this->redirect("/member/");
 		}
