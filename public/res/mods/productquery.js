@@ -15,11 +15,11 @@ layui.define(['layer','table', 'form'], function(exports){
 		.done(function(res) {
 			if (res.code == '1') {
 				var html = "";
-				var list = result.data.order;
+				var list = result.data;
 				for (var i = 0, j = list.length; i < j; i++) {
 					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+list[i].addtime+'</td><td>'+list[i].status+'</td></tr>';
 				}
-				//$("#query-table tbody").prepend(html);
+				$("#query-table2 tbody").prepend(html);
 				table.render({
 					elem: '#query-table',
 					page: true,

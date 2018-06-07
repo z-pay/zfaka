@@ -37,7 +37,7 @@ class QueryController extends PcBasicController
 						if(empty($order)){
 							$data=array('code'=>1005,'msg'=>'没有订单');
 						}else{
-							$data=array('code'=>1,'msg'=>'查询成功','data'=>array('order'=>$order),'count'=>1);
+							$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>1);
 						}
 					}else{
 						$data=array('code'=>1004,'msg'=>'图形验证码错误');
