@@ -20,7 +20,7 @@ class OrderController extends PcBasicController
     public function buyAction()
     {
 		//下订单
-		$pid = $this->getPost('pid');
+		$pid = $this->getPost('productlist');
 		$number = $this->getPost('number');
 		$email = $this->getPost('email');
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0 AND $email AND isEmail($email)){
