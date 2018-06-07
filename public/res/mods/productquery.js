@@ -37,6 +37,7 @@ layui.define(['layer', 'form'], function(exports){
 					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+list[i].status+'</td></tr>';
 				}
 				$("#query-table tbody").prepend(html);
+				$("#query-table").show();
 				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
