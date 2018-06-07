@@ -34,6 +34,8 @@ class OrderController extends PcBasicController
 					$myip = getClientIP();
 					$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Total();
 					if($total>1){
+						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
+					}else{
 						$m=array(
 							'userid'=>$this->userid,
 							'email'=>$email,
@@ -48,8 +50,6 @@ class OrderController extends PcBasicController
 						);
 						$id=$this->m_order->Insert($m);
 						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$id));
-					}else{
-						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
 					}
 				}
 			}else{
