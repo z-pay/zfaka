@@ -84,7 +84,7 @@ class OrderController extends PcBasicController
 	{
 		$data = array();
 		$orderid = $this->get('oid',false);
-		l_encryption= new Encryption();
+		$l_encryption= new Encryption();
 		$orderid = $l_encryption->decrypt($orderid);
 		if(is_numeric($orderid) AND $orderid>0){
 			$order = $this->m_order->Where(array('id'=>$orderid,'status'=>0))->SelectOne();
