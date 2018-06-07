@@ -83,7 +83,7 @@ class OrderController extends PcBasicController
 	{
 		$data = array();
 		$orderid = $this->get('oid',false);
-		$orderid = base64_decode($orderid);
+		$orderid = (int)base64_decode($orderid);
 		if(is_numeric($orderid) AND $orderid>0){
 			$order = $this->m_order->Where(array('id'=>$orderid,'status'=>0))->SelectOne();
 			if(!empty($order)){
