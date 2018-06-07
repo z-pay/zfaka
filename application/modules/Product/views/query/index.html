@@ -2,7 +2,12 @@
 <div class="layui-container fly-marginTop">
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
-			<blockquote class="layui-elem-quote">注意：下述演示中的颜色只是做一个区分作用，并非栅格内置。</blockquote>
+			<blockquote class="layui-elem-quote">
+				<p><span class="layui-badge layui-bg-orange">待处理</span>: 表示付款成功等待管理员处理</p>
+				<p><span class="layui-badge layui-bg-orange">已处理</span>: 表示订单正在处理中</p>
+				<p><span class="layui-badge layui-bg-orange">已完成</span>: 表示订单已经完成</p>
+				<p><span class="layui-badge layui-bg-orange">处理失败</span> 表示订单异常，请联系管理员处理</p>
+			</blockquote>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
