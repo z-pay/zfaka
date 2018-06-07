@@ -2,23 +2,29 @@ layui.define(['layer', 'form'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
+	
 	function createTime(v){
-								var date = new Date();
-								date.setTime(parseInt(v)*1000);
-								var y = date.getFullYear();
-								var m = date.getMonth()+1;
-								m = m<10?'0'+m:m;
-								var d = date.getDate();
-								d = d<10?("0"+d):d;
-								var h = date.getHours();
-								h = h<10?("0"+h):h;
-								var M = date.getMinutes();
-								M = M<10?("0"+M):M;
-								var s = date.getSeconds();
-								s = s<10?("0"+s):s;
-								var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
-								return str;
+		var date = new Date();
+		date.setTime(parseInt(v)*1000);
+		var y = date.getFullYear();
+		var m = date.getMonth()+1;
+		m = m<10?'0'+m:m;
+		var d = date.getDate();
+		d = d<10?("0"+d):d;
+		var h = date.getHours();
+		h = h<10?("0"+h):h;
+		var M = date.getMinutes();
+		M = M<10?("0"+M):M;
+		var s = date.getSeconds();
+		s = s<10?("0"+s):s;
+		var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
+		return str;
 	}
+	
+	$('.loadcode').on('click', function(event) {
+		event.preventDefault();
+		$(this).attr('src','/Captcha?t=productquery&n=' + Math.random())
+	});
 	
 	form.on('submit(query)', function(data){
 		data.field.csrf_token = TOKEN;
@@ -49,7 +55,6 @@ layui.define(['layer', 'form'], function(exports){
 		.always(function() {
 			layer.close(i);
 		});
-
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
 	
