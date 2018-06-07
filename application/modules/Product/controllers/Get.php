@@ -19,14 +19,15 @@ class GetController extends PcBasicController
     {
 		$tid = $this->getPost('tid');
 		$data = array();
-		$products = $this->m_products->Where(array('typeid'=>$tid))->Select();
+		$products = $this->m_products->Where(array('typeid'=>$tid,'ishidden'=>0))->Select();
 		$data['products'] = $products;
 		$result = array('code' => 1, 'msg' => 'success','data'=>$data);
         Helper::response($result);
     }
 	
 	
-	public function proudctinfoAction(){
+	public function proudctinfoAction()
+	{
 		$pid = $this->getPost('pid');
 		$data = array();
 		$product = $this->m_products->Where(array('id'=>$pid))->SelectOne();
