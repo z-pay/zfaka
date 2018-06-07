@@ -43,14 +43,14 @@ layui.define(['layer', 'form'], function(exports){
 					$('#price').val(product.price);
 					if(product.qty>0){
 						$('#qty').val(product.qty);
-						$("#buy").attr("disabled","false"); 
+						$("#buy").removeAttr("disabled"); 
 					}else{
 						if(product.stockcontrol>0){
 							$('#qty').val("库存不足");
 							$("#buy").attr("disabled","true"); 
 						}else{
 							$('#qty').val("不限量");
-							$("#buy").attr("disabled","false"); 
+							$("#buy").removeAttr("disabled"); 
 						}
 					}
 					$('#prodcut_description').html(product.description);
