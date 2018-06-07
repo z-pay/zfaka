@@ -66,8 +66,7 @@ class OrderController extends PcBasicController
 							'money'=>$product['price']*$number,
 						);
 						$id=$this->m_order->Insert($m);
-						$l_encryption= new Encryption();
-						$orderid = $l_encryption->encrypt($id);
+						$orderid = base64_encode($id);
 						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$orderid));
 					}
 				}
@@ -83,9 +82,8 @@ class OrderController extends PcBasicController
 	public function payAction()
 	{
 		$data = array();
-		echo $orderid = $this->get('oid',false);
-		$l_encryption= new Encryption();
-		echo $orderid = $l_encryption->decrypt($orderid);
+		$orderid = $this->get('oid',false);
+		$orderid = base64_decode($orderid);
 		if(is_numeric($orderid) AND $orderid>0){
 			$order = $this->m_order->Where(array('id'=>$orderid,'status'=>0))->SelectOne();
 			if(!empty($order)){
