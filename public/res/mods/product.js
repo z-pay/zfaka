@@ -46,26 +46,26 @@
 					$('#price').val(product.price);
 					if(product.qty>0){
 						$('#qty').val(product.qty);
-						$("#buy").removeAttr("disabled"); 
+						$("#buy").removeAttr("disabled");
 					}else{
 						if(product.stockcontrol>0){
 							$('#qty').val("库存不足");
-							$("#buy").attr("disabled","true"); 
+							$("#buy").attr("disabled","true");
 						}else{
 							$('#qty').val("不限量");
-							$("#buy").removeAttr("disabled"); 
+							$("#buy").removeAttr("disabled");
 						}
 					}
 					$('#prodcut_description').html(product.description);
 					form.render();
 				} else {
-					
+
 				}
 			}
 		});
 
 	});
-	
+
 	form.on('submit(buy)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
@@ -91,6 +91,14 @@
 
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
-	
+
+	//左右框高度
+	var leftHeight = parseInt($('#prodcut_num').height());
+	var rightHeight = parseInt($('#prodcut_description').height());
+	if (leftHeight > rightHeight) {
+		$('#prodcut_description').height(leftHeight);
+	} else {
+		$('#prodcut_num').height(rightHeight);
+	}
 	exports('product',null)
 });
