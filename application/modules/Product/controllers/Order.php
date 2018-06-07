@@ -26,7 +26,9 @@ class OrderController extends PcBasicController
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0 AND $email AND isEmail($email)){
 			$product = $this->m_products->Where(array('id'=>$pid))->SelectOne();
 			if(!empty($product)){
-				if($product['stockcontrol']==1 AND $product['qty']>0){
+				if($product['stockcontrol']==1 AND $product['qty']<1){
+					$data = array('code' => 1002, 'msg' => '库存不足');
+				}else{
 					$m=array(
 						'userid'=>$this->userid,
 						'email'=>$email,
@@ -35,8 +37,6 @@ class OrderController extends PcBasicController
 					);
 					$id=$this->m_order->Insert($m);
 					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('ordeid'=>$id));
-				}else{
-					$data = array('code' => 1002, 'msg' => '库存不足');
 				}
 			}else{
 				$data = array('code' => 1001, 'msg' => '商品不存在');
