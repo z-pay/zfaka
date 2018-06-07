@@ -19,7 +19,19 @@ layui.define(['layer', 'form'], function(exports){
 				for (var i = 0, j = list.length; i < j; i++) {
 					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+list[i].addtime+'</td><td>'+list[i].status+'</td></tr>';
 				}
-				$("#query-table tbody").prepend(html);
+				//$("#query-table tbody").prepend(html);
+				table.render({
+					elem: '#query-table',
+					page: true,
+					cellMinWidth:60,
+					cols: [[
+						{field: 'productname', title: '订单名称'},
+						{field: 'number', title: '数量'},
+						{field: 'money', title: '金额'},
+						{field: 'addtime', title: '下单时间', width:160, templet: '#addtime',align:'center'},
+						{field: 'stauts', width:100, title: '状态', align:'center'}
+					]]
+				});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}

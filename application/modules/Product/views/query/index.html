@@ -44,26 +44,29 @@
                                 <button class="layui-btn" lay-filter="query" lay-submit>查询</button>
                             </div>
 						</form>
-							<table class="layui-table" id="query-table">
-							  <colgroup>
-								<col width="150">
-								<col width="200">
-								<col>
-							  </colgroup>
-							  <thead>
-								<tr>
-								  <th>订单名称</th>
-								  <th>数量</th>
-								  <th>金额</th>
-								  <th>下单时间</th>
-								  <th>状态</th>
-								</tr> 
-							  </thead>
-							  <tbody>
-								<tr>
-								</tr>
-							  </tbody>
-							</table>
+						<table class="layui-table" id="query-table"></table>
+						<script type="text/javascript">
+							function createTime(v){
+								var date = new Date();
+								date.setTime(parseInt(v)*1000);
+								var y = date.getFullYear();
+								var m = date.getMonth()+1;
+								m = m<10?'0'+m:m;
+								var d = date.getDate();
+								d = d<10?("0"+d):d;
+								var h = date.getHours();
+								h = h<10?("0"+h):h;
+								var M = date.getMinutes();
+								M = M<10?("0"+M):M;
+								var s = date.getSeconds();
+								s = s<10?("0"+s):s;
+								var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
+								return str;
+							}
+						</script>
+						<script type="text/html" id="addtime">
+							{{ createTime(d.addtime) }}
+						</script>
                     </div>
                 </div>
             </div>
