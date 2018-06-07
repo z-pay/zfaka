@@ -16,8 +16,13 @@
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
 						<div class="" style="margin-bottom: 0;text-align:center">
-						  <button class="layui-btn site-demo-active layui-btn-disabled" data-type="zfbf2f">支付宝当面付</button>
-						  <button class="layui-btn site-demo-active layui-btn-disabled" data-type="weipay">微信支付</button>
+							<?php if(!empty($payments)):?>
+								<?php foreach($payments AS $payment):?>
+									<button class="layui-btn site-demo-active <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
+								<?php endforeach;?>
+							<?php else:?>
+							<p>站长正在加紧配置，请耐心等待....</p>
+							<?php endif;?>
 						</div>
                     </div>
                 </div>

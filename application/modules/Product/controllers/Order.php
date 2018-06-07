@@ -11,12 +11,15 @@ class OrderController extends PcBasicController
 	private $m_products;
 	private $m_order;
 	private $m_user;
+	private $m_payment;
+	
     public function init()
     {
         parent::init();
 		$this->m_products = $this->load('products');
 		$this->m_order = $this->load('order');
 		$this->m_user = $this->load('user');
+		$this->m_payment = $this->load('payment');
     }
 
     public function buyAction()
@@ -63,7 +66,7 @@ class OrderController extends PcBasicController
 							'money'=>$product['price']*$number,
 						);
 						$id=$this->m_order->Insert($m);
-						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$id));
+						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>base64_encode($id)));
 					}
 				}
 			}else{
@@ -78,6 +81,23 @@ class OrderController extends PcBasicController
 	public function payAction()
 	{
 		$data = array();
-        $this->getView()->assign($data);
+		$orderid = $this->get('oid',false);
+		$orderid = base64_decode($orderid);
+		if(is_numeric($orderid) AND $orderid>0){
+			$order = $this->m_order->Where(array('id'=>$orderid,'status'=>0))->SelectOne();
+			if(!empty($order)){
+				//获取支付方式
+				$payments = $this->m_payment->getConfig();
+				$data['payments']=$payments;
+				$data['code']=1;
+			}else{
+				$data['code']=1002;
+				$data['msg']='订单不存在/订单已支付';
+			}
+		}else{
+			$data['code']=1001;
+			$data['msg']='订单不存在';
+		}
+		$this->getView()->assign($data);
 	}
 }
