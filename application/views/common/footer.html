@@ -3,8 +3,9 @@
 	</div>
 	
 <script src="/res/layui/layui.js"></script>
-<?php if($login):?>
+
 <script>
+<?php if($login):?>
 layui.cache.page = 'user';
 layui.cache.user = {
   username: '游客'
@@ -19,12 +20,12 @@ layui.config({
 }).extend({
   fly: 'index'
 }).use('fly');
-
+<?php endif;?>
 layui.use('element', function(){
   var element = layui.element;
   
 });
 </script>
-<?php endif;?>
+
 </body>
 </html>
