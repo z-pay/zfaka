@@ -44,7 +44,12 @@ layui.define(['layer', 'form'], function(exports){
 					if(product.qty>0){
 						$('#qty').val(product.qty);
 					}else{
-						$('#qty').val("不限量");
+						if(product.stockcontrol>0){
+							$('#qty').val("库存不足");
+							$("#buy").attr("disabled","true"); 
+						}else{
+							$('#qty').val("不限量");
+						}
 					}
 					$('#prodcut_description').html(product.description);
 					//form.render('select');
