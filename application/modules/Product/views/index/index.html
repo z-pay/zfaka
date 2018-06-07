@@ -47,7 +47,21 @@
                                 <input type="num" name="subject"  class="layui-input">
                             </div>
                         </div>
-						
+						<?php if($login):?>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱账户</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="email" id="email" value="<?php echo $uinfo['email'];?>" readonly class="layui-input">
+                            </div>
+                        </div>
+						<?php else:?>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮箱账户</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="email" id="email" class="layui-input">
+                            </div>
+                        </div>
+						<?php endif;?>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <button class="layui-btn" lay-submit lay-filter="ticket">立即提交</button>
