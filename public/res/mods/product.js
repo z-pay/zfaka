@@ -20,8 +20,8 @@ layui.define(['layer', 'form'], function(exports){
 						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
 					}
 					$('#productlist').html("<option value=\"0\">请选择商品</option>" + html);
+					form.render('select');
 				} else {
-					$('#productlist').html("<option value=\"0\">该分类下没有商品</option>");
 				}
 			}
 
@@ -43,6 +43,7 @@ layui.define(['layer', 'form'], function(exports){
 					$('#price').val(product.price);
 					$('#qty').val(product.qty);
 					$('#prodcut_description').html(product.description);
+					form.render('select');
 				} else {
 					
 				}
