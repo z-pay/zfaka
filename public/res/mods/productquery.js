@@ -15,7 +15,7 @@ layui.define(['layer','table', 'form'], function(exports){
 		.done(function(res) {
 			if (res.code == '1') {
 				var html = "";
-				var list = result.data;
+				var list = res.data;
 				for (var i = 0, j = list.length; i < j; i++) {
 					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+list[i].addtime+'</td><td>'+list[i].status+'</td></tr>';
 				}
