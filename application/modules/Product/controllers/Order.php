@@ -17,7 +17,7 @@ class OrderController extends PcBasicController
 		$this->m_order = $this->load('order');
     }
 
-    public function indexAction()
+    public function buyAction()
     {
 		//下订单
 		$pid = $this->getPost('pid');
@@ -33,8 +33,8 @@ class OrderController extends PcBasicController
 						'pid'=>$pid,
 						'addtime'=>time()
 					);
-					$this->m_order->Insert($m);
-					$data = array('code' => 1, 'msg' => '下单成功');
+					$id=$this->m_order->Insert($m);
+					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('ordeid'=>$id));
 				}else{
 					$data = array('code' => 1002, 'msg' => '库存不足');
 				}
@@ -46,4 +46,10 @@ class OrderController extends PcBasicController
 		}
 		Helper::response($data);
     }
+	
+	public function payAction()
+	{
+		$data = array();
+        $this->getView()->assign($data);
+	}
 }
