@@ -19,7 +19,7 @@ layui.define(['layer', 'form'], function(exports){
 					for (var i = 0, j = list.length; i < j; i++) {
 						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
 					}
-					$('#productlist').html("<option value=\"0\">请选择商品</option>" + html);
+					$('#productlist').html(html);
 					form.render('select');
 				} else {
 				}
@@ -41,9 +41,13 @@ layui.define(['layer', 'form'], function(exports){
 				if (result.code == '1') {
 					var product = result.data.product;
 					$('#price').val(product.price);
-					$('#qty').val(product.qty);
+					if(product.qty>0){
+						$('#qty').val(product.qty);
+					}else{
+						$('#qty').val("不限量");
+					}
 					$('#prodcut_description').html(product.description);
-					form.render('select');
+					//form.render('select');
 				} else {
 					
 				}
@@ -51,7 +55,6 @@ layui.define(['layer', 'form'], function(exports){
 		});
 
 	});
-	
 	
 	exports('product',null)
 });
