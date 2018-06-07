@@ -21,6 +21,26 @@ layui.define(['layer', 'form'], function(exports){
 		return str;
 	}
 	
+	function converStatus(s){
+		var str = "";
+		switch(s)
+		{
+			case 0:
+				str = "待付款";
+				break;
+			case 1:
+				str = "待处理";
+				break;
+			case 2:
+				str = "已完成";
+				break;
+			default:
+				str = "处理失败";
+				break;
+		}
+		return str;
+	}
+	
 	$('.loadcode').on('click', function(event) {
 		event.preventDefault();
 		$(this).attr('src','/Captcha?t=productquery&n=' + Math.random())
@@ -38,9 +58,11 @@ layui.define(['layer', 'form'], function(exports){
 		.done(function(res) {
 			if (res.code == '1') {
 				var html = "";
+				var orderstatus = "";
 				var list = res.data;
 				for (var i = 0, j = list.length; i < j; i++) {
-					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+list[i].status+'</td></tr>';
+					orderstatus = converStatus(list[i].status);
+					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
 				}
 				$("#query-table tbody").prepend(html);
 				$("#query-table").show();
