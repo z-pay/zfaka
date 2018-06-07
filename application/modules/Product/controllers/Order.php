@@ -30,20 +30,27 @@ class OrderController extends PcBasicController
 				if($product['stockcontrol']==1 AND $product['qty']<1){
 					$data = array('code' => 1002, 'msg' => '库存不足');
 				}else{
-					$m=array(
-						'userid'=>$this->userid,
-						'email'=>$email,
-						'number'=>$number,
-						'productname'=>$product['name'],
-						'pid'=>$pid,
-						'addtime'=>time(),
-						'ip'=>getClientIP(),
-						'status'=>0,
-						'chapwd'=>$chapwd,
-						'money'=>$product['price']*$number,
-					);
-					$id=$this->m_order->Insert($m);
-					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$id));
+					//进行同一ip，下单未付款的处理判断
+					$myip = getClientIP();
+					$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Total();
+					if($total>1){
+						$m=array(
+							'userid'=>$this->userid,
+							'email'=>$email,
+							'number'=>$number,
+							'productname'=>$product['name'],
+							'pid'=>$pid,
+							'addtime'=>time(),
+							'ip'=>$myip,
+							'status'=>0,
+							'chapwd'=>$chapwd,
+							'money'=>$product['price']*$number,
+						);
+						$id=$this->m_order->Insert($m);
+						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$id));
+					}else{
+						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
+					}
 				}
 			}else{
 				$data = array('code' => 1001, 'msg' => '商品不存在');
