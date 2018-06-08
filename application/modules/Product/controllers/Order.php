@@ -159,4 +159,15 @@ class OrderController extends PcBasicController
 		}
 		Helper::response($data);
 	}
+	
+	//支付宝当面付生成二维码
+	public function showqrAction(){
+		$url = $this->get('url');
+		if($url AND filter_var($url, FILTER_VALIDATE_URL)){
+			\PHPQRCode\QRcode::png($url);
+			exit();
+		}else{
+			echo '';
+		}
+	}
 }

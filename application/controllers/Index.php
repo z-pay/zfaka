@@ -13,9 +13,4 @@ class IndexController extends PcBasicController {
 		}
 		return FALSE;
 	}
-	
-	public function testAction(){
-		\PHPQRCode\QRcode::png("Test");
-		exit();
-	}
 }
