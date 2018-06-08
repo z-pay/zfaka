@@ -1,5 +1,6 @@
 {
     "require": {
-        "riverslei/payment": "*"
+        "riverslei/payment": "*",
+		"aferrandini/phpqrcode": "1.0.1"
     }
 }
