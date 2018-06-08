@@ -39,11 +39,11 @@ class OrderController extends PcBasicController
 					
 					//库存控制
 					if($product['stockcontrol']==1 AND $product['qty']<1){
-						$data = array('code' => 1002, 'msg' => '库存不足');
+						$data = array('code' => 1003, 'msg' => '库存不足');
 						Helper::response($data);
 					}
 					if($product['stockcontrol']==1 AND $number>$product['qty']){
-						$data = array('code' => 1002, 'msg' => '库存不足');
+						$data = array('code' => 1004, 'msg' => '库存不足');
 						Helper::response($data);
 					}
 						
@@ -51,7 +51,7 @@ class OrderController extends PcBasicController
 					if(isset($this->config['limit_ip_order']) AND $this->config['limit_ip_order']>0){
 						$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Total();
 						if($total>$this->config['limit_ip_order']){
-							$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
+							$data = array('code' => 1005, 'msg' => '处理失败,您有太多未付款订单了');
 							Helper::response($data);
 						}
 					}
@@ -60,7 +60,7 @@ class OrderController extends PcBasicController
 					if(isset($this->config['limit_email_order']) AND $this->config['limit_email_order']>0){
 						$total = $this->m_order->Where(array('email'=>$email,'status'=>0))->Total();
 						if($total>$this->config['limit_email_order']){
-							$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
+							$data = array('code' => 1006, 'msg' => '处理失败,您有太多未付款订单了');
 							Helper::response($data);
 						}
 					}
@@ -68,7 +68,7 @@ class OrderController extends PcBasicController
 					//进行同一商品，禁止重复下单的判断
 					$total = $this->m_order->Where(array('email'=>$email,'status'=>0,'pid'=>$pid))->Total();
 					if($total>0){
-						$data = array('code' => 1004, 'msg' => '处理失败,商品限制重复下单,请直接查询订单进行支付');
+						$data = array('code' => 1007, 'msg' => '处理失败,商品限制重复下单,请直接查询订单进行支付');
 						Helper::response($data);
 					}
 					
@@ -106,7 +106,7 @@ class OrderController extends PcBasicController
 					$oid = base64_encode($id);
 					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));
 				}else{
-					$data = array('code' => 1001, 'msg' => '商品不存在');
+					$data = array('code' => 1002, 'msg' => '商品不存在');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
