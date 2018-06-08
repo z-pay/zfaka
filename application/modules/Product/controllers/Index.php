@@ -18,7 +18,8 @@ class IndexController extends PcBasicController
     public function indexAction()
     {
 		$data = array();
-		$products_type = $this->m_products_type->Select();
+		$order = array('sort_num' => 'ASC');
+		$products_type = $this->m_products_type->Order($order)->Select();
 		$data['products_type'] = $products_type;
         $this->getView()->assign($data);
     }

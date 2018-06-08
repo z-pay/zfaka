@@ -19,7 +19,9 @@ class GetController extends PcBasicController
     {
 		$tid = $this->getPost('tid');
 		$data = array();
-		$products = $this->m_products->Where(array('typeid'=>$tid,'ishidden'=>0))->Select();
+		$order = array('sort_num' => 'ASC');
+		$field = array('id', 'name');
+		$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'ishidden'=>0))->Order($order)->Select();
 		$data['products'] = $products;
 		$result = array('code' => 1, 'msg' => 'success','data'=>$data);
         Helper::response($result);
@@ -30,7 +32,8 @@ class GetController extends PcBasicController
 	{
 		$pid = $this->getPost('pid');
 		$data = array();
-		$product = $this->m_products->Where(array('id'=>$pid))->SelectOne();
+		$field = array('id', 'name', 'price', 'qty', 'stockcontrol', 'description');
+		$product = $this->m_products->Field($field)->Where(array('id'=>$pid))->SelectOne();
 		$data['product'] = $product;
 		$result = array('code' => 1, 'msg' => 'success','data'=>$data);
         Helper::response($result);
