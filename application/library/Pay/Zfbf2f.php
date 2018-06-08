@@ -5,7 +5,7 @@ use \Payment\Client\Charge;
 use \Payment\Common\PayException;
 use \Payment\Config;
 
-class Zfbf2f{
+class zfbf2f{
 	function pay($payconfig,$params){
 		$config = [
 			'use_sandbox' => false,

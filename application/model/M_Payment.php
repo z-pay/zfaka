@@ -44,7 +44,7 @@ class M_Payment extends Model {
 		$_config = array();
 		$result=$this->Select();
 		foreach($result AS $i){
-			$k=$i['id'];
+			$k=$i['alias'];
 			$_config[$k]=$i;
 		}
 		return $_config;

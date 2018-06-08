@@ -36,11 +36,12 @@
 						<td><?php echo date('Y-m-d H:i:s',$order['addtime']);?></td>
 					</tr>
 				</tbody>
-				</table>
+			</table>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
 						<div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
+							<input type="hidden" id="orderid" value="<?php echo $order['id'];?>" >
 							<?php if($code>1):?>
 								<p><?php echo $msg;?></p>
 							<?php else:?>

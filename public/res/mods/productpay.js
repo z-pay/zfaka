@@ -5,11 +5,12 @@
 	$('.layui-btn').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
+		var orderid = $("#orderid").val();
         $.ajax({
             type: "POST",
             dataType: "json",
             url: "/product/order/payajax",
-            data: { "csrf_token": TOKEN,'paymethod':paymethod },
+            data: { "csrf_token": TOKEN,'paymethod':paymethod,'orderid':orderid },
             success: function(data) {
                 if (data.code == 1) {
                     location.href = location.protocol + "//" +data.data ;

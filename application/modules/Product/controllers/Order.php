@@ -112,10 +112,36 @@ class OrderController extends PcBasicController
 	
 	public function payajaxAction()
 	{
-		$zfbf2f = new \Pay\Zfbf2f();
-		$params =array('orderid'=>1,'money'=>11,'productname'=>'test');
-		$payconfig = array('email'=>'fdsafas@qq.com','appid'=>'d','appsecret'=>'dd');
-		$data = $zfbf2f->pay($payconfig,$params);
+		$paymethod = $this->getPost('paymethod');
+		$orderid = $this->getPost('orderid');
+		$csrf_token = $this->getPost('csrf_token');
+		if($paymethod AND $orderid AND $csrf_token){
+			$payments = $this->m_payment->getConfig();
+			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
+				$payconfig = $payments[$paymethod];
+				if($payconfig['active']>0){
+					//获取订单信息
+					$order = $this->m_order->Where(array('id'=>$orderid))->SelectOne();
+					if(is_array($order) AND !empty($order)){
+						if($order['status']>0){
+							$data = array('code' => 1004, 'msg' => '订单已支付成功');
+						}else{
+							$zfbf2f = new \Pay\zfbf2f();
+							$params =array('orderid'=>$order['id'],'money'=>$order['money'],'productname'=>$order['productname']);
+							$data = $zfbf2f->pay($payconfig,$params);
+						}
+					}else{
+						$data = array('code' => 1003, 'msg' => '订单不存在');
+					}
+				}else{
+					$data = array('code' => 1002, 'msg' => '支付渠道已关闭');
+				}
+			}else{
+				$data = array('code' => 1001, 'msg' => '支付渠道异常');
+			}
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
 		Helper::response($data);
 	}
 }
