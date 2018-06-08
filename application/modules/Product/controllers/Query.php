@@ -21,7 +21,8 @@ class QueryController extends PcBasicController
 		$orderid  = $this->get('orderid',false);
 		if($orderid){
 			$order = $this->m_order->Where(array('orderid'=>$orderid))->SelectOne();
-			$data['order'] =$order;
+			$data['order'] = $order;
+			$data['cnstatus'] = array(0=>'待付款',1=>'待处理',2=>'已完成',3=>'处理失败');
 			$data['querymethod'] = 'get';
 		}else{
 			$data['order'] =array();
