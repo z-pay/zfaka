@@ -74,6 +74,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 				$("#query-table").show();
 				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
+				$('.loadcode').attr('src','/Captcha?t=productquery&n=' + Math.random());
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
 		})
