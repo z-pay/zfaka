@@ -20,6 +20,7 @@
 				</colgroup>
 				<thead>
 					<tr>
+					<th>订单ID</th>
 					<th>订单名称</th>
 					<th>单价</th>
 					<th>数量</th>
@@ -29,6 +30,7 @@
 				 </thead>
 				<tbody>
 					<tr>
+						<td><?php echo $order['orderid'];?></td>
 						<td><?php echo $order['productname'];?></td>
 						<td><?php echo $order['price'];?></td>
 						<td><?php echo $order['number'];?></td>
@@ -41,7 +43,7 @@
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
 						<div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
-							<input type="hidden" id="orderid" value="<?php echo $order['id'];?>" >
+							<input type="hidden" id="oid" value="<?php echo $order['id'];?>" >
 							<?php if($code>1):?>
 								<p><?php echo $msg;?></p>
 							<?php else:?>

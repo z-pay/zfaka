@@ -18,6 +18,13 @@ class QueryController extends PcBasicController
     public function indexAction()
     {
 		$data = array();
+		$orderid  = $this->get('orderid',false);
+		if($orderid){
+			$order = $this->m_order->Where(array('orderid'=>$orderid))->SelectOne();
+			$data['order'] =$order;
+		}else{
+			$data['order'] =array();
+		}
         $this->getView()->assign($data);
     }
 	

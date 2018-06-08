@@ -62,7 +62,7 @@ layui.define(['layer', 'form'], function(exports){
 				var list = res.data;
 				for (var i = 0, j = list.length; i < j; i++) {
 					orderstatus = converStatus(list[i].status);
-					html += '<tr><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
+					html += '<tr><td>'+list[i].orderid+'</td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
 				}
 				$("#query-table tbody").prepend(html);
 				$("#query-table").show();

@@ -5,12 +5,12 @@
 	$('.layui-btn').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
-		var orderid = $("#orderid").val();
+		var oid = $("#oid").val();
         $.ajax({
             type: "POST",
             dataType: "json",
             url: "/product/order/payajax",
-            data: { "csrf_token": TOKEN,'paymethod':paymethod,'orderid':orderid },
+            data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
             success: function(data) {
                 if (data.code == 1) {
 					//var url = "https://qr.alipay.com/bax08878zjx7cgoce6qa60ea";

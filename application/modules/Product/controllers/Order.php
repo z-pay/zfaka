@@ -72,8 +72,12 @@ class OrderController extends PcBasicController
 						}
 					}
 					
+					//生成orderid
+					$orderid = 'zlkb' . date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
+					
 					//开始下单，入库
 					$m=array(
+						'orderid'=>$orderid,
 						'userid'=>$userid,
 						'email'=>$email,
 						'pid'=>$pid,
@@ -87,8 +91,8 @@ class OrderController extends PcBasicController
 						'addtime'=>time(),
 					);
 					$id=$this->m_order->Insert($m);
-					$orderid = base64_encode($id);
-					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('orderid'=>$orderid));
+					$oid = base64_encode($id);
+					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));
 				}else{
 					$data = array('code' => 1001, 'msg' => '商品不存在');
 				}
@@ -104,10 +108,10 @@ class OrderController extends PcBasicController
 	public function payAction()
 	{
 		$data = array();
-		$orderid = $this->get('oid',false);
-		$orderid = (int)base64_decode($orderid);
-		if(is_numeric($orderid) AND $orderid>0){
-			$order = $this->m_order->Where(array('id'=>$orderid,'status'=>0))->SelectOne();
+		$oid = $this->get('oid',false);
+		$oid = (int)base64_decode($oid);
+		if(is_numeric($oid) AND $oid>0){
+			$order = $this->m_order->Where(array('id'=>$oid,'status'=>0))->SelectOne();
 			if(!empty($order)){
 				//获取支付方式
 				$payments = $this->m_payment->getConfig();
@@ -128,21 +132,21 @@ class OrderController extends PcBasicController
 	public function payajaxAction()
 	{
 		$paymethod = $this->getPost('paymethod');
-		$orderid = $this->getPost('orderid');
+		$oid = $this->getPost('oid');
 		$csrf_token = $this->getPost('csrf_token');
-		if($paymethod AND $orderid AND $csrf_token){
+		if($paymethod AND $oid AND $csrf_token){
 			$payments = $this->m_payment->getConfig();
 			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
 				$payconfig = $payments[$paymethod];
 				if($payconfig['active']>0){
 					//获取订单信息
-					$order = $this->m_order->Where(array('id'=>$orderid))->SelectOne();
+					$order = $this->m_order->Where(array('id'=>$oid))->SelectOne();
 					if(is_array($order) AND !empty($order)){
 						if($order['status']>0){
 							$data = array('code' => 1004, 'msg' => '订单已支付成功');
 						}else{
 							$zfbf2f = new \Pay\zfbf2f();
-							$params =array('orderid'=>$order['id'],'money'=>$order['money'],'productname'=>$order['productname']);
+							$params =array('orderid'=>$order['orderid'],'money'=>$order['money'],'productname'=>$order['productname']);
 							$data = $zfbf2f->pay($payconfig,$params);
 						}
 					}else{

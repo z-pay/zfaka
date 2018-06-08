@@ -45,23 +45,14 @@
                             </div>
 						</form>
 							<table class="layui-table" id="query-table" style="display: none;">
-							  <colgroup>
-								<col width="150">
-								<col width="200">
-								<col>
-							  </colgroup>
-							  <thead>
-								<tr>
-								  <th>订单名称</th>
-								  <th>数量</th>
-								  <th>金额</th>
-								  <th>下单时间</th>
-								  <th>状态</th>
-								</tr> 
-							  </thead>
+							  <colgroup><col width="150"><col width="200"><col></colgroup>
+							  <thead><tr><th>订单ID</th><th>订单名称</th><th>数量</th><th>金额</th><th>下单时间</th><th>状态</th></tr> </thead>
 							  <tbody>
-								<tr>
-								</tr>
+								<?php if(isset($order) AND !empty($order)):?>
+								<tr><th><?php echo $order['orderid'];?></th><th><?php echo $order['productname'];?></th><th><?php echo $order['number'];?></th><th><?php echo $order['money'];?></th><th><?php echo date('Y-m-d H:i:s',$order['addtime']);?></th><th><?php echo $order['status'];?></th></tr>
+								<?php else:?>
+								<tr></tr>
+								<?php endif;?>
 							  </tbody>
 							</table>
                     </div>
