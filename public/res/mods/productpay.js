@@ -11,9 +11,9 @@
             data: { "csrf_token": TOKEN },
             success: function(data) {
                 if (data.code == 1) {
-                    location.href = location.protocol + "//" +res.data ;
+                    location.href = location.protocol + "//" +data.data ;
                 } else {
-                    layer.msg(res.msg,{icon:2,time:5000});
+                    layer.msg(data.msg,{icon:2,time:5000});
                 }
                 return;
             }
