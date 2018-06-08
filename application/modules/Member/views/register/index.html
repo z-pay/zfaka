@@ -11,7 +11,7 @@
       <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
           <div class="layui-form-pane">
-			<?php if($config['is_open_register']>0):?>
+			<?php if(isset($config['is_open_register']) AND $config['is_open_register']>0):?>
             <form class="layui-form" method="post" action="/member/register/ajax">
               <div class="layui-form-item">
                 <label for="L_email" class="layui-form-label">邮箱</label>

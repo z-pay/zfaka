@@ -35,6 +35,8 @@ class OrderController extends PcBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$product = $this->m_products->Where(array('id'=>$pid))->SelectOne();
 				if(!empty($product)){
+					$myip = getClientIP();
+					
 					//库存控制
 					if($product['stockcontrol']==1 AND $product['qty']<1){
 						$data = array('code' => 1002, 'msg' => '库存不足');
@@ -46,18 +48,21 @@ class OrderController extends PcBasicController
 					}
 						
 					//进行同一ip，下单未付款的处理判断
-					$myip = getClientIP();
-					$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Total();
-					if($total>1){
-						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
-						Helper::response($data);
+					if(isset($this->config['limit_ip_order']) AND $this->config['limit_ip_order']>0){
+						$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Total();
+						if($total>$this->config['limit_ip_order']){
+							$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
+							Helper::response($data);
+						}
 					}
-					
+
 					//进行同一email，下单未付款的处理判断
-					$total = $this->m_order->Where(array('email'=>$email,'status'=>0))->Total();
-					if($total>1){
-						$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
-						Helper::response($data);
+					if(isset($this->config['limit_email_order']) AND $this->config['limit_email_order']>0){
+						$total = $this->m_order->Where(array('email'=>$email,'status'=>0))->Total();
+						if($total>$this->config['limit_email_order']){
+							$data = array('code' => 1003, 'msg' => '处理失败,您有太多未付款订单了');
+							Helper::response($data);
+						}
 					}
 					
 					//进行同一商品，禁止重复下单的判断

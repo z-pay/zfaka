@@ -4,7 +4,7 @@
         <div class="layui-tab layui-tab-brief" lay-filter="user">
             <ul class="layui-tab-title">
                 <li class="layui-this">登入</li>
-                <?php if($config['is_open_register']>0):?><li><a href="/member/register/">注册</a></li><?php endif;?>
+                <?php if(isset($config['is_open_register']) AND $config['is_open_register']>0):?><li><a href="/member/register/">注册</a></li><?php endif;?>
             </ul>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
