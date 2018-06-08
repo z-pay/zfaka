@@ -1,4 +1,4 @@
-layui.define(['layer', 'form'], function(exports){
+layui.define(['layer', 'form','base64'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
@@ -58,11 +58,17 @@ layui.define(['layer', 'form'], function(exports){
 		.done(function(res) {
 			if (res.code == '1') {
 				var html = "";
+				var addon = "";
 				var orderstatus = "";
+				var oid = "";
 				var list = res.data;
 				for (var i = 0, j = list.length; i < j; i++) {
 					orderstatus = converStatus(list[i].status);
-					html += '<tr><td>'+list[i].orderid+'</td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
+					if(list[i].status==0){
+						oid = $.base64.encode(list[i].id);
+						addon = ',<a style="color:red" href="/product/order/pay/?oid='+oid+'">去支付</a>';
+					}
+					html += '<tr><td>'+list[i].orderid+'</td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+addon+'</td></tr>';
 				}
 				$("#query-table tbody").prepend(html);
 				$("#query-table").show();

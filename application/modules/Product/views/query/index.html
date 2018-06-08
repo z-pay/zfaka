@@ -56,7 +56,7 @@
 							  <thead><tr><th>订单ID</th><th>订单名称</th><th>数量</th><th>金额</th><th>下单时间</th><th>状态</th></tr> </thead>
 							  <tbody>
 								<?php if(isset($order) AND !empty($order)):?>
-								<tr><th><?php echo $order['orderid'];?></th><th><?php echo $order['productname'];?></th><th><?php echo $order['number'];?></th><th><?php echo $order['money'];?></th><th><?php echo date('Y-m-d H:i:s',$order['addtime']);?></th><th><?php echo $cnstatus[$order['status']];?></th></tr>
+								<tr><th><?php echo $order['orderid'];?></th><th><?php echo $order['productname'];?></th><th><?php echo $order['number'];?></th><th><?php echo $order['money'];?></th><th><?php echo date('Y-m-d H:i:s',$order['addtime']);?></th><th><?php echo $cnstatus[$order['status']];?><?php if($order['status']<1):?>,<a style="color:red" href="/product/order/pay/?oid=<?php echo base64_encode($order['id']);?>">去支付</a><?php endif;?></th></tr>
 								<?php else:?>
 								<tr>无数据</tr>
 								<?php endif;?>
