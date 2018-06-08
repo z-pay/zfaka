@@ -32,4 +32,10 @@ if ( ! function_exists('getRandom')){
     }
 }
 
-
+if ( ! function_exists('JSON')){
+function JSON($array) {
+	arrayRecursive($array, 'urlencode', TRUE);
+	$json = json_encode($array);
+	return urldecode($json);
+}
+}
