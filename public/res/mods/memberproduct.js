@@ -1,8 +1,7 @@
-layui.define(['layer', 'table'], function(exports){
+layui.define(['layer', 'table','base64'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var table = layui.table;
-
 
 	table.render({
 		elem: '#order',
@@ -15,7 +14,7 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'price', title: '单价'},
 			{field: 'number', title: '数量', width:40},
 			{field: 'money', title: '金额'},
-			{field: 'status', title: '状态'},
+			{field: 'status', title: '状态',templet: '#cnstatus'},
 			{field: 'addtime', title: '下单时间', width:200, templet: '#addtime',align:'center'}
 		]]
 	});
