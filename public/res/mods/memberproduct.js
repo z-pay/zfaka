@@ -12,7 +12,7 @@ layui.define(['layer', 'table','base64'], function(exports){
 			{field: 'id', title: 'ID', width:80},
 			{field: 'productname', title: '订单名称'},
 			{field: 'price', title: '单价'},
-			{field: 'number', title: '数量', width:40},
+			{field: 'number', title: '数量'},
 			{field: 'money', title: '金额'},
 			{field: 'status', title: '状态',templet: '#cnstatus'},
 			{field: 'addtime', title: '下单时间', width:200, templet: '#addtime',align:'center'}
