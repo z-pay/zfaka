@@ -56,14 +56,15 @@ class OrderController extends PcBasicController
 						$m=array(
 							'userid'=>$userid,
 							'email'=>$email,
-							'number'=>$number,
-							'productname'=>$product['name'],
 							'pid'=>$pid,
-							'addtime'=>time(),
+							'productname'=>$product['name'],
+							'price'=>$product['price'],
+							'number'=>$number,
+							'money'=>$product['price']*$number,
+							'chapwd'=>$chapwd,
 							'ip'=>$myip,
 							'status'=>0,
-							'chapwd'=>$chapwd,
-							'money'=>$product['price']*$number,
+							'addtime'=>time(),
 						);
 						$id=$this->m_order->Insert($m);
 						$orderid = base64_encode($id);

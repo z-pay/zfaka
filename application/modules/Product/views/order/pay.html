@@ -21,6 +21,7 @@
 				<thead>
 					<tr>
 					<th>订单名称</th>
+					<th>单价</th>
 					<th>数量</th>
 					<th>金额</th>
 					<th>下单时间</th>
@@ -29,6 +30,7 @@
 				<tbody>
 					<tr>
 						<td><?php echo $order['productname'];?></td>
+						<td><?php echo $order['price'];?></td>
 						<td><?php echo $order['number'];?></td>
 						<td><?php echo $order['money'];?></td>
 						<td><?php echo date('Y-m-d H:i:s',$order['addtime']);?></td>
@@ -44,7 +46,7 @@
 							<?php else:?>
 								<?php if(!empty($payments)):?>
 									<?php foreach($payments AS $payment):?>
-										<button class="layui-btn site-demo-active <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
+										<button class="layui-btn layui-btn-warm <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
 									<?php endforeach;?>
 								<?php else:?>
 								<p>站长正在加紧配置，请耐心等待....</p>
