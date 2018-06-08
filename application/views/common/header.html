@@ -69,7 +69,7 @@
       <li class="layui-nav-item">
         <a href="/member/login/">登入</a>
       </li>
-		  <?php if(REGISTER):?>
+		  <?php if($config['is_open_register']>0):?>
 		  <li class="layui-nav-item">
 			<a href="/member/register/">注册</a>
 		  </li>

@@ -29,7 +29,7 @@ class RegisterController extends PcBasicController
 
 	public function ajaxAction()
 	{
-		if(!REGISTER){
+		if($this->config['is_open_register']<1){
 			$data = array('code' => 1000, 'msg' => '本系统关闭注册功能');
 			Helper::response($data);
 		}
