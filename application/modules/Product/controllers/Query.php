@@ -22,8 +22,10 @@ class QueryController extends PcBasicController
 		if($orderid){
 			$order = $this->m_order->Where(array('orderid'=>$orderid))->SelectOne();
 			$data['order'] =$order;
+			$data['querymethod'] = 'get';
 		}else{
 			$data['order'] =array();
+			$data['querymethod'] = 'ajax';
 		}
         $this->getView()->assign($data);
     }
