@@ -12,6 +12,29 @@
                             </li>
                  </ul>
 			</blockquote>
+			<table class="layui-table" id="query-table" style="display: none;">
+				<colgroup>
+					<col width="150">
+					<col width="200">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+					<th>订单名称</th>
+					<th>数量</th>
+					<th>金额</th>
+					<th>下单时间</th>
+					</tr> 
+				 </thead>
+				<tbody>
+					<tr>
+						<td><?php echo $order['productname'];?></td>
+						<td><?php echo $order['number'];?></td>
+						<td><?php echo $order['money'];?></td>
+						<td><?php echo date('Y-m-d H:i:s',$order['addtime']);?></td>
+					</tr>
+				</tbody>
+				</table>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
@@ -21,7 +44,7 @@
 							<?php else:?>
 								<?php if(!empty($payments)):?>
 									<?php foreach($payments AS $payment):?>
-										<button data-method="notice" class="layui-btn site-demo-active <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
+										<button class="layui-btn site-demo-active <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" data-type="<?php echo $payment['alias'];?>"><?php echo $payment['payment'];?></button>
 									<?php endforeach;?>
 								<?php else:?>
 								<p>站长正在加紧配置，请耐心等待....</p>
@@ -37,42 +60,3 @@
 
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
-<script>
-layui.use('layer', function(){ //独立版的layer无需执行这一句
-  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-  
-  //触发事件
-  var active = {
-	notice: function(){
-      //示范一个公告层
-      layer.open({
-        type: 1
-        ,title: false //不显示标题栏
-        ,closeBtn: false
-        ,area: '300px;'
-        ,shade: 0.8
-        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-        ,btn: ['支付成功', '暂不支付']
-        ,btnAlign: 'c'
-        ,moveType: 1 //拖拽模式，0或者1
-        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">我都不知道说什么了，赶紧付款吧</div>'
-        ,success: function(layero){
-			
-		
-          var btn = layero.find('.layui-layer-btn');
-          btn.find('.layui-layer-btn0').attr({
-				href: '/product/query'
-				,target: '_blank'
-          });
-        }
-      });
-    }
-  };
-  
-  $('#layerPay .layui-btn').on('click', function(){
-    var othis = $(this), method = othis.data('method');
-    active[method] ? active[method].call(this, othis) : '';
-  });
-  
-});
-</script>

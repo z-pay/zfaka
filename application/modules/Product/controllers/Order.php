@@ -89,6 +89,7 @@ class OrderController extends PcBasicController
 			if(!empty($order)){
 				//获取支付方式
 				$payments = $this->m_payment->getConfig();
+				$data['order']=$order;
 				$data['payments']=$payments;
 				$data['code']=1;
 			}else{
