@@ -10,7 +10,7 @@ layui.define(function(exports){
  * 2013/02/10
  **/
  
-var $ = layui.jquery;
+var jQuery = layui.jquery;
 
 ;(function($) {
 
