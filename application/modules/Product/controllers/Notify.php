@@ -32,7 +32,7 @@ class NotifyController extends PcBasicController
 		if($paymethod=='zfbf2f'){
 			$payconfig = $payments[$paymethod];
 			//支付宝公钥，账户中心->密钥管理->开放平台密钥，找到添加了支付功能的应用，根据你的加密类型，查看支付宝公钥
-			$alipayPublicKey=$payconfig['userid'];
+			$alipayPublicKey=$payconfig['appid'];
 			$aliPay = new \Pay\AlipayService($alipayPublicKey);
 			//验证签名
 			$result = $aliPay->rsaCheck($_POST,$_POST['sign_type']);
