@@ -15,18 +15,21 @@ class RouterPlugin extends Yaf\Plugin_Abstract
             $modules = Yaf\Application::app()->getModules();
             $uri = $request->getRequestUri();
             $uriInfo = explode('/', $uri);
+			print_r($uriInfo);
 			if(isset($uriInfo[1]) AND strlen($uriInfo[1])>0){
 				//通过地址解析出来的module
-				$module = ucfirst(strtolower($uriInfo[1]));
+				echo $module = ucfirst(strtolower($uriInfo[1]));
 				if (!in_array($module, $modules)) {
 					//处理大小写兼容问题
 					if ($request->module) {
 						if($request->module==ADMIN){
 							$module = strtolower('admin');
 							$request->setModuleName(ucfirst($module));
+							echo "设置为admin";
 						}else{
 							$module = strtolower($request->module);
 							$request->setModuleName(ucfirst($module));
+							echo "设置为admin".$module;
 						}
 					}
 					if ($request->controller) {
