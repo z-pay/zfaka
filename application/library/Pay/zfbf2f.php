@@ -38,11 +38,11 @@ class zfbf2f implements PayNotifyInterface
 	
 	public function notifyProcess(array $data)
 	{
-		$m_order = Helper::import('order');
-		$m_payment = Helper::import('payment');
-		$m_products_card = Helper::import('products_card');
-		$m_email_queue = Helper::import('email_queue');
-		$m_products = Helper::import('products');
+		$m_order = \Helper::import('order');
+		$m_payment = \Helper::import('payment');
+		$m_products_card = \Helper::import('products_card');
+		$m_email_queue = \Helper::import('email_queue');
+		$m_products = \Helper::import('products');
 		
 		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($data).PHP_EOL, FILE_APPEND);
 		
