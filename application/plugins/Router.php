@@ -24,7 +24,7 @@ class RouterPlugin extends Yaf\Plugin_Abstract
 						$module = strtolower($request->module);
 						$request->setModuleName(ucfirst($module));
 					}else{
-						if($request->module==ADMIN){
+						if($module==ADMIN){
 							$module = strtolower('admin');
 							$request->setModuleName(ucfirst($module));
 							echo "设置为admin";
