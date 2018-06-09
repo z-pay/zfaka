@@ -15,11 +15,14 @@ class RouterPlugin extends Yaf\Plugin_Abstract
             $modules = Yaf\Application::app()->getModules();
             $uri = $request->getRequestUri();
             $uriInfo = explode('/', $uri);
+			print_r($uriInfo);
 			if(isset($uriInfo[1]) AND strlen($uriInfo[1])>0){
 				//通过地址解析出来的module
 				$module = ucfirst(strtolower($uriInfo[1]));
 				if (!in_array($module, $modules)) {
+					echo "不在基础模型中";
 					//处理大小写兼容问题
+					echo $request->module;
 					if ($request->module) {
 						$module = strtolower($request->module);
 						$request->setModuleName(ucfirst($module));
@@ -39,6 +42,7 @@ class RouterPlugin extends Yaf\Plugin_Abstract
 						$request->setActionName($action);
 					}
 				} else {
+					echo "在基础模型中";
 					//如果自动解析的module与uri的一致
 					if($module==$request->module){
 						//处理大小写兼容问题
