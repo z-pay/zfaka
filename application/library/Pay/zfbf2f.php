@@ -2,19 +2,22 @@
 namespace Pay;
 
 use \Payment\Client\Charge;
+use \Payment\Notify\PayNotifyInterface;
 use \Payment\Common\PayException;
 use \Payment\Config;
 
-class zfbf2f{
-	function pay($payconfig,$params){
+class zfbf2f implements PayNotifyInterface
+{
+	public function pay($payconfig,$params)
+	{
 		$config = [
 			'use_sandbox' => false,
-			'app_id' => $payconfig['email'],
-			'sign_type' => 'RSA2',
-			'ali_public_key' => $payconfig['appid'],
-			'rsa_private_key' => $payconfig['appsecret'],
-			'notify_url' => SITE_URL . '/product/notify/?paymethod=zfbf2f',
-			'return_url	' =>  SITE_URL. '/product/query/?paymethod=zfbf2f&orderid='.$params['orderid'],
+			'app_id' => $payconfig['app_id'],
+			'sign_type' => $payconfig['sign_type'],
+			'ali_public_key' => $payconfig['ali_public_key'],
+			'rsa_private_key' => $payconfig['rsa_private_key'],
+			'notify_url' => SITE_URL . $payconfig['notify_url'] . '?paymethod='.$payconfig['alias'],
+			'return_url' =>SITE_URL. $payconfig['notify_url'].'?paymethod='.$payconfig['alias'].'&orderid='.$params['orderid'],
 			'return_raw' => true
 		];
 
@@ -30,5 +33,20 @@ class zfbf2f{
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
 		}
+	}
+	
+	
+	public function notifyProcess(array $data)
+	{
+		$m_order = Helper::import('order');
+		$m_payment = Helper::import('payment');
+		$m_products_card = Helper::import('products_card');
+		$m_email_queue = Helper::import('email_queue');
+		$m_products = Helper::import('products');
+		
+		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($data).PHP_EOL, FILE_APPEND);
+		
+		
+		
 	}
 }
