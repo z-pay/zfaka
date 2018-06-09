@@ -140,7 +140,7 @@ class ForgetpwdController extends PcBasicController
 										$key=base64_encode("{$m['code']}-{$m['id']}-{$email}");
 										$str = "key={$key}";
 										$url = siteUrl(SITE_URL, "/member/forgetpwd/reset", $str);
-										$content = '尊敬的' . $email . ':请点击此链接重置密码<a href="' . $url . '">' . $url . '</a>';
+										$content = '用户' . $email . ',请点击此链接重置密码<a href="' . $url . '">' . $url . '</a>';
 										$emainConfig = $this->m_email->getConfig();
 										$config=array();
 										$config['smtp_host'] = 'ssl://' . $emainConfig['host'];

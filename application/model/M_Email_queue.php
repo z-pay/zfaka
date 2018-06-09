@@ -6,10 +6,10 @@
  * Date: 2015-9-4
  */
 
-class M_Products_price extends Model {
+class M_Email_queue extends Model {
 
 	function __construct() {
-		$this->table = TB_PREFIX.'products_price';
+		$this->table = TB_PREFIX.'email_queue';
 		parent::__construct();
 	}
 

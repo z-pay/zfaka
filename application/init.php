@@ -18,6 +18,7 @@ define('LOG_FILE',APP_PATH.'/log/php/'.CUR_DATE.'.log');
 define('REQUEST_FILE',APP_PATH.'/log/request/'.CUR_DATE.'.log');
 define('SQL_FILE',APP_PATH.'/log/sqld/'.CUR_DATE.'.log');
 define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
+define('YEWU_FILE',APP_PATH.'/log/yewu/'.CUR_DATE.'.log');
 
 error_reporting(0);
 error_reporting(E_ALL ^E_NOTICE);
