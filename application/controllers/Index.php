@@ -1,4 +1,7 @@
 <?php
+			use \Payment\Common\PayException;
+			use \Payment\Client\Notify;
+			use \Pay\zfbf2f;
 class IndexController extends PcBasicController {
 
 	public function init(){
@@ -18,9 +21,7 @@ class IndexController extends PcBasicController {
 		
 		
 			
-			use \Payment\Common\PayException;
-			use \Payment\Client\Notify;
-			use \Pay\zfbf2f;
+
 
 			$callback = new \Pay\zfbf2f();
 			
