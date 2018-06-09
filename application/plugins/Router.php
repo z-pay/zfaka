@@ -21,16 +21,15 @@ class RouterPlugin extends Yaf\Plugin_Abstract
 				$module = ucfirst(strtolower($uriInfo[1]));
 				if (!in_array($module, $modules)) {
 					echo "不在基础模型中";
-					//处理大小写兼容问题
-					echo $request->module;
+					//如果地址中不在模块中时，系统自动处理为Index
 					if ($request->module) {
-						$module = strtolower($request->module);
-						$request->setModuleName(ucfirst($module));
-					}else{
-						if($module==ADMIN){
+						if(strtolower($module)==strtolower(ADMIN)){
 							$module = strtolower('admin');
 							$request->setModuleName(ucfirst($module));
 							echo "设置为admin";
+						}else{
+							$module = strtolower($request->module);
+							$request->setModuleName(ucfirst($module));
 						}
 					}
 					if ($request->controller) {
