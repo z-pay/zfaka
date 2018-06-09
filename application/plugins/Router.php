@@ -21,8 +21,13 @@ class RouterPlugin extends Yaf\Plugin_Abstract
 				if (!in_array($module, $modules)) {
 					//处理大小写兼容问题
 					if ($request->module) {
-						$module = strtolower($request->module);
-						$request->setModuleName(ucfirst($module));
+						if($request->module==ADMIN){
+							$module = strtolower('admin');
+							$request->setModuleName(ucfirst($module));
+						}else{
+							$module = strtolower($request->module);
+							$request->setModuleName(ucfirst($module));
+						}
 					}
 					if ($request->controller) {
 						$controller = strtolower($request->controller);
