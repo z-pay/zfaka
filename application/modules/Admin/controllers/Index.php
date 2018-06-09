@@ -17,7 +17,7 @@ class IndexController extends PcBasicController
     public function indexAction()
     {
         if ($this->login==FALSE AND !$this->userid) {
-            $this->redirect("/member/login");
+            $this->redirect("/admin/login");
             return FALSE;
         }
 
