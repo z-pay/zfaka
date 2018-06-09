@@ -25,6 +25,7 @@ class NotifyController extends PcBasicController
 
     public function indexAction()
     {
+		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 		$data = array();
 		$paymethod = $this->get('paymethod',false);
 		$payments = $this->m_payment->getConfig();
