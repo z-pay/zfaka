@@ -44,13 +44,13 @@ class NotifyController extends PcBasicController
 					//程序执行完后必须打印输出“success”（不包含引号）。如果商户反馈给支付宝的字符不是success这7个字符，支付宝服务器会不断重发通知，直到超过24小时22分钟。一般情况下，25小时以内完成8次通知（通知的间隔频率一般是：4m,10m,10m,1h,2h,6h,15h）；
 					echo 'success';exit();
 				}else{
-					echo 'error';exit();
+					echo 'erro47r';exit();
 				}
 			}else{
-				echo 'error';exit();
+				echo 'erro50r';exit();
 			}
 		}else{
-			echo 'error';exit();
+			echo 'error53';exit();
 		}
     }
 	
