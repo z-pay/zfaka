@@ -1,6 +1,6 @@
 <?php
 //计划任务-定时发送邮件
-class SendmailController extends BasicController
+class SendemailController extends BasicController
 {
 	private $m_email;
     private $m_email_queue;
