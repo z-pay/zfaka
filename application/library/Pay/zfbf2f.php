@@ -64,20 +64,19 @@ class zfbf2f implements PayNotifyInterface
 							//2.3已经获取到了对应的卡id,卡密
 							$card_mi_array = array_column($cards, 'card');
 							$card_mi_str = implode(',',$card_mi_array);
-							
 							$card_id_array = array_column($cards, 'id');
 							$card_id_str = implode(',',$card_id_array);
-							
 							//2.4直接进行卡密与订单的关联
-							$m_order->Where("id in ({$card_id_str})")->Where(array('oid'=>0))->Update(array('oid'=>$order['id']));
+							$m_products_card->Where("id in ({$card_id_str})")->Where(array('oid'=>0))->Update(array('oid'=>$order['id']));
 							//2.5然后进行库存清减
 							$qty_m = array('qty' => 'qty-'.$order['number']);
-							$m_products->Where(array('id'=>$order['pid']))->Update($qty_m,TRUE);	
-							//2.6 把邮件通知写到消息队列中，然后用定时任务去执行即可
+							$m_products->Where(array('id'=>$order['pid']))->Update($qty_m,TRUE);
+							//2.6更新订单状态
+							$m_order->Where(array('orderid'=>$params['order_no'],'status'=>1))->Update(array('status'=>2));
+							//2.7 把邮件通知写到消息队列中，然后用定时任务去执行即可
 							$content = '用户:' . $order['email'] . ',购买的产品['.$order['productname'].'],卡密是:'.$card_mi_str;
 							$m=array('email'=>$order['email'],'subject'=>'卡密发送','content'=>$content,'addtime'=>time(),'status'=>0);
 							$m_email_queue->Insert($m);
-							
 							$data =array('code'=>1,'msg'=>'自动发卡');
 						}else{
 							//这里说明库存不足了，干脆就什么都不处理，直接记录异常，同时更新订单状态
