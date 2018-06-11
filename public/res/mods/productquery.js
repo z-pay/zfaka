@@ -35,9 +35,8 @@ layui.define(['layer', 'form','base64'], function(exports){
 				str = '<span class="layui-badge layui-bg-blue">待处理</span>';
 				break;
 			case '2':
-				
 				str = '<span class="layui-badge layui-bg-green">已完成</span>';
-				str += ',<span class="view_kami" data-orderid="'+data.orderid+'">提取卡密</span>';
+				str += ',<button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="'+data.orderid+'">提取卡密</button>';
 				break;
 			default:
 				str = '<span class="layui-badge layui-bg-black">处理失败</span>';
@@ -50,6 +49,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 	$('.view_kami').on('click', function(event) {
 		event.preventDefault();
 		var orderid = $(this).attr("data-orderid");
+		$(this).attr({"disabled":"disabled"});
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -60,14 +60,14 @@ layui.define(['layer', 'form','base64'], function(exports){
 					var html = "";
 					var list = res.data;
 					for (var i = 0, j = list.length; i < j; i++) {
-						html += '卡密:'+list[i].card;
+						html += '<p>卡密:'+list[i].card+'</p>';
 					}
 					layer.open({
 						type: 1
 						,title: '提取卡密'
 						,offset: 'auto'
 						,id: 'layerDemoauto' //防止重复弹出
-						,content: '<div style="text-align: center;"><p>'+html+'</p></div>'
+						,content: '<div style="text-align: center;padding: 20px 100px;">'+html+'</div>'
 						,btn: '关闭'
 						,btnAlign: 'c' //按钮居中
 						,shade: 0 //不显示遮罩
