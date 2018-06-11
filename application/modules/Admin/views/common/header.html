@@ -25,6 +25,12 @@
 	
     <ul class="layui-nav fly-nav layui-hide-xs">
 		  <li class="layui-nav-item">
+			<a href="/admin/"><i class="iconfont icon-iconmingxinganli"></i>后台首页</a>
+		  </li>
+		  <li class="layui-nav-item">
+			<a href="/admin/setting"><i class="iconfont icon-iconmingxinganli"></i>设置中心</a>
+		  </li>
+		  <li class="layui-nav-item">
 			<a href="/admin/user"><i class="iconfont icon-iconmingxinganli"></i>用户管理</a>
 		  </li>
 		  <li class="layui-nav-item">
@@ -36,12 +42,10 @@
     </ul>
 	
     <ul class="layui-nav fly-nav-user">
-      <?php if($login):?>
       <li class="layui-nav-item">
         <a class="fly-nav-avatar" href="javascript:;">
-          <cite class="layui-hide-xs"><?php echo $uinfo['nickname'];?></cite>
-          <i class="iconfont icon-renzheng layui-hide-xs" title="<?php echo $uinfo['nickname'];?>"></i>
-          <i class="layui-badge fly-badge-vip layui-hide-xs"><?php echo $uinfo['groupName'];?></i>
+          <cite class="layui-hide-xs"><?php echo $AdminUser['email'];?></cite>
+          <i class="iconfont icon-renzheng layui-hide-xs" title="<?php echo $AdminUser['email'];?>"></i>
           <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
         </a>
         <dl class="layui-nav-child">
@@ -52,21 +56,6 @@
           <dd><a href="/member/logout/" style="text-align: center;">退出</a></dd>
         </dl>
       </li>
-     <?php else:?>
-      <!-- 未登入的状态 -->
-      <li class="layui-nav-item">
-        <a class="iconfont icon-touxiang layui-hide-xs" href="/member/login/"></a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="/member/login/">登入</a>
-      </li>
-		  <?php if(isset($config['is_open_register']) AND $config['is_open_register']>0):?>
-		  <li class="layui-nav-item">
-			<a href="/member/register/">注册</a>
-		  </li>
-		  <?php endif;?>
-	 <?php endif;?>
-      
     </ul>
   </div>
 </div>
