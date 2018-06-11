@@ -12,6 +12,7 @@ define('CORE_PATH',    LIB_PATH.'/Core/');
 define('MODEL_PATH',   APP_PATH.'/application/model/');
 define('FUNC_PATH',    APP_PATH.'/application/function/');
 define('COMMON_PATH', APP_PATH.'/application/views/common/');
+define('ADMIN_COMMON_PATH', APP_PATH . '/application/modules/Admin/views/common/');
 define('TEMP_PATH',    APP_PATH.'/temp');
 define('UPLOAD_PATH', APP_PATH.'/public/upload/');
 define('LOG_FILE',APP_PATH.'/log/php/'.CUR_DATE.'.log');
