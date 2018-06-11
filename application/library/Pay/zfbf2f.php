@@ -75,6 +75,8 @@ class zfbf2f implements PayNotifyInterface
 							$content = '用户:' . $email . ',购买的产品'.$order['productname'].',卡密是:'.$card_id_str;
 							$m=array('email'=>$order['email'],'subject'=>'卡密发送','content'=>$content,'addtime'=>time(),'status'=>0);
 							$m_email_queue->Insert($m);
+							
+							$data =array('code'=>1,'msg'=>'自动发卡');
 						}else{
 							//这里说明库存不足了，干脆就什么都不处理，直接记录异常，同时更新订单状态
 							$m_order->Where(array('orderid'=>$params['order_no'],'status'=>1))->Update(array('status'=>3));
@@ -83,17 +85,24 @@ class zfbf2f implements PayNotifyInterface
 							$content = '用户:' . $email . ',购买的产品'.$order['productname'].',由于库存不足暂时无法处理,管理员正在拼命处理中....请耐心等待!';
 							$m=array('email'=>$order['email'],'subject'=>'卡密发送','content'=>$content,'addtime'=>time(),'status'=>0);
 							$m_email_queue->Insert($m);
+							$data =array('code'=>1004,'msg'=>'库存不足，无法处理');
 						}
 					}else{
-						//手工操作，这里暂时不处理	
+						//手工操作，这里暂时不处理
+						$data =array('code'=>1004,'msg'=>'手工订单，不处理');
 					}
 				}else{
 					//这里有异常，到时统一记录处理
+					$data =array('code'=>1003,'msg'=>'订单不存在');
 				}
+			}else{
+				$data =array('code'=>1002,'msg'=>'支付方式不对');
 			}
 		} catch(\Exception $e) {
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
+			$data =array('code'=>1001,'msg'=>$e->getMessage());
 		}
+		return $data;
 	}
 	
 }

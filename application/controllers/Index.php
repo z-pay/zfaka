@@ -23,6 +23,8 @@ class IndexController extends PcBasicController {
 		$data['transaction_id'] =$data['trade_no'];
 		$data['amount'] =$data['total_amount'];
 		$data['order_no'] =$data['out_trade_no'];
+		
+		print_r($data);
 		$result=$callback->notifyProcess($data);
 		print_r($result);
 		exit();
