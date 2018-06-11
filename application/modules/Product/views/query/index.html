@@ -58,7 +58,7 @@
 								<?php if(isset($order) AND !empty($order)):?>
 								<tr><td><span id="orderid"><?php echo $order['orderid'];?></span></td><td><?php echo $order['productname'];?></td><td><?php echo $order['number'];?></td><td><?php echo $order['money'];?></td><td><?php echo date('Y-m-d H:i:s',$order['addtime']);?></td><td><?php echo $cnstatus[$order['status']];?></td></tr>
 								<?php else:?>
-								<tr><td>无数据</td></tr>
+								<tr><td colspan="6" style="text-align:center">无数据</td></tr>
 								<?php endif;?>
 							  </tbody>
 							</table>

@@ -31,16 +31,8 @@
                     <script type="text/html" id="addtime">
                         {{ createTime(d.addtime) }}
                     </script>
-                    <script type="text/html" id="cnstatus">
-					  {{#  if(d.status ==0){ }}
-						待付款
-					  {{#  } else if (d.status ==1){ }}
-						待处理
-					  {{#  } else if (d.status ==2){ }}
-						已完成
-					  {{#  } else{ }}
-						处理失败
-					  {{#  } }}
+                    <script type="text/html" id="operate">
+						 <a href="/product/query?orderid={{d.orderid}}" class="layui-table-link">查看</a>
                     </script>
                 </div>
             </div>
