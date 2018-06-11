@@ -103,6 +103,7 @@ class zfbf2f implements PayNotifyInterface
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
 			$data =array('code'=>1001,'msg'=>$e->getMessage());
 		}
+		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.'异步处理结果:'.json_encode($data).PHP_EOL, FILE_APPEND);
 		return $data;
 	}
 	
