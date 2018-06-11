@@ -26,16 +26,16 @@ layui.define(['layer', 'form','base64'], function(exports){
 		switch(s)
 		{
 			case '0':
-				str = "待付款";
+				str = '<span class="layui-badge layui-bg-gray">待付款</span>';
 				break;
 			case '1':
-				str = "待处理";
+				str = '<span class="layui-badge layui-bg-blue">待处理</span>';
 				break;
 			case '2':
-				str = "已完成";
+				str = '<span class="layui-badge layui-bg-green">已完成</span>';
 				break;
 			default:
-				str = "处理失败";
+				str = '<span class="layui-badge layui-bg-black">处理失败</span>';
 				break;
 		}
 		return str;

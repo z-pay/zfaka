@@ -22,7 +22,7 @@ class QueryController extends PcBasicController
 		if($orderid){
 			$order = $this->m_order->Where(array('orderid'=>$orderid))->SelectOne();
 			$data['order'] = $order;
-			$data['cnstatus'] = array(0=>'待付款',1=>'待处理',2=>'已完成',3=>'处理失败');
+			$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
 			$data['querymethod'] = 'get';
 		}else{
 			$data['order'] =array();
