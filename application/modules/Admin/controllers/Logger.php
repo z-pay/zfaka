@@ -28,7 +28,7 @@ class LoggerController extends AdminBasicController
 	
 	//登录日志ajax
 	public function ajaxAction(){
-        f ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
