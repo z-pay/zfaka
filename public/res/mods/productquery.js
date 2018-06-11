@@ -81,7 +81,7 @@ layui.define(['layer', 'form','base64'], function(exports){
             }
         });
 	});
-	$('.view_kami').on('click', function(event) {
+	/*$('.view_kami').on('click', function(event) {
 		event.preventDefault();
 		var orderid = $(this).attr("data-orderid");
 		$(this).attr({"disabled":"disabled"});
@@ -116,7 +116,7 @@ layui.define(['layer', 'form','base64'], function(exports){
                 return;
             }
         });
-	});
+	});*/
 	
 	$('.loadcode').on('click', function(event) {
 		event.preventDefault();
