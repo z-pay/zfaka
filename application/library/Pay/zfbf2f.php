@@ -39,7 +39,7 @@ class zfbf2f implements PayNotifyInterface
 	//处理返回
 	public function notifyProcess(array $params)
 	{
-		$m_order =  \Helper::load('user');
+		$m_order =  \Helper::load('order');
 		$m_products_card = \Helper::load('products_card');
 		$m_email_queue = \Helper::load('email_queue');
 		$m_products = \Helper::load('products');
