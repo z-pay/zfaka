@@ -43,10 +43,10 @@ class NotifyController extends PcBasicController
 				var_dump($ret);
 				exit();
 			}else{
-				echo 'error';exit();
+				echo 'error46';exit();
 			}
 		}else{
-			echo 'error';exit();
+			echo 'error49';exit();
 		}
     }
 
