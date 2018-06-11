@@ -74,7 +74,7 @@ class zfbf2f implements PayNotifyInterface
 							$qty_m = array('qty' => 'qty-'.$order['number']);
 							$m_products->Where(array('id'=>$order['pid']))->Update($qty_m,TRUE);	
 							//2.6 把邮件通知写到消息队列中，然后用定时任务去执行即可
-							$content = '用户:' . $email . ',购买的产品'.$order['productname'].',卡密是:'.$card_mi_str;
+							$content = '用户:' . $order['email'] . ',购买的产品['.$order['productname'].'],卡密是:'.$card_mi_str;
 							$m=array('email'=>$order['email'],'subject'=>'卡密发送','content'=>$content,'addtime'=>time(),'status'=>0);
 							$m_email_queue->Insert($m);
 							
@@ -84,7 +84,7 @@ class zfbf2f implements PayNotifyInterface
 							$m_order->Where(array('orderid'=>$params['order_no'],'status'=>1))->Update(array('status'=>3));
 							file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.'库存不足，无法处理'.PHP_EOL, FILE_APPEND);
 							//把邮件通知写到消息队列中，然后用定时任务去执行即可
-							$content = '用户:' . $email . ',购买的产品'.$order['productname'].',由于库存不足暂时无法处理,管理员正在拼命处理中....请耐心等待!';
+							$content = '用户:' . $order['email'] . ',购买的产品['.$order['productname'].'],由于库存不足暂时无法处理,管理员正在拼命处理中....请耐心等待!';
 							$m=array('email'=>$order['email'],'subject'=>'卡密发送','content'=>$content,'addtime'=>time(),'status'=>0);
 							$m_email_queue->Insert($m);
 							$data =array('code'=>1005,'msg'=>'库存不足，无法处理');
