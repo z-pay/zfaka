@@ -41,6 +41,43 @@ layui.define(['layer', 'form','base64'], function(exports){
 		return str;
 	}
 	
+	
+	$('#view_kami').on('click', function(event) {
+		event.preventDefault();
+		var orderid = $("#orderid").val();;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/product/query/kami",
+            data: { "csrf_token": TOKEN,'orderid':orderid},
+            success: function(res) {
+                if (res.code == 1) {
+					var html = "";
+					var list = res.data;
+					for (var i = 0, j = list.length; i < j; i++) {
+						html += '卡密:'+list[i].card;
+					}
+					layer.open({
+						type: 1
+						,title: false
+						,offset: 'auto'
+						,id: 'layerDemoauto' //防止重复弹出
+						,content: '<div style="text-align: center;"><p>'+html+'</p></div>'
+						,btn: '关闭'
+						,btnAlign: 'c' //按钮居中
+						,shade: 0 //不显示遮罩
+						,yes: function(){
+						  layer.closeAll();
+						}
+					});
+                } else {
+					layer.msg(data.msg,{icon:2,time:5000});
+                }
+                return;
+            }
+        });
+	});
+	
 	$('.loadcode').on('click', function(event) {
 		event.preventDefault();
 		$(this).attr('src','/Captcha?t=productquery&n=' + Math.random())
@@ -68,7 +105,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 						oid = $.base64.encode(list[i].id);
 						addon = ',<a style="color:red" href="/product/order/pay/?oid='+oid+'">去支付</a>';
 					}
-					html += '<tr><td>'+list[i].orderid+'</td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+addon+'</td></tr>';
+					html += '<tr><td><span id="orderid">'+list[i].orderid+'</span></td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+addon+'</td></tr>';
 				}
 				$("#query-table tbody").prepend(html);
 				$("#query-table").show();

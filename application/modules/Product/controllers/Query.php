@@ -9,10 +9,12 @@
 class QueryController extends PcBasicController
 {
 	private $m_order;
+	private $m_products_card;
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
+		$this->m_products_card = $this->load('products_card');
     }
 
     public function indexAction()
@@ -57,6 +59,28 @@ class QueryController extends PcBasicController
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
+	
+	public function kamiAction()
+	{
+		$orderid    = $this->getPost('orderid',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		if($orderid AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$order = $this->m_order->Where(array('orderid'=>$orderid,'status'=>2))->SelectOne();
+				if(empty($order)){
+					$data=array('code'=>1005,'msg'=>'没有订单');
+				}else{
+					$cards = $this->m_products_card->Filed(array('card'))->Where(array('oid'=>$order['id']))->Select();
+					$data=array('code'=>1,'msg'=>'查询成功','data'=>$cards);
+				}
+			} else {
+				$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
 		}else{
 			$data = array('code' => 1000, 'msg' => '丢失参数');
