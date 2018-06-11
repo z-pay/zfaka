@@ -64,7 +64,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 					}
 					layer.open({
 						type: 1
-						,title: false
+						,title: '提取卡密'
 						,offset: 'auto'
 						,id: 'layerDemoauto' //防止重复弹出
 						,content: '<div style="text-align: center;"><p>'+html+'</p></div>'
