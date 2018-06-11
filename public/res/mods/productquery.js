@@ -45,7 +45,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 		return str;
 	}
 	
-	$(".view_kami").on("click","query-table tbody td",function(){  
+	$(".view_kami").on("click","query-table tbody",function(event){
 		event.preventDefault();
 		var orderid = $(this).attr("data-orderid");
 		$(this).attr({"disabled":"disabled"});
