@@ -6,22 +6,20 @@
  * time:20180528
  */
 
-class LoginController extends PcBasicController
+class LoginController extends AdminBasicController
 {
-	private $m_user;
-	private $m_user_login_logs;
-	
+	private $m_admin_user;
+
     public function init()
     {
         parent::init();
-		$this->m_user = $this->load('user');
-		$this->m_user_login_logs = $this->load('user_login_logs');
+		$this->m_admin_user = Helper::load('admin_user');
     }
 
     public function indexAction()
     {
-        if (false != $this->login AND $this->userid) {
-            $this->redirect("/member/");
+        if ($this->AdminUser) {
+            $this->redirect('/admin');
             return FALSE;
         }
 		
@@ -40,14 +38,11 @@ class LoginController extends PcBasicController
 		if($email AND $password AND $csrf_token AND $vercode){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isEmail($email)){
-					if(strtolower($this->getSession('loginCaptcha')) ==strtolower($vercode)){
-						$this->unsetSession('loginCaptcha');
-						$checkUser = $this->m_user->checkLogin($email,$password);
-						if($checkUser){
-							//写入登录日志 
-							$m=array('userid'=>$checkUser['id'],'ip'=>getClientIP(),'addtime'=>time());
-							$this->m_user_login_logs->Insert($m);
-							
+					if(strtolower($this->getSession('adminloginCaptcha')) ==strtolower($vercode)){
+						$this->unsetSession('adminloginCaptcha');
+						$resultAdminUser = $this->m_admin_user->checkLogin($email,$password);
+						if($resultAdminUser){
+							$this->setLogin($resultAdminUser);
 							$data = array('code' => 1, 'msg' =>'success');
 						}else{
 							$data = array('code' => 1002, 'msg' =>'账户密码错误');

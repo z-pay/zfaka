@@ -6,6 +6,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
         \Yaf\Loader::import(CORE_PATH.'/Basic.php');
 		\Yaf\Loader::import(CORE_PATH.'/Model.php');
 		\Yaf\Loader::import(CORE_PATH.'/BasicPc.php');
+		\Yaf\Loader::import(CORE_PATH.'/BasicAdmin.php');
 		\Yaf\Loader::import(FUNC_PATH.'/F_Basic.php');
 		\Yaf\Loader::import(FUNC_PATH.'/F_Network.php');
 		\Yaf\Loader::import(FUNC_PATH.'/F_String.php');

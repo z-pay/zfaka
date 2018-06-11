@@ -11,17 +11,23 @@
 	<meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="/res/layui/css/layui.css">
 	<link rel="stylesheet" href="/res/css/admin/login.css">
+	<script>
+		var TOKEN="<?php echo $csrf_token;?>";
+        if (self != top) {
+            top.location = self.location;
+        }
+    </script>
 </head>
 <body>
     <!--登录背景-->
 	<div class="video_mask">
-		<img src="/res/images/admin/bg<?php echo rand(0,10);?>.jpg ">
+		<img src="/res/images/admin/bg<?php echo rand(1,10);?>.jpg ">
 	</div>
 	<div class="login">
 	    <h1>登录</h1>
 	    <form class="layui-form">
 	    	<div class="layui-form-item">
-				<input class="layui-input" name="username" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
+				<input class="layui-input" name="email" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
 		    </div>
 		    <div class="layui-form-item">
 				<input class="layui-input" name="password" placeholder="密码" lay-verify="required" type="password" autocomplete="off">
@@ -35,3 +41,18 @@
 	</div>
 
 </body></html>
+<script src="/res/layui/layui.js"></script>
+
+<script>
+layui.config({
+  version: "3.0.0"
+  ,base: '/res/mods/'
+}).extend({
+  fly: 'index'
+}).use('fly');
+layui.use('element', function(){
+  var element = layui.element;
+});
+
+layui.use('adminlogin');
+</script>
