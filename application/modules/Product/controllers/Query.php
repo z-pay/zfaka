@@ -76,7 +76,7 @@ class QueryController extends PcBasicController
 				if(empty($order)){
 					$data=array('code'=>1005,'msg'=>'没有订单');
 				}else{
-					$cards = $this->m_products_card->Filed(array('card'))->Where(array('oid'=>$order['id']))->Select();
+					$cards = $this->m_products_card->Field(array('card'))->Where(array('oid'=>$order['id']))->Select();
 					$data=array('code'=>1,'msg'=>'查询成功','data'=>$cards);
 				}
 			} else {
