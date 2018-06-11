@@ -35,13 +35,15 @@ class NotifyController extends PcBasicController
 				$callback = new \Pay\zfbf2f();
 				$payconfig = $payments[$paymethod];
 				try {
-					$ret = Notify::run('ali_charge', $payconfig,$callback);// 处理回调，内部进行了签名检查
+					$ret = Notify::run(ALI_CHARGE, $payconfig,$callback);// 处理回调，内部进行了签名检查
 				} catch (PayException $e) {
 					echo $e->errorMessage();
 					exit;
 				}
 				var_dump($ret);
-				exit();		
+				exit();
+			}else{
+				echo 'error';exit();
 			}
 		}else{
 			echo 'error';exit();
