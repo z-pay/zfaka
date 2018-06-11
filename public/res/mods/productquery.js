@@ -36,7 +36,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 				break;
 			case '2':
 				str = '<span class="layui-badge layui-bg-green">已完成</span>';
-				str += ',<button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="'+data.orderid+'">提取卡密</button>';
+				str += ' <button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="'+data.orderid+'">提取卡密</button>';
 				break;
 			default:
 				str = '<span class="layui-badge layui-bg-black">处理失败</span>';
