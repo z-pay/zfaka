@@ -21,18 +21,23 @@ layui.define(['layer', 'form','base64'], function(exports){
 		return str;
 	}
 	
-	function converStatus(s){
+	function converStatus(data){
 		var str = "";
+		var s = data.status;
 		switch(s)
 		{
 			case '0':
+				oid = $.base64.encode(data.id);
 				str = '<span class="layui-badge layui-bg-gray">待付款</span>';
+				str += ',<a style="color:red" href="/product/order/pay/?oid='+oid+'">去支付</a>';
 				break;
 			case '1':
 				str = '<span class="layui-badge layui-bg-blue">待处理</span>';
 				break;
 			case '2':
+				
 				str = '<span class="layui-badge layui-bg-green">已完成</span>';
+				str += ',<span class="view_kami" data-orderid="'+data.orderid+'">提取卡密</span>';
 				break;
 			default:
 				str = '<span class="layui-badge layui-bg-black">处理失败</span>';
@@ -42,9 +47,9 @@ layui.define(['layer', 'form','base64'], function(exports){
 	}
 	
 	
-	$('#view_kami').on('click', function(event) {
+	$('.view_kami').on('click', function(event) {
 		event.preventDefault();
-		var orderid = $("#orderid").val();;
+		var orderid = $(this).attr("data-orderid");
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -100,12 +105,8 @@ layui.define(['layer', 'form','base64'], function(exports){
 				var oid = "";
 				var list = res.data;
 				for (var i = 0, j = list.length; i < j; i++) {
-					orderstatus = converStatus(list[i].status);
-					if(list[i].status==0){
-						oid = $.base64.encode(list[i].id);
-						addon = ',<a style="color:red" href="/product/order/pay/?oid='+oid+'">去支付</a>';
-					}
-					html += '<tr><td><span id="orderid">'+list[i].orderid+'</span></td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+addon+'</td></tr>';
+					orderstatus = converStatus(list[i]);
+					html += '<tr><td><span id="orderid">'+list[i].orderid+'</span></td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
 				}
 				$("#query-table tbody").prepend(html);
 				$("#query-table").show();
