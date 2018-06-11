@@ -48,8 +48,10 @@ class zfbf2f implements PayNotifyInterface
 			if($params['body']=='zfbf2f'){
 				//1.先更新支付总金额
 				$update = array('status'=>1,'paytime'=>time(),'tradeid'=>$params['transaction_id'],'paymethod'=>$params['body'],'paymoney'=>$params['amount']);
-				$m_order->Where(array('orderid'=>$params['order_no'],'status'=>0))->Update($update);
-				
+				$u = $m_order->Where(array('orderid'=>$params['order_no'],'status'=>0))->Update($update);
+				if(!$u){
+					return $data =array('code'=>1004,'msg'=>'更新失败');
+				}
 				//2.检查是否属于自动发卡产品,如果是就自动发卡
 				//---2.1通过orderid,查询order订单
 				$order = $m_order->Where(array('orderid'=>$params['order_no']))->SelectOne();
@@ -85,7 +87,7 @@ class zfbf2f implements PayNotifyInterface
 							$content = '用户:' . $email . ',购买的产品'.$order['productname'].',由于库存不足暂时无法处理,管理员正在拼命处理中....请耐心等待!';
 							$m=array('email'=>$order['email'],'subject'=>'卡密发送','content'=>$content,'addtime'=>time(),'status'=>0);
 							$m_email_queue->Insert($m);
-							$data =array('code'=>1004,'msg'=>'库存不足，无法处理');
+							$data =array('code'=>1005,'msg'=>'库存不足，无法处理');
 						}
 					}else{
 						//手工操作，这里暂时不处理
