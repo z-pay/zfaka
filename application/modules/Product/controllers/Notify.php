@@ -36,17 +36,19 @@ class NotifyController extends PcBasicController
 				$payconfig = $payments[$paymethod];
 				try {
 					$ret = Notify::run("ali_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($ret).PHP_EOL, FILE_APPEND);
+					var_dump($ret);
+					exit();
 				} catch (PayException $e) {
 					echo $e->errorMessage();
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
 					exit;
 				}
-				var_dump($ret);
-				exit();
 			}else{
-				echo 'error46';exit();
+				echo 'error';exit();
 			}
 		}else{
-			echo 'error49';exit();
+			echo 'error';exit();
 		}
     }
 

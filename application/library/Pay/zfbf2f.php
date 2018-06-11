@@ -37,7 +37,7 @@ class zfbf2f implements PayNotifyInterface
 	}
 	
 	//处理返回
-	public function notifyProcess(array $data)
+	public function notifyProcess(array $params)
 	{
 		$m_order = \Helper::import('order');
 		$m_payment = \Helper::import('payment');
@@ -45,24 +45,15 @@ class zfbf2f implements PayNotifyInterface
 		$m_email_queue = \Helper::import('email_queue');
 		$m_products = \Helper::import('products');
 		
-		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($data).PHP_EOL, FILE_APPEND);
-	}
-	
-	/*
-	//处理订单逻辑
-	private function _doOrder($params)
-	{
-		$params = array('paymethod'=>$paymethod,'tradeid'=>$_POST['trade_no'],'orderid'=>$_POST['out_trade_no'],'paymoney'=>$_POST['total_amount']);
-		$this->_doOrder($params);
 		try{
-			if($params['paymethod']=='zfbf2f'){
+			if($params['body']=='zfbf2f'){
 				//1.先更新支付总金额
-				$update = array('status'=>1,'paytime'=>time(),'tradeid'=>$params['tradeid'],'paymethod'=>$params['paymethod'],'paymoney'=>$params['paymoney']);
-				$this->m_order->Where(array('orderid'=>$params['orderid'],'status'=>0))->Update($update);
+				$update = array('status'=>1,'paytime'=>time(),'tradeid'=>$params['transaction_id'],'paymethod'=>$params['body'],'paymoney'=>$params['amount']);
+				$this->m_order->Where(array('orderid'=>$params['order_no'],'status'=>0))->Update($update);
 				
 				//2.检查是否属于自动发卡产品,如果是就自动发卡
 				//---2.1通过orderid,查询order订单
-				$order = $this->m_order->Where(array('orderid'=>$params['orderid']))->SelectOne();
+				$order = $this->m_order->Where(array('orderid'=>$params['order_no']))->SelectOne();
 				if(!empty($order)){
 					if($order['auto']>0){
 						//自动处理
@@ -74,7 +65,7 @@ class zfbf2f implements PayNotifyInterface
 							$card_mi_str = implode(',',$card_mi_array);
 							
 							$card_id_array = array_column($cards, 'card');
-							$card_id_str = implode(',',$card_id_array);						
+							$card_id_str = implode(',',$card_id_array);
 							
 							//2.4直接进行卡密与订单的关联
 							$this->m_order->Where("id in ({$card_id_str})")->Where(array('oid'=>0))->Update(array('oid'=>$order['id']));
@@ -87,7 +78,7 @@ class zfbf2f implements PayNotifyInterface
 							$this->m_email_queue->Insert($m);
 						}else{
 							//这里说明库存不足了，干脆就什么都不处理，直接记录异常，同时更新订单状态
-							$this->m_order->Where(array('orderid'=>$params['orderid'],'status'=>1))->Update(array('status'=>3));
+							$this->m_order->Where(array('orderid'=>$params['order_no'],'status'=>1))->Update(array('status'=>3));
 							file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.'库存不足，无法处理'.PHP_EOL, FILE_APPEND);
 							//把邮件通知写到消息队列中，然后用定时任务去执行即可
 							$content = '用户:' . $email . ',购买的产品'.$order['productname'].',由于库存不足暂时无法处理,管理员正在拼命处理中....请耐心等待!';
@@ -104,5 +95,6 @@ class zfbf2f implements PayNotifyInterface
 		} catch(\Exception $e) {
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
 		}
-	}*/
+	}
+	
 }
