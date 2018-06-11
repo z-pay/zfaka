@@ -110,6 +110,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 				}
 				$("#query-table tbody").prepend(html);
 				$("#query-table").show();
+				$(".view_kami").click(function(){});
 				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
 				$('.loadcode').attr('src','/Captcha?t=productquery&n=' + Math.random());
