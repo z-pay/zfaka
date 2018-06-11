@@ -6,59 +6,30 @@
  * time:20180509
  */
 
-class ProfilesController extends PcBasicController
+class ProfilesController extends AdminBasicController
 {
-    private $m_user;
+    private $m_admin_user;
 	
 	public function init()
     {
         parent::init();
-		$this->m_user = $this->load('user');
+		$this->m_admin_user = $this->load('admin_user');
     }
 
     public function indexAction()
     {
-        if ($this->login==FALSE AND !$this->userid) {
-            $this->redirect("/member/login");
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
             return FALSE;
         }
 		$data = array();
-		$uinfo = $this->m_user->SelectByID('nickname,email,qq,tag,createtime',$this->userid);
-		$data['uinfo'] = $this->uinfo = array_merge($this->uinfo, $uinfo);
         $this->getView()->assign($data);
     }
 
-	public function profilesajaxAction(){
-		$nickname = $this->getPost('nickname',false);
-		$qq = $this->getPost('qq',false);
-		$tag = $this->getPost('tag',false);
-		$csrf_token = $this->getPost('csrf_token', false);
-		
-		$data = array();
-		
-        if ($this->login==FALSE AND !$this->userid) {
-            $data = array('code' => 1000, 'msg' => '请登录');
-			Helper::response($data);
-        }
-		
-		if($nickname AND $csrf_token){
-			if ($this->VerifyCsrfToken($csrf_token)) {
-				$this->m_user->UpdateByID(array('nickname'=>$nickname,'qq'=>$qq,'tag'=>$tag),$this->userid);
-				$data = array('code' => 1, 'msg' => '更新成功');
-			} else {
-                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
-            }
-		}else{
-			$data = array('code' => 1000, 'msg' => '丢失参数');
-		}
-		Helper::response($data);
-	}
-	
-	
 	
 	public function passwordAction(){
-        if ($this->login==FALSE AND !$this->userid) {
-            $this->redirect("/member/login");
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
             return FALSE;
         }
 		$data = array();
@@ -72,7 +43,7 @@ class ProfilesController extends PcBasicController
 		
 		$data = array();
 		
-        if ($this->login==FALSE AND !$this->userid) {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
@@ -83,13 +54,12 @@ class ProfilesController extends PcBasicController
 					if (strlen($password) < 6 ) {
 						$data = array('code' => 1002, 'msg' => '密码过于简单,密码至少6位');
 					} else {
-						$check = $this->m_user->checkLogin($this->uinfo['email'], $oldpassword);
+						$check = $this->m_admin_user->checkLogin($this->AdminUser['email'], $oldpassword);
 						if ($check) {
-
-								$update = $this->m_user->changePWD($this->userid, $password);
+								$update = $this->m_admin_user->changePWD($this->AdminUser['id'], $password);
 								if ($update) {
 									$data = array('code' => 1, 'msg' => '修改密码成功');
-									$this->unsetSession('uinfo');
+									$this->unsetSession('AdminUser');
 								} else {
 									$data = array('code' => 1004, 'msg' => '数据更新异常');
 								}

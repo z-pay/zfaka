@@ -29,5 +29,18 @@ class M_Admin_user extends Model
         }
         return FALSE;
     }
-
+    /*
+     * 修改密码
+     */
+	public function changePWD($adminid,$password){
+		if($adminid AND $password){
+            $newpassword = password($password);
+			$m=array();
+            $m['password'] = $newpassword['password'];
+            $m['secret'] = $newpassword['secret'];
+			return $this->Where(array('id'=>$adminid))->Update($m);
+		}else{
+			return FALSE;
+		}
+    }
 }
