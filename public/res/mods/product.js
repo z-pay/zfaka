@@ -23,10 +23,10 @@
 					$('#price').val('');
 					$('#qty').val('');
 					$('#prodcut_description').html('');
-					$("#buy").removeAttr("disabled");
+					$("#buy").attr("disabled","true");
 					form.render('select');
 				} else {
-					$("#buy").removeAttr("disabled");
+					$("#buy").attr("disabled","true");
 					form.render('select');
 					layer.msg(res.msg,{icon:2,time:5000});
 				}
