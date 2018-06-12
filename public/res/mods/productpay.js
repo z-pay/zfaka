@@ -54,13 +54,13 @@
                 }
             },
             //Ajax请求超时，继续查询
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            /*error: function (XMLHttpRequest, textStatus, errorThrown) {
                 if (textStatus == "timeout") {
                     setTimeout(queryPay(), 10000);
                 } else { //异常
                     setTimeout(queryPay(), 10000);
                 }
-            }
+            }*/
         });
     }
 	
