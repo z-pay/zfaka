@@ -1,11 +1,19 @@
 <?php
-class ShowmsgController extends PcBasicController {
+/*
+ * 功能：消息处理
+ * author:资料空白
+ * time:20180604
+ */
+class ShowmsgController extends PcBasicController
+{
 
- 	public function init(){
+ 	public function init()
+	{
         parent::init();
 	}
 	
-	public function indexAction(){
+	public function indexAction()
+	{
 		$data['code']=$this->getParam('code');
 		$data['msg']=$this->getParam('msg');
 		$url=$this->getParam('url',false);

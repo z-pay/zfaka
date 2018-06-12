@@ -1,7 +1,14 @@
 <?php
-class ErrorController extends PcBasicController {
+/*
+ * 功能：异常处理
+ * author:资料空白
+ * time:20180604
+ */
+class ErrorController extends PcBasicController
+{
 
-    public function errorAction($exception){
+    public function errorAction($exception)
+	{
 		$msg=$exception->getMessage();
 		$ip=getClientIP();
 		$time=date('Y-m-d H:i:s');
