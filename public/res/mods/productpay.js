@@ -2,6 +2,7 @@
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var oid = $("#oid").val();
+	var t = '';
 	
 	$('.layui-btn').on('click', function(event) {
 		event.preventDefault();
@@ -46,21 +47,22 @@
             data: {"csrf_token": TOKEN,'oid':oid}, //post数据
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
+				clearTimeout(t);
                 if (res.code>1) {
-					setTimeout(queryPay, 5000);
+					t=setTimeout(queryPay, 3000);
                 } else {
 					layer.closeAll();
 					location.href = '/product/query/?orderid='+res.data.orderid;
                 }
             },
             //Ajax请求超时，继续查询
-            /*error: function (XMLHttpRequest, textStatus, errorThrown) {
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
                 if (textStatus == "timeout") {
-                    setTimeout(queryPay(), 10000);
+                    t=setTimeout(queryPay, 3000);
                 } else { //异常
-                    setTimeout(queryPay(), 10000);
+                    t=setTimeout(queryPay, 3000);
                 }
-            }*/
+            }
         });
 		//return true;
     }
