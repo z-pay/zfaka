@@ -1,7 +1,11 @@
 <?php
 /**
-验证函数集合
-*/
+ * File: F_Validate.php
+ * Functionality: 验证函数集合
+ * Author: 资料空白
+ * Date: 2016-11-11再整理
+ */
+
 
 //检查是否为邮箱格式
 if (!function_exists('isEmail')){

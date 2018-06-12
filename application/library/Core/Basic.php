@@ -1,9 +1,9 @@
 <?php
 /**
- * File: C_Basic.php
- * Functionality: Basic Controller
+ * File: Basic.php
+ * Functionality: Basic Controller(再整理)
  * Author: 资料空白
- * Date: 2016-3-8
+ * Date: 2018-6-8
  */
 
 class BasicController extends Yaf\Controller_Abstract {
@@ -90,26 +90,5 @@ class BasicController extends Yaf\Controller_Abstract {
 	public function show_message($code='',$msg='',$url='/'){
 		return FALSE; 
 	}
-
-    public function setPage($total, $limit, $curPage, $baseUrl, $get_params)
-    {
-        $curP = 1;
-        if((int)$curPage) {
-            $curP = $curPage;
-        }
-        $config = [
-            'base_url' => $baseUrl,
-            'total_rows' => $total,
-            'per_page' => $limit,
-            'get_post_params' => $get_params,
-            'cur_page' => $curP,
-            'display_total_page' => TRUE
-        ];
-        $this->Pagination->initialize($config);
-        $data['pagemenu'] = $this->Pagination->create_links();
-        $pagenum = ($curPage > 0 && $curPage < (ceil($total / $limit) + 1)) ? ($curPage - 1) * $limit : 0;
-        $limits = "{$pagenum},{$limit}";
-        return array('pagemenu' => $data['pagemenu'], 'limit' => $limits, 'pagenum'=>$pagenum);
-    }
 
 }

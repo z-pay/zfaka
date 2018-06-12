@@ -1,11 +1,10 @@
 <?php
 /**
  * File: BasicAdmin.php
- * Functionality: Basic Controller
+ * Functionality: Basic Controller(再整理)
  * Author: 资料空白
  * Date: 2018-6-8
  */
-
 class AdminBasicController extends BasicController
 {
 

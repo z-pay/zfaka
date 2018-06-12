@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * File: JWT.php
+ * Functionality: JWT安全处理
+ * Author: 资料空白
+ * Date: 2018-6-8
+ */
 class JWT
 {
     public static $leeway = 0;

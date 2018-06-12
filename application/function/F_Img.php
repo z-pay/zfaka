@@ -1,10 +1,10 @@
 <?php
-/*
- *  File: F_Img.php
- *  Functionality: Extra img functions
- *  Author: Nic XIE
- *  Date: 2013-01-11
+/**
+ * File: F_Img.php
+ * Author: 资料空白
+ * Date: 2016-11-11再整理
  */
+
  
 /*
  *  Create thumb

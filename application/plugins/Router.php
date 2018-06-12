@@ -1,12 +1,15 @@
 <?php
-
+/**
+ * File: Router.php
+ * Functionality: 路由插件
+ * Author: 资料空白
+ * Date: 2018-6-8
+ */
 class RouterPlugin extends Yaf\Plugin_Abstract
 {
 
-    public function routerStartup(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response)
-    {
-    }
-
+    public function routerStartup(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response){}
+   
     // 去掉 Module 后的 index
     public function routerShutdown(Yaf\Request_Abstract $request, Yaf\Response_Abstract $response)
     {

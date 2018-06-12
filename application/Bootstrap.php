@@ -1,6 +1,8 @@
 <?php
-class Bootstrap extends \Yaf\Bootstrap_Abstract{
-    public function _initCore(){
+class Bootstrap extends \Yaf\Bootstrap_Abstract
+{
+    public function _initCore()
+	{
 		ini_set('yaf.library', LIB_PATH);
 		\Yaf\Loader::import(CORE_PATH.'/Helper.php');
         \Yaf\Loader::import(CORE_PATH.'/Basic.php');
@@ -19,7 +21,8 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract{
 	}
     public function _initRoute() {}
 	
-    public function _initPlugin(\Yaf\Dispatcher $dispatcher) {
+    public function _initPlugin(\Yaf\Dispatcher $dispatcher)
+	{
         $router = new RouterPlugin();
         $dispatcher->registerPlugin($router);
     }

@@ -1,4 +1,10 @@
 <?php
+/**
+ * File: zfbf2f.php
+ * Functionality: 支付宝面对面支付
+ * Author: 资料空白
+ * Date: 2018-6-8
+ */
 namespace Pay;
 
 use \Payment\Client\Charge;

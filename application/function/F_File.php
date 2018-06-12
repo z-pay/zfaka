@@ -2,10 +2,9 @@
 /**
  * File: F_File.php
  * Functionality: Extra file functions
- * Author: Nic XIE
- * Date: 2012-03-01
+ * Author: 资料空白
+ * Date: 2016-11-11再整理
  */
-
 /*
  * ============== Delete a dir recursively ==============
  *

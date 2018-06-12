@@ -1,14 +1,10 @@
 <?php
 /**
  * File: Model.php
- * Functionality: Core PDO model class
- * Author: 大眼猫
- * Date: 2013-2-28
- * Note:
- *	1 => This class requires PDO support !
- *	2 => $conn MUST BE set to static for transaction !
+ * Functionality: Core PDO model class(再整理)
+ * Author: 资料空白
+ * Date: 2018-6-8
  */
-
 abstract class Model {
 
 	private static $obj;

@@ -2,8 +2,8 @@
 /**
  * File: F_Basic.php
  * Functionality: Global basic functions 
- * Author: Nic XIE & IT Technology Department
- * Date: 2011-11-20
+ * Author: 资料空白
+ * Date: 2016-11-11再整理
  */
 
 function createGateWayPOST($url,$postData){

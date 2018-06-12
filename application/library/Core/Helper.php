@@ -1,11 +1,10 @@
 <?php
 /**
  * File: Helper.php
- * Functionality: Model, function loader, raiseError, generateSign, response
- * Author: 大眼猫
- * Date: 2013-5-8
+ * Functionality:Model, function loader, raiseError, generateSign, response(再整理)
+ * Author: 资料空白
+ * Date: 2018-6-8
  */
-
 abstract class Helper {
 
 	private static $obj;

@@ -1,7 +1,7 @@
 <?php
 /**
- * File: C_Basic.php
- * Functionality: Basic Controller
+ * File: BasicPc.php
+ * Functionality: Basic Controller(再整理)
  * Author: 资料空白
  * Date: 2016-3-8
  */
@@ -66,7 +66,7 @@ class PcBasicController extends BasicController {
     public function createToken()
     {
         $tokenKey = array(
-            "iss" => "https://www.mtrp2p.com",  //jwt签发者
+            "iss" => "http://zlkb.net",  //jwt签发者
             "aud" => 'RPC',                     //接收jwt的一方
             "exp" => time() + 60,               //过期时间
         );

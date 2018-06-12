@@ -1,5 +1,10 @@
 <?php
-// Generate specific lenght random chars or numbers, or both
+/**
+ * File: F_String.php
+ * Functionality: 字符串处理
+ * Author: 资料空白
+ * Date: 2016-11-11再整理
+ */
 if ( ! function_exists('getRandom')){
     function getRandom($length = 4, $type = 1) {
         switch ($type) {

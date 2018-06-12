@@ -2,10 +2,10 @@
 /**
  * File: F_PY.php
  * Functionality: 根据汉字得到对应的拼音或单词的第一个小写字母
- * Author: unknown
- * Date: unknown
- * Remark: Thanks to the unknown author !
+ * Author: 资料空白
+ * Date: 2016-11-11再整理
  */
+
 if ( ! function_exists('Pinyin')){
 	//echo Pinyin('华南碧桂园', 1);  // hnbgy
 	function Pinyin($_String, $first = 0, $_Code='gb2312'){

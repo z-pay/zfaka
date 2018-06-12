@@ -1,4 +1,10 @@
 <?php
+/**
+ * File: Pagination.php
+ * Functionality: 分页类，从CI移植过来的
+ * Author: 资料空白
+ * Date: 2018-6-8
+ */
 class Pagination {
 
 	var $base_url			= ''; // The page we are linking to
