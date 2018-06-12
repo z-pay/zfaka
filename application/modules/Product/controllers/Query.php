@@ -87,4 +87,28 @@ class QueryController extends PcBasicController
 		}
 		Helper::response($data);
 	}
+	
+	public function payAction(){
+		$oid    = $this->getPost('oid',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		if($oid AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$order = $this->m_order->Where(array('id'=>$oid))->SelectOne();
+				if(empty($order)){
+					$data=array('code'=>1002,'msg'=>'没有订单');
+				}else{
+					if($order['status']<1){
+						$data = array('code' => 1003, 'msg' => '未支付');
+					}else{
+						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
+					}
+				}
+			} else {
+				$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
 }
