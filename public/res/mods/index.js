@@ -4,7 +4,7 @@
 
  */
 
-layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(exports){
+layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
   
   var $ = layui.jquery
   ,layer = layui.layer
