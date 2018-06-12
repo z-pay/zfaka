@@ -43,7 +43,7 @@
             dataType: "json",
             url: "/product/query/pay",
             timeout: 10000, //ajax请求超时时间10s
-            data: {'oid':oid}, //post数据
+            data: {"csrf_token": TOKEN,'oid':oid}, //post数据
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
                 if (res.code>1) {
