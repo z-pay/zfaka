@@ -9,13 +9,13 @@
 			url: '/product/get/proudctlist',
 			type: 'POST',
 			dataType: 'json',
-			data: {tid: data.value},
+			data: {'tid': data.value,'csrf_token':TOKEN},
 			beforeSend: function () {
 			},
-			success: function (result) {
-				if (result.code == '1') {
+			success: function (res) {
+				if (res.code == '1') {
 					var html = "";
-					var list = result.data.products;
+					var list = res.data.products;
 					for (var i = 0, j = list.length; i < j; i++) {
 						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
 					}
@@ -25,6 +25,7 @@
 					$('#prodcut_description').html('');
 					form.render('select');
 				} else {
+					layer.msg(res.msg,{icon:2,time:5000});
 				}
 			}
 
@@ -37,12 +38,12 @@
 			url: '/product/get/proudctinfo',
 			type: 'POST',
 			dataType: 'json',
-			data: {pid: data.value},
+			data: {'pid': data.value,'csrf_token':TOKEN},
 			beforeSend: function () {
 			},
-			success: function (result) {
-				if (result.code == '1') {
-					var product = result.data.product;
+			success: function (res) {
+				if (res.code == '1') {
+					var product = res.data.product;
 					$('#price').val(product.price);
 					if(product.qty>0){
 						$('#qty').val(product.qty);
@@ -59,7 +60,7 @@
 					$('#prodcut_description').html(product.description);
 					form.render();
 				} else {
-
+					layer.msg(res.msg,{icon:2,time:5000});
 				}
 			}
 		});

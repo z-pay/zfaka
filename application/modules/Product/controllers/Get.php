@@ -18,12 +18,22 @@ class GetController extends PcBasicController
     public function proudctlistAction()
     {
 		$tid = $this->getPost('tid');
-		$data = array();
-		$order = array('sort_num' => 'ASC');
-		$field = array('id', 'name');
-		$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'ishidden'=>0))->Order($order)->Select();
-		$data['products'] = $products;
-		$result = array('code' => 1, 'msg' => 'success','data'=>$data);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		if($tid AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$data = array();
+				$order = array('sort_num' => 'ASC');
+				$field = array('id', 'name');
+				$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'ishidden'=>0))->Order($order)->Select();
+				$data['products'] = $products;
+				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$result = array('code' => 1000, 'msg' => '参数错误');
+		}
         Helper::response($result);
     }
 	
@@ -31,11 +41,20 @@ class GetController extends PcBasicController
 	public function proudctinfoAction()
 	{
 		$pid = $this->getPost('pid');
-		$data = array();
-		$field = array('id', 'name', 'price', 'qty', 'stockcontrol', 'description');
-		$product = $this->m_products->Field($field)->Where(array('id'=>$pid))->SelectOne();
-		$data['product'] = $product;
-		$result = array('code' => 1, 'msg' => 'success','data'=>$data);
+		$csrf_token = $this->getPost('csrf_token', false);
+		if($pid AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$data = array();
+				$field = array('id', 'name', 'price', 'qty', 'stockcontrol', 'description');
+				$product = $this->m_products->Field($field)->Where(array('id'=>$pid))->SelectOne();
+				$data['product'] = $product;
+				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$result = array('code' => 1000, 'msg' => '参数错误');
+		}
         Helper::response($result);
 	}
 }
