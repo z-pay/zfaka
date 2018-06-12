@@ -47,7 +47,7 @@
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
                 if (res.code>1) {
-					setTimeout(queryPay, 100000);
+					setTimeout(queryPay, 5000);
                 } else {
 					layer.closeAll();
 					location.href = '/product/query/?orderid='+res.data.orderid;
