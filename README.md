@@ -2,12 +2,11 @@
 ZFAKA发卡系统
 
 一、系统介绍
-本系统就是一个自动发卡功能，包含会员中心和后台中心。
+本系统基于yaf+layui开发，包含自动发卡功能，有会员中心和后台中心。
 演示地址：http://faka.zlkb.net/
 
 1.1 会员模块
     默认情况下，不支持注册，当然后台可以开放注册；
-	用户购买下单付款成功后，系统会自动把当前预留邮箱注册成会员账户；
 	注册成会员可查看历史购买记录。
 	
 1.2 购买模块
@@ -27,7 +26,8 @@ ZFAKA发卡系统
 	
 2.4 安装计划任务crontab模块
     配置定时计划,用于定时发送邮件
-	参考：*/2 * * * * php -q /alidata/wwwroot/demo.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
+	参考：*/2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
+	
 2.5 修改数据库链接
    /conf/application.ini
 	

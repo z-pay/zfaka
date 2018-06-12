@@ -96,6 +96,11 @@ class zfbf2f implements PayNotifyInterface
 							}
 						}else{
 							//手工操作，这里暂时不处理
+							//把邮件通知写到消息队列中，然后用定时任务去执行即可
+							$content = '用户:' . $order['email'] . ',购买的产品['.$order['productname'].'],属于手工发货类型，管理员即将联系您....请耐心等待!';
+							$m=array('email'=>$order['email'],'subject'=>'产品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
+							$m_email_queue->Insert($m);
+							
 							$data =array('code'=>1004,'msg'=>'手工订单，不处理');
 						}
 					}else{
