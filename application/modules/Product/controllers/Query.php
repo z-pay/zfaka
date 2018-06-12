@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－个人中心
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class QueryController extends PcBasicController
@@ -88,7 +88,8 @@ class QueryController extends PcBasicController
 		Helper::response($data);
 	}
 	
-	public function payAction(){
+	public function payAction()
+	{
 		$oid    = $this->getPost('oid',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($oid AND $csrf_token){

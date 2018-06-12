@@ -1,8 +1,8 @@
 <?php
 /*
  * 功能：图形验证码 重新更新
- * author:资料空白
- * time:20180604
+ * Author:资料空白
+ * Date:20180604
  */
 class CaptchaController extends BasicController
 {

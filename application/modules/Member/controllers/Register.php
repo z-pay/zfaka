@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－注册类
- * author:资料空白
- * time:20180528
+ * Author:资料空白
+ * Date:20180528
  */
 
 class RegisterController extends PcBasicController

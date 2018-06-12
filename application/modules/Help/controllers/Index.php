@@ -2,8 +2,8 @@
 
 /*
  * 功能：帮助文档
- * author:资料空白
- * time:20180508
+ * Author:资料空白
+ * Date:20180508
  */
 
 class IndexController extends PcBasicController
@@ -26,7 +26,8 @@ class IndexController extends PcBasicController
         $this->getView()->assign($data);
     }
 	
-	public function ajaxAction(){
+	public function ajaxAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
@@ -64,7 +65,8 @@ class IndexController extends PcBasicController
 		Helper::response($data);
 	}
 	
-	public function detailAction(){
+	public function detailAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $this->redirect("/member/login");
             return FALSE;

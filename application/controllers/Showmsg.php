@@ -1,8 +1,8 @@
 <?php
 /*
  * 功能：消息处理
- * author:资料空白
- * time:20180604
+ * Author:资料空白
+ * Date:20180604
  */
 class ShowmsgController extends PcBasicController
 {

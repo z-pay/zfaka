@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－退出类
- * author:资料空白
- * time:20150902
+ * Author:资料空白
+ * Date:20150902
  */
 
 class LogoutController extends PcBasicController

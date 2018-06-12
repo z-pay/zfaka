@@ -1,9 +1,9 @@
 <?php
 
 /*
- * 功能：会员中心－日志中心
- * author:资料空白
- * time:20150902
+ * 功能：后台中心－日志中心
+ * Author:资料空白
+ * Date:20150902
  */
 
 class LoggerController extends AdminBasicController
@@ -27,7 +27,8 @@ class LoggerController extends AdminBasicController
 
 	
 	//登录日志ajax
-	public function ajaxAction(){
+	public function ajaxAction()
+	{
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);

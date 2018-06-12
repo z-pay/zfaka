@@ -1,9 +1,9 @@
 <?php
 
 /*
- * 功能：会员中心－个人中心
- * author:资料空白
- * time:20180509
+ * 功能：后台中心－基础设置
+ * Author:资料空白
+ * Date:20180509
  */
 
 class ProfilesController extends AdminBasicController
@@ -27,7 +27,8 @@ class ProfilesController extends AdminBasicController
     }
 
 	
-	public function passwordAction(){
+	public function passwordAction()
+	{
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $this->redirect("/admin/login");
             return FALSE;
@@ -36,7 +37,8 @@ class ProfilesController extends AdminBasicController
         $this->getView()->assign($data);
 	}
 	
-	public function passwordajaxAction(){
+	public function passwordajaxAction()
+	{
 		$password = $this->getPost('password',false);
 		$oldpassword = $this->getPost('oldpassword',false);
 		$csrf_token = $this->getPost('csrf_token', false);

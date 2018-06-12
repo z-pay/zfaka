@@ -1,8 +1,8 @@
 <?php
 /*
  * 功能：产品中心-支付回调(异步处理)
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 use \Payment\Common\PayException;
 use \Payment\Client\Notify;
@@ -51,6 +51,4 @@ class NotifyController extends PcBasicController
 			echo 'error';exit();
 		}
     }
-
-
 }

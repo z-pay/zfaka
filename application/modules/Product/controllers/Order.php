@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－个人中心
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class OrderController extends PcBasicController
@@ -178,7 +178,8 @@ class OrderController extends PcBasicController
 	}
 	
 	//支付宝当面付生成二维码
-	public function showqrAction(){
+	public function showqrAction()
+	{
 		$url = $this->get('url');
 		if($url AND filter_var($url, FILTER_VALIDATE_URL)){
 			\PHPQRCode\QRcode::png($url);

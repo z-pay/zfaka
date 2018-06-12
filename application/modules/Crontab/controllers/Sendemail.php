@@ -1,5 +1,10 @@
 <?php
-//计划任务-定时发送邮件
+
+/*
+ * 功能：计划任务-定时发送邮件
+ * Author:资料空白
+ * Date:20180508
+ */
 class SendemailController extends BasicController
 {
 	private $m_email;

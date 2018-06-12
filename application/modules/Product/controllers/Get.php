@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－个人中心
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class GetController extends PcBasicController

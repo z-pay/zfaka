@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－个人中心
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class ProductController extends PcBasicController
@@ -26,7 +26,8 @@ class ProductController extends PcBasicController
     }
 	
 	//我的产品ajax
-	public function ajaxAction(){
+	public function ajaxAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);

@@ -2,8 +2,8 @@
 
 /*
  * 功能：帮助工单
- * author:资料空白
- * time:20180508
+ * Author:资料空白
+ * Date:20180508
  */
 
 class TicketController extends PcBasicController
@@ -28,7 +28,8 @@ class TicketController extends PcBasicController
     }
 	
 	//工单列表ajax
-	public function ajaxAction(){
+	public function ajaxAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
@@ -103,7 +104,8 @@ class TicketController extends PcBasicController
 		Helper::response($data);
 	}
 	
-	public function detailAction(){
+	public function detailAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $this->redirect("/member/login");
             return FALSE;

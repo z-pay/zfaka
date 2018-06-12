@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－忘记密码类
- * author:资料空白
- * time:20150909
+ * Author:资料空白
+ * Date:20150909
  */
 
 class ForgetpwdController extends PcBasicController
@@ -28,7 +28,8 @@ class ForgetpwdController extends PcBasicController
         }
     }
 	
-	public function resetAction(){
+	public function resetAction()
+	{
         $key = $this->get('key', false);
 		$data = array();
         if (false != $key) {
@@ -67,7 +68,8 @@ class ForgetpwdController extends PcBasicController
 	}
 	
 	//找回密码 2.重设
-	public function resetajaxAction(){
+	public function resetajaxAction()
+	{
 		$email = $this->getPost('email',false);
 		$code = $this->getPost('code',false);
 		$password = $this->getPost('password',false);
@@ -101,7 +103,8 @@ class ForgetpwdController extends PcBasicController
 	}
 	
 	//找回密码 1.验证邮箱
-	public function ajaxAction(){
+	public function ajaxAction()
+	{
 		$email    = $this->getPost('email',false);
 		$vercode = $this->getPost('vercode',false);
 		$csrf_token = $this->getPost('csrf_token', false);

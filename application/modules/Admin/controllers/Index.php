@@ -2,8 +2,8 @@
 
 /*
  * 功能：后台中心－首页
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class IndexController extends AdminBasicController

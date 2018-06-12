@@ -1,8 +1,8 @@
 <?php
 /*
  * 功能：异常处理
- * author:资料空白
- * time:20180604
+ * Author:资料空白
+ * Date:20180604
  */
 class ErrorController extends PcBasicController
 {

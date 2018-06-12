@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－个人中心
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class ProfilesController extends PcBasicController
@@ -28,7 +28,8 @@ class ProfilesController extends PcBasicController
         $this->getView()->assign($data);
     }
 
-	public function profilesajaxAction(){
+	public function profilesajaxAction()
+	{
 		$nickname = $this->getPost('nickname',false);
 		$qq = $this->getPost('qq',false);
 		$tag = $this->getPost('tag',false);
@@ -56,7 +57,8 @@ class ProfilesController extends PcBasicController
 	
 	
 	
-	public function passwordAction(){
+	public function passwordAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $this->redirect("/member/login");
             return FALSE;
@@ -65,7 +67,8 @@ class ProfilesController extends PcBasicController
         $this->getView()->assign($data);
 	}
 	
-	public function passwordajaxAction(){
+	public function passwordajaxAction()
+	{
 		$password = $this->getPost('password',false);
 		$oldpassword = $this->getPost('oldpassword',false);
 		$csrf_token = $this->getPost('csrf_token', false);

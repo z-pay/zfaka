@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－日志中心
- * author:资料空白
- * time:20150902
+ * Author:资料空白
+ * Date:20150902
  */
 
 class LoggerController extends PcBasicController
@@ -27,7 +27,8 @@ class LoggerController extends PcBasicController
 
 	
 	//登录日志ajax
-	public function ajaxAction(){
+	public function ajaxAction()
+	{
         if ($this->login==FALSE AND !$this->userid) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);

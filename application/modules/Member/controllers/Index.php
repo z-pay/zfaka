@@ -2,8 +2,8 @@
 
 /*
  * 功能：会员中心－首页
- * author:资料空白
- * time:20180509
+ * Author:资料空白
+ * Date:20180509
  */
 
 class IndexController extends PcBasicController
@@ -20,10 +20,7 @@ class IndexController extends PcBasicController
             $this->redirect("/member/login");
             return FALSE;
         }
-
 		$data = array();
 		$this->getView()->assign($data);
     }
-
-
 }
