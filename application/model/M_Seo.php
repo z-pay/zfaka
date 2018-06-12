@@ -6,9 +6,11 @@
  * Date: 2015-9-4
  */
 
-class M_Seo extends Model {
+class M_Seo extends Model
+{
 
-	function __construct() {
+	public function __construct()
+	{
 		$this->table = TB_PREFIX.'seo';
 		parent::__construct();
 	}
@@ -19,7 +21,8 @@ class M_Seo extends Model {
 	 * @param string $password
 	 * @return params on success or 0 or failure
 	 */
-	public function getConfig($new=0){
+	public function getConfig($new=0)
+	{
 		$data = $config = array();
 			$file_path=TEMP_PATH ."/seo.json";
 			if(file_exists($file_path) AND !$new){
@@ -41,7 +44,8 @@ class M_Seo extends Model {
 		return $config;
 	}
 
-	private function _getData(){
+	private function _getData()
+	{
 		$_config = array();
 		$result=$this->Select();
 		foreach($result AS $i){

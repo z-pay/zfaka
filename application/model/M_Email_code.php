@@ -6,9 +6,11 @@
  * Date: 2015-9-4
  */
 
-class M_Email_code extends Model {
+class M_Email_code extends Model
+{
 
-	function __construct() {
+	public function __construct()
+	{
 		$this->table = TB_PREFIX.'email_code';
 		parent::__construct();
 	}

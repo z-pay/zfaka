@@ -1,14 +1,16 @@
 <?php
 /**
- * File: M_Seo.php
- * Functionality: SEO优化设置 model
+ * File: M_Payment.php
+ * Functionality: 支付设置 model
  * Author: 资料空白
  * Date: 2015-9-4
  */
 
-class M_Payment extends Model {
+class M_Payment extends Model
+{
 
-	function __construct() {
+	public function __construct()
+	{
 		$this->table = TB_PREFIX.'payment';
 		parent::__construct();
 	}
@@ -19,7 +21,8 @@ class M_Payment extends Model {
 	 * @param string $password
 	 * @return params on success or 0 or failure
 	 */
-	public function getConfig($new=0){
+	public function getConfig($new=0)
+	{
 		$data = $config = array();
 			$file_path=TEMP_PATH ."/payment.json";
 			if(file_exists($file_path) AND !$new){
@@ -40,7 +43,8 @@ class M_Payment extends Model {
 		return $config;
 	}
 
-	private function _getData(){
+	private function _getData()
+	{
 		$_config = array();
 		$result=$this->Select();
 		foreach($result AS $i){

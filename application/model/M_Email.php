@@ -1,19 +1,22 @@
 <?php
 /**
- * File: email.php
+ * File: M_Email.php
  * Functionality: 邮箱
- * Author: sq
+ * Author: 资料空白
  * Date: 2016-03-21
  */
 
-class M_Email extends Model {
+class M_Email extends Model
+{
 
-	function __construct() {
+	public function __construct()
+	{
 		$this->table = TB_PREFIX.'email';
 		parent::__construct();
 	}
 
-	public function getConfig($new=0){
+	public function getConfig($new=0)
+	{
 		$data = $emailConfig = array();
 
 		$file_path=TEMP_PATH ."/email.json";
@@ -41,7 +44,8 @@ class M_Email extends Model {
 		return $emailConfig;
 	} 
 
-	private function _getData(){
+	private function _getData()
+	{
 		$email = $this->Select();
 		return $email;
 	}

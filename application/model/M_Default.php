@@ -1,15 +1,16 @@
 <?php
 /**
  * File: M_Default.php
- * Functionality: Default model
- * Author: Nic XIE
- * Date: 2013-5-8
- * Remark:
+ * Functionality: 默认 model
+ * Author: 资料空白
+ * Date: 2015-9-4
  */
 
-class M_Default extends Model{
+class M_Default extends Model
+{
 
-	function __construct($table) {
+	public function __construct($table)
+	{
 		$this->table = TB_PREFIX.$table;
 		parent::__construct();
 	}

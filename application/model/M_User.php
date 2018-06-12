@@ -6,9 +6,11 @@
  * Date: 2018-05-21
  */
 
-class M_User extends Model {
+class M_User extends Model
+{
 
-	function __construct() {
+	public function __construct()
+	{
 		$this->table = TB_PREFIX.'user';
 		parent::__construct();
 	}
@@ -19,7 +21,8 @@ class M_User extends Model {
 	 * @param string $password
 	 * @return params on success or 0 or failure
 	 */
-	public function checkLogin($email, $password){
+	public function checkLogin($email, $password)
+	{
 		$field = array('id', 'email','password','nickname','groupid');
 		if(isEmail($email)){
 			$where = array('email' => $email);
@@ -37,7 +40,8 @@ class M_User extends Model {
 		return FALSE;
 	}
 
-	public function newRegister($params){
+	public function newRegister($params)
+	{
 		$m=array();
 		$m['email'] = $params['email'];
 		$m['nickname'] = $params['nickname'];
@@ -67,7 +71,8 @@ class M_User extends Model {
         }
 	}
 
-	public function checkEmail($email){
+	public function checkEmail($email)
+	{
 		$field = array('id');
 		$where = array('email' => $email);
 		$result=$this->Field($field)->Where($where)->SelectOne();
@@ -80,7 +85,8 @@ class M_User extends Model {
     /*
      * 修改密码
      */
-	public function changePWD($userid,$password){
+	public function changePWD($userid,$password)
+	{
 		if($userid AND $password){
 			$new=md5($password);
 			return $this->Where(array('id'=>$userid))->Update(array('password'=>$new));
@@ -94,7 +100,8 @@ class M_User extends Model {
 	* @param $params
 	* @return 1
 	*/
-	private function _session($params){
+	private function _session($params)
+	{
 		if(!empty($params)){
 			$params['expiretime']= time() + 15*60;
 			\Yaf\Session::getInstance()->__set('uinfo', $params);

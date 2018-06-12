@@ -9,7 +9,7 @@
 class M_Admin_user extends Model
 {
 
-    function __construct()
+    public function __construct()
     {
         $this->table = TB_PREFIX . 'admin_user';
         parent::__construct();
@@ -32,7 +32,8 @@ class M_Admin_user extends Model
     /*
      * 修改密码
      */
-	public function changePWD($adminid,$password){
+	public function changePWD($adminid,$password)
+	{
 		if($adminid AND $password){
             $newpassword = password($password);
 			$m=array();

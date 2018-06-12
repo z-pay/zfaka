@@ -9,7 +9,7 @@
 class M_Admin_login_log extends Model
 {
 
-    function __construct()
+    public function __construct()
     {
         $this->table = TB_PREFIX . 'admin_login_log';
         parent::__construct();

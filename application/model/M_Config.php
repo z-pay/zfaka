@@ -1,14 +1,16 @@
 <?php
 /**
  * File: M_Config.php
- * Functionality: 权限菜单 model
+ * Functionality: 配置 model
  * Author: 资料空白
  * Date: 2015-9-4
  */
 
-class M_Config extends Model {
+class M_Config extends Model
+{
 
-	function __construct() {
+	public function __construct()
+	{
 		$this->table = TB_PREFIX.'config';
 		parent::__construct();
 	}
@@ -19,7 +21,8 @@ class M_Config extends Model {
 	 * @param string $password
 	 * @return params on success or 0 or failure
 	 */
-	public function getConfig($new=0){
+	public function getConfig($new=0)
+	{
 		$data = $config = array();
 			$file_path=TEMP_PATH ."/config.json";
 			if(file_exists($file_path) AND !$new){
@@ -31,16 +34,16 @@ class M_Config extends Model {
 			$config =$data['config'];
 		}
 		if (empty($config) OR $new){
-    		$data['config'] = $config = $this->data();
+    		$data['config'] = $config = $this->_getData();
     		$data['expire_time'] = time() + 600;
-    		
 			file_put_contents($file_path,json_encode($data));
     	}
 		
 		return $config;
 	} 
 
-	private function data(){
+	private function _getData()
+	{
 		$result=$this->Select();
 		foreach($result AS $i){
 			$config[$i['name']]=htmlspecialchars_decode($i['value'],ENT_QUOTES);
@@ -49,7 +52,8 @@ class M_Config extends Model {
 	}
 
 	//批量修改配置－暂未使用，保留
-	public function setConfig($params){
+	public function setConfig($params)
+	{
 		if(is_array($params) AND !empty($params)){
 			$sql='UPDATE `xbsr_config` SET value = CASE name';
 			$keys='';
