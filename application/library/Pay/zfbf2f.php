@@ -23,8 +23,8 @@ class zfbf2f implements PayNotifyInterface
 			'sign_type' => $payconfig['sign_type'],
 			'ali_public_key' => $payconfig['ali_public_key'],
 			'rsa_private_key' => $payconfig['rsa_private_key'],
-			'notify_url' => SITE_URL . $payconfig['notify_url'],
-			'return_url' =>SITE_URL. $payconfig['notify_url'].'?paymethod='.$payconfig['alias'].'&orderid='.$params['orderid'],
+			'notify_url' => $params['web_url'] . $payconfig['notify_url'],
+			'return_url' =>$params['web_url']. $payconfig['notify_url'].'?paymethod='.$payconfig['alias'].'&orderid='.$params['orderid'],
 			'return_raw' => true
 		];
 
