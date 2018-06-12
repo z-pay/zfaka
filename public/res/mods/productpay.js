@@ -62,7 +62,7 @@
                 }
             }*/
         });
-		return true;
+		//return true;
     }
 	
 	exports('productpay',null)
