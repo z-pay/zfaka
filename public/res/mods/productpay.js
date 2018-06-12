@@ -47,7 +47,7 @@
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
                 if (res.code>1) {
-					setTimeout("queryPay()", 4000);
+					setTimeout(queryPay(), 4000);
                 } else {
 					layer.closeAll();
 					location.href = '/product/query/?orderid='+res.data.orderid;
@@ -56,9 +56,9 @@
             //Ajax请求超时，继续查询
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 if (textStatus == "timeout") {
-                    setTimeout("queryPay()", 1000);
+                    setTimeout(queryPay(), 1000);
                 } else { //异常
-                    setTimeout("queryPay()", 4000);
+                    setTimeout(queryPay(), 4000);
                 }
             }
         });
