@@ -1,9 +1,17 @@
-layui.define(['layer', 'table', 'form'], function(exports){
+layui.define(['layer', 'table', 'form','upload'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var table = layui.table;
 	var form = layui.form;
-
+	var upload = layui.upload;
+	  //拖拽上传
+	  upload.render({
+		elem: '#import_cards'
+		,url: '/upload/'
+		,done: function(res){
+		  console.log(res)
+		}
+	  });
 	//删除
 	$(".productscard-table").on("click",".delete",function(event){
 		event.preventDefault();
