@@ -30,22 +30,40 @@ class EmailController extends AdminBasicController
 
 	public function ajaxAction()
 	{
-		$nickname = $this->getPost('nickname',false);
-		$qq = $this->getPost('qq',false);
-		$tag = $this->getPost('tag',false);
+		$method = $this->getPost('method',false);
+		$id = $this->getPost('id',false);
+		$mailaddress = $this->getPost('mailaddress',false);
+		$mailpassword = $this->getPost('mailpassword',false);
+		$sendmail = $this->getPost('sendmail',false);
+		$sendname = $this->getPost('sendname',false);
+		$host = $this->getPost('host',false);
+		$port = $this->getPost('port',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
 		
-        if ($this->login==FALSE AND !$this->userid) {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
 		
-		if($nickname AND $csrf_token){
+		if($method AND $mailaddress AND $mailpassword AND $sendmail AND $sendname AND $host AND $port AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$this->m_user->UpdateByID(array('nickname'=>$nickname,'qq'=>$qq,'tag'=>$tag),$this->userid);
-				$data = array('code' => 1, 'msg' => '更新成功');
+				$m=array(
+					'mailaddress'=>$mailaddress,
+					'mailpassword'=>$mailpassword,
+					'sendmail'=>$sendmail,
+					'sendname'=>$sendname,
+					'host'=>$host,
+					'port'=>$port,
+				);
+				if($method == 'update' AND $id>0){
+					$this->m_email->UpdateByID($m,$id);
+					$data = array('code' => 1, 'msg' => '更新成功');
+				}else{
+					$this->m_email->Insert($m);
+					$data = array('code' => 1, 'msg' => '新增成功');
+				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
