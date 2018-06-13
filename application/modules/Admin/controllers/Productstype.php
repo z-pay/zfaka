@@ -97,7 +97,7 @@ class ProductstypeController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $name AND $active AND $csrf_token){
+		if($method AND $name AND is_numeric($active) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'name'=>$name,

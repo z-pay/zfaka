@@ -101,7 +101,7 @@ class PaymentController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $payment AND $sign_type AND $app_id AND $ali_public_key AND $rsa_private_key AND $active AND $csrf_token){
+		if($method AND $payment AND $sign_type AND $app_id AND $ali_public_key AND $rsa_private_key AND is_numeric($active) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'payment'=>$payment,
