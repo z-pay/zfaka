@@ -103,7 +103,6 @@ class SettingController extends AdminBasicController
 				$m=array(
 					'name'=>$name,
 					'value'=>$value,
-					'sendmail'=>$sendmail,
 					'tag'=>$tag,
 				);
 				if($method == 'update' AND $id>0){
