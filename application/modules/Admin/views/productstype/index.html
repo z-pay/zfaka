@@ -25,6 +25,13 @@
  <script type="text/html" id="opt">
  <a class="layui-btn layui-btn-warm layui-btn-xs" href="/admin/productstype/edit/?id={{d.id}}">修改</a>
 </script>
+ <script type="text/html" id="active">
+ {{#  if(d.active >0){ }}
+   <span class="layui-badge layui-bg-green">已激活</span>
+  {{#  } else { }}
+   <span class="layui-badge layui-bg-gray">未激活</span>
+  {{#  } }}
+</script>
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
