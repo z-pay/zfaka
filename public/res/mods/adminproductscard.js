@@ -8,6 +8,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		upload.render({
 			elem: '#import_cards'
 			,url: '/admin/productscard/importajax/'
+			,auto: false
 			,accept: 'file' //普通文件
 			,exts: 'txt' //只允许txt文件
 			,size: 100 //限制文件大小，单位 KB

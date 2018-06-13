@@ -160,18 +160,42 @@ class ProductscardController extends AdminBasicController
             return FALSE;
         }
 		$data = array();
-		
 		$products=$this->m_products->Where(array('auto'=>1))->Order(array('id'=>'DESC'))->Select();
 		$data['products'] = $products;
-		
 		$this->getView()->assign($data);
     }
 	
 	public function importajaxAction(){
-		$txtfile = $_FILES['file']['tmp_name']; 
-		$txtfileData = file_get_contents($txtfile);
-		$msg = $txtfileData;
-		$data = array('code' => 0, 'msg' => $msg,'data'=>array());
+		if(is_array($_FILES) AND !empty($_FILES) AND isset($_FILES['file'])){
+			$pid = $this->getPost('pid');
+			try{
+				$txtfile = $_FILES['file']['tmp_name'];
+				$txtFileData = file_get_contents($txtfile);
+				$huiche=array("\n","\r");
+				$replace='\r\n';
+				$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
+				$newTxtFileData_array = explode($replace,$newTxtFileData);
+				foreach($newTxtFileData_array AS $line){
+					if(strlen($line)>0){
+						$line_array = explode(',',$line);
+						if(isset($line[0]) AND $line[0]>0 AND strlen($line[1])>0 AND isset($line[1])){
+							
+						}
+					}
+				}
+				/*
+				$u = $this->m_products_card->MultiInsert($m);
+				if($u){
+					$data = array('code' => 1, 'msg' => '成功');
+				}else{
+					$data = array('code' => 1003, 'msg' => '失败');
+				}*/
+			}catch(\Exception $e) {
+				$data = array('code' => 1001, 'msg' => $e->getMessage(),'data'=>array());
+			}
+		}else{
+			$data = array('code' => 1000, 'msg' => '上传内容为空,请重新上传','data'=>array());
+		}
 		Helper::response($data);
 	}
 }
