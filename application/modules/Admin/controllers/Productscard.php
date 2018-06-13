@@ -9,10 +9,12 @@
 class ProductscardController extends AdminBasicController
 {
 	private $m_products_card;
+	private $m_products;
     public function init()
     {
         parent::init();
 		$this->m_products_card = $this->load('products_card');
+		$this->m_products = $this->load('products');
     }
 
     public function indexAction()
@@ -63,6 +65,60 @@ class ProductscardController extends AdminBasicController
         } else {
             $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
         }
+		Helper::response($data);
+	}
+	
+    public function addAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$data = array();
+		
+		$products=$this->m_products->Order(array('id'=>'DESC'))->Select();
+		$data['products'] = $products;
+		
+		$this->getView()->assign($data);
+    }
+	public function addajaxAction()
+	{
+		$method = $this->getPost('method',false);
+		$pid = $this->getPost('pid',false);
+		$card = $this->getPost('card',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
+		
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		if($method AND $pid AND $card AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$m=array(
+					'pid'=>$pid,
+					'card'=>$card,
+				);
+				if($method == 'add'){
+					$u = $this->m_products_card->Insert($m);
+					if($u){
+						//更新缓存 
+						//$this->m_products_type->getConfig(1);
+						$data = array('code' => 1, 'msg' => '新增成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '新增失败');
+					}
+				}else{
+					$data = array('code' => 1002, 'msg' => '未知方法');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
 		Helper::response($data);
 	}
 }
