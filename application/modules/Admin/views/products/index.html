@@ -7,6 +7,7 @@
     <div class="layui-tab layui-tab-brief" lay-filter="user">
       <ul class="layui-tab-title" id="LAY_mine">
         <li class="layui-this" lay-id="info">商品管理</li>
+		<li class="" lay-id="info"><a href="/admin/prodcuts/add/">添加</a></li>
       </ul>
       <div class="layui-tab-content" style="padding: 20px 0;">
  
@@ -28,8 +29,8 @@
    <span class="layui-badge layui-bg-gray">手工发货</span>
   {{#  } }}
 </script>
- <script type="text/html" id="ishidden">
- {{#  if(d.auto >0){ }}
+ <script type="text/html" id="active">
+ {{#  if(d.active >0){ }}
    <span class="layui-badge layui-bg-green">在售</span>
   {{#  } else { }}
    <span class="layui-badge layui-bg-gray">停售</span>

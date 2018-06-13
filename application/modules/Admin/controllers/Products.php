@@ -9,10 +9,12 @@
 class ProductsController extends AdminBasicController
 {
 	private $m_products;
+	private $m_products_type;
     public function init()
     {
         parent::init();
 		$this->m_products = $this->load('products');
+		$this->m_products_type = $this->load('products_type');
     }
 
     public function indexAction()
@@ -62,6 +64,95 @@ class ProductsController extends AdminBasicController
         } else {
             $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
         }
+		Helper::response($data);
+	}
+	
+    public function editAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$product=$this->m_products->SelectByID('',$id);
+			$data['product'] =$product;
+			
+			$productstype=$this->m_products_type->Where(array('active'=>1))->Order(array('id'=>'DESC'))->Select();
+			$data['productstype'] = $productstype;
+			
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/admin/payment");
+            return FALSE;
+		}
+    }
+	
+    public function addAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$item=$this->m_products->SelectByID('',$id);
+			$data['item'] =$item;
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/admin/payment");
+            return FALSE;
+		}
+    }
+	public function editajaxAction()
+	{
+		$method = $this->getPost('method',false);
+		$id = $this->getPost('id',false);
+		$payment = $this->getPost('payment',false);
+		$sign_type = $this->getPost('sign_type',false);
+		$app_id = $this->getPost('app_id',false);
+		$ali_public_key = $this->getPost('ali_public_key',false);
+		$rsa_private_key = $this->getPost('rsa_private_key',false);
+		$active = $this->getPost('active',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
+		
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		if($method AND $payment AND $sign_type AND $app_id AND $ali_public_key AND $rsa_private_key AND is_numeric($active) AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$m=array(
+					'payment'=>$payment,
+					'sign_type'=>$sign_type,
+					'app_id'=>$app_id,
+					'ali_public_key'=>$ali_public_key,
+					'rsa_private_key'=>$rsa_private_key,
+					'active'=>$active,
+				);
+				if($method == 'update' AND $id>0){
+					$u = $this->m_payment->UpdateByID($m,$id);
+					if($u){
+						//更新缓存 
+						$this->m_payment->getConfig(1);
+						$data = array('code' => 1, 'msg' => '更新成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '更新失败');
+					}
+				}else{
+					$data = array('code' => 1002, 'msg' => '未知方法');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
 		Helper::response($data);
 	}
 }
