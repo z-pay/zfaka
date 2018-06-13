@@ -76,7 +76,7 @@ class zfbf2f implements PayNotifyInterface
 								$m_products_card->Where("id in ({$card_id_str})")->Where(array('oid'=>0))->Update(array('oid'=>$order['id']));
 								//2.5然后进行库存清减
 								$qty_m = array('qty' => 'qty-'.$order['number']);
-								$m_products->Where(array('id'=>$order['pid']))->Update($qty_m,TRUE);
+								$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
 								//2.6更新订单状态
 								$m_order->Where(array('orderid'=>$params['out_trade_no'],'status'=>1))->Update(array('status'=>2));
 								//2.7 把邮件通知写到消息队列中，然后用定时任务去执行即可

@@ -105,7 +105,7 @@ class SettingController extends AdminBasicController
 					'value'=>$value,
 					'tag'=>$tag,
 				);
-				if($method == 'update' AND $id>0){
+				if($method == 'edit' AND $id>0){
 					$u = $this->m_config->UpdateByID($m,$id);
 					if($u){
 						//更新缓存 

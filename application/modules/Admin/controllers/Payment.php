@@ -111,7 +111,7 @@ class PaymentController extends AdminBasicController
 					'rsa_private_key'=>$rsa_private_key,
 					'active'=>$active,
 				);
-				if($method == 'update' AND $id>0){
+				if($method == 'edit' AND $id>0){
 					$u = $this->m_payment->UpdateByID($m,$id);
 					if($u){
 						//更新缓存 

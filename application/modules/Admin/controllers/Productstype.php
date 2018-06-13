@@ -113,7 +113,7 @@ class ProductstypeController extends AdminBasicController
 					'name'=>$name,
 					'active'=>$active,
 				);
-				if($method == 'update' AND $id>0){
+				if($method == 'edit' AND $id>0){
 					$u = $this->m_products_type->UpdateByID($m,$id);
 					if($u){
 						//更新缓存 

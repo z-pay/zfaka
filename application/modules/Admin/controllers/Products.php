@@ -110,12 +110,15 @@ class ProductsController extends AdminBasicController
 	{
 		$method = $this->getPost('method',false);
 		$id = $this->getPost('id',false);
-		$payment = $this->getPost('payment',false);
-		$sign_type = $this->getPost('sign_type',false);
-		$app_id = $this->getPost('app_id',false);
-		$ali_public_key = $this->getPost('ali_public_key',false);
-		$rsa_private_key = $this->getPost('rsa_private_key',false);
+		$typeid = $this->getPost('typeid',false);
+		$name = $this->getPost('name',false);
+		$description = $this->getPost('description',false);
+		$stockcontrol = $this->getPost('stockcontrol',false);
+		$qty = $this->getPost('qty',false);
+		$price = $this->getPost('price',false);
+		$auto = $this->getPost('auto',false);
 		$active = $this->getPost('active',false);
+		$sort_num = $this->getPost('sort_num',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
@@ -125,21 +128,22 @@ class ProductsController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $payment AND $sign_type AND $app_id AND $ali_public_key AND $rsa_private_key AND is_numeric($active) AND $csrf_token){
+		if($method AND $typeid AND $name AND $description AND is_numeric($stockcontrol) AND is_numeric($qty) AND is_numeric($price) AND is_numeric($auto) AND is_numeric($active) AND is_numeric($sort_num) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
-					'payment'=>$payment,
-					'sign_type'=>$sign_type,
-					'app_id'=>$app_id,
-					'ali_public_key'=>$ali_public_key,
-					'rsa_private_key'=>$rsa_private_key,
+					'typeid'=>$typeid,
+					'name'=>$name,
+					'description'=>$description,
+					'stockcontrol'=>$stockcontrol,
+					'qty'=>$qty,
+					'price'=>$price,
+					'auto'=>$auto,
 					'active'=>$active,
+					'sort_num'=>$sort_num,
 				);
-				if($method == 'update' AND $id>0){
-					$u = $this->m_payment->UpdateByID($m,$id);
+				if($method == 'edit' AND $id>0){
+					$u = $this->m_products->UpdateByID($m,$id);
 					if($u){
-						//更新缓存 
-						$this->m_payment->getConfig(1);
 						$data = array('code' => 1, 'msg' => '更新成功');
 					}else{
 						$data = array('code' => 1003, 'msg' => '更新失败');

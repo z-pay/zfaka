@@ -57,7 +57,7 @@ class EmailController extends AdminBasicController
 					'host'=>$host,
 					'port'=>$port,
 				);
-				if($method == 'update' AND $id>0){
+				if($method == 'edit' AND $id>0){
 					$u = $this->m_email->UpdateByID($m,$id);
 					if($u){
 						//更新缓存 
