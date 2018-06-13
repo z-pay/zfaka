@@ -11,17 +11,15 @@
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
                     <form class="layui-form layui-show" method="post">
-					
-						<div class="layui-upload-drag" id="import_cards">
-						  <i class="layui-icon"></i>
-						  <p>点击上传，或将文件拖拽到此处</p>
+						<div class="layui-form-item">
+							<div class="layui-upload-drag" id="import_cards">
+							  <i class="layui-icon"></i>
+							  <p>点击上传，或将文件拖拽到此处</p>
+							</div>
 						</div>
-
                         <div class="layui-form-item">
-							<input type="hidden" name="method" value="add">
-                            <button class="layui-btn" key="set-mine" lay-filter="import" lay-submit>确认导入</button>
+                            <button class="layui-btn" id="startUpload" key="set-mine" lay-filter="import" lay-submit>确认导入</button>
                         </div>
-
                     </form>
                 </div>
             </div>

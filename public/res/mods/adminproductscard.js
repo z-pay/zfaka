@@ -4,14 +4,18 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	var table = layui.table;
 	var form = layui.form;
 	var upload = layui.upload;
-	  //拖拽上传
-	  upload.render({
-		elem: '#import_cards'
-		,url: '/upload/'
-		,done: function(res){
-		  console.log(res)
-		}
-	  });
+		//拖拽上传
+		upload.render({
+			elem: '#import_cards'
+			,url: '/admin/productscard/importajax/'
+			,accept: 'file' //普通文件
+			,exts: 'txt' //只允许txt文件
+			,size: 100 //限制文件大小，单位 KB
+			,bindAction: '#startUpload'
+			,done: function(res){
+				console.log(res)
+			}
+		});
 	//删除
 	$(".productscard-table").on("click",".delete",function(event){
 		event.preventDefault();

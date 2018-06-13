@@ -166,4 +166,12 @@ class ProductscardController extends AdminBasicController
 		
 		$this->getView()->assign($data);
     }
+	
+	public function importajaxAction(){
+		$txtfile = $_FILES['file']['tmp_name']; 
+		$txtfileData = file_get_contents($txtfile);
+		$msg = $txtfileData;
+		$data = array('code' => 0, 'msg' => $msg,'data'=>array());
+		Helper::response($data);
+	}
 }
