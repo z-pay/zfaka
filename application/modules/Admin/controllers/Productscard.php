@@ -181,7 +181,6 @@ class ProductscardController extends AdminBasicController
 					}else{
 						$txtFileData = mb_convert_encoding ( $txtFileData, 'UTF-8','Unicode');
 					}
-					print_r($txtFileData);
 					//开始处理
 					$huiche=array("\n","\r");
 					$replace='\r\n';
@@ -192,6 +191,7 @@ class ProductscardController extends AdminBasicController
 							$m[]=array('pid'=>$pid,'oid'=>0,'card'=>$line,'addtime'=>time());
 						}
 					}
+					print_r($m);
 					if(!empty($m)){
 						$u = $this->m_products_card->MultiInsert($m);
 						if($u){
