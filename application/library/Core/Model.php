@@ -386,6 +386,7 @@ abstract class Model {
 		$sql .= "(`$sqlFieldStr`) VALUES $sqlValueStr";
 
 		$this->sql = $sql;
+		$this->connect();
 		$this->Execute();
 
 		return $this->success ? $this->getInsertID() : NULL;
