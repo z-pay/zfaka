@@ -18,7 +18,7 @@
 								<option value=""></option>
 								<?php if(!empty($productstype)):?>
 								<?php foreach($productstype AS $p):?>
-								<option value="<?php echo $p['id'];?>"><?php echo $p['name'];?></option>
+								<option value="<?php echo $p['id'];?>" <?php if($product['typeid']==$p['id']):?>selected<?php endif;?>><?php echo $p['name'];?></option>
 								<?php endforeach;?>
 								<?php endif;?>
 							  </select>
@@ -32,7 +32,7 @@
 							</div>
                         <div class="layui-form-item layui-form-text">
                             <label for="description" class="layui-form-label">描述</label>
-                            <div class="layui-input-inline">
+                            <div class="layui-input-block">
                                 <textarea placeholder="" id="description" name="description" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $product['description'];?></textarea>
                             </div>
                         </div>
@@ -65,10 +65,10 @@
 							</div>
 						  </div>
 						  <div class="layui-form-item">
-							<label class="layui-form-label">是否激活</label>
+							<label class="layui-form-label">是否销售</label>
 							<div class="layui-input-block">
-							  <input type="radio" name="active" value="1" title="激活" <?php if($product['active']=='1'):?>checked=""<?php endif;?>>
-							  <input type="radio" name="active" value="0" title="取消" <?php if($product['active']=='0'):?>checked=""<?php endif;?>>
+							  <input type="radio" name="active" value="1" title="在销" <?php if($product['active']=='1'):?>checked=""<?php endif;?>>
+							  <input type="radio" name="active" value="0" title="停销" <?php if($product['active']=='0'):?>checked=""<?php endif;?>>
 							</div>
 						  </div>
 							<div class="layui-form-item">

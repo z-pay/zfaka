@@ -79,7 +79,7 @@ class ProductsController extends AdminBasicController
 			$product=$this->m_products->SelectByID('',$id);
 			$data['product'] =$product;
 			
-			$productstype=$this->m_products_type->Where(array('active'=>1))->Order(array('id'=>'DESC'))->Select();
+			$productstype=$this->m_products_type->Order(array('id'=>'DESC'))->Select();
 			$data['productstype'] = $productstype;
 			
 			$this->getView()->assign($data);
