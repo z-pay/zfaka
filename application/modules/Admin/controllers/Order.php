@@ -9,10 +9,12 @@
 class OrderController extends AdminBasicController
 {
 	private $m_order;
+	private $m_products_card;
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
+		$this->m_products_card = $this->load('products_card');
     }
 
     public function indexAction()
@@ -64,4 +66,28 @@ class OrderController extends AdminBasicController
         }
 		Helper::response($data);
 	}
+	
+	public function viewAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$order=$this->m_order->SelectByID('',$id);
+			$data['order'] =$order;
+			
+			$cards=$this->m_products_card->Where(array('oid'=>$order['id']))->Select();
+			$card_mi_array = array_column($cards, 'card');
+			$card_mi_str = implode(',',$card_mi_array);
+			$data['cardmi'] = $cardmi;
+			
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/admin/products");
+            return FALSE;
+		}
+    }
 }
