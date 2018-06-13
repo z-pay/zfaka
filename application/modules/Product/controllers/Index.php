@@ -19,7 +19,7 @@ class IndexController extends PcBasicController
     {
 		$data = array();
 		$order = array('sort_num' => 'ASC');
-		$products_type = $this->m_products_type->Order($order)->Select();
+		$products_type = $this->m_products_type->Where(array('active'=>1))->Order($order)->Select();
 		$data['products_type'] = $products_type;
         $this->getView()->assign($data);
     }
