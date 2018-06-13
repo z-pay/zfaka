@@ -4,6 +4,37 @@ layui.define(['layer', 'table', 'form'], function(exports){
 	var table = layui.table;
 	var form = layui.form;
 
+	//删除
+	$("#productscard").on("click",".delete",function(event){
+		event.preventDefault();
+		var cardid = $(this).attr("data-cardid");
+		$(this).attr({"disabled":"disabled"});
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/admin/productscard/deleteajax",
+            data: { "csrf_token": TOKEN,'cardid':cardid},
+            success: function(res) {
+                if (res.code == 1) {
+					layer.open({
+						title: '提示',
+						content: '删除成功',
+						btn: ['确定'],
+						yes: function(index, layero){
+							location.reload();
+						},
+						cancel: function(){ 
+							location.reload();
+						}
+					});
+                } else {
+					layer.msg(data.msg,{icon:2,time:5000});
+                }
+                return;
+            }
+        });
+	});
+	
 	table.render({
 		elem: '#productscard',
 		url: '/admin/productscard/ajax',
@@ -56,37 +87,6 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		});
 
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	});
-	
-	//删除
-	$("#productscard").on("click",".delete",function(event){
-		event.preventDefault();
-		var cardid = $(this).attr("data-cardid");
-		$(this).attr({"disabled":"disabled"});
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "/admin/productscard/deleteajax",
-            data: { "csrf_token": TOKEN,'cardid':cardid},
-            success: function(res) {
-                if (res.code == 1) {
-					layer.open({
-						title: '提示',
-						content: '删除成功',
-						btn: ['确定'],
-						yes: function(index, layero){
-							location.reload();
-						},
-						cancel: function(){ 
-							location.reload();
-						}
-					});
-                } else {
-					layer.msg(data.msg,{icon:2,time:5000});
-                }
-                return;
-            }
-        });
 	});
 	
 	exports('adminproductscard',null)
