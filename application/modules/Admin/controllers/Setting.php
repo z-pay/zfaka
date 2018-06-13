@@ -106,8 +106,14 @@ class SettingController extends AdminBasicController
 					'tag'=>$tag,
 				);
 				if($method == 'update' AND $id>0){
-					$this->m_config->UpdateByID($m,$id);
-					$data = array('code' => 1, 'msg' => '更新成功');
+					$u = $this->m_config->UpdateByID($m,$id);
+					if($u){
+						//更新缓存 
+						$this->m_config->getConfig(1);
+						$data = array('code' => 1, 'msg' => '更新成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '更新失败');
+					}
 				}else{
 					$data = array('code' => 1002, 'msg' => '未知方法');
 				}

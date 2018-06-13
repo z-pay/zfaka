@@ -58,11 +58,23 @@ class EmailController extends AdminBasicController
 					'port'=>$port,
 				);
 				if($method == 'update' AND $id>0){
-					$this->m_email->UpdateByID($m,$id);
-					$data = array('code' => 1, 'msg' => '更新成功');
+					$u = $this->m_email->UpdateByID($m,$id);
+					if($u){
+						//更新缓存 
+						$this->m_email->getConfig(1);
+						$data = array('code' => 1, 'msg' => '更新成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '更新失败');
+					}
 				}else{
-					$this->m_email->Insert($m);
-					$data = array('code' => 1, 'msg' => '新增成功');
+					$id = $this->m_email->Insert($m);
+					ifidu){
+						//更新缓存 
+						$this->m_email->getConfig(1);
+						$data = array('code' => 1, 'msg' => '新增成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '新增失败');
+					}
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
