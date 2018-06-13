@@ -152,4 +152,18 @@ class ProductscardController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
+	
+    public function importAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$data = array();
+		
+		$products=$this->m_products->Where(array('auto'=>1))->Order(array('id'=>'DESC'))->Select();
+		$data['products'] = $products;
+		
+		$this->getView()->assign($data);
+    }
 }
