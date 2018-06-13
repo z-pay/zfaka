@@ -104,7 +104,6 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	            data: { "csrf_token": TOKEN,'cardid':data.id},
 	            success: function(res) {
 	                if (res.code == 1) {
-	                	obj.del();
 						layer.open({
 							title: '提示',
 							content: '删除成功',
