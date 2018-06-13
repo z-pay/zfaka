@@ -17,15 +17,20 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 			console.log(res)
 		}
 	});
-	//修改
+	//导入
 	form.on('submit(import)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
+		
+		var formData = new FormData(document.getElementById("import_table"));
 		$.ajax({
 			url: '/admin/productscard/importajax',
 			type: 'POST',
 			dataType: 'json',
-			data: data.field,
+			//data: data.field,
+			data:formData,
+			processData: false,
+            contentType: false,
 		})
 		.done(function(res) {
 			if (res.code == '1') {
