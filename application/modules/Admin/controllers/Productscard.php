@@ -76,7 +76,7 @@ class ProductscardController extends AdminBasicController
         }
 		$data = array();
 		
-		$products=$this->m_products->Order(array('id'=>'DESC'))->Select();
+		$products=$this->m_products->Where(array('auto'=>1))->Order(array('id'=>'DESC'))->Select();
 		$data['products'] = $products;
 		
 		$this->getView()->assign($data);
