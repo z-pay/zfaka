@@ -16,7 +16,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label">商品</label>
 							<div class="layui-input-inline">
-							  <select name="pid" lay-filter="required">
+							  <select name="pid" lay-filter="required" lay-verify="required">
 								<option value=""></option>
 								<?php if(!empty($products)):?>
 								<?php foreach($products AS $p):?>
@@ -29,7 +29,7 @@
                         <div class="layui-form-item">
                             <label for="card" class="layui-form-label">卡密</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="card" name="card" ay-verify="required" autocomplete="off" value="" class="layui-input">
+                                <input type="text" id="card" name="card" lay-verify="required" autocomplete="off" value="" class="layui-input">
                             </div>
                         </div>
 
