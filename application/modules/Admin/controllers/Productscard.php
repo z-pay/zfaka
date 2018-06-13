@@ -171,6 +171,7 @@ class ProductscardController extends AdminBasicController
 			try{
 				$txtfile = $_FILES['file']['tmp_name'];
 				$txtFileData = file_get_contents($txtfile);
+				$data = array('code' => 1, 'msg' => $txtFileData.$pid);
 				$huiche=array("\n","\r");
 				$replace='\r\n';
 				$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
