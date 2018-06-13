@@ -5,10 +5,11 @@ layui.define(['layer', 'table', 'form'], function(exports){
 	var form = layui.form;
 
 	//删除
-	$("#productscard").on("click",".delete",function(event){
+	$(".productscard-table").on("click",".delete",function(event){
 		event.preventDefault();
 		var cardid = $(this).attr("data-cardid");
-		$(this).attr({"disabled":"disabled"});
+		alert(cardid);
+		/*$(this).attr({"disabled":"disabled"});
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -32,7 +33,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
                 }
                 return;
             }
-        });
+        });*/
 	});
 	
 	table.render({
@@ -53,7 +54,6 @@ layui.define(['layer', 'table', 'form'], function(exports){
 
 	//修改
 	form.on('submit(add)', function(data){
-
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
