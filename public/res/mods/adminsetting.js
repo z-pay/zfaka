@@ -14,7 +14,7 @@ layui.define(['layer', 'table','form'], function(exports){
 			{field: 'name', title: '参数'},
 			{field: 'value', title: '值'},
 			{field: 'tag', title: '备注'},
-			{field: 'updatetime', title: '更新时间', width:200, templet: '#updatetime',align:'center'}
+			{field: 'updatetime', title: '更新时间', width:200, templet: '#updatetime',align:'center'},
 			{field: 'opt', title: '操作', width:200, templet: '#opt',align:'center'}
 		]]
 	});
