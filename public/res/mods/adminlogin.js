@@ -26,7 +26,7 @@ layui.define(['layer', 'form'], function(exports){
 			if (res.code == '1') {
 				location.pathname = '/admin'
 			} else {
-				$('.loadcode').attr('src','/Captcha?t=login&n=' + Math.random());
+				$('.loadcode').attr('src','/Captcha?t=adminlogin&n=' + Math.random());
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
 		})
