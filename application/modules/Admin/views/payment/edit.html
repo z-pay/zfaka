@@ -46,8 +46,8 @@
 						  <div class="layui-form-item">
 							<label class="layui-form-label">是否激活</label>
 							<div class="layui-input-block">
-							  <input type="radio" name="active" value="1" title="激活" checked="">
-							  <input type="radio" name="active" value="0" title="取消">
+							  <input type="radio" name="active" value="1" title="激活" <?php if($item['active']=='1'):?>checked=""<?php endif;?>>
+							  <input type="radio" name="active" value="0" title="取消" <?php if($item['active']=='0'):?>checked=""<?php endif;?>>
 							</div>
 						  </div>
                         <div class="layui-form-item">

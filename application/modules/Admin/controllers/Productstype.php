@@ -82,6 +82,16 @@ class ProductstypeController extends AdminBasicController
             return FALSE;
 		}
     }
+	
+    public function addAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$data = array();
+		$this->getView()->assign($data);
+    }
 	public function editajaxAction()
 	{
 		$method = $this->getPost('method',false);
