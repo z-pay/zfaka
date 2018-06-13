@@ -107,7 +107,7 @@ class ProductstypeController extends AdminBasicController
 					$u = $this->m_products_type->UpdateByID($m,$id);
 					if($u){
 						//更新缓存 
-						$this->m_products_type->getConfig(1);
+						//$this->m_products_type->getConfig(1);
 						$data = array('code' => 1, 'msg' => '更新成功');
 					}else{
 						$data = array('code' => 1003, 'msg' => '更新失败');
