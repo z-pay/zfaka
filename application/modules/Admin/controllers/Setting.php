@@ -64,4 +64,60 @@ class SettingController extends AdminBasicController
         }
 		Helper::response($data);
 	}
+	
+    public function editAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$item=$this->m_config->SelectByID('',$id);
+			$data['item'] =$item;
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/admin/setting");
+            return FALSE;
+		}
+    }
+	public function editajaxAction()
+	{
+		$method = $this->getPost('method',false);
+		$id = $this->getPost('id',false);
+		$name = $this->getPost('name',false);
+		$value = $this->getPost('value',false);
+		$tag = $this->getPost('tag',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
+		
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		if($method AND $name AND $value AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$m=array(
+					'name'=>$name,
+					'value'=>$value,
+					'sendmail'=>$sendmail,
+					'tag'=>$tag,
+				);
+				if($method == 'update' AND $id>0){
+					$this->m_config->UpdateByID($m,$id);
+					$data = array('code' => 1, 'msg' => '更新成功');
+				}else{
+					$data = array('code' => 1002, 'msg' => '未知方法');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}	
 }
