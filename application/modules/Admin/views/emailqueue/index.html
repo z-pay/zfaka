@@ -38,7 +38,11 @@
                         {{ createTime(d.addtime) }}
                     </script>
                     <script type="text/html" id="sendtime">
-                        {{ createTime(d.sendtime) }}
+						 {{#  if(d.sendtime >0){ }}
+						   {{ createTime(d.sendtime) }}
+						  {{#  } else { }}
+						  未支付
+						  {{#  } }}
                     </script>
         </div>
 
