@@ -16,8 +16,8 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'productname', title: '商品', minWidth:160},
 			{field: 'number', title: '数量'},
 			{field: 'paymoney', title: '支付金额'},
-			{field: 'status', title: '状态', width:200, templet: '#status',align:'center'}
-			{field: 'opt', title: '操作', width:200, templet: '#opt',align:'center'}
+			{field: 'status', title: '状态', width:200, templet: '#status',align:'center'},
+			{field: 'opt', title: '操作', width:200, templet: '#opt',align:'center'},
 		]]
 	});
 
