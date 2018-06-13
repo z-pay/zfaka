@@ -52,8 +52,8 @@ class ProductsController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$items=$this->m_products->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
-			
+			$sql = "SELECT p1.*,p2.name as typename FROM `t_products` as p1 left join `t_products_type` as p2 on p1.typeid = p2.id Order by p1.id desc LIMIT {$limits}";
+			$items=$this->m_products->Query($sql);
             if (empty($items)) {
                 $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
             } else {
