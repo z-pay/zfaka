@@ -39,7 +39,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 					yes: function(index, layero){
 					    location.reload();
 					},
-					cancel: function(){ 
+					cancel: function(){
 					    location.reload();
 					}
 				});
@@ -75,7 +75,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 						yes: function(index, layero){
 							location.reload();
 						},
-						cancel: function(){ 
+						cancel: function(){
 							location.reload();
 						}
 					});
@@ -86,7 +86,44 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
             }
         });*/
 	});
-	
+	table.on('tool(productscard)', function(obj){
+		var data = obj.data; //获得当前行数据
+		var layEvent = obj.event; //获得 lay-event 对应的值
+		var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+		if (layEvent === 'del') { //删除
+			// layer.confirm('真的删除行么', function(index) {
+			// 	obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+			// 	layer.close(index);
+			// 	//向服务端发送删除指令
+			// });
+			$.ajax({
+	            type: "POST",
+	            dataType: "json",
+	            url: "/admin/productscard/deleteajax",
+	            data: { "csrf_token": TOKEN,'cardid':data.id},
+	            success: function(res) {
+	                if (res.code == 1) {
+	                	obj.del();
+						layer.open({
+							title: '提示',
+							content: '删除成功',
+							btn: ['确定'],
+							yes: function(index, layero){
+								location.reload();
+							},
+							cancel: function(){
+								location.reload();
+							}
+						});
+	                } else {
+						layer.msg(data.msg,{icon:2,time:5000});
+	                }
+	                return;
+	            }
+	        });
+		}
+	});
 	table.render({
 		elem: '#productscard',
 		url: '/admin/productscard/ajax',
@@ -98,7 +135,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 			{field: 'card', title: '卡密'},
 			{field: 'addtime', title: '添加时间', width:200, templet: '#addtime',align:'center'},
 			{field: 'oid', title: '状态', width:100, templet: '#status',align:'center'},
-			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'},
+			{field: 'opt', title: '操作', width:100, toolbar: '#opt',align:'center'},
 		]]
 	});
 
@@ -122,7 +159,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 					yes: function(index, layero){
 					    location.reload();
 					},
-					cancel: function(){ 
+					cancel: function(){
 					    location.reload();
 					}
 				});
@@ -139,6 +176,6 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
-	
+
 	exports('adminproductscard',null)
 });
