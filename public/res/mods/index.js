@@ -5,7 +5,7 @@
  */
 
 layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
-  
+
   var $ = layui.jquery
   ,layer = layui.layer
   ,laytpl = layui.laytpl
@@ -16,19 +16,19 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
   ,device = layui.device()
 
   ,DISABLED = 'layui-btn-disabled';
-  
+
   //阻止IE7以下访问
   if(device.ie && device.ie < 8){
     layer.alert('如果您非得使用 IE 浏览器访问Fly社区，那么请使用 IE8+');
   }
-  
+
   layui.focusInsert = function(obj, str){
     var result, val = obj.value;
     obj.focus();
     if(document.selection){ //ie
-      result = document.selection.createRange(); 
-      document.selection.empty(); 
-      result.text = str; 
+      result = document.selection.createRange();
+      document.selection.empty();
+      result.text = str;
     } else {
       result = [val.substring(0, obj.selectionStart), str, val.substr(obj.selectionEnd)];
       obj.focus();
@@ -36,6 +36,17 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
     }
   };
 
+  //个人中心侧边导航
+  var href = location.href + '/';
+  var navItem = $('.fly-user-main .layui-nav .layui-nav-item');
+  var navItemLen = navItem.length;
+  for (var i = navItemLen - 1; i >= 0; i--) {
+    var page = navItem.eq(i).find('a').attr('href');
+    if (href.indexOf(page)>-1) {
+      navItem.eq(i).addClass('layui-this').siblings().removeClass('layui-this');
+      break;
+    }
+  }
 
   //数字前置补零
   layui.laytpl.digit = function(num, length, end){
@@ -47,7 +58,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
     }
     return num < Math.pow(10, length) ? str + (num|0) : num;
   };
-  
+
 
   //加载特定模块
   if(layui.cache.page && layui.cache.page !== 'index'){
@@ -56,7 +67,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
     layui.extend(extend);
     layui.use(layui.cache.page);
   }
-  
+
 
 
 
