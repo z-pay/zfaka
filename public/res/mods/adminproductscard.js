@@ -12,7 +12,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		,accept: 'file' //普通文件
 		,exts: 'txt' //只允许txt文件
 		,size: 100 //限制文件大小，单位 KB
-		,bindAction: '#startUpload'
+		//,bindAction: '#startUploadfff'
 		,done: function(res){
 			console.log(res)
 		}

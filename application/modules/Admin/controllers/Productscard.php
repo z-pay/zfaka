@@ -175,12 +175,13 @@ class ProductscardController extends AdminBasicController
 					$txtfile = $_FILES['file']['tmp_name'];
 					$txtFileData = file_get_contents($txtfile);
 					//处理编码问题
-					$encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
+					echo $encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
 					if($encoding != false){
 						$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
 					}else{
 						$txtFileData = mb_convert_encoding ( $txtFileData, 'UTF-8','Unicode');
 					}
+					print_r($txtFileData);
 					//开始处理
 					$huiche=array("\n","\r");
 					$replace='\r\n';
