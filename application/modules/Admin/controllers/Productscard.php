@@ -175,7 +175,7 @@ class ProductscardController extends AdminBasicController
 					$txtfile = $_FILES['file']['tmp_name'];
 					$txtFileData = file_get_contents($txtfile);
 					//处理编码问题
-					echo $encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
+					$encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
 					if($encoding != false){
 						$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
 					}else{
@@ -191,7 +191,6 @@ class ProductscardController extends AdminBasicController
 							$m[]=array('pid'=>$pid,'oid'=>0,'card'=>$line,'addtime'=>time());
 						}
 					}
-					print_r($m);
 					if(!empty($m)){
 						$u = $this->m_products_card->MultiInsert($m);
 						if($u){
