@@ -171,8 +171,17 @@ class ProductscardController extends AdminBasicController
 			if(is_numeric($pid) AND $pid>0){
 				try{
 					$m = array();
+					//读取文件
 					$txtfile = $_FILES['file']['tmp_name'];
 					$txtFileData = file_get_contents($txtfile);
+					//处理编码问题
+					$encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
+					if($encoding != false){
+						$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
+					}else{
+						$txtFileData = mb_convert_encoding ( $txtFileData, 'UTF-8','Unicode');
+					}
+					//开始处理
 					$huiche=array("\n","\r");
 					$replace='\r\n';
 					$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
