@@ -1,0 +1,41 @@
+<?php include ADMIN_COMMON_PATH.'/header.html';?>
+<div class="layui-container fly-marginTop fly-user-main">
+    <?php include ADMIN_COMMON_PATH.'/setting-nav.html';?>
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="email">
+            <ul class="layui-tab-title" id="LAY_mine">
+                <li class="layui-this" lay-id="info">修改产品分类</li>
+            </ul>
+            <div class="layui-tab-content" style="padding: 20px 0;">
+                <div class="layui-form-pane layui-tab-item layui-show">
+                    <form class="layui-form layui-show" method="post">
+                        <div class="layui-form-item">
+                            <label for="name" class="layui-form-label">分类名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="name" name="name" ay-verify="required" autocomplete="off" value="<?php echo $item['name'];?>" class="layui-input">
+                            </div>
+                        </div>
+						  <div class="layui-form-item">
+							<label class="layui-form-label">是否激活</label>
+							<div class="layui-input-block">
+							  <input type="radio" name="active" value="1" title="激活" <?php if($item['name']=='1'):?>checked="checked"<?php endif;?>>
+							  <input type="radio" name="active" value="0" title="取消" <?php if($item['name']=='0'):?>checked="checked"<?php endif;?>>
+							</div>
+						  </div>
+                        <div class="layui-form-item">
+							<input type="hidden" name="id" value="<?php echo $item['id'];?>">
+							<input type="hidden" name="method" value="update">
+                            <button class="layui-btn" key="set-mine" lay-filter="edit" lay-submit>确认修改</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--引入公共底文件-->
+<?php include ADMIN_COMMON_PATH.'/footer.html';?>
+<script>
+    layui.use('adminproductstype');
+</script>

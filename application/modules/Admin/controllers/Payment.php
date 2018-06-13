@@ -130,5 +130,5 @@ class PaymentController extends AdminBasicController
 			$data = array('code' => 1000, 'msg' => '丢失参数');
 		}
 		Helper::response($data);
-	}	
+	}
 }
