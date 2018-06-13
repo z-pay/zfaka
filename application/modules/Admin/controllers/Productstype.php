@@ -122,6 +122,15 @@ class ProductstypeController extends AdminBasicController
 					}else{
 						$data = array('code' => 1003, 'msg' => '更新失败');
 					}
+				}elseif($method == 'add'){
+					$u = $this->m_products_type->Insert($m);
+					if($u){
+						//更新缓存 
+						//$this->m_products_type->getConfig(1);
+						$data = array('code' => 1, 'msg' => '新增成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '新增失败');
+					}
 				}else{
 					$data = array('code' => 1002, 'msg' => '未知方法');
 				}
