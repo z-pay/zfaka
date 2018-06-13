@@ -21,7 +21,23 @@
     </div>
   </div>
 </div>
-
+ <script type="text/html" id="auto">
+ {{#  if(d.auto >0){ }}
+   <span class="layui-badge layui-bg-green">自动发货</span>
+  {{#  } else { }}
+   <span class="layui-badge layui-bg-gray">手工发货</span>
+  {{#  } }}
+</script>
+ <script type="text/html" id="ishidden">
+ {{#  if(d.auto >0){ }}
+   <span class="layui-badge layui-bg-green">在售</span>
+  {{#  } else { }}
+   <span class="layui-badge layui-bg-gray">停售</span>
+  {{#  } }}
+</script>
+ <script type="text/html" id="opt">
+ <a class="layui-btn layui-btn-warm layui-btn-xs" href="/admin/products/edit/?id={{d.id}}">编辑</a>
+</script>
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>

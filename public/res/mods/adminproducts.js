@@ -13,10 +13,11 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'id', title: 'ID', width:80},
 			{field: 'typeid', title: '商品类型'},
 			{field: 'name', title: '商品名'},
-			{field: 'auto', title: '自动发货'},
+			{field: 'auto', title: '自动发货', width:100, templet: '#auto',align:'center'},
 			{field: 'qty', title: '数量'},
 			{field: 'price', title: '单价'},
-			{field: 'ishidden', title: '是否上架'},
+			{field: 'ishidden', title: '是否上架', width:100, templet: '#ishidden',align:'center'},
+			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'},
 		]]
 	});
 
