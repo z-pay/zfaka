@@ -12,12 +12,24 @@
                 <div class="layui-form-pane layui-tab-item layui-show">
                     <form class="layui-form layui-show" id="import_table" method="post">
 						<div class="layui-form-item">
+							<label class="layui-form-label">商品</label>
+							<div class="layui-input-inline">
+							  <select name="pid" lay-filter="required" lay-verify="required">
+								<option value=""></option>
+								<?php if(!empty($products)):?>
+								<?php foreach($products AS $p):?>
+								<option value="<?php echo $p['id'];?>"><?php echo $p['name'];?></option>
+								<?php endforeach;?>
+								<?php endif;?>
+							  </select>
+							</div>
+						  </div>
+						<div class="layui-form-item">
 							<div class="layui-upload-drag" id="import_cards">
 							  <i class="layui-icon"></i>
 							  <p>点击上传，或将文件拖拽到此处</p>
 							</div>
 						</div>
-						<input type="hidden" name="pid" value="1">
                         <div class="layui-form-item">
                             <button class="layui-btn" id="startUpload" key="set-mine" lay-filter="import" lay-submit>确认导入</button>
                         </div>

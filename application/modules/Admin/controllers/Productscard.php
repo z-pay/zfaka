@@ -168,31 +168,35 @@ class ProductscardController extends AdminBasicController
 	public function importajaxAction(){
 		if(is_array($_FILES) AND !empty($_FILES) AND isset($_FILES['file'])){
 			$pid = $this->getPost('pid');
-			try{
-				$txtfile = $_FILES['file']['tmp_name'];
-				$txtFileData = file_get_contents($txtfile);
-				$data = array('code' => 1, 'msg' => $txtFileData.$pid);
-				$huiche=array("\n","\r");
-				$replace='\r\n';
-				$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
-				$newTxtFileData_array = explode($replace,$newTxtFileData);
-				foreach($newTxtFileData_array AS $line){
-					if(strlen($line)>0){
-						$line_array = explode(',',$line);
-						if(isset($line[0]) AND $line[0]>0 AND strlen($line[1])>0 AND isset($line[1])){
-							
+			if(is_numeric($pid) AND $pid>0){
+				try{
+					$m = array();
+					$txtfile = $_FILES['file']['tmp_name'];
+					$txtFileData = file_get_contents($txtfile);
+					$huiche=array("\n","\r");
+					$replace='\r\n';
+					$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
+					$newTxtFileData_array = explode($replace,$newTxtFileData);
+					foreach($newTxtFileData_array AS $line){
+						if(strlen($line)>0){
+							$m[]=array('pid'=>$pid,'oid'=>0,'card'=>$line,'addtime'=>time());
 						}
 					}
+					if(!empty($m)){
+						$u = $this->m_products_card->MultiInsert($m);
+						if($u){
+							$data = array('code' => 1, 'msg' => '成功');
+						}else{
+							$data = array('code' => 1004, 'msg' => '失败');
+						}
+					}else{
+						$data = array('code' => 1003, 'msg' => '没有卡密存在','data'=>array());
+					}
+				}catch(\Exception $e) {
+					$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
 				}
-				/*
-				$u = $this->m_products_card->MultiInsert($m);
-				if($u){
-					$data = array('code' => 1, 'msg' => '成功');
-				}else{
-					$data = array('code' => 1003, 'msg' => '失败');
-				}*/
-			}catch(\Exception $e) {
-				$data = array('code' => 1001, 'msg' => $e->getMessage(),'data'=>array());
+			}else{
+				$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
 			}
 		}else{
 			$data = array('code' => 1000, 'msg' => '上传内容为空,请重新上传','data'=>array());

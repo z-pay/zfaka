@@ -21,13 +21,11 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	form.on('submit(import)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
-		
 		var formData = new FormData(document.getElementById("import_table"));
 		$.ajax({
 			url: '/admin/productscard/importajax',
 			type: 'POST',
 			dataType: 'json',
-			//data: data.field,
 			data:formData,
 			processData: false,
             contentType: false,
@@ -55,7 +53,6 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		.always(function() {
 			layer.close(i);
 		});
-
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
 	//删除
