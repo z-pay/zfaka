@@ -6,7 +6,7 @@
  * Date:20180509
  */
 
-class EmailController extends PcBasicController
+class EmailController extends AdminBasicController
 {
     private $m_email;
 	
