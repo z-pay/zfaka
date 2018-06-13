@@ -82,7 +82,7 @@ class OrderController extends AdminBasicController
 			$cards=$this->m_products_card->Where(array('oid'=>$order['id']))->Select();
 			$card_mi_array = array_column($cards, 'card');
 			$card_mi_str = implode(',',$card_mi_array);
-			$data['cardmi'] = $cardmi;
+			$data['cardmi'] = $card_mi_str;
 			
 			$this->getView()->assign($data);
 		}else{

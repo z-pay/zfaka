@@ -19,14 +19,14 @@
 							</div>
                         <div class="layui-form-item layui-form-text">
                             <label for="email" class="layui-form-label">邮箱</label>
-                            <div class="layui-input-block">
-                                <textarea placeholder="" id="email" name="email" disabled autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $order['email'];?></textarea>
+                            <div class="layui-input-inline">
+								<input type="text" id="email" name="email" disabled autocomplete="off" value="<?php echo $order['email'];?>" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label for="productname" class="layui-form-label">商品名称</label>
-                            <div class="layui-input-block">
-                                <textarea placeholder="" id="productname" name="productname" disabled autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $order['productname'];?></textarea>
+                            <div class="layui-input-inline">
+								<input type="text" id="productname" name="productname" disabled autocomplete="off" value="<?php echo $order['productname'];?>" class="layui-input">
                             </div>
                         </div>
 						
@@ -84,11 +84,11 @@
 								</div>
 							</div> 
 						  
-						 <?php if(!empty($cardmi)):?>
+						 <?php if($cardmi):?>
                         <div class="layui-form-item layui-form-text">
-                            <label for="rsa_private_key" class="layui-form-label">卡密</label>
+                            <label for="cardmi" class="layui-form-label">卡密</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="" id="rsa_private_key" name="rsa_private_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $cardmi;?></textarea>
+                                <textarea placeholder="" id="cardmi" name="cardmi" disabled autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $cardmi;?></textarea>
                             </div>
                         </div>
 						<?php endif;?>
