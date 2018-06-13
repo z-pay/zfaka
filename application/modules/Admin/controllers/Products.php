@@ -84,7 +84,7 @@ class ProductsController extends AdminBasicController
 			
 			$this->getView()->assign($data);
 		}else{
-            $this->redirect("/admin/payment");
+            $this->redirect("/admin/products");
             return FALSE;
 		}
     }
@@ -95,16 +95,11 @@ class ProductsController extends AdminBasicController
             $this->redirect("/admin/login");
             return FALSE;
         }
-		$id = $this->get('id');
-		if($id AND $id>0){
-			$data = array();
-			$item=$this->m_products->SelectByID('',$id);
-			$data['item'] =$item;
-			$this->getView()->assign($data);
-		}else{
-            $this->redirect("/admin/payment");
-            return FALSE;
-		}
+
+		$data = array();
+		$productstype=$this->m_products_type->Order(array('id'=>'DESC'))->Select();
+		$data['productstype'] = $productstype;
+		$this->getView()->assign($data);
     }
 	public function editajaxAction()
 	{
