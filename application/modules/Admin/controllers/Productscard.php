@@ -100,6 +100,8 @@ class ProductscardController extends AdminBasicController
 				$m=array(
 					'pid'=>$pid,
 					'card'=>$card,
+					'oid'=>0,
+					'addtime'=>time(),
 				);
 				if($method == 'add'){
 					$u = $this->m_products_card->Insert($m);
