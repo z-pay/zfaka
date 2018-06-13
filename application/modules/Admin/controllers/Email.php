@@ -68,7 +68,7 @@ class EmailController extends AdminBasicController
 					}
 				}else{
 					$id = $this->m_email->Insert($m);
-					ifidu){
+					if($id){
 						//更新缓存 
 						$this->m_email->getConfig(1);
 						$data = array('code' => 1, 'msg' => '新增成功');
