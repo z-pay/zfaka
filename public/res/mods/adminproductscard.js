@@ -14,8 +14,8 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'name', title: '商品名'},
 			{field: 'card', title: '卡密'},
 			{field: 'addtime', title: '添加时间', width:200, templet: '#addtime',align:'center'},
-			{field: 'oid', title: '状态', width:100, templet: '#status',align:'center'}
-			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'}
+			{field: 'oid', title: '状态', width:100, templet: '#status',align:'center'},
+			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'},
 		]]
 	});
 
