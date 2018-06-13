@@ -51,7 +51,7 @@
 {{#  if(d.oid >0){ }}
  <a class="layui-btn layui-btn-warm layui-btn-xs" href="/admin/order/view/?id={{d.oid}}">查看订单</a>
   {{#  } else { }}
-  /
+<button class="delete layui-btn layui-btn-danger layui-btn-xs" data-cardid="{{d.id}}">删除</button>
  {{#  } }}
 </script>
       </div>

@@ -123,4 +123,33 @@ class ProductscardController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
+	
+	public function deleteajaxAction()
+	{
+		$cardid = $this->getPost('cardid',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
+		
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		if($cardid AND $cardid>0 AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$u = $this->m_products_card->DeleteByID($cardid);
+				if($u){
+					$data = array('code' => 1, 'msg' => '成功');
+				}else{
+					$data = array('code' => 1003, 'msg' => '失败');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
 }
