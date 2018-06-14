@@ -139,9 +139,14 @@ class ProductsController extends AdminBasicController
 					'sort_num'=>$sort_num,
 				);
 				if($method == 'edit' AND $id>0){
-					//修正库存问题,在更新商品时,如果是自动发货商品,库存不能修改
-					if($stockcontrol>0){
-						unset($m['qty']);
+					//修正库存问题,如果不控制库存，库存默认为０
+					if($stockcontrol<1){
+						$m['qty'] = 0;
+					}else{
+						//修正库存问题,在更新商品时,如果是自动发货商品,库存不能修改
+						if($auto>0){
+							unset($m['qty']);
+						}
 					}
 					$u = $this->m_products->UpdateByID($m,$id);
 					if($u){
@@ -151,7 +156,7 @@ class ProductsController extends AdminBasicController
 					}
 				}elseif($method == 'add'){
 					//修正库存问题,在添加新商品时,如果是自动发货商品,库存默认为0
-					if($stockcontrol>0){
+					if($auto>0 OR $stockcontrol<1){
 						$m['qty'] = 0;
 					}
 					$u = $this->m_products->Insert($m);

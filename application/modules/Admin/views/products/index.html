@@ -29,6 +29,13 @@
    <span class="layui-badge layui-bg-gray">手工发货</span>
   {{#  } }}
 </script>
+ <script type="text/html" id="qty">
+ {{#  if(d.stockcontrol >0){ }}
+	{{d.qty}}
+  {{#  } else { }}
+   <span class="layui-badge layui-bg-gray">不限量</span>
+  {{#  } }}
+</script>
  <script type="text/html" id="active">
  {{#  if(d.active >0){ }}
    <span class="layui-badge layui-bg-green">在售</span>
