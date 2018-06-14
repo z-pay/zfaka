@@ -48,17 +48,17 @@
 				if (res.code == '1') {
 					var product = res.data.product;
 					$('#price').val(product.price);
-					if(product.qty>0){
-						$('#qty').val(product.qty);
-						$("#buy").removeAttr("disabled");
-					}else{
-						if(product.stockcontrol>0){
+					if(product.stockcontrol>0){
+						if(product.qty>0){
+							$('#qty').val(product.qty);
+							$("#buy").removeAttr("disabled");
+						}else{
 							$('#qty').val("库存不足");
 							$("#buy").attr("disabled","true");
-						}else{
-							$('#qty').val("不限量");
-							$("#buy").removeAttr("disabled");
 						}
+					}else{
+						$('#qty').val("不限量");
+						$("#buy").removeAttr("disabled");
 					}
 					$('#prodcut_description').html(product.description);
 					form.render();
