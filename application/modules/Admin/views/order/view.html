@@ -84,11 +84,11 @@
 								</div>
 							</div> 
 						  
-						 <?php if($cardmi):?>
+						 <?php if(isset($order['kami']) AND strlen($order['kami'])>0):?>
                         <div class="layui-form-item layui-form-text">
                             <label for="cardmi" class="layui-form-label">卡密</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="" id="cardmi" name="cardmi" disabled autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $cardmi;?></textarea>
+                                <textarea placeholder="" id="cardmi" name="cardmi" disabled autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $order['kami'];?></textarea>
                             </div>
                         </div>
 						<?php endif;?>

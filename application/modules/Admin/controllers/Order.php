@@ -79,10 +79,6 @@ class OrderController extends AdminBasicController
 			$order = $this->m_order->SelectByID('',$id);
 			if(is_array($order) AND !empty($order)){
 				$data['order'] = $order;
-				
-				$cards = explode(',',$order['kami']);
-				$card_mi_str = implode('\r\n',$cards);
-				$data['cardmi'] = $card_mi_str;
 				$this->getView()->assign($data);
 			}else{
 				$this->redirect("/admin/products");
