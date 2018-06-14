@@ -65,7 +65,7 @@
 					if(product.auto>0){
 						var str = '<span class="layui-badge layui-bg-green">自动发货</span>';
 					}else{
-						var str = '<span class="layui-badge layui-bg-gray">手工发货</span>';
+						var str = '<span class="layui-badge layui-bg-black">手工发货</span>';
 					}
 					
 					html = str + product.description;
