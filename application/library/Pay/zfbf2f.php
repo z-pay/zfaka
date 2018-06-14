@@ -69,7 +69,7 @@ class zfbf2f implements PayNotifyInterface
 						if($product['auto']>0){
 							//3.自动处理
 							//查询通过订单中记录的pid，根据购买数量查询卡密
-							$cards = $m_products_card->Where(array('pid'=>$order['pid'],'oid'=>0))->Limit($order['number'])->Select();
+							$cards = $m_products_card->Where(array('pid'=>$order['pid'],'active'=>0))->Limit($order['number'])->Select();
 							if(is_array($cards) AND !empty($cards) AND count($cards)==$order['number']){
 								//3.1 库存充足,获取对应的卡id,卡密
 								$card_mi_array = array_column($cards, 'card');
@@ -79,7 +79,7 @@ class zfbf2f implements PayNotifyInterface
 								//3.1.2 进行卡密处理,如果进行了库存控制，就开始处理
 								if($product['stockcontrol']>0){
 									//3.1.2.1 直接进行卡密与订单的关联
-									$m_products_card->Where("id in ({$card_id_str})")->Where(array('oid'=>0))->Update(array('active'=>1));
+									$m_products_card->Where("id in ({$card_id_str})")->Where(array('active'=>0))->Update(array('active'=>1));
 									//3.1.2.2 然后进行库存清减
 									$qty_m = array('qty' => 'qty-'.$order['number']);
 									$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
