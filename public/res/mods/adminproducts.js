@@ -6,6 +6,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	var layedit = layui.layedit;
 	
 	layedit.build('description'); //建立编辑器
+	layedit.sync('description');
 	
 	table.render({
 		elem: '#products',
