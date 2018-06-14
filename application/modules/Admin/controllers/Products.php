@@ -56,7 +56,7 @@ class ProductsController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$sql = "SELECT p1.*,p2.name as typename FROM `t_products` as p1 left join `t_products_type` as p2 on p1.typeid = p2.id Order by p1.id desc LIMIT {$limits}";
+			$sql = "SELECT p1.id,p1.name,p1.price,p1.qty,p1.auto,p1.active,p2.name as typename FROM `t_products` as p1 left join `t_products_type` as p2 on p1.typeid = p2.id Order by p1.id desc LIMIT {$limits}";
 			$items=$this->m_products->Query($sql);
             if (empty($items)) {
                 $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
@@ -79,7 +79,7 @@ class ProductsController extends AdminBasicController
 		if($id AND $id>0){
 			$data = array();
 			$product=$this->m_products->SelectByID('',$id);
-			$data['product'] =$product;
+			$data['product'] = $product;
 			
 			$productstype=$this->m_products_type->Order(array('id'=>'DESC'))->Select();
 			$data['productstype'] = $productstype;
@@ -130,7 +130,7 @@ class ProductsController extends AdminBasicController
 				$m=array(
 					'typeid'=>$typeid,
 					'name'=>$name,
-					'description'=>$description,
+					'description'=>htmlspecialchars($description),
 					'stockcontrol'=>$stockcontrol,
 					'qty'=>$qty,
 					'price'=>$price,
