@@ -12,14 +12,14 @@
             dataType: "json",
             url: "/product/order/payajax",
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
-            success: function(data) {
-                if (data.code == 1) {
+            success: function(res) {
+                if (res.code == 1) {
 					layer.open({
 						type: 1
 						,title: false
 						,offset: 'auto'
 						,id: 'layerDemoauto' //防止重复弹出
-						,content: '<div style="text-align: center;"><img src="/product/order/showqr/?url='+data.data+'" alt="当面付" width="230" height="230"><p>请使用手机支付宝扫一扫</p><p>扫描二维码完成支付</p></div>'
+						,content: '<div style="text-align: center;"><img src="/product/order/showqr/?url='+res.data+'" alt="当面付" width="230" height="230"><p>请使用手机支付宝扫一扫</p><p>扫描二维码完成支付</p></div>'
 						,btn: '关闭'
 						,btnAlign: 'c' //按钮居中
 						,shade: 0 //不显示遮罩
@@ -29,7 +29,7 @@
 					});
 					queryPay();
                 } else {
-					layer.msg(data.msg,{icon:2,time:5000});
+					layer.msg(res.msg,{icon:2,time:5000});
                 }
                 return;
             }

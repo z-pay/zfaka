@@ -14,7 +14,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		,size: 100 //限制文件大小，单位 KB
 		//,bindAction: '#startUploadfff'
 		,done: function(res){
-			console.log(res)
+			//console.log(res)
 		}
 	});
 	//导入
@@ -55,37 +55,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
-	//删除
-	$(".productscard-table").on("click",".delete",function(event){
-		event.preventDefault();
-		var cardid = $(this).attr("data-cardid");
-		alert(cardid);
-		/*$(this).attr({"disabled":"disabled"});
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "/admin/productscard/deleteajax",
-            data: { "csrf_token": TOKEN,'cardid':cardid},
-            success: function(res) {
-                if (res.code == 1) {
-					layer.open({
-						title: '提示',
-						content: '删除成功',
-						btn: ['确定'],
-						yes: function(index, layero){
-							location.reload();
-						},
-						cancel: function(){
-							location.reload();
-						}
-					});
-                } else {
-					layer.msg(data.msg,{icon:2,time:5000});
-                }
-                return;
-            }
-        });*/
-	});
+
 	table.on('tool(productscard)', function(obj){
 		var data = obj.data; //获得当前行数据
 		var layEvent = obj.event; //获得 lay-event 对应的值
@@ -116,7 +86,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 							}
 						});
 	                } else {
-						layer.msg(data.msg,{icon:2,time:5000});
+						layer.msg(res.msg,{icon:2,time:5000});
 	                }
 	                return;
 	            }

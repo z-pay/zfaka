@@ -75,7 +75,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 						}
 					});
                 } else {
-					layer.msg(data.msg,{icon:2,time:5000});
+					layer.msg(res.msg,{icon:2,time:5000});
                 }
                 return;
             }
