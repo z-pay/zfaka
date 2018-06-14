@@ -1,9 +1,12 @@
-layui.define(['layer', 'table', 'form'], function(exports){
+layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var table = layui.table;
 	var form = layui.form;
-
+	var layedit = layui.layedit;
+	
+	layedit.build('description'); //建立编辑器
+	
 	table.render({
 		elem: '#products',
 		url: '/admin/products/ajax',
@@ -20,6 +23,8 @@ layui.define(['layer', 'table', 'form'], function(exports){
 			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'},
 		]]
 	});
+  
+  
   
 	//更新库存
 	$("#products_table").on("click","#updateQty",function(event){
