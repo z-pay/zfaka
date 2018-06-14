@@ -1,4 +1,4 @@
-# zfaka ZFAKA发卡系统(本系统基于yaf+layui开发)
+# ZFAKA发卡系统(本系统基于yaf+layui开发)
 
 # 一、系统介绍
 包含自动发卡功能，有会员中心和后台中心。
