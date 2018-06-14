@@ -6,7 +6,6 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	var layedit = layui.layedit;
 	
 	var edit_description=layedit.build('description'); //建立编辑器
-	layedit.sync(edit_description);
 		
 	table.render({
 		elem: '#products',
@@ -61,6 +60,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	//修改
 	form.on('submit(edit)', function(data){
 		data.field.csrf_token = TOKEN;
+		data.field.description = layedit.getText(edit_description);
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
 			url: '/admin/products/editajax',
