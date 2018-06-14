@@ -159,6 +159,7 @@ class ProductsController extends AdminBasicController
 					if($auto>0 OR $stockcontrol<1){
 						$m['qty'] = 0;
 					}
+					$m['addtime'] = time();
 					$u = $this->m_products->Insert($m);
 					if($u){
 						$data = array('code' => 1, 'msg' => '新增成功');

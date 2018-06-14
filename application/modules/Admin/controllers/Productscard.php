@@ -198,7 +198,7 @@ class ProductscardController extends AdminBasicController
 					if(!empty($m)){
 						$u = $this->m_products_card->MultiInsert($m);
 						if($u){
-							//减少商品数量
+							//增加商品数量
 							$addNum = count($m);
 							$qty_m = array('qty' => 'qty+'.$addNum);
 							$this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m,TRUE);
