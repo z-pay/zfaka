@@ -59,7 +59,7 @@ layui.define(['layer', 'form','base64'], function(exports){
 					var html = "";
 					var list = res.data;
 					for (var i = 0, j = list.length; i < j; i++) {
-						html += '<p>卡密:'+list[i].card+'</p>';
+						html += '<p>卡密:'+list[i]+'</p>';
 					}
 					layer.open({
 						type: 1
