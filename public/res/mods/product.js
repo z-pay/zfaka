@@ -47,6 +47,7 @@
 			success: function (res) {
 				if (res.code == '1') {
 					var product = res.data.product;
+					var html =""
 					$('#price').val(product.price);
 					if(product.stockcontrol>0){
 						if(product.qty>0){
@@ -60,7 +61,15 @@
 						$('#qty').val("不限量");
 						$("#buy").removeAttr("disabled");
 					}
-					$('#prodcut_description').html(product.description);
+					
+					if(product.auto>0){
+						var str = '<span class="layui-badge layui-bg-green">自动发货</span>';
+					}else{
+						var str = '<span class="layui-badge layui-bg-gray">手工发货</span>';
+					}
+					
+					html = str + product.description;
+					$('#prodcut_description').html(html);
 					form.render();
 				} else {
 					layer.msg(res.msg,{icon:2,time:5000});
