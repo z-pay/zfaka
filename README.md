@@ -21,10 +21,12 @@
 
 2.3 配置权限
 >/log      日志目录，需要可写
+
 >/temp     缓存目录，需要可写
 	
 2.4 安装计划任务crontab模块
 >配置定时计划,用于定时发送邮件
+
 >参考：*/2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
 	
 2.5 修改数据库链接
