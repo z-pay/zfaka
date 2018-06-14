@@ -106,8 +106,9 @@ class ProductscardController extends AdminBasicController
 				if($method == 'add'){
 					$u = $this->m_products_card->Insert($m);
 					if($u){
-						//更新缓存 
-						//$this->m_products_type->getConfig(1);
+						//新增商品数量
+						$qty_m = array('qty' => 'qty+1');
+						$this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m,TRUE);
 						$data = array('code' => 1, 'msg' => '新增成功');
 					}else{
 						$data = array('code' => 1003, 'msg' => '新增失败');
@@ -140,6 +141,10 @@ class ProductscardController extends AdminBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$u = $this->m_products_card->DeleteByID($cardid);
 				if($u){
+					//减少商品数量
+					$cards = $this->m_products_card->SelectByID('pid',$cardid);
+					$qty_m = array('qty' => 'qty-1');
+					$this->m_products->Where(array('id'=>$cards['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
 					$data = array('code' => 1, 'msg' => '成功');
 				}else{
 					$data = array('code' => 1003, 'msg' => '失败');
@@ -194,6 +199,10 @@ class ProductscardController extends AdminBasicController
 					if(!empty($m)){
 						$u = $this->m_products_card->MultiInsert($m);
 						if($u){
+							//减少商品数量
+							$addNum = count($m);
+							$qty_m = array('qty' => 'qty+'.$addNum);
+							$this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m,TRUE);
 							$data = array('code' => 1, 'msg' => '成功');
 						}else{
 							$data = array('code' => 1004, 'msg' => '失败');
