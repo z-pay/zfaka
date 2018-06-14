@@ -130,7 +130,7 @@ class ProductsController extends AdminBasicController
 				$m=array(
 					'typeid'=>$typeid,
 					'name'=>$name,
-					'description'=>htmlspecialchars($description),
+					'description'=>html_entity_decode($description),
 					'stockcontrol'=>$stockcontrol,
 					'qty'=>$qty,
 					'price'=>$price,
