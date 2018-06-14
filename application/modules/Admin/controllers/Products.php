@@ -192,9 +192,9 @@ class ProductsController extends AdminBasicController
 		if($pid AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				//修正库存问题,在添加新商品时,如果是自动发货商品,库存默认为0
-				$qty = $this->m_products_card->Where(array('pid'=>$pid,'oid'=>0))->Total();
+				$qty = $this->m_products_card->Where(array('pid'=>$pid,'active'=>0))->Total();
 				$qty_m = array('qty' => $qty);
-				$u = $this->m_products->Where(array('id'=>$pid,'auto'=>1))->Update($qty_m);
+				$u = $this->m_products->Where(array('id'=>$pid,'auto'=>1,'stockcontrol'=>1))->Update($qty_m);
 				if($u){
 					$data = array('code' => 1, 'msg' => '成功');
 				}else{

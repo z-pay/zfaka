@@ -45,7 +45,7 @@ class GetController extends PcBasicController
 		if($pid AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$data = array();
-				$field = array('id', 'name', 'price', 'qty', 'stockcontrol', 'description');
+				$field = array('id', 'name', 'price','auto', 'qty', 'stockcontrol', 'description');
 				$product = $this->m_products->Field($field)->Where(array('id'=>$pid))->SelectOne();
 				$data['product'] = $product;
 				$result = array('code' => 1, 'msg' => 'success','data'=>$data);

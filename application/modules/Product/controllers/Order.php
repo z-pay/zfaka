@@ -93,7 +93,6 @@ class OrderController extends PcBasicController
 						'userid'=>$userid,
 						'email'=>$email,
 						'pid'=>$pid,
-						'auto'=>$product['auto'],
 						'productname'=>$product['name'],
 						'price'=>$product['price'],
 						'number'=>$number,
