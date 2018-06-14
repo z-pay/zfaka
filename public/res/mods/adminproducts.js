@@ -5,9 +5,9 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	var form = layui.form;
 	var layedit = layui.layedit;
 	
-	layedit.build('description'); //建立编辑器
-	layedit.sync('description');
-	
+	var edit_description=layedit.build('description'); //建立编辑器
+	layedit.sync(edit_description);
+		
 	table.render({
 		elem: '#products',
 		url: '/admin/products/ajax',
