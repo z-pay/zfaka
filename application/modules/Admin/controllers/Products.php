@@ -10,11 +10,13 @@ class ProductsController extends AdminBasicController
 {
 	private $m_products;
 	private $m_products_type;
+	private $m_products_card;
     public function init()
     {
         parent::init();
 		$this->m_products = $this->load('products');
 		$this->m_products_type = $this->load('products_type');
+		$this->m_products_card = $this->load('products_card');
     }
 
     public function indexAction()
@@ -137,6 +139,10 @@ class ProductsController extends AdminBasicController
 					'sort_num'=>$sort_num,
 				);
 				if($method == 'edit' AND $id>0){
+					//修正库存问题,在更新商品时,如果是自动发货商品,库存不能修改
+					if($stockcontrol>0){
+						unset($m['qty']);
+					}
 					$u = $this->m_products->UpdateByID($m,$id);
 					if($u){
 						$data = array('code' => 1, 'msg' => '更新成功');
@@ -144,6 +150,10 @@ class ProductsController extends AdminBasicController
 						$data = array('code' => 1003, 'msg' => '更新失败');
 					}
 				}elseif($method == 'add'){
+					//修正库存问题,在添加新商品时,如果是自动发货商品,库存默认为0
+					if($stockcontrol>0){
+						$m['qty'] = 0;
+					}
 					$u = $this->m_products->Insert($m);
 					if($u){
 						$data = array('code' => 1, 'msg' => '新增成功');
@@ -152,6 +162,38 @@ class ProductsController extends AdminBasicController
 					}
 				}else{
 					$data = array('code' => 1002, 'msg' => '未知方法');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
+	
+	public function updateqtyajaxAction()
+	{
+		$pid = $this->getPost('pid',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
+		
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		if($pid AND $csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				//修正库存问题,在添加新商品时,如果是自动发货商品,库存默认为0
+				$qty = $this->m_products_card->Where(array('pid'=>$pid,'oid'=>0))->Total();
+				$qty_m = array('qty' => $qty);
+				$u = $this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m);
+				if($u){
+					$data = array('code' => 1, 'msg' => '成功');
+				}else{
+					$data = array('code' => 1003, 'msg' => '失败');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');

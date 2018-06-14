@@ -21,9 +21,39 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		]]
 	});
 
+	//更新库存
+	$("#products_table").on("click","#updateQty",function(event){
+		event.preventDefault();
+		var pid = $("#pid").val();
+		$(this).attr({"disabled":"disabled"});
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/admin/products/updateqtyajax",
+            data: { "csrf_token": TOKEN,'pid':pid},
+            success: function(res) {
+                if (res.code == 1) {
+					layer.open({
+						title: '提示',
+						content: '更新成功',
+						btn: ['确定'],
+						yes: function(index, layero){
+							location.reload();
+						},
+						cancel: function(){ 
+							location.reload();
+						}
+					});
+                } else {
+					layer.msg(data.msg,{icon:2,time:5000});
+                }
+                return;
+            }
+        });
+	});
+	
 	//修改
 	form.on('submit(edit)', function(data){
-
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
