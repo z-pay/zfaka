@@ -100,7 +100,6 @@ class ProductscardController extends AdminBasicController
 				$m=array(
 					'pid'=>$pid,
 					'card'=>$card,
-					'oid'=>0,
 					'addtime'=>time(),
 				);
 				if($method == 'add'){
@@ -193,7 +192,7 @@ class ProductscardController extends AdminBasicController
 					$newTxtFileData_array = explode($replace,$newTxtFileData);
 					foreach($newTxtFileData_array AS $line){
 						if(strlen($line)>0){
-							$m[]=array('pid'=>$pid,'oid'=>0,'card'=>$line,'addtime'=>time());
+							$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
 						}
 					}
 					if(!empty($m)){

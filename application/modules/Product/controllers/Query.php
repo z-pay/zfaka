@@ -9,12 +9,10 @@
 class QueryController extends PcBasicController
 {
 	private $m_order;
-	private $m_products_card;
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
-		$this->m_products_card = $this->load('products_card');
     }
 
     public function indexAction()
@@ -76,7 +74,8 @@ class QueryController extends PcBasicController
 				if(empty($order)){
 					$data=array('code'=>1005,'msg'=>'没有订单');
 				}else{
-					$cards = $this->m_products_card->Field(array('card'))->Where(array('oid'=>$order['id']))->Select();
+					$card_mi_str = $order['kami'];
+					$cards = explode(',',$card_mi_str);
 					$data=array('code'=>1,'msg'=>'查询成功','data'=>$cards);
 				}
 			} else {
