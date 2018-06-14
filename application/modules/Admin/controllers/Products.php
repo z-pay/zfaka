@@ -189,7 +189,7 @@ class ProductsController extends AdminBasicController
 				//修正库存问题,在添加新商品时,如果是自动发货商品,库存默认为0
 				$qty = $this->m_products_card->Where(array('pid'=>$pid,'oid'=>0))->Total();
 				$qty_m = array('qty' => $qty);
-				$u = $this->m_products->Where(array('id'=>$pid))->Update($qty_m);
+				$u = $this->m_products->Where(array('id'=>$pid,'auto'=>1))->Update($qty_m);
 				if($u){
 					$data = array('code' => 1, 'msg' => '成功');
 				}else{

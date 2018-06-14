@@ -50,7 +50,7 @@
 								<div class="layui-input-inline">
 									<input type="number" id="qty" name="qty" lay-verify="required" autocomplete="off" value="<?php echo $product['qty'];?>" class="layui-input">
 								</div>
-								<div class="layui-form-mid layui-word-aux"><button class="layui-btn layui-btn-warm layui-btn-xs" id="updateQty">更新库存</button></div>
+								<div class="layui-form-mid layui-word-aux"><button class="layui-btn layui-btn-warm layui-btn-xs" <?php if($product['auto']=='0'):?>disabled<?php endif;?> id="updateQty">更新库存</button></div>
 							</div>
 							<div class="layui-form-item">
 								<label for="price" class="layui-form-label">单价</label>
@@ -61,8 +61,8 @@
 						  <div class="layui-form-item">
 							<label class="layui-form-label">发货模式</label>
 							<div class="layui-input-block">
-							  <input type="radio" name="auto" value="1" title="自动发货" <?php if($product['auto']=='1'):?>checked=""<?php endif;?>>
-							  <input type="radio" name="auto" value="0" title="手工发货" <?php if($product['auto']=='0'):?>checked=""<?php endif;?>>
+							  <input class="auto" type="radio" name="auto" value="1" title="自动发货" <?php if($product['auto']=='1'):?>checked=""<?php endif;?>>
+							  <input class="auto" type="radio" name="auto" value="0" title="手工发货" <?php if($product['auto']=='0'):?>checked=""<?php endif;?>>
 							</div>
 						  </div>
 						  <div class="layui-form-item">

@@ -20,7 +20,18 @@ layui.define(['layer', 'table', 'form'], function(exports){
 			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'},
 		]]
 	});
+	
 
+	$(".auto").change(  
+        function() { 
+			var auto = $("input[name='auto']:checked").val();  
+			if (auto == 1) {  
+				$("#updateQty").removeAttr("disabled");
+			}else if (id == 0){  
+				$("#updateQty").attr("disabled","true");
+			}  
+    }); 
+  
 	//更新库存
 	$("#products_table").on("click","#updateQty",function(event){
 		event.preventDefault();
