@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>后台管理－by资料空白</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="资料空白">
-  <meta name="description" content="FAKA平台正在由资料空白开发">
-  <link rel="stylesheet" href="/res/layui/css/layui.css">
-  <link rel="stylesheet" href="/res/css/global.css">
-	<script>
-		var TOKEN="<?php echo $csrf_token;?>";
-        if (self != top) {
-            top.location = self.location;
-        }
+    <meta charset="utf-8">
+    <title>后台管理－by资料空白</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="资料空白">
+    <meta name="description" content="FAKA平台正在由资料空白开发">
+    <link rel="stylesheet" href="/res/layui/css/layui.css">
+    <link rel="stylesheet" href="/res/css/global.css">
+    <script>
+    var TOKEN = "<?php echo $csrf_token;?>";
+    if (self != top) {
+        top.location = self.location;
+    }
     </script>
 </head>
-<body>
 
-<div class="fly-header layui-bg-black">
-  <div class="layui-container">
-    <a class="fly-logo" href="/admin">
-      <img src="/res/images/logo.png" alt="layui">
-    </a>
-	
-    <ul class="layui-nav fly-nav layui-hide-xs">
-		  <li class="layui-nav-item">
-			<a href="/admin/">账户中心</a>
-		  </li>
-		  <li class="layui-nav-item">
-			<a href="/admin/setting">设置中心</a>
-		  </li>
-		  <li class="layui-nav-item">
-			<a href="/admin/user">用户管理</a>
-		  </li>
-		  <li class="layui-nav-item">
-			<a href="/admin/products">商品管理</a>
-		  </li>
-		  <li class="layui-nav-item">
-			<a href="/admin/order">订单管理</a>
-		  </li>
-    </ul>
-	
-    <ul class="layui-nav fly-nav-user">
-      <li class="layui-nav-item">
-        <a class="fly-nav-avatar" href="javascript:;">
-          <cite class="layui-hide-xs"><?php echo $AdminUser['email'];?></cite>
-          <i class="iconfont icon-renzheng layui-hide-xs" title="<?php echo $AdminUser['email'];?>"></i>
-          <img src="/res/images/avatar/<?php echo rand(0,11);?>.jpg">
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="/admin/profiles/"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-          <dd><a href="/admin/logger"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的日志</a></dd>
-          <dd><a href="/admin/"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
-          <hr style="margin: 5px 0;">
-          <dd><a href="/admin/logout/" style="text-align: center;">退出</a></dd>
-        </dl>
-      </li>
-    </ul>
-  </div>
-</div>
+<body>
+    <div class="fly-header layui-bg-black">
+        <div class="layui-container">
+            <a class="fly-logo" href="/admin"><img src="/res/images/logo.png" alt="layui"></a>
+            <ul class="layui-nav fly-nav layui-hide-xs">
+                <li class="layui-nav-item">
+                    <a href="/admin/">账户中心</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/admin/setting">设置中心</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/admin/user">用户管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/admin/products">商品管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/admin/order">订单管理</a>
+                </li>
+            </ul>
+            <ul class="layui-nav fly-nav-user">
+                <li class="layui-nav-item">
+                    <a class="fly-nav-avatar" href="javascript:;">
+                        <cite class="layui-hide-xs">
+                            <?php echo $AdminUser['email'];?>
+                        </cite>
+                        <i class="iconfont icon-renzheng layui-hide-xs" title="<?php echo $AdminUser['email'];?>"></i>
+                        <img src="/res/images/avatar/<?php echo rand(0,11);?>.jpg">
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/admin/profiles/"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
+                        <dd><a href="/admin/logger"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的日志</a></dd>
+                        <dd><a href="/admin/"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+                        <hr style="margin: 5px 0;">
+                        <dd><a href="/admin/logout/" style="text-align: center;">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>

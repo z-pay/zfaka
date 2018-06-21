@@ -4,40 +4,38 @@
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="email">
             <ul class="layui-tab-title" id="LAY_mine">
-
-        <li class="" lay-id="info"><a href="/admin/productscard/">卡密管理</a></li>
-		<li class="layui-this" lay-id="info">添加</li>
-		<li class="" lay-id="info"><a href="/admin/productscard/import">导入</a></li>
+                <li class="" lay-id="info"><a href="/admin/productscard/">卡密管理</a></li>
+                <li class="layui-this" lay-id="info">添加</li>
+                <li class="" lay-id="info"><a href="/admin/productscard/import">导入</a></li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
                     <form class="layui-form layui-show" method="post">
-					
-						<div class="layui-form-item">
-							<label class="layui-form-label">商品</label>
-							<div class="layui-input-inline">
-							  <select name="pid" lay-filter="required" lay-verify="required">
-								<option value=""></option>
-								<?php if(!empty($products)):?>
-								<?php foreach($products AS $p):?>
-								<option value="<?php echo $p['id'];?>"><?php echo $p['name'];?></option>
-								<?php endforeach;?>
-								<?php endif;?>
-							  </select>
-							</div>
-						  </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商品</label>
+                            <div class="layui-input-inline">
+                                <select name="pid" lay-filter="required" lay-verify="required">
+                                    <option value=""></option>
+                                    <?php if(!empty($products)):?>
+                                    <?php foreach($products AS $p):?>
+                                    <option value="<?php echo $p['id'];?>">
+                                        <?php echo $p['name'];?>
+                                    </option>
+                                    <?php endforeach;?>
+                                    <?php endif;?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label for="card" class="layui-form-label">卡密</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="card" name="card" lay-verify="required" autocomplete="off" value="" class="layui-input">
                             </div>
                         </div>
-
                         <div class="layui-form-item">
-							<input type="hidden" name="method" value="add">
+                            <input type="hidden" name="method" value="add">
                             <button class="layui-btn" key="set-mine" lay-filter="add" lay-submit>确认添加</button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -47,5 +45,5 @@
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-    layui.use('adminproductscard');
+layui.use('adminproductscard');
 </script>

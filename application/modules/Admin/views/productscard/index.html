@@ -1,66 +1,62 @@
 <?php include ADMIN_COMMON_PATH.'/header.html';?>
-
 <div class="layui-container fly-marginTop fly-user-main">
-<?php include ADMIN_COMMON_PATH.'/products-nav.html';?>
-
-  <div class="fly-panel fly-panel-user" pad20>
-    <div class="layui-tab layui-tab-brief" lay-filter="user">
-      <ul class="layui-tab-title" id="LAY_mine">
-        <li class="layui-this" lay-id="info">卡密管理</li>
-		<li class="" lay-id="info"><a href="/admin/productscard/add">添加</a></li>
-		<li class="" lay-id="info"><a href="/admin/productscard/import">导入</a></li>
-      </ul>
-      <div class="layui-tab-content" style="padding: 20px 0;">
-
-          <div class="layui-form layui-form-pane layui-tab-item layui-show">
-            <div class="layui-form-item layui-show">
-				 <table class="layui-table productscard-table" id="productscard" lay-filter="productscard"></table>
+    <?php include ADMIN_COMMON_PATH.'/products-nav.html';?>
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="user">
+            <ul class="layui-tab-title" id="LAY_mine">
+                <li class="layui-this" lay-id="info">卡密管理</li>
+                <li class="" lay-id="info"><a href="/admin/productscard/add">添加</a></li>
+                <li class="" lay-id="info"><a href="/admin/productscard/import">导入</a></li>
+            </ul>
+            <div class="layui-tab-content" style="padding: 20px 0;">
+                <div class="layui-form layui-form-pane layui-tab-item layui-show">
+                    <div class="layui-form-item layui-show">
+                        <table class="layui-table productscard-table" id="productscard" lay-filter="productscard"></table>
+                    </div>
+                </div>
             </div>
-          </div>
+            <script type="text/javascript">
+            function createTime(v) {
+                var date = new Date();
+                date.setTime(parseInt(v) * 1000);
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? '0' + m : m;
+                var d = date.getDate();
+                d = d < 10 ? ("0" + d) : d;
+                var h = date.getHours();
+                h = h < 10 ? ("0" + h) : h;
+                var M = date.getMinutes();
+                M = M < 10 ? ("0" + M) : M;
+                var s = date.getSeconds();
+                s = s < 10 ? ("0" + s) : s;
+                var str = y + "-" + m + "-" + d + " " + h + ":" + M + ":" + s;
+                return str;
+            }
+            </script>
+            <script type="text/html" id="addtime">
+                {{ createTime(d.addtime) }}
+            </script>
+            <script type="text/html" id="status">
+                {{# if(d.active >0){ }}
+                <span class="layui-badge layui-bg-gray">已使用</span>
+                {{# } else { }}
+                <span class="layui-badge layui-bg-green">可用</span>
+                {{# } }}
+            </script>
+            <script type="text/html" id="opt">
+                {{# if(d.active >0){ }}
+                /
+                {{# } else { }}
+                <button class="delete layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-cardid="{{d.id}}">删除</button>
+                {{# } }}
+            </script>
         </div>
-                    <script type="text/javascript">
-                        function createTime(v){
-                            var date = new Date();
-                            date.setTime(parseInt(v)*1000);
-                            var y = date.getFullYear();
-                            var m = date.getMonth()+1;
-                            m = m<10?'0'+m:m;
-                            var d = date.getDate();
-                            d = d<10?("0"+d):d;
-                            var h = date.getHours();
-                            h = h<10?("0"+h):h;
-                            var M = date.getMinutes();
-                            M = M<10?("0"+M):M;
-                            var s = date.getSeconds();
-                            s = s<10?("0"+s):s;
-                            var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
-                            return str;
-                        }
-                    </script>
- <script type="text/html" id="addtime">
-{{ createTime(d.addtime) }}
-</script>
-<script type="text/html" id="status">
-	{{#  if(d.active >0){ }}
-		<span class="layui-badge layui-bg-gray">已使用</span>
-	{{#  } else { }}
-		<span class="layui-badge layui-bg-green">可用</span>
-	{{#  } }}
-</script>
-<script type="text/html" id="opt">
-{{#  if(d.active >0){ }}
-/
-  {{#  } else { }}
-<button class="delete layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-cardid="{{d.id}}">删除</button>
- {{#  } }}
-</script>
-      </div>
     </div>
-  </div>
 </div>
-
+</div>
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-    layui.use('adminproductscard');
+layui.use('adminproductscard');
 </script>

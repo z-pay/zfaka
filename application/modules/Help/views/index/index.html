@@ -14,25 +14,24 @@
                     <script type="text/html" id="details">
                         <a class="layui-btn layui-btn-warm layui-btn-xs" href="/help/index/detail/?id={{d.id}}">查看</a>
                     </script>
-
                     <script type="text/javascript">
-                        function createTime(v){
-                            var date = new Date();
-                            date.setTime(parseInt(v)*1000);
-                            var y = date.getFullYear();
-                            var m = date.getMonth()+1;
-                            m = m<10?'0'+m:m;
-                            var d = date.getDate();
-                            d = d<10?("0"+d):d;
-                            var h = date.getHours();
-                            h = h<10?("0"+h):h;
-                            var M = date.getMinutes();
-                            M = M<10?("0"+M):M;
-                            var s = date.getSeconds();
-                            s = s<10?("0"+s):s;
-                            var str = y+"-"+m+"-"+d+" "+h+":"+M+":"+s;
-                            return str;
-                        }
+                    function createTime(v) {
+                        var date = new Date();
+                        date.setTime(parseInt(v) * 1000);
+                        var y = date.getFullYear();
+                        var m = date.getMonth() + 1;
+                        m = m < 10 ? '0' + m : m;
+                        var d = date.getDate();
+                        d = d < 10 ? ("0" + d) : d;
+                        var h = date.getHours();
+                        h = h < 10 ? ("0" + h) : h;
+                        var M = date.getMinutes();
+                        M = M < 10 ? ("0" + M) : M;
+                        var s = date.getSeconds();
+                        s = s < 10 ? ("0" + s) : s;
+                        var str = y + "-" + m + "-" + d + " " + h + ":" + M + ":" + s;
+                        return str;
+                    }
                     </script>
                     <script type="text/html" id="addtime">
                         {{ createTime(d.addtime) }}
@@ -42,7 +41,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>

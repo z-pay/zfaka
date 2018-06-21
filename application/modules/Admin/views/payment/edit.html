@@ -4,7 +4,7 @@
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="email">
             <ul class="layui-tab-title" id="LAY_mine">
-				<li class="" lay-id="info"><a href="/admin/payment">支付设置</a></li>
+                <li class="" lay-id="info"><a href="/admin/payment">支付设置</a></li>
                 <li class="layui-this" lay-id="info">编辑</li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
@@ -25,38 +25,43 @@
                         <div class="layui-form-item layui-form-text">
                             <label for="ali_public_key" class="layui-form-label">ali_public_key</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="" id="ali_public_key" name="ali_public_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['ali_public_key'];?></textarea>
+                                <textarea placeholder="" id="ali_public_key" name="ali_public_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;">
+                                    <?php echo $item['ali_public_key'];?>
+                                </textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label for="rsa_private_key" class="layui-form-label">rsa_private_key</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="" id="rsa_private_key" name="rsa_private_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['rsa_private_key'];?></textarea>
+                                <textarea placeholder="" id="rsa_private_key" name="rsa_private_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;">
+                                    <?php echo $item['rsa_private_key'];?>
+                                </textarea>
                             </div>
                         </div>
-						<div class="layui-form-item">
-							<label class="layui-form-label">签名方式</label>
-							<div class="layui-input-inline">
-							  <select name="sign_type" lay-filter="required">
-								<option value=""></option>
-								<option value="RSA">RSA</option>
-								<option value="RSA2" selected="">RSA2</option>
-							  </select>
-							</div>
-						  </div>
-						  <div class="layui-form-item">
-							<label class="layui-form-label">是否激活</label>
-							<div class="layui-input-inline">
-							  <input type="radio" name="active" value="1" title="激活" <?php if($item['active']=='1'):?>checked=""<?php endif;?>>
-							  <input type="radio" name="active" value="0" title="取消" <?php if($item['active']=='0'):?>checked=""<?php endif;?>>
-							</div>
-						  </div>
                         <div class="layui-form-item">
-							<input type="hidden" name="id" value="<?php echo $item['id'];?>">
-							<input type="hidden" name="method" value="edit">
+                            <label class="layui-form-label">签名方式</label>
+                            <div class="layui-input-inline">
+                                <select name="sign_type" lay-filter="required">
+                                    <option value=""></option>
+                                    <option value="RSA">RSA</option>
+                                    <option value="RSA2" selected="">RSA2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否激活</label>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="active" value="1" title="激活" <?php if($item[ 'active']=='1' ):?>checked=""
+                                <?php endif;?>>
+                                <input type="radio" name="active" value="0" title="取消" <?php if($item[ 'active']=='0' ):?>checked=""
+                                <?php endif;?>>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <input type="hidden" name="id" value="<?php echo $item['id'];?>">
+                            <input type="hidden" name="method" value="edit">
                             <button class="layui-btn" key="set-mine" lay-filter="edit" lay-submit>确认修改</button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -66,5 +71,5 @@
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-    layui.use('adminpayment');
+layui.use('adminpayment');
 </script>

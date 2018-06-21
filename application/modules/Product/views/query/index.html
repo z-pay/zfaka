@@ -2,76 +2,113 @@
 <div class="layui-container fly-marginTop">
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
-			<blockquote class="layui-elem-quote">
+            <blockquote class="layui-elem-quote">
                 <ul class="layui-form">
                     <li class="layui-form-li" style="line-height: 26px;">
-                         <div>
-							<p>友情提示:</p>
-							<p><span class="layui-badge layui-bg-gray">待付款</span>表示已下单，正在付款中</p>
-							<p><span class="layui-badge layui-bg-blue">待处理</span> 表示订单正在排队处理中</p>
-							<p><span class="layui-badge layui-bg-green">已完成</span> 表示订单已经完成</p>
-							<p><span class="layui-badge layui-bg-black">处理失败</span> 表示订单异常，请联系管理员处理</p>
-                         </div>
-                            </li>
-                 </ul>
-			</blockquote>
+                        <div>
+                            <p>友情提示:</p>
+                            <p><span class="layui-badge layui-bg-gray">待付款</span>表示已下单，正在付款中</p>
+                            <p><span class="layui-badge layui-bg-blue">待处理</span> 表示订单正在排队处理中</p>
+                            <p><span class="layui-badge layui-bg-green">已完成</span> 表示订单已经完成</p>
+                            <p><span class="layui-badge layui-bg-black">处理失败</span> 表示订单异常，请联系管理员处理</p>
+                        </div>
+                    </li>
+                </ul>
+            </blockquote>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane">
-						<?php if($querymethod == 'ajax'):?>
-							<form class="layui-form">
-								<div class="layui-form-item">
-									<label for="L_email" class="layui-form-label">邮箱</label>
-									<div class="layui-input-inline">
-										<input type="text" id="L_email" name="email" required lay-verify="required|email" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<label for="L_chapwd" class="layui-form-label">查询密码</label>
-									<div class="layui-input-inline">
-										<input type="password" id="L_chapwd" name="chapwd" required lay-verify="required" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<label for="L_vercode" class="layui-form-label">图形验证</label>
-									<div class="layui-input-inline">
-										<input type="text" id="L_vercode" name="vercode" required lay-verify="required|vercode" placeholder="请输入图形验证码" autocomplete="off" class="layui-input">
-									</div>
-									<div class="">
-										<img src="/Captcha?t=productquery" alt="图片验证码" height="38" class="loadcode">
-									</div>
-								</div>
-								<div class="layui-form-item">
-									<button class="layui-btn" lay-filter="query" lay-submit>查询</button>
-								</div>
-							</form>
-							<table class="layui-table" id="query-table" style="display: none;">
-							  <colgroup><col width="150"><col width="200"><col></colgroup>
-							  <thead><tr><th>订单ID</th><th>订单名称</th><th>数量</th><th>金额</th><th>下单时间</th><th>状态</th></tr> </thead>
-							  <tbody><tr></tr></tbody>
-							</table>
-						<?php else:?>
-							<table class="layui-table" id="query-table">
-							  <colgroup><col width="150"><col width="200"><col></colgroup>
-							  <thead><tr><th>订单ID</th><th>订单名称</th><th>数量</th><th>金额</th><th>下单时间</th><th>状态</th></tr> </thead>
-							  <tbody>
-								<?php if(isset($order) AND !empty($order)):?>
-								<tr><td><span id="orderid"><?php echo $order['orderid'];?></span></td><td><?php echo $order['productname'];?></td><td><?php echo $order['number'];?></td><td><?php echo $order['money'];?></td><td><?php echo date('Y-m-d H:i:s',$order['addtime']);?></td><td><?php echo $cnstatus[$order['status']];?></td></tr>
-								<?php else:?>
-								<tr><td colspan="6" style="text-align:center">无数据</td></tr>
-								<?php endif;?>
-							  </tbody>
-							</table>
-						<?php endif;?>
+                        <?php if($querymethod == 'ajax'):?>
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <label for="L_email" class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_email" name="email" required lay-verify="required|email" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_chapwd" class="layui-form-label">查询密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_chapwd" name="chapwd" required lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_vercode" class="layui-form-label">图形验证</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_vercode" name="vercode" required lay-verify="required|vercode" placeholder="请输入图形验证码" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="">
+                                    <img src="/Captcha?t=productquery" alt="图片验证码" height="38" class="loadcode">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-filter="query" lay-submit>查询</button>
+                            </div>
+                        </form>
+                        <table class="layui-table" id="query-table" style="display: none;">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>订单ID</th>
+                                    <th>订单名称</th>
+                                    <th>数量</th>
+                                    <th>金额</th>
+                                    <th>下单时间</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                        <?php else:?>
+                        <table class="layui-table" id="query-table">
+                            <thead>
+                                <tr>
+                                    <th>订单ID</th>
+                                    <th>订单名称</th>
+                                    <th>数量</th>
+                                    <th>金额</th>
+                                    <th>下单时间</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if(isset($order) AND !empty($order)):?>
+                                <tr>
+                                    <td><span id="orderid"><?php echo $order['orderid'];?></span></td>
+                                    <td>
+                                        <?php echo $order['productname'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $order['number'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo $order['money'];?>
+                                    </td>
+                                    <td>
+                                        <?php echo date('Y-m-d H:i:s',$order['addtime']);?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cnstatus[$order['status']];?>
+                                    </td>
+                                </tr>
+                                <?php else:?>
+                                <tr>
+                                    <td colspan="6" style="text-align:center">无数据</td>
+                                </tr>
+                                <?php endif;?>
+                            </tbody>
+                        </table>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
 <script>
-    layui.use('productquery');
+layui.use('productquery');
 </script>

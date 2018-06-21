@@ -4,94 +4,96 @@
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="email">
             <ul class="layui-tab-title" id="LAY_mine">
-				<li class="" lay-id="info"><a href="/admin/order/">订单管理</a></li>
-				<li class="layui-this" lay-id="info">查看</a></li>
+                <li class="" lay-id="info"><a href="/admin/order/">订单管理</a></li>
+                <li class="layui-this" lay-id="info">查看</a>
+                </li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
                     <form class="layui-form layui-show" method="post">
-					
-							<div class="layui-form-item">
-								<label for="orderid" class="layui-form-label">订单编号</label>
-								<div class="layui-input-inline">
-									<input type="text" id="orderid" name="orderid" disabled autocomplete="off" value="<?php echo $order['orderid'];?>" class="layui-input">
-								</div>
-							</div>
+                        <div class="layui-form-item">
+                            <label for="orderid" class="layui-form-label">订单编号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="orderid" name="orderid" disabled autocomplete="off" value="<?php echo $order['orderid'];?>" class="layui-input">
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label for="email" class="layui-form-label">邮箱</label>
                             <div class="layui-input-inline">
-								<input type="text" id="email" name="email" disabled autocomplete="off" value="<?php echo $order['email'];?>" class="layui-input">
+                                <input type="text" id="email" name="email" disabled autocomplete="off" value="<?php echo $order['email'];?>" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label for="productname" class="layui-form-label">商品名称</label>
                             <div class="layui-input-inline">
-								<input type="text" id="productname" name="productname" disabled autocomplete="off" value="<?php echo $order['productname'];?>" class="layui-input">
+                                <input type="text" id="productname" name="productname" disabled autocomplete="off" value="<?php echo $order['productname'];?>" class="layui-input">
                             </div>
                         </div>
-						
-							<div class="layui-form-item">
-								<label for="qty" class="layui-form-label">数量</label>
-								<div class="layui-input-inline">
-									<input type="number" id="qty" name="qty" disabled autocomplete="off" value="<?php echo $order['number'];?>" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label for="price" class="layui-form-label">单价</label>
-								<div class="layui-input-inline">
-									<input type="number" id="price" name="price" disabled autocomplete="off" value="<?php echo $order['price'];?>" class="layui-input">
-								</div>
-							</div>
-							
-							<div class="layui-form-item">
-								<label for="ip" class="layui-form-label">下单IP</label>
-								<div class="layui-input-inline">
-									<input type="text" id="ip" name="ip" disabled autocomplete="off" value="<?php echo $order['ip'];?>" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label for="addtime" class="layui-form-label">下单时间</label>
-								<div class="layui-input-inline">
-									<input type="text" id="addtime" name="addtime" disabled autocomplete="off" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label for="paytime" class="layui-form-label">支付时间</label>
-								<div class="layui-input-inline">
-									<input type="text" id="paytime" name="paytime" disabled autocomplete="off" value="<?php echo date('Y-m-d H:i:s',$order['paytime']);?>" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label for="paymoney" class="layui-form-label">支付金额</label>
-								<div class="layui-input-inline">
-									<input type="number" id="paymoney" name="paymoney" disabled autocomplete="off" value="<?php echo $order['paymoney'];?>" class="layui-input">
-								</div>
-							</div>
-						  <div class="layui-form-item">
-							<label class="layui-form-label">状态</label>
-							<div class="layui-input-block">
-							  <input type="radio" name="status" value="0" title="待支付" <?php if($order['status']=='0'):?>checked=""<?php endif;?>>
-							  <input type="radio" name="status" value="1" title="待处理" <?php if($order['status']=='1'):?>checked=""<?php endif;?>>
-							  <input type="radio" name="status" value="2" title="已完成" <?php if($order['status']=='2'):?>checked=""<?php endif;?>>
-							  <input type="radio" name="status" value="3" title="处理失败" <?php if($order['status']=='3'):?>checked=""<?php endif;?>>
-							</div>
-						  </div>
-
-							<div class="layui-form-item">
-								<label for="chapwd" class="layui-form-label">查询密码</label>
-								<div class="layui-input-inline">
-									<input type="text" id="chapwd" name="chapwd" disabled autocomplete="off" value="<?php echo $order['chapwd'];?>" class="layui-input">
-								</div>
-							</div> 
-						  
-						 <?php if(isset($order['kami']) AND strlen($order['kami'])>0):?>
+                        <div class="layui-form-item">
+                            <label for="qty" class="layui-form-label">数量</label>
+                            <div class="layui-input-inline">
+                                <input type="number" id="qty" name="qty" disabled autocomplete="off" value="<?php echo $order['number'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="price" class="layui-form-label">单价</label>
+                            <div class="layui-input-inline">
+                                <input type="number" id="price" name="price" disabled autocomplete="off" value="<?php echo $order['price'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="ip" class="layui-form-label">下单IP</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="ip" name="ip" disabled autocomplete="off" value="<?php echo $order['ip'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="addtime" class="layui-form-label">下单时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="addtime" name="addtime" disabled autocomplete="off" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="paytime" class="layui-form-label">支付时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="paytime" name="paytime" disabled autocomplete="off" value="<?php echo date('Y-m-d H:i:s',$order['paytime']);?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="paymoney" class="layui-form-label">支付金额</label>
+                            <div class="layui-input-inline">
+                                <input type="number" id="paymoney" name="paymoney" disabled autocomplete="off" value="<?php echo $order['paymoney'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="status" value="0" title="待支付" <?php if($order[ 'status']=='0' ):?>checked=""
+                                <?php endif;?>>
+                                <input type="radio" name="status" value="1" title="待处理" <?php if($order[ 'status']=='1' ):?>checked=""
+                                <?php endif;?>>
+                                <input type="radio" name="status" value="2" title="已完成" <?php if($order[ 'status']=='2' ):?>checked=""
+                                <?php endif;?>>
+                                <input type="radio" name="status" value="3" title="处理失败" <?php if($order[ 'status']=='3' ):?>checked=""
+                                <?php endif;?>>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="chapwd" class="layui-form-label">查询密码</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="chapwd" name="chapwd" disabled autocomplete="off" value="<?php echo $order['chapwd'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <?php if(isset($order['kami']) AND strlen($order['kami'])>0):?>
                         <div class="layui-form-item layui-form-text">
                             <label for="cardmi" class="layui-form-label">卡密</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="" id="cardmi" name="cardmi" disabled autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $order['kami'];?></textarea>
+                                <textarea placeholder="" id="cardmi" name="cardmi" disabled autocomplete="off" class="layui-textarea" style="height: 80px;">
+                                    <?php echo $order['kami'];?>
+                                </textarea>
                             </div>
                         </div>
-						<?php endif;?>
+                        <?php endif;?>
                     </form>
                 </div>
             </div>
@@ -101,5 +103,5 @@
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-    layui.use('adminproducts');
+layui.use('adminproducts');
 </script>
