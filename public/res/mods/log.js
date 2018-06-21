@@ -3,7 +3,6 @@ layui.define(['layer', 'table'], function(exports){
 	var layer = layui.layer;
 	var table = layui.table;
 
-
 	table.render({
 		elem: '#login',
 		url: '/member/logger/ajax',
@@ -15,7 +14,6 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'addtime', title: '登录时间', width:200, templet: '#addtime',align:'center'}
 		]]
 	});
-
 
 	exports('log',null)
 });

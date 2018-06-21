@@ -5,7 +5,6 @@ layui.define(['layer', 'table', 'element'], function(exports){
 	var table = layui.table;
 	var element = layui.element;
 
-
 	table.render({
 		elem: '#question',
 		url: '/help/index/ajax',
@@ -16,8 +15,5 @@ layui.define(['layer', 'table', 'element'], function(exports){
 			{title: '详情', width:120, templet: '#details', align:'center'}
 		]]
 	});
-
-
-
 	exports('help',null)
 });

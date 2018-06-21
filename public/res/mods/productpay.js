@@ -3,7 +3,7 @@
 	var layer = layui.layer;
 	var oid = $("#oid").val();
 	var t = '';
-	
+
 	$('.layui-btn').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
@@ -35,8 +35,7 @@
             }
         });
 	});
-	
-	
+
     // 检查是否支付完成
     function queryPay() {
         $.ajax({
@@ -66,6 +65,6 @@
         });
 		//return true;
     }
-	
+
 	exports('productpay',null)
 });
