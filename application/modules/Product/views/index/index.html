@@ -13,9 +13,7 @@
                                     <option value="0"></option>
                                     <?php if(!empty($products_type)):?>
                                     <?php foreach($products_type AS $type):?>
-                                    <option value="<?php echo $type['id'];?>">
-                                        <?php echo $type['name'];?>
-                                    </option>
+                                    <option value="<?php echo $type['id'];?>"><?php echo $type['name'];?></option>
                                     <?php endforeach;?>
                                     <?php endif;?>
                                 </select>
