@@ -4,7 +4,7 @@
  * Author:资料空白
  * Date:20180604
  */
-class IndexController extends PcBasicController
+class IndexController extends BasicController
 {
 
 	public function init()
@@ -14,12 +14,12 @@ class IndexController extends PcBasicController
 
 	public function indexAction()
 	{
-		if(!$this->login OR empty($this->uinfo))
-		{
+		if(file_exists(APP_PATH.'/conf/install.lock')){
 			$this->redirect("/product/");
+			return FALSE;
 		}else{
-			$this->redirect("/member/");
+			$this->redirect("/install/");
+			return FALSE;
 		}
-		return FALSE;
 	}
 }

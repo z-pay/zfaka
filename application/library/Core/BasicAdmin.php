@@ -7,32 +7,28 @@
  */
 class AdminBasicController extends BasicController
 {
-
-    protected $AdminUser = array();//管理员用户信息
+    protected $AdminUser = array();
 	public $serverPrivateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKrU5gne1HvK18yk9aFX+LIgf8bIZvW/TgAAQWUkLkVDf1s91r6JmlmJsvGDz1KWuFEtU5k+ZTY+znh0ncLfgdTcmVvymp1D4fhEKt/JSaZNZe7Fb3kfl7iT15pQBivirrkpP1dwyM5EzafkRo5wKOktbQLYglW/e+ChVf4L+mqXAgMBAAECgYBcweb6Wwzi/rv4OWXKKps2FSFsTSpiq3Jt27WmdmPNZh4D6+rrYIn3riYEr35mKMKCCWuIHPIV5zpy+1ciFfxHNifvwVs9zpWGYkuvyI2Ar41zODI8doYFaQjWUBf/xJziabTEn1pFsH+Q8xWqr0fXdFdKYt6lYnjZR3bJIL79yQJBANaEQ0MqPqbj4s6L++igcgizkPOQ00a0kRdv6R0wQWqXg5fseg776sUv301XYbTnc7BlmHsQUQsYcROOqzhZlNsCQQDL3f2ehMGecX2qnImBGbXIRIIF1DnjULDzBpz/ijMYg1trIRRjBirWFj6cQOEOxlW2A8qpz1ZxR9zfSzjYXG/1AkBPn8xvs9CJlfDsBd29XUC2piBZqBokFoX8kxeONAk0DYVU8Pvlb/CWvMxAIv0rbvXsNenBVC8g1TOztLMtOWMdAkEAgC1ZyXHknm7yuPNkzOPSVFEmgu21W8OfDZ2p1k0Y5R+puch5ne0Bv8sKoIl2NyjiOOdXY761tdGeAFK2MeqkhQJALGjfBtrV9c3u3XVVbpASadkkOcUvXOb8fyRvTv03Bg3cbF3hP6ucb5SPEg6dDHixRj25S+JTiYH5WxbtyYni5g==";
  
-
     public function init()
     {
         parent::init();
-        //系统默认
+		$sysvars = $data = array();
+		$data['config']=$this->config = $this->load('config')->getConfig();
         $sysvars['isHttps'] = $this->isHttps = isHttps();
         $sysvars['isAjax'] = $this->isAjax = isAjax();
         $sysvars['isGet'] = $this->isGet = isGet();
         $sysvars['isPost'] = $this->isPost = isPost();
         $sysvars['currentUrl'] = stripHTML(str_replace('//', '/', $_SERVER['REQUEST_URI']));
         $data['sysvars'] = $sysvars;
-        //登录处理
         $AdminUser = $this->getSession('AdminUser');
         if (is_array($AdminUser) AND !empty($AdminUser) AND $AdminUser['expiretime'] > time()) {
             $AdminUser['expiretime'] = time() + 15 * 60;
             $this->setSession('AdminUser', $AdminUser);
             $data['AdminUser'] = $this->AdminUser = $AdminUser;
-            
         } else {
             $this->unsetSession('AdminUser');
         }
-		//防csrf攻击
 		$data['csrf_token'] = $this->createCsrfToken();
 		$this->getView()->assign($data);
     }

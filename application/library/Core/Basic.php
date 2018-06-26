@@ -6,25 +6,13 @@
  * Date: 2018-6-8
  */
 
-class BasicController extends Yaf\Controller_Abstract {
-
-	protected $uinfo=array();
-	protected $userid=0;
-	protected $login=FALSE;
+class BasicController extends Yaf\Controller_Abstract
+{
 	protected $config=array();
-	protected $Pagination=NULL;
 	protected $isHttps=FALSE;
 	protected $isAjax=FALSE;
 	protected $isGet=FALSE;
 	protected $isPost=FALSE;
-	
-  	public function init(){	
-		//初始化分页
-		$this->Pagination=new Pagination();
-		//系统默认配置
-		$data['config']=$this->config=$this->load('config')->getConfig();
-        $this->getView()->assign($data);
-	}
 	
 	public function get($key, $filter = TRUE){
 		if($filter){
