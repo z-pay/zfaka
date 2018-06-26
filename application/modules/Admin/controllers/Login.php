@@ -18,13 +18,17 @@ class LoginController extends AdminBasicController
 
     public function indexAction()
     {
-        if ($this->AdminUser) {
-            $this->redirect('/admin');
-            return FALSE;
-        }
-		
-		$data = array();
-        $this->getView()->assign($data);
+		if(file_exists(APP_PATH.'/install.lock')){
+			if ($this->AdminUser) {
+				$this->redirect('/admin');
+				return FALSE;
+			}
+			$data = array();
+			$this->getView()->assign($data);
+		}else{
+			$this->redirect("/install/");
+			return FALSE;
+		}
     }
 	
 	

@@ -21,9 +21,16 @@ define('SQL_FILE',APP_PATH.'/log/sqld/'.CUR_DATE.'.log');
 define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 define('YEWU_FILE',APP_PATH.'/log/yewu/'.CUR_DATE.'.log');
 
+define('INSTALL_SQL',APP_PATH.'/application/modules/Install/files/faka.sql');
+define('INSTALL_LOCK',APP_PATH.'/install.lock');
+
+
+
+
 error_reporting(0);
 error_reporting(E_ALL ^E_NOTICE);
 ini_set('display_errors', 'off');
-ini_set('display_startup_errors',1);//php启动错误信息
+ini_set('display_startup_errors',0);
 ini_set('log_errors', 'on');
 ini_set('error_log', LOG_FILE);
+

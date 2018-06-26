@@ -16,7 +16,7 @@ class IndexController extends AdminBasicController
 
     public function indexAction()
     {
-		if(file_exists(APP_PATH.'/conf/install.lock')){
+		if(file_exists(APP_PATH.'/install.lock')){
 			if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
 				$this->redirect("/admin/login");
 				return FALSE;
