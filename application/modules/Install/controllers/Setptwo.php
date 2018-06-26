@@ -47,7 +47,7 @@ class SetptwoController extends BasicController
 				if($isexists->rowCount()>0){
 					$data = array('code' => 1002, 'msg' =>"该数据库已存在");
 				}else{
-					$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8mb4_general_ci;");
+					$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8_general_ci;");
 					$pdo->query("USE `{$dbname}`");
 					$pdo->exec($sql);
 					
