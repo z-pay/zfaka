@@ -41,9 +41,7 @@ class SetptwoController extends BasicController
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 				$isexists = $pdo->query("show databases like '{$dbname}'");
 				foreach ($isexists as $row) {
-					print $row['name'] . "\t";
-					print $row['color'] . "\t";
-					print $row['calories'] . "\n";
+					print $row;
 				}
             } catch (PDOException $e) {
 				$data = array('code' => 1001, 'msg' =>"失败:".$e->getMessage());
