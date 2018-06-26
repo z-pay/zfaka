@@ -14,6 +14,8 @@ class BasicController extends Yaf\Controller_Abstract
 	protected $isGet=FALSE;
 	protected $isPost=FALSE;
 	
+	public function init(){}
+	
 	public function get($key, $filter = TRUE){
 		if($filter){
 			return filterStr($this->getRequest()->get($key));
