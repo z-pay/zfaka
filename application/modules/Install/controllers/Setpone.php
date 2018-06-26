@@ -16,8 +16,13 @@ class SetponeController extends BasicController
 
     public function indexAction()
     {
-		$data = array();
-        $this->getView()->assign($data);
+		if(file_exists(APP_PATH.'/conf/install.lock')){
+			$this->redirect("/product/");
+			return FALSE;
+		}else{
+			$data = array();
+			$this->getView()->assign($data);
+		}
     }
 	
 

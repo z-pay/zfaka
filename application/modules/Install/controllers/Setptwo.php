@@ -6,7 +6,7 @@
  * Date:20180626
  */
 
-class IndexController extends BasicController
+class SetptwoController extends BasicController
 {
 
 	public function init()
