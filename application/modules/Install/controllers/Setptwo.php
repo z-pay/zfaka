@@ -36,11 +36,11 @@ class SetptwoController extends BasicController
 		
 		if($host AND $port AND $user AND $password){
 			$mysqlurl = $host.":".$port;
-			$con = mysql_connect($mysqlurl,$user,$password);
-			if (!$con){
-			   $data = array('code' => 1001, 'msg' => mysql_error());
+			$mysqli = new mysqli($mysqlurl,$user,$password,'');
+			if($mysqli->connect_errno){  
+			   $data = array('code' => 1001, 'msg' =>$mysqli->connect_error);
 			}else{
-				mysql_close($con);
+
 			}
 		}else{
 			$data = array('code' => 1000, 'msg' => '丢失参数');
