@@ -33,7 +33,7 @@
 			  <div class="layui-card-header">3.安装数据库</div>
 			  <div class="layui-card-body">
 				<div class="layui-form-pane layui-tab-item layui-show">
-                    <form class="layui-form" action="/user/repass" method="post">
+                    <form class="layui-form" method="post">
                         <div class="layui-form-item">
                             <label for="host" class="layui-form-label">数据库地址</label>
                             <div class="layui-input-inline">
@@ -69,3 +69,6 @@
 	</div>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
+<script>
+    layui.use('install');
+</script>

@@ -25,5 +25,26 @@ class SetptwoController extends BasicController
 		}
     }
 	
-
+	public function ajaxAction()
+	{
+		$host = $this->getPost('host',false);
+		$port = $this->getPost('port',false);
+		$user = $this->getPost('user', false);
+		$password = $this->getPost('password', false);
+		
+		$data = array();
+		
+		if($host AND $port AND $user AND $password){
+			$mysqlurl = $host.":".$port;
+			$con = mysql_connect($mysqlurl,$user,$password);
+			if (!$con){
+			   $data = array('code' => 1001, 'msg' => mysql_error());
+			}else{
+				mysql_close($con);
+			}
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数');
+		}
+		Helper::response($data);
+	}
 }
