@@ -29,18 +29,16 @@
     </div>
 <div class="layui-container fly-marginTop fly-user-main">
     <div class="layui-row layui-col-space15">
-		<form class="layui-form layui-form-pane" action="">
-		 <div class="layui-form-item layui-form-text">
-			<label class="layui-form-label" style="color: #000000;font-weight: bold;">服务条款</label>
-			<div class="layui-input-block">
-			  <textarea placeholder="" class="layui-textarea">首先感谢您选择使用本系统,本系统不会收集任何信息,不预留漏洞后门;但由于互联网复杂性与系统软件更新太快,我不能保证本系统毫无漏洞,请自行做好安全措施并进行数据备份.</textarea>
+			<div class="layui-card">
+			  <div class="layui-card-header">1.服务条款</div>
+			  <div class="layui-card-body">
+				<textarea placeholder="" class="layui-textarea">首先感谢您选择使用本系统,本系统不会收集任何信息,不预留漏洞后门;但由于互联网复杂性与系统软件更新太快,我不能保证本系统毫无漏洞,请自行做好安全措施并进行数据备份.</textarea>
+				<div class="layui-form-item" style="text-align: center;">
+					<a class="layui-btn" lay-submit="" lay-filter="agree" href="/install/setpone">同意</a>
+					<button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="demo2" onClick="custom_close()">拒绝</button>
+				</div>
+			  </div>
 			</div>
-		  </div>
-		  <div class="layui-form-item" style="text-align: center;">
-				<a class="layui-btn" lay-submit="" lay-filter="agree" href="/install/setpone">同意</a>
-				<button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="demo2" onClick="custom_close()">拒绝</button>
-		  </div>
-		</form>
     </div>
 </div>
 <!--引入公共底文件-->
