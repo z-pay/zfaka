@@ -37,7 +37,7 @@ class SetptwoController extends BasicController
 		
 		if($host AND $port AND $user AND $password){
             try {
-                $pdo = new PDO("mysql:host=".$host.";port=".$port.";charset='UTF-8';",$user, $password, array(PDO::ATTR_PERSISTENT => true,PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                $pdo = new PDO("mysql:host=".$host.";port=".$port.";charset='UTF8';",$user, $password, array(PDO::ATTR_PERSISTENT => true,PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 				$isexists = $pdo->query("show databases like '{$dbname}'");
 				print_r($isexists);
