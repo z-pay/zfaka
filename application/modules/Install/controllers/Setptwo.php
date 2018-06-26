@@ -31,17 +31,19 @@ class SetptwoController extends BasicController
 		$port = $this->getPost('port',false);
 		$user = $this->getPost('user', false);
 		$password = $this->getPost('password', false);
+		$dbname = $this->getPost('dbname', false);
 		
 		$data = array();
 		
 		if($host AND $port AND $user AND $password){
-			$mysqlurl = $host.":".$port;
-			$mysqli = new mysqli($mysqlurl,$user,$password,'');
-			if($mysqli->connect_errno){  
-			   $data = array('code' => 1001, 'msg' =>$mysqli->connect_error);
-			}else{
-
-			}
+            try {
+                $pdo = new PDO("mysql:host=".$host.";port=".$port.";charset=UTF-8",$user, $password, array(PDO::ATTR_PERSISTENT => true,PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+				$isexists = $pdo->query("show databases like '{$dbname}'");
+				print_r($isexists);
+            } catch (PDOException $e) {
+				$data = array('code' => 1001, 'msg' =>"失败:".$e->getMessage());
+            }
 		}else{
 			$data = array('code' => 1000, 'msg' => '丢失参数');
 		}
