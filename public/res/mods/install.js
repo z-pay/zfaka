@@ -34,7 +34,7 @@ layui.define(['layer', 'form'], function(exports){
 					type: 1
 					,offset: 'auto' 
 					,id: 'result'
-					,content: '<div style="padding: 20px 100px;">安装成功,请登录后台进行初始化配置</div>'
+					,content: '<div style="padding: 20px 100px;">数据库安装成功</div>'
 					,btn: '确定'
 					,btnAlign: 'c' 
 					,shade: 0 
