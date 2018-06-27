@@ -47,6 +47,7 @@
 <?php include COMMON_PATH.'/footer.html';?>
 <script language="javascript">
 	function custom_close(){
+		window.open("about:blank", "_self").close();
 		window.opener=null;
 		window.open('','_self');
 		window.close();
