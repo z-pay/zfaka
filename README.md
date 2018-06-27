@@ -20,11 +20,12 @@
 >参考：https://zlkb.net/241.html
 
 >nginx下rewrite规则
-``        location / {
+<pre>      location / {
                 if (!-e $request_filename){
                         rewrite ^/(.*)$ /index.php?$1 last;
                 }
-        }``
+        }
+</pre> 
 
 
 
