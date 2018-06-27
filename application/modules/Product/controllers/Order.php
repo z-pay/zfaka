@@ -138,6 +138,7 @@ class OrderController extends PcBasicController
 			$data['code']=1001;
 			$data['msg']='订单不存在';
 		}
+		$data['title'] = "订单支付";
 		$this->getView()->assign($data);
 	}
 	
