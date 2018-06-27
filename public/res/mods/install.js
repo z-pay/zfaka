@@ -3,6 +3,11 @@ layui.define(['layer', 'form'], function(exports){
 	var layer = layui.layer;
 	var form = layui.form;
 	
+	var len = $('.checkerror').length;
+	if(len>0){
+		$("#setpone").attr("href","javascript:;");
+	}
+	
 	form.verify({
 		dbname:function(value){
 			var reg= /^[A-Za-z]+$/;
@@ -50,5 +55,6 @@ layui.define(['layer', 'form'], function(exports){
 		return false; //阻止表单跳转。
 	});
 
+	
 	exports('install',null)
 });

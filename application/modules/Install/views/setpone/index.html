@@ -28,7 +28,7 @@
 				  </tbody>
 				</table>
 				<div class="layui-form-item" style="text-align: center;">
-					<a class="layui-btn" lay-submit="" lay-filter="agree" href="/install/setptwo">下一步</a>
+					<a class="layui-btn" id="setpone" lay-submit="" lay-filter="setpone" href="/install/setptwo">下一步</a>
 				</div>
 			  </div>
 			</div>
@@ -36,3 +36,6 @@
 	</div>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
+<script>
+    layui.use('install');
+</script>
