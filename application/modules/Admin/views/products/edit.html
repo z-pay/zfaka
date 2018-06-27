@@ -25,12 +25,9 @@
                                 <select name="typeid" lay-filter="required" lay-verify="required">
                                     <option value=""></option>
                                     <?php if(!empty($productstype)):?>
-                                    <?php foreach($productstype AS $p):?>
-                                    <option value="<?php echo $p['id'];?>" <?php if($product['typeid']==$p['id']):?>selected
-                                        <?php endif;?>>
-                                        <?php echo $p['name'];?>
-                                    </option>
-                                    <?php endforeach;?>
+										<?php foreach($productstype AS $p):?>
+											<option value="<?php echo $p['id'];?>" <?php if($product['typeid']==$p['id']):?>selected="selected"<?php endif;?>><?php echo $p['name'];?></option>
+										<?php endforeach;?>
                                     <?php endif;?>
                                 </select>
                             </div>
