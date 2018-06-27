@@ -6,6 +6,7 @@ layui.define(['layer', 'form'], function(exports){
 	var len = $('.checkerror').length;
 	if(len>0){
 		$("#setpone").attr("href","javascript:;");
+		$("#setpone").attr("class","layui-btn layui-btn-disabled");
 	}
 	
 	form.verify({
