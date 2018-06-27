@@ -21,9 +21,8 @@ define('SQL_FILE',APP_PATH.'/log/sqld/'.CUR_DATE.'.log');
 define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 define('YEWU_FILE',APP_PATH.'/log/yewu/'.CUR_DATE.'.log');
 
-define('INSTALL_SQL',APP_PATH.'/application/modules/Install/files/faka.sql');
-define('INSTALL_LOCK',APP_PATH.'/install.lock');
-
+define('INSTALL_PATH',APP_PATH.'/install/');
+define('INSTALL_LOCK',INSTALL_PATH.'install.lock');
 
 
 

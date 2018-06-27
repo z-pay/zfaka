@@ -8,7 +8,9 @@
 use WriteiniFile\WriteiniFile;
 class SetptwoController extends BasicController
 {
-
+	private $install_sql = APP_PATH.'/application/modules/Install/files/faka.sql';
+	private $install_config = APP_PATH.'/conf/application.ini';
+	
 	public function init()
     {
         parent::init();
@@ -37,21 +39,38 @@ class SetptwoController extends BasicController
 		
 		if($host AND $port AND $user AND $password){
             try {
-				$sql = @file_get_contents(INSTALL_SQL);
-				if(!$sql){
-					$data = array('code' => 1003, 'msg' =>"无法读取".INSTALL_SQL."文件，请检查是否有读权限");
+				if(file_exists($this->install_sql) AND is_readable($this->install_sql)){
+					$sql = @file_get_contents($this->install_sql);
+					if(!$sql){
+						$data = array('code' => 1002, 'msg' =>"无法读取".$this->install_sql."文件,请检查文件是否存在且有读权限");
+						Helper::response($data);
+					}
+				}else{
+					$data = array('code' => 1003, 'msg' =>"无法读取".$this->install_sql."文件,请检查文件是否存在且有读权限");
+					Helper::response($data);
 				}
+				
+				if (!is_writable($this->install_config)){
+					$data = array('code' => 1004, 'msg' =>"无法写入".$this->install_config."文件,请检查是否有写权限");
+					Helper::response($data);
+				}
+				
+				if (!is_writable(INSTALL_PATH)){
+					$data = array('code' => 1005, 'msg' =>"无法写入目录".INSTALL_PATH.",请检查是否有写权限");
+					Helper::response($data);
+				}
+				
                 $pdo = new PDO("mysql:host=".$host.";port=".$port.";charset=utf8;",$user, $password, array(PDO::ATTR_PERSISTENT => true,PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 				$isexists = $pdo->query("show databases like '{$dbname}'");
 				if($isexists->rowCount()>0){
-					$data = array('code' => 1002, 'msg' =>"该数据库已存在");
+					$data = array('code' => 1006, 'msg' =>"该数据库已存在");
 				}else{
 					$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8_general_ci;");
 					$pdo->query("USE `{$dbname}`");
 					$pdo->exec($sql);
 					
-					$ini = new WriteiniFile(APP_PATH.'/conf/application.ini');
+					$ini = new WriteiniFile($this->install_config);
 					$ini->update([
 						'product : common' => ['READ_HOST' => $host],
 						'product : common' => ['WRITE_HOST' => $host],
