@@ -32,7 +32,7 @@ layui.define(['layer', 'form'], function(exports){
 			if (res.code == '1') {
 				layer.open({
 					type: 1
-					,offset: auto 
+					,offset: 'auto' 
 					,id: 'result'
 					,content: '<div style="padding: 20px 100px;">安装成功,请登录后台进行初始化配置</div>'
 					,btn: '确定'
