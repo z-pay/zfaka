@@ -17,10 +17,15 @@ class IndexController extends PcBasicController
 
     public function indexAction()
     {
-		$data = array();
-		$order = array('sort_num' => 'ASC');
-		$products_type = $this->m_products_type->Where(array('active'=>1))->Order($order)->Select();
-		$data['products_type'] = $products_type;
-        $this->getView()->assign($data);
+		if(file_exists(INSTALL_LOCK)){
+			$data = array();
+			$order = array('sort_num' => 'ASC');
+			$products_type = $this->m_products_type->Where(array('active'=>1))->Order($order)->Select();
+			$data['products_type'] = $products_type;
+			$this->getView()->assign($data);
+		}else{
+			$this->redirect("/install/");
+			return FALSE;
+		}
     }
 }

@@ -14,7 +14,7 @@ class IndexController extends BasicController
 
 	public function indexAction()
 	{
-		if(file_exists(APP_PATH.'/install.lock')){
+		if(file_exists(INSTALL_LOCK)){
 			$this->redirect("/product/");
 			return FALSE;
 		}else{
