@@ -26,7 +26,7 @@ class SetponeController extends BasicController
 				array('name' => 'YAF版本','require'=>'>=3.0.0','result'=>$this->_isVersion('3.0.0',\Yaf\VERSION)),
 				array('name' => 'Curl支持','require'=>'必须','result'=>$this->_isfun('curl_init')),
 				array('name' => 'Session支持','require'=>'必须','result'=>$this->_isfun('session_start')),
-				array('name' => 'GD库支持','require'=>'必须','result'=>$this->_isfun('gd_info')),
+				array('name' => 'GD库支持','require'=>'必须','result'=>$this->_isfun(gd_info)),
 				array('name' => 'Openssl支持','require'=>'必须','result'=>$this->_isfun('openssl_sign')),
 				array('name' => 'Pdo_Mysql支持','require'=>'必须','result'=>$this->_isPDO()),
 			);
