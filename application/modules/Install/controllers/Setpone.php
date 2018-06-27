@@ -42,31 +42,31 @@ class SetponeController extends BasicController
 	private function _isfun($funName = '')
 	{
 		if (!$funName || trim($funName) == '' || preg_match('~[^a-z0-9\_]+~i', $funName, $tmp)) return '错误';
-		return (false !== function_exists($funName)) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+		return (false !== function_exists($funName)) ? '<font color="green">√</font>' : '<font color="red" class="checkerror">×</font>';
 	}
 	
 	private function _isVersion($required_version = '',$version = '')
 	{
-		return (false !== version_compare( $version, $required_version, '>=' )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+		return (false !== version_compare( $version, $required_version, '>=' )) ? '<font color="green">√</font>' : '<font color="red" class="checkerror">×</font>';
 	}
 	
 	private function _isExtension($ext)
 	{
-		return (false !== extension_loaded( $ext )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+		return (false !== extension_loaded( $ext )) ? '<font color="green">√</font>' : '<font color="red" class="checkerror">×</font>';
 	}
 	
 	private function _isWrite($file)
 	{
-		return (false !== is_writable( $file )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+		return (false !== is_writable( $file )) ? '<font color="green">√</font>' : '<font color="red" class="checkerror">×</font>';
 	}
 	
 	private function _isRead($file)
 	{
-		return (false !== is_readable( $file )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+		return (false !== is_readable( $file )) ? '<font color="green">√</font>' : '<font color="red" class="checkerror">×</font>';
 	}
 	
 	private function _isReadAndWrite($file)
 	{
-		return (false !== (is_readable( $file ) AND is_writable( $file ))) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+		return (false !== (is_readable( $file ) AND is_writable( $file ))) ? '<font color="green">√</font>' : '<font color="red" class="checkerror">×</font>';
 	}
 }
