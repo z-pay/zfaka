@@ -20,6 +20,7 @@ class PcBasicController extends BasicController
 		if((isset($this->config['web_name']) AND strlen($this->config['web_name'])>0)==false){
 			$this->config['web_name'] = WEB_NAME;
 		}
+		$data['config']= $this->config;
 		$sysvars['isHttps']=$this->isHttps=isHttps();
 		$sysvars['isAjax']=$this->isAjax=isAjax();
 		$sysvars['isGet']=$this->isGet=isGet();
