@@ -76,15 +76,7 @@ class SetptwoController extends BasicController
 					
 					$ini = new WriteiniFile($this->install_config);
 					$ini->update([
-						'product : common' => ['READ_HOST' => $host],
-						'product : common' => ['WRITE_HOST' => $host],
-						'product : common' => ['READ_PORT' => $port],
-						'product : common' => ['WRITE_PORT' => $port],
-						'product : common' => ['READ_USER' => $user],
-						'product : common' => ['WRITE_USER' => $user],
-						'product : common' => ['READ_PSWD' => $password],
-						'product : common' => ['WRITE_PSWD' => $password],
-						'product : common' => ['Default' => $dbname]
+						'product : common' => ['READ_HOST' => $host,'WRITE_HOST' => $host,'READ_PORT' => $port,'WRITE_PORT' => $port,'READ_USER' => $user,'WRITE_USER' => $user,'READ_PSWD' => $password,'WRITE_PSWD' => $password,'Default' => $dbname]
 					]);
 					$ini->write();
 					
