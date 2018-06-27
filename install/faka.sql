@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `t_admin_user` (
 --
 
 INSERT INTO `t_admin_user` (`id`, `email`, `password`, `secret`, `updatetime`) VALUES
-(1, '43036456@qq.com', '395e7618c964f60bcbb21afa65fe28f2', 'b830d8', 0);
+(1, '43036456@qq.com', '76b1807fc1c914f15588520b0833fbc3', '78e055', 0);
 
 -- --------------------------------------------------------
 
@@ -119,14 +119,13 @@ CREATE TABLE IF NOT EXISTS `t_email` (
   `sendname` varchar(55) NOT NULL COMMENT '发送人昵称',
   `port` varchar(55) NOT NULL COMMENT '端口号',
   `host` varchar(55) NOT NULL COMMENT '发送邮件服务端'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_email`
 --
 
-INSERT INTO `t_email` (`id`, `mailaddress`, `mailpassword`, `sendmail`, `sendname`, `port`, `host`) VALUES
-(1, 'noreply@zlkb.net', 'Oneday0313', 'noreply@zlkb.net', '资料空白', '465', 'smtp.exmail.qq.com');
+
 
 -- --------------------------------------------------------
 
@@ -245,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
 --
 
 INSERT INTO `t_payment` (`id`, `payment`, `alias`, `sign_type`, `app_id`, `ali_public_key`, `rsa_private_key`, `notify_url`, `return_url`, `active`) VALUES
-(1, '支付宝当面付', 'zfbf2f', 'RSA2', '2018060660307830', 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnWbQH5nv0o+tgBPRX//b2iiBnxG59UwAXx9zvPfckPhgzP+WIKPa3b9cJOydJ4/C6xWpaNega4EdV4NNxqxWy1mRjQQuG6MI5JbDThDxyZvItOtnonq4x/czrZaf3jTqizhg32kap+WQtU2Ab/cF01RnsxMiqmF/bg3wBifoKcav2WqEeSbEkKR0SKixJzK0YAGWmvT3zUd63zmnunZ4jfTDHM0h+0nM57oY80vVrhBQOC0spzrBwEgC/vAJJ3Eu2Odb1ewSXJsd0Y6xw2Z2+nkSYcnmRQctFTOHFuUskKC8q6TDtsaFFu1QYIJReapkUClaZkx27JILEULkmzpO0QIDAQAB', 'MIIEowIBAAKCAQEA47Hls/3gyOGToOeeKMIyvt8lJqIQNBI2+IT14DHwNUizrBvnOH5YPSBpBez+IrF9HQg/JgpGsHNaJRuw9IGwFSTJTg3w5r6fq15F1Pv9WAxMysiiO+euSxA/jYko1CRZvfL7lvkJRXR5e/esTHau12lCDDzjkYwNQ2MUja4dU8xQsdxwoGtyHXJWJqdJZCnTv6pjTMCmrtyl1YgocnMHrDiKxJZPdD9otM/UUUxqH7LHxzCsGcMWOX2vPIY3mip7mcm8/Cbv9x9j1MFqSQsAPnAQpvl5AqCskssqXI1+AFJV1TczSRtcId/8D1AOz0N3Jp3p6KLUvIeckx0IKcsL8QIDAQABAoIBAHAMrIht6D+S2q51LNzL7GMHtuWTHTwytoCIFeN1T8s48spAlQG1E0FJgMVcwhdalsJBu6nBptXQfk0CmotIgtl01+ekbqduqW6QnvbX5u18aBHmuAeY1Km13kCNfd0f4lXajDrYZNqcHeiGknCyewogj1MsZ6TJcgF2cbfjNiV02Wu0t2VqiOYvhL3jxZmuqtmohUJuD+UlVGuRyAfxuCtyY7Kwwg9aHiHmSPKBMlkvz45D4oIeh/St0iczbkjFEmgBhJbaTvY6kb+ftDds4SMlO+G8AHeoVxCTK2n0EPQrMJBv3yw62PDd44Yi7Ocy9n7uP5DBIchjxfU/QtTrOj0CgYEA/C6p4J+DIScmHZ7e4WDxYg4AmL5MqHKYWF6W6giSme4xwS0IExNF/uMG7gayZnVCN/TMWfKIz/vffNzmgfElg38uEnC2pzjRA85FUwWVAWQf9pFDsXglUFYV03Irr4xdOKYJY3kmi75c/dbfQZMwaKk9SPImZXwbFYywu74ZLzsCgYEA5yRVH2PJ1z01ziM9RxVO95ne82+rAco1KSyQbCUjSY+N90wAJv5g0oaqqHM938zPEAgWUYzIYhOhDDl+iLD8b0fQaGF069gBG/1ME6acRlcA/oJk/tiLCh81uX5MSbljQpsSuzaNKWOPiBU5qnVctpqdOr2ZRKNCnxF+lBjXFsMCgYBAQrPPJVaI0C0KRz2MOOPJlL/aLEPkeK8RdakHIgAZcXUEQLFaCwM/HCLb7KDxMtgY4ixgj0kFlq0waCnk2sowY+wdjtM8cWHxklJgAYAixpzOe93AD1mSyxzssJ8pMJ9gnA6wZmLIIU4Y8PQbBaLESLvxJqNaIPHV3+/5J0vLmQKBgD6YZET/7SVQ+kU83ddmOeBr1yjt0M3HSOZBn0rqM8g0DCowdsoYkXfx6D1+F/+Ho3uf9QtYqNuGnVKGL3ItG++27wWVfuhvsr01t2iK8j9KSIakIV2yntS65v246kf84JilDkmM2GWhBLnBpcA30EfTT0kdF2izHdOeFT1eDMGpAoGBAPe3jXHwM2yllMZbzv7vUpa4zi7SpYj+pgQmys332dewawuT91lAiNiLM+HKQ5/6fBX/QM/WE7kEKGzMO811rb76QfemcMRFe3khFIshfoRoqJCEFMK9onLZef4uuDHA3FCZvI4bT7jwdKF4Kn6JKo1UpvIpTuXAQTFGP6zNkAf8', '/product/notify/', '/product/query/', 1);
+(1, '支付宝当面付', 'zfbf2f', 'RSA2', '', '', '', '/product/notify/', '/product/query/', 1);
 
 -- --------------------------------------------------------
 

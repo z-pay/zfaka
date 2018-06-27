@@ -18,9 +18,7 @@
                                     <option value=""></option>
                                     <?php if(!empty($products)):?>
                                     <?php foreach($products AS $p):?>
-                                    <option value="<?php echo $p['id'];?>">
-                                        <?php echo $p['name'];?>
-                                    </option>
+                                    <option value="<?php echo $p['id'];?>"><?php echo $p['name'];?></option>
                                     <?php endforeach;?>
                                     <?php endif;?>
                                 </select>
