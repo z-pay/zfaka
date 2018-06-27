@@ -15,22 +15,35 @@
 
 # 二、系统部署
 
-2.1 需要安装yaf扩展,需要mysql支持
+2.1 环境安装，推荐使用lnmp套件
 
-2.2 上传代码
+>nginx下rewrite规则
 
-2.3 配置权限
+>if (!-e $request_filename) {
+>    rewrite ^/(.*)  /index.php/$1 last;
+>}
+
+
+2.2 需要安装yaf扩展,需要mysql支持
+>参考：https://zlkb.net/243.html
+
+
+2.3 下载代码
+>git clone git@github.com:zlkbdotnet/zfaka.git
+
+2.4 配置目录权限
+
+>/install  安装目录，需要可读写
+
 >/log      日志目录，需要可写
 
->/temp     缓存目录，需要可写
-	
-2.4 安装计划任务crontab模块
->配置定时计划,用于定时发送邮件
+>/temp     缓存目录，需要可读写
+
+2.5 直接访问安装
+
+2.6 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
 
 >参考：*/2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
-	
-2.5 修改数据库链接
->/conf/application.ini
 	
 	
 # 三、BUG与问题反馈
