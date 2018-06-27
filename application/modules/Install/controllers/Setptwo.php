@@ -8,7 +8,7 @@
 use WriteiniFile\WriteiniFile;
 class SetptwoController extends BasicController
 {
-	private $install_sql = APP_PATH.'/application/modules/Install/files/faka.sql';
+	private $install_sql = INSTALL_PATH.'faka.sql';
 	private $install_config = APP_PATH.'/conf/application.ini';
 	
 	public function init()
