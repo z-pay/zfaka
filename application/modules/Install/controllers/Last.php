@@ -16,9 +16,13 @@ class LastController extends BasicController
 
     public function indexAction()
     {
-		$data = array();
-		$this->getView()->assign($data);
+		if(file_exists(INSTALL_LOCK)){
+			$data = array();
+			$this->getView()->assign($data);
+		}else{
+			$this->redirect("/install/");
+			return FALSE;
+		}
     }
-	
 
 }
