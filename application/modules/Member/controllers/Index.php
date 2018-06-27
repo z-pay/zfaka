@@ -21,6 +21,7 @@ class IndexController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "我的主页";
 		$this->getView()->assign($data);
     }
 }

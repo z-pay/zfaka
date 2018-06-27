@@ -26,6 +26,7 @@ class LoginController extends PcBasicController
         }
 		
 		$data = array();
+		$data['title'] = "登录";
         $this->getView()->assign($data);
     }
 	

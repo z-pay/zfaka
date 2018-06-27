@@ -22,6 +22,7 @@ class IndexController extends PcBasicController
 			$order = array('sort_num' => 'ASC');
 			$products_type = $this->m_products_type->Where(array('active'=>1))->Order($order)->Select();
 			$data['products_type'] = $products_type;
+			$data['title'] = "购买商品";
 			$this->getView()->assign($data);
 		}else{
 			$this->redirect("/install/");

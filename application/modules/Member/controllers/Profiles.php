@@ -25,6 +25,7 @@ class ProfilesController extends PcBasicController
 		$data = array();
 		$uinfo = $this->m_user->SelectByID('nickname,email,qq,tag,createtime',$this->userid);
 		$data['uinfo'] = $this->uinfo = array_merge($this->uinfo, $uinfo);
+		$data['title'] = "我的资料";
         $this->getView()->assign($data);
     }
 
@@ -64,6 +65,7 @@ class ProfilesController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "密码";
         $this->getView()->assign($data);
 	}
 	

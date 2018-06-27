@@ -28,6 +28,7 @@ class QueryController extends PcBasicController
 			$data['order'] =array();
 			$data['querymethod'] = 'ajax';
 		}
+		$data['title'] = "订单查询";
         $this->getView()->assign($data);
     }
 	

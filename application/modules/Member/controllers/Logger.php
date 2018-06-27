@@ -22,6 +22,7 @@ class LoggerController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "登录日志";
         $this->getView()->assign($data);
     }
 

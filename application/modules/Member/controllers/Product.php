@@ -22,6 +22,7 @@ class ProductController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "我的产品";
         $this->getView()->assign($data);
     }
 	

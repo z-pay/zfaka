@@ -24,6 +24,7 @@ class RegisterController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "注册";
         $this->getView()->assign($data);
     }
 

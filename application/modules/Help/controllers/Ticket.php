@@ -24,6 +24,7 @@ class TicketController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "我的工单";
         $this->getView()->assign($data);
     }
 	
@@ -74,6 +75,7 @@ class TicketController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "提交工单";
         $this->getView()->assign($data);
     }
 	
@@ -116,6 +118,7 @@ class TicketController extends PcBasicController
 			$items=$this->m_ticket->Where($where)->SelectByID('',$id);
 			$data = array();
 			$data['items'] = $items;
+			$data['title'] = "查看工单";
 			$this->getView()->assign($data);
 		}else{
             $this->redirect("/help/");

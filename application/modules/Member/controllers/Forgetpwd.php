@@ -26,6 +26,8 @@ class ForgetpwdController extends PcBasicController
             $this->redirect("/member/");
             return FALSE;
         }
+		$data['title'] = "找回密码";
+		$this->getView()->assign($data);
     }
 	
 	public function resetAction()
@@ -63,7 +65,7 @@ class ForgetpwdController extends PcBasicController
         }else{
 			$data = array('code'=>1000,'msg'=>'非法链接，请重新校验您的信息');
 		}
-		
+		$data['title'] = "找回密码";
 		$this->getView()->assign($data);
 	}
 	

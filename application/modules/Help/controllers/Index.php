@@ -23,6 +23,7 @@ class IndexController extends PcBasicController
             return FALSE;
         }
 		$data = array();
+		$data['title'] = "帮助中心";
         $this->getView()->assign($data);
     }
 	
@@ -77,6 +78,7 @@ class IndexController extends PcBasicController
 			$items=$this->m_help->Where($where)->SelectByID('',$id);
 			$data = array();
 			$data['items'] = $items;
+			$data['title'] = "帮助中心";
 			$this->getView()->assign($data);
 		}else{
             $this->redirect("/help/");
