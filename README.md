@@ -17,6 +17,8 @@
 
 2.1 环境安装，推荐使用lnmp套件
 
+>参考：https://zlkb.net/241.html
+
 >nginx下rewrite规则
 
 >if (!-e $request_filename) {
