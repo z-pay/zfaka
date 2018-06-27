@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
 --
 
 INSERT INTO `t_payment` (`id`, `payment`, `alias`, `sign_type`, `app_id`, `ali_public_key`, `rsa_private_key`, `notify_url`, `return_url`, `active`) VALUES
-(1, '支付宝当面付', 'zfbf2f', 'RSA2', '', '', '', '/product/notify/', '/product/query/', 1);
+(1, '支付宝当面付', 'zfbf2f', 'RSA2', '', '', '', '/product/notify/', '/product/query/', 0);
 
 -- --------------------------------------------------------
 
@@ -285,12 +285,13 @@ CREATE TABLE IF NOT EXISTS `t_products_card` (
   `card` text NOT NULL COMMENT '卡密',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0可用 1已使用'
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_products_card`
 --
-
+INSERT INTO `t_products_card` (`id`, `pid`, `card`, `addtime`, `active`) VALUES
+(1, 1, '资料空白是大帅锅', 1530082076, 0);
 
 -- --------------------------------------------------------
 

@@ -10,6 +10,13 @@
 						<p>请登录<a href="/admin">管理后台</a>，进行基础配置。默认管理账户：43036456@qq.com,密码:123456</p>
 						<p>如有疑问，请联系QQ:43036456</p>
 					</blockquote>
+					
+					<blockquote class="layui-elem-quote layui-quote-nm">
+						服务器上配置定时计划,用于定时发送邮件;
+					</blockquote>
+					<pre class="layui-code layui-box layui-code-view">
+						*/2 * * * * php -q <?php echo APP_PATH;?>/public/cli.php request_uri="/crontab/sendemail/index"
+					</pre>
 				</div>
 			  </div>
 			</div>
