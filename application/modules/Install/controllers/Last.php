@@ -6,7 +6,7 @@
  * Date:20180626
  */
 
-class IndexController extends BasicController
+class LastController extends BasicController
 {
 
 	public function init()
