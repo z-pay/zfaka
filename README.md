@@ -20,10 +20,12 @@
 >参考：https://zlkb.net/241.html
 
 >nginx下rewrite规则
+``        location / {
+                if (!-e $request_filename){
+                        rewrite ^/(.*)$ /index.php?$1 last;
+                }
+        }``
 
->if (!-e $request_filename) {
->    rewrite ^/(.*)  /index.php/$1 last;
->}
 
 
 2.2 需要安装yaf扩展,需要mysql支持
