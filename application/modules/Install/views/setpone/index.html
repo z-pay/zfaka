@@ -18,16 +18,13 @@
 					</tr> 
 				  </thead>
 				  <tbody>
+					<?php foreach($require AS $r):?>
 					<tr>
-					  <td>PHP版本</td>
-					  <td>7.0.x</td>
-					  <td><?php echo phpversion(); ?></td>
+					  <td><?php echo $r['name'];?></td>
+					  <td><?php echo $r['require'];?></td>
+					  <td><?php echo $r['result'];?></td>
 					</tr>
-					<tr>
-					  <td>pdo支持</td>
-					  <td>必须</td>
-					  <td><?php echo phpversion(); ?></td>
-					</tr>
+					<?php endforeach;?>
 				  </tbody>
 				</table>
 				<div class="layui-form-item" style="text-align: center;">
@@ -39,10 +36,3 @@
 	</div>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
-<script language="javascript">
-	function custom_close(){
-		window.opener=null;
-		window.open('','_self');
-		window.close();
-	}
-</script>
