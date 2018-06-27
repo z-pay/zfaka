@@ -16,7 +16,10 @@ class PcBasicController extends BasicController
 	public function init(){	
 		parent::init();
 		$sysvars = $data = array();
-		$data['config']=$this->config=$this->load('config')->getConfig();
+		$this->config=$this->load('config')->getConfig();
+		if((isset($this->config['web_name']) AND strlen($this->config['web_name'])>0)==false){
+			$this->config['web_name'] = WEB_NAME;
+		}
 		$sysvars['isHttps']=$this->isHttps=isHttps();
 		$sysvars['isAjax']=$this->isAjax=isAjax();
 		$sysvars['isGet']=$this->isGet=isGet();

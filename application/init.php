@@ -22,6 +22,7 @@ define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 define('YEWU_FILE',APP_PATH.'/log/yewu/'.CUR_DATE.'.log');
 define('INSTALL_PATH',APP_PATH.'/install/');
 define('INSTALL_LOCK',INSTALL_PATH.'install.lock');
+define('WEB_NAME',"ZFAKA平台");
 error_reporting(0);
 error_reporting(E_ALL ^E_NOTICE);
 ini_set('display_errors', 'off');
