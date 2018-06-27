@@ -25,14 +25,15 @@ layui.define(['layer', 'form'], function(exports){
 		.done(function(res) {
 			if (res.code == '1') {
 				layer.open({
-					title: '提示',
-					content: res.msg,
-					btn: ['确定'],
-					yes: function(index, layero){
-					    location.reload();
-					},
-					cancel: function(){ 
-					    location.reload();
+					type: 1
+					,offset: auto 
+					,id: 'result'
+					,content: '<div style="padding: 20px 100px;">安装成功,请登录后台进行初始化配置</div>'
+					,btn: '确定'
+					,btnAlign: 'c' 
+					,shade: 0 
+					,yes: function(){
+						location.href = '/admin/';
 					}
 				});
 			} else {
