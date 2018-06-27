@@ -28,7 +28,11 @@ class SetponeController extends BasicController
 				array('name' => 'Session支持','require'=>'必须','result'=>$this->_isfun('session_start')),
 				array('name' => 'GD库支持','require'=>'必须','result'=>$this->_isfun(gd_info)),
 				array('name' => 'Openssl支持','require'=>'必须','result'=>$this->_isfun('openssl_sign')),
-				array('name' => 'Pdo_Mysql支持','require'=>'必须','result'=>$this->_isPDO()),
+				array('name' => 'Pdo_Mysql支持','require'=>'必须','result'=>$this->_isExtension('pdo_mysql')),
+				array('name' => APP_PATH.'/conf/application.ini','require'=>'可写','result'=>$this->_isWrite(APP_PATH.'/conf/application.ini')),
+				array('name' => '安装目录:'.INSTALL_PATH,'require'=>'可读可写','result'=>$this->_isReadAndWrite(INSTALL_PATH),
+				array('name' => '缓存目录:'.TEMP_PATH,'require'=>'可读可写','result'=>$this->_isReadAndWrite(TEMP_PATH),
+				array('name' => '日志目录:'.APP_PATH.'/log','require'=>'可写','result'=>$this->_isWrite(APP_PATH.'/log'),
 			);
 			$data['require'] = $require;
 			$this->getView()->assign($data);
@@ -46,12 +50,23 @@ class SetponeController extends BasicController
 		return (false !== version_compare( $version, $required_version, '>=' )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
 	}
 	
-	private function _isPDO()
+	private function _isExtension($ext)
 	{
-       if(if(extension_loaded('pdo_mysql'))) {
-			return '<font color="green">√</font>';
-	    }else{
-			return '<font color="red">×</font>';
-		}
-	}	
+		return (false !== extension_loaded( $ext )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+	}
+	
+	private function _isWrite($file)
+	{
+		return (false !== is_writable( $file )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+	}
+	
+	private function _isRead($file)
+	{
+		return (false !== is_readable( $file )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+	}
+	
+	private function _isReadAndWrite($file)
+	{
+		return (false !== (is_readable( $file ) AND is_writable( $file ))) ? '<font color="green">√</font>' : '<font color="red">×</font>';
+	}
 }
