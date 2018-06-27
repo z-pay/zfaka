@@ -2,8 +2,16 @@ layui.define(['layer', 'form'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
-
-	// //提交数据库
+	
+	form.verify({
+		dbname:function(value){
+			var reg= /^[A-Za-z]+$/;
+			if (!reg.test(value)) {
+				return '数据库必须为全英文字母';
+			}
+		}
+	});
+	//提交数据库
 	form.on('submit(setptwo)', function(data){
 
 		data.field.csrf_token = TOKEN;

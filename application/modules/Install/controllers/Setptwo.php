@@ -37,26 +37,30 @@ class SetptwoController extends BasicController
 		
 		$data = array();
 		
-		if($host AND $port AND $user AND $password){
+		if($host AND $port AND $user AND $password AND $dbname){
             try {
+				if(!preg_match("/^[a-zA-Z\s]+$/",$dbname)){
+					$data = array('code' => 1002, 'msg' =>"数据库名必须为全英文字母格式");
+					Helper::response($data);
+				}
 				if(file_exists($this->install_sql) AND is_readable($this->install_sql)){
 					$sql = @file_get_contents($this->install_sql);
 					if(!$sql){
-						$data = array('code' => 1002, 'msg' =>"无法读取".$this->install_sql."文件,请检查文件是否存在且有读权限");
+						$data = array('code' => 1003, 'msg' =>"无法读取".$this->install_sql."文件,请检查文件是否存在且有读权限");
 						Helper::response($data);
 					}
 				}else{
-					$data = array('code' => 1003, 'msg' =>"无法读取".$this->install_sql."文件,请检查文件是否存在且有读权限");
+					$data = array('code' => 1004, 'msg' =>"无法读取".$this->install_sql."文件,请检查文件是否存在且有读权限");
 					Helper::response($data);
 				}
 				
 				if (!is_writable($this->install_config)){
-					$data = array('code' => 1004, 'msg' =>"无法写入".$this->install_config."文件,请检查是否有写权限");
+					$data = array('code' => 1005, 'msg' =>"无法写入".$this->install_config."文件,请检查是否有写权限");
 					Helper::response($data);
 				}
 				
 				if (!is_writable(INSTALL_PATH)){
-					$data = array('code' => 1005, 'msg' =>"无法写入目录".INSTALL_PATH.",请检查是否有写权限");
+					$data = array('code' => 1006, 'msg' =>"无法写入目录".INSTALL_PATH.",请检查是否有写权限");
 					Helper::response($data);
 				}
 				
@@ -64,7 +68,7 @@ class SetptwoController extends BasicController
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 				$isexists = $pdo->query("show databases like '{$dbname}'");
 				if($isexists->rowCount()>0){
-					$data = array('code' => 1006, 'msg' =>"该数据库已存在");
+					$data = array('code' => 1007, 'msg' =>"该数据库已存在");
 				}else{
 					$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8_general_ci;");
 					$pdo->query("USE `{$dbname}`");
