@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `t_config` (
   `tag` text NOT NULL COMMENT '备注',
   `lock` tinyint(1) NOT NULL DEFAULT '0' COMMENT '锁',
   `updatetime` int(11) NOT NULL DEFAULT '0' COMMENT '最后修改时间'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='基础配置';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='基础配置';
 
 --
 -- 转存表中的数据 `t_config`
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `t_email_code` (
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '结果0未发送 1已发送',
   `checkedStatus` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未校验，1已校验'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `t_products_type` (
   `name` varchar(55) NOT NULL COMMENT '类型命名',
   `sort_num` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_products_type`
@@ -534,7 +534,7 @@ ALTER TABLE `t_user_login_logs`
 -- AUTO_INCREMENT for table `t_admin_login_log`
 --
 ALTER TABLE `t_admin_login_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `t_admin_user`
 --
@@ -544,7 +544,7 @@ ALTER TABLE `t_admin_user`
 -- AUTO_INCREMENT for table `t_config`
 --
 ALTER TABLE `t_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `t_config_cat`
 --
@@ -564,7 +564,7 @@ ALTER TABLE `t_email_code`
 -- AUTO_INCREMENT for table `t_email_queue`
 --
 ALTER TABLE `t_email_queue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `t_help`
 --
@@ -574,7 +574,7 @@ ALTER TABLE `t_help`
 -- AUTO_INCREMENT for table `t_order`
 --
 ALTER TABLE `t_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `t_payment`
 --
@@ -584,17 +584,17 @@ ALTER TABLE `t_payment`
 -- AUTO_INCREMENT for table `t_products`
 --
 ALTER TABLE `t_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `t_products_card`
 --
 ALTER TABLE `t_products_card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `t_products_type`
 --
 ALTER TABLE `t_products_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `t_seo`
 --
@@ -604,7 +604,7 @@ ALTER TABLE `t_seo`
 -- AUTO_INCREMENT for table `t_ticket`
 --
 ALTER TABLE `t_ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `t_user`
 --
@@ -619,7 +619,7 @@ ALTER TABLE `t_user_group`
 -- AUTO_INCREMENT for table `t_user_login_logs`
 --
 ALTER TABLE `t_user_login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
