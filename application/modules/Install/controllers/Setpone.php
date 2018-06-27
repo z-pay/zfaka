@@ -23,10 +23,13 @@ class SetponeController extends BasicController
 			$data = array();
 			$require = array(
 				array('name' => 'PHP版本','require'=>'>=7.0.0','result'=>$this->_isVersion('7.0.0',phpversion())),
+				array('name' => 'YAF版本','require'=>'>=3.0.0','result'=>$this->_isVersion('3.0.0',\Yaf\VERSION)),
 				array('name' => 'Curl支持','require'=>'必须','result'=>$this->_isfun('curl_init')),
-				
+				array('name' => 'Session支持','require'=>'必须','result'=>$this->_isfun('session_start')),
+				array('name' => 'GD库支持','require'=>'必须','result'=>$this->_isfun('gd_info')),
+				array('name' => 'Openssl支持','require'=>'必须','result'=>$this->_isfun('openssl_sign')),
+				array('name' => 'Pdo_Mysql支持','require'=>'必须','result'=>$this->_isPDO()),
 			);
-			
 			$data['require'] = $require;
 			$this->getView()->assign($data);
 		}
@@ -42,4 +45,13 @@ class SetponeController extends BasicController
 	{
 		return (false !== version_compare( $version, $required_version, '>=' )) ? '<font color="green">√</font>' : '<font color="red">×</font>';
 	}
+	
+	private function _isPDO()
+	{
+       if(if(extension_loaded('pdo_mysql'))) {
+			return '<font color="green">√</font>';
+	    }else{
+			return '<font color="red">×</font>';
+		}
+	}	
 }
