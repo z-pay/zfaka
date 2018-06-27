@@ -34,7 +34,9 @@
 
 
 2.3 下载代码
->git clone git@github.com:zlkbdotnet/zfaka.git
+<pre>
+git clone https://github.com/zlkbdotnet/zfaka.git
+</pre> 
 
 2.4 配置目录权限
 
@@ -47,9 +49,9 @@
 2.5 直接访问安装
 
 2.6 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
-
->参考：*/2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
-	
+<pre>
+*/2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
+</pre> 	
 	
 # 三、BUG与问题反馈
    请联系我QQ:43036456
