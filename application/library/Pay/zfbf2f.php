@@ -92,10 +92,10 @@ class zfbf2f implements PayNotifyInterface
 								$m = array();
 								//3.1.4.1通知用户,定时任务去执行
 								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$card_mi_str;
-								$m=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
+								$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
 								//3.1.4.2通知管理员,定时任务去执行
 								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
-								$m=array('email'=>$web_config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
+								$m[]=array('email'=>$web_config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
 								$m_email_queue->MultiInsert($m);
 								$data =array('code'=>1,'msg'=>'自动发卡');
 							}else{
