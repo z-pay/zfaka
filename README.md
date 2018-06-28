@@ -22,6 +22,10 @@
 
 >参考：https://zlkb.net/241.html
 
+>nginx下root的配置r oot路径一定要加上public目录  
+
+>参考:/alidata/wwwroot/faka.zlkb.net/public;
+
 >nginx下rewrite规则
 <pre>      location / {
                 if (!-e $request_filename){
@@ -34,6 +38,9 @@
 
 2.2 需要安装yaf扩展,需要mysql支持
 >参考：https://zlkb.net/243.html
+
+>补充：php.ini中一定要配置 yaf.use_namespace=1
+
 
 <pre> 
 #####################################################
