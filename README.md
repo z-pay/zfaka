@@ -6,11 +6,13 @@
 
 1.1 会员模块
 > 默认情况下，不支持注册，当然后台可以开放注册；
->注册成会员可查看历史购买记录。
+
+注册成会员可查看历史购买记录。
 	
 1.2 购买模块
 >支持自动发卡和手工发卡模式；
->支付方式，目前只支持当面付，ps:因为我当前只有这个支付方式.
+
+支付方式，目前只支持当面付，ps:因为我当前只有这个支付方式.
 	
 1.3 补充关于支付渠道问题
 >不要问我可不可以支持，只要你提供测试账户与接口文档，一般1－2周我都会更新上去；
@@ -22,9 +24,9 @@
 
 >参考：https://zlkb.net/241.html
 
->nginx下root的配置r oot路径一定要加上public目录  
+>nginx下root的配置r oot路径一定要加上public目录
 
->参考:/alidata/wwwroot/faka.zlkb.net/public;
+参考:/alidata/wwwroot/faka.zlkb.net/public;
 
 >nginx下rewrite规则
 <pre>      location / {
