@@ -45,23 +45,26 @@
                                 <button class="layui-btn" lay-filter="query" lay-submit>查询</button>
                             </div>
                         </form>
-                        <table class="layui-table" id="query-table" style="display: none;">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>订单ID</th>
-                                    <th>订单名称</th>
-                                    <th>数量</th>
-                                    <th>金额</th>
-                                    <th>下单时间</th>
-                                    <th>状态</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr></tr>
-                            </tbody>
-                        </table>
+						<div class="layui-table-querey">
+							<table class="layui-table" id="query-table" style="display: none;">
+								</colgroup>
+								<thead>
+									<tr>
+										<th>订单ID</th>
+										<th>订单名称</th>
+										<th>数量</th>
+										<th>金额</th>
+										<th>下单时间</th>
+										<th>状态</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr></tr>
+								</tbody>
+							</table>
+						</div>
                         <?php else:?>
+						<div class="layui-table-querey">
                         <table class="layui-table" id="query-table">
                             <thead>
                                 <tr>
@@ -100,6 +103,7 @@
                                 <?php endif;?>
                             </tbody>
                         </table>
+						</div>
                         <?php endif;?>
                     </div>
                 </div>
