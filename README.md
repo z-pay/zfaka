@@ -48,11 +48,11 @@
 
 ## 特别补充说明：yaf的环境安装比较麻烦，需要注意一些问题；
 
-* 1. yaf安装时版本注意事项 https://zlkb.net/435.html
+* 1. 安装时yaf版本注意事项 https://zlkb.net/435.html
 
-* 2. nginx vhost配置中root路径一定要加上public目录，例如:  /alidata/wwwroot/faka.zlkb.net/public;
+* 2. 配置nginx vhost中root路径一定要加上public目录，例如:  /alidata/wwwroot/faka.zlkb.net/public;
 
-* 3. nginx vhost配置中一定要添加rewrite规则,参考上面
+* 3. 配置nginx vhost中一定要添加rewrite规则,参考上面
 
 * 4. 一定要取消 防跨站攻击(open_basedir),宝塔面板中直接取消勾即可，lnmp的环境，直接可以运行tools/remove_open_basedir_restriction.sh
 
