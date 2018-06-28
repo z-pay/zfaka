@@ -584,10 +584,11 @@ body .fly-user-main{position: relative; min-height: 600px;}
   .site-mobile .site-mobile-shade{content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.9); z-index: 999;}
 }
 
-@media screen and (max-width: 450px)
-.layui-form-item .query_yzm {
-    position: absolute;
-    right: 0;
-    top: 1px;
-    cursor: pointer;
+@media screen and (max-width: 450px){
+	.layui-form-item .query_yzm {
+		position: absolute;
+		right: 0;
+		top: 1px;
+		cursor: pointer;
+	}
 }
