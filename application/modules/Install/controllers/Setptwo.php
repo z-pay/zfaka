@@ -66,26 +66,32 @@ class SetptwoController extends BasicController
 				
                 $pdo = new PDO("mysql:host=".$host.";port=".$port.";charset=utf8;",$user, $password, array(PDO::ATTR_PERSISTENT => true,PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-				$isexists = $pdo->query("show databases like '{$dbname}'");
-				if($isexists->rowCount()>0){
-					$data = array('code' => 1007, 'msg' =>"该数据库已存在");
-				}else{
-					$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8_general_ci;");
-					$pdo->query("USE `{$dbname}`");
-					$pdo->exec($sql);
-					
-					$ini = new WriteiniFile($this->install_config);
-					$ini->update([
-						'product : common' => ['READ_HOST' => $host,'WRITE_HOST' => $host,'READ_PORT' => $port,'WRITE_PORT' => $port,'READ_USER' => $user,'WRITE_USER' => $user,'READ_PSWD' => $password,'WRITE_PSWD' => $password,'Default' => $dbname]
-					]);
-					$ini->write();
-					
-					$result = @file_put_contents(INSTALL_LOCK,VERSION,LOCK_EX);
-					if (!$result){
-						$data = array('code' => 1004, 'msg' =>"无法写入安装锁定到".INSTALL_LOCK."文件，请检查是否有写权限");
+				
+				//是否判断数据库存在，默认不判断
+				$isexistsRadio = false;
+				if($isexistsRadio){
+					$isexists = $pdo->query("show databases like '{$dbname}'");
+					if($isexists->rowCount()>0){
+						$data = array('code' => 1007, 'msg' =>"该数据库已存在");
+						Helper::response($data);
 					}
-					$data = array('code' => 1, 'msg' =>"SUCCESS");
 				}
+				
+				$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8_general_ci;");
+				$pdo->query("USE `{$dbname}`");
+				$pdo->exec($sql);
+					
+				$ini = new WriteiniFile($this->install_config);
+				$ini->update([
+					'product : common' => ['READ_HOST' => $host,'WRITE_HOST' => $host,'READ_PORT' => $port,'WRITE_PORT' => $port,'READ_USER' => $user,'WRITE_USER' => $user,'READ_PSWD' => $password,'WRITE_PSWD' => $password,'Default' => $dbname]
+				]);
+				$ini->write();
+					
+				$result = @file_put_contents(INSTALL_LOCK,VERSION,LOCK_EX);
+				if (!$result){
+					$data = array('code' => 1004, 'msg' =>"无法写入安装锁定到".INSTALL_LOCK."文件，请检查是否有写权限");
+				}
+				$data = array('code' => 1, 'msg' =>"SUCCESS");
             } catch (PDOException $e) {
 				$data = array('code' => 1001, 'msg' =>"失败:".$e->getMessage());
             }
