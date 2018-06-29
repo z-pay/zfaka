@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
 
 INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `notify_url`, `return_url`, `active`) VALUES
 (1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '', '/product/notify/', '/product/query/', 0),
-(2, '支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', '', '', '', '', '', '/product/notify/', '/product/query/', 1);
+(2, '支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', '', '', '', '', '', '/product/notify/', '/product/query/', 0);
 
 -- --------------------------------------------------------
 
