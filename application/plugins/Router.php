@@ -52,8 +52,9 @@ class RouterPlugin extends Yaf\Plugin_Abstract
 						$request->setModuleName($module);
 						//处理默认controller与action问题
 						if (isset($uriInfo[2]) AND strlen($uriInfo[2])>0) {
-							if (!preg_match("#html#", $uriInfo[2])){ 
-								$request->setControllerName(ucfirst(strtolower($uriInfo[2])));
+							if (!preg_match("#html#", $uriInfo[2])){
+								$controller = str_replace(".php","",$uriInfo[2]);
+								$request->setControllerName(ucfirst(strtolower($controller)));
 								if (isset($uriInfo[3]) AND strlen($uriInfo[3])>0) {
 									if (!preg_match("#html#", $uriInfo[3])){ 
 										$request->setActionName(ucfirst(strtolower($uriInfo[3])));
