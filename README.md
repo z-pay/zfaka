@@ -1,6 +1,5 @@
 # ZFAKA发卡系统(本系统基于yaf+layui开发)
 
-# 使用宝塔面板的请直接抛弃本项目，yaf框架项目在bt中基本是残废，推荐lnmp
 
 # 一、系统介绍
 包含自动发卡功能，有会员中心和后台中心。
@@ -38,7 +37,13 @@
         }
 </pre> 
 
-
+* nginx下rewrite规则(如果上面的不行，就用这个，有一个问号的差别)
+<pre>      location / {
+                if (!-e $request_filename){
+                        rewrite ^/(.*)$ /index.php$1 last;
+                }
+        }
+</pre> 
 
 2.2 需要安装yaf扩展,需要mysql支持
 >参考：https://zlkb.net/243.html
