@@ -186,11 +186,12 @@ class OrderController extends PcBasicController
 	public function showqrAction()
 	{
 		$url = $this->get('url');
-		if($url AND filter_var($url, FILTER_VALIDATE_URL)){
+		if($url){
 			\PHPQRCode\QRcode::png($url);
 			exit();
 		}else{
 			echo '';
+			exit();
 		}
 	}
 }
