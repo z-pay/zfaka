@@ -38,7 +38,7 @@ class zfbf2f
 		];
 		try {
 			$qr = Charge::run(Config::ALI_CHANNEL_QR, $config, $data);
-			$result = array('paymethod'=>'zfbf2f','qr'=>$qr);
+			$result = array('paymethod'=>'zfbf2f','qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['name']);
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');

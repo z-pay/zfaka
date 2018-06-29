@@ -61,9 +61,12 @@
                             <?php else:?>
                             <?php if(!empty($payments)):?>
                             <?php foreach($payments AS $payment):?>
-                            <button class="layui-btn layui-btn-warm <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" <?php if($payment['active']<1):?>disabled<?php endif;?> data-type="<?php echo $payment['alias'];?>">
+                            <!--<button class="layui-btn layui-btn-warm <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" <?php if($payment['active']<1):?>disabled<?php endif;?> data-type="<?php echo $payment['alias'];?>">
                                 <?php echo $payment['payment'];?>
-                            </button>
+                            </button>-->
+							<a class="layui-btn layui-btn-warm <?php if($payment['active']<1):?>layui-btn-disabled<?php endif;?>" <?php if($payment['active']<1):?>disabled<?php endif;?> data-type="<?php echo $payment['alias'];?>">
+                               <img src="<?php echo $payment['payimage'];?>">
+                            </a>
                             <?php endforeach;?>
                             <?php else:?>
                             <p>站长正在加紧配置，请耐心等待....</p>

@@ -14,11 +14,7 @@
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
             success: function(res) {
                 if (res.code == 1) {
-					var html='';
-					if(res.data.paymethod =='zfbf2f'){
-						html = '<div style="text-align: center;"><img src="/product/order/showqr/?url='+res.data.qr+'" alt="当面付" width="230" height="230"><p>请使用手机支付宝扫一扫</p><p>扫描二维码完成支付</p></div>';
-					}
-					
+					var html = '<div style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
 					layer.open({
 						type: 1
 						,title: false

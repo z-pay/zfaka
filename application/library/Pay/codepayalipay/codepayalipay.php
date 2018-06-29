@@ -51,7 +51,7 @@ class codepayalipay
 			$codepay_data = json_decode($codepay_json);
 			$qr = $codepay_data ? $codepay_data->qrcode : '';
 			
-			$result = array('paymethod'=>'codepayalipay','qr'=>$qr);
+			$result = array('paymethod'=>'codepayalipay','qr'=>$qr,'payname'=>$payconfig['name']);
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
