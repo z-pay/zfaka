@@ -47,8 +47,8 @@ class OrderController extends PcBasicController
 						Helper::response($data);
 					}
 					
-					$starttime = strtotime(date("Y-m-d");
-					$endtime = strtotime(date("Y-m-d 23:59:59");
+					$starttime = strtotime(date("Y-m-d"));
+					$endtime = strtotime(date("Y-m-d 23:59:59"));
 					//进行同一ip，下单未付款的处理判断
 					if(isset($this->config['limit_ip_order']) AND $this->config['limit_ip_order']>0){
 						$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
