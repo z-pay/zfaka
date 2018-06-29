@@ -25,7 +25,7 @@ class zfbf2f
 			'sign_type' => $payconfig['sign_type'],
 			'ali_public_key' => $payconfig['ali_public_key'],
 			'rsa_private_key' => $payconfig['rsa_private_key'],
-			'notify_url' => $params['web_url'] . $payconfig['notify_url'],
+			'notify_url' => $params['web_url'] . $payconfig['notify_url'].'?paymethod=zfbf2f',
 			'return_url' =>$params['web_url']. $payconfig['notify_url'].'?paymethod=zfbf2f&orderid='.$params['orderid'],
 			'return_raw' => true
 		];

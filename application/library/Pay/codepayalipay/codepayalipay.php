@@ -25,7 +25,7 @@ class codepayalipay
 			"outTime" => 360,//二维码超时设置
 			"page" => 4,//订单创建返回JS 或者JSON
 			"return_url" => $params['web_url']. $payconfig['notify_url'].'?paymethod=codepayalipay&orderid='.$params['orderid'],//付款后附带加密参数跳转到该页面
-			"notify_url" => $params['web_url'] . $payconfig['notify_url'],//付款后通知该页面处理业务
+			"notify_url" => $params['web_url'] . $payconfig['notify_url'].'?paymethod=codepayalipay',//付款后通知该页面处理业务
 			"style" =>1,//付款页面风格
 			"pay_type" => 1,//支付宝使用官方接口
 			"user_ip" => getClientIP(),//付款人IP
