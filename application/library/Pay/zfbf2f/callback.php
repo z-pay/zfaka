@@ -7,10 +7,7 @@
  */
 namespace Pay\zfbf2f;
 
-use \Payment\Client\Charge;
 use \Payment\Notify\PayNotifyInterface;
-use \Payment\Common\PayException;
-use \Payment\Config;
 
 use \Pay\notify;
 

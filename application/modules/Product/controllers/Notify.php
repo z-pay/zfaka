@@ -4,8 +4,6 @@
  * Author:资料空白
  * Date:20180509
  */
-use \Payment\Common\PayException;
-use \Payment\Client\Notify;
 class NotifyController extends PcBasicController
 {
 	private $m_payment;
