@@ -90,7 +90,12 @@
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				location.href = '/product/order/pay/?oid='+res.data.oid;
+				var oid = res.data.oid;
+				if(oid.length>0){
+					location.href = '/product/order/pay/?oid='+res.data.oid;
+				}else{
+					layer.msg("订单异常",{icon:2,time:5000});
+				}
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
