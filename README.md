@@ -27,7 +27,7 @@
 >参考：https://zlkb.net/241.html
 
 >相关配置
-* nginx下root的配置r oot路径一定要加上public目录. 参考:/alidata/wwwroot/faka.zlkb.net/public;
+* nginx下root的配置root路径一定要加上public目录. 参考:/alidata/wwwroot/faka.zlkb.net/public;
 
 * nginx下rewrite规则
 <pre>      location / {
