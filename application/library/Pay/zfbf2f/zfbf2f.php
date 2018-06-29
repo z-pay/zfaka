@@ -14,7 +14,7 @@ use \Payment\Config;
 
 use \Pay\zfbf2f\callback;
 
-class zfbf2f implements PayNotifyInterface
+class zfbf2f
 {
 	//处理请求
 	public function pay($payconfig,$params)
