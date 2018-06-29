@@ -23,14 +23,7 @@
                             </div>
                         </div>
 						
-						<?php if($item['alias']=='codepay'):?>
-                        <div class="layui-form-item layui-form-text">
-                            <label for="app_secret" class="layui-form-label">密钥</label>
-                            <div class="layui-input-block">
-                                <textarea placeholder="" id="app_secret" name="app_secret" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['app_secret'];?></textarea>
-                            </div>
-                        </div>
-						<?php else:?>
+						<?php if($item['alias']=='zfbf2f'):?>
                         <div class="layui-form-item layui-form-text">
                             <label for="ali_public_key" class="layui-form-label">ali_public_key</label>
                             <div class="layui-input-block">
@@ -51,6 +44,13 @@
                                     <option value="RSA">RSA</option>
                                     <option value="RSA2" selected="">RSA2</option>
                                 </select>
+                            </div>
+                        </div>
+						<?php else:?>
+                        <div class="layui-form-item layui-form-text">
+                            <label for="app_secret" class="layui-form-label">密钥</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="" id="app_secret" name="app_secret" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['app_secret'];?></textarea>
                             </div>
                         </div>
 						<?php endif;?>
