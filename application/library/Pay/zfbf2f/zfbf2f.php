@@ -5,13 +5,14 @@
  * Author: 资料空白
  * Date: 2018-6-8
  */
-namespace Pay;
+namespace Pay\zfbf2f;
 
 use \Payment\Client\Charge;
 use \Payment\Notify\PayNotifyInterface;
 use \Payment\Common\PayException;
 use \Payment\Config;
-use \Pay\notify;
+
+use \Pay\zfbf2f\callback;
 
 class zfbf2f implements PayNotifyInterface
 {
@@ -44,17 +45,19 @@ class zfbf2f implements PayNotifyInterface
 		}
 	}
 	
-	//处理返回
-	public function notifyProcess(array $params)
+	public function notify(array $payconfig,array $params)
 	{
-		if($params['body']=='zfbf2f'){
-			$config = array('paymethod'=>$params['body'],'tradeid'=>$params['trade_no'],'paymoney'=>$params['total_amount'],'orderid'=>$params['out_trade_no'] );
-			$notify = new \Pay\notify();
-			$data = $notify->run($config);
-		}else{
-			$data =array('code'=>1002,'msg'=>'支付方式不对');
+		try {
+			unset($_POST['paymethod']);
+			$callback = new \Pay\zfbf2f\callback();
+			$ret = Notify::run("ali_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($ret).PHP_EOL, FILE_APPEND);
+			var_dump($ret);
+			exit();
+		} catch (\Exception $e) {
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
+			exit;
 		}
-		return $data;
 	}
 	
 }

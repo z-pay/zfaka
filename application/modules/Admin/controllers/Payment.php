@@ -89,6 +89,7 @@ class PaymentController extends AdminBasicController
 		$payment = $this->getPost('payment',false);
 		$sign_type = $this->getPost('sign_type',false);
 		$app_id = $this->getPost('app_id',false);
+		$app_secret = $this->getPost('app_secret',false);
 		$ali_public_key = $this->getPost('ali_public_key',false);
 		$rsa_private_key = $this->getPost('rsa_private_key',false);
 		$active = $this->getPost('active',false);
@@ -101,12 +102,13 @@ class PaymentController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $payment AND $sign_type AND $app_id AND $ali_public_key AND $rsa_private_key AND is_numeric($active) AND $csrf_token){
+		if($method AND $payment AND is_numeric($active) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'payment'=>$payment,
 					'sign_type'=>$sign_type,
 					'app_id'=>$app_id,
+					'app_secret'=>$app_secret,
 					'ali_public_key'=>$ali_public_key,
 					'rsa_private_key'=>$rsa_private_key,
 					'active'=>$active,

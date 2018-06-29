@@ -86,7 +86,7 @@ class notify
 								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],由于库存不足暂时无法处理,请尽快处理!';
 								$m[] = array('email'=>$web_config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
 								$m_email_queue->MultiInsert($m);
-								$data =array('code'=>1005,'msg'=>'库存不足,无法处理');
+								$data =array('code'=>1,'msg'=>'库存不足,无法处理');
 							}
 						}else{
 							//4.手工操作

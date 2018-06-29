@@ -158,17 +158,13 @@ class OrderController extends PcBasicController
 						if($order['status']>0){
 							$data = array('code' => 1004, 'msg' => '订单已支付成功');
 						}else{
-							if($paymethod=='zfbf2f'){
-								$method='zfbf2f';
-							}elseif($paymethod=='codepayalipay'){
-								$method='codepayalipay';
-							}else{
-								$data = array('code' => 1005, 'msg' => '支付渠道不存在');
-								Helper::response($data);
+							try{
+								$PAY = "\\Pay\\".$paymethod."\\".$paymethod;
+								$params =array('orderid'=>$order['orderid'],'money'=>$order['money'],'productname'=>$order['productname'],'web_url'=>$this->config['web_url']);
+								$data = $PAY->pay($payconfig,$params);
+							} catch (\Exception $e) {
+								$data = array('code' => 1005, 'msg' => $e->errorMessage());
 							}
-							$PAY = "\\Pay\\".$method;
-							$params =array('orderid'=>$order['orderid'],'money'=>$order['money'],'productname'=>$order['productname'],'web_url'=>$this->config['web_url']);
-							$data = $PAY->pay($payconfig,$params);
 						}
 					}else{
 						$data = array('code' => 1003, 'msg' => '订单不存在');

@@ -60,7 +60,7 @@ class codepayalipay
 	
 	
 	//处理返回
-	public function notifyProcess($payconfig,$params)
+	public function notify($payconfig,$params)
 	{
 		ksort($params); //排序post参数
 		reset($params); //内部指针指向数组中的第一个元素

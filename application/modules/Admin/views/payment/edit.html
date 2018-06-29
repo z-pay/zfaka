@@ -22,6 +22,15 @@
                                 <input type="text" id="app_id" name="app_id" required lay-verify="required" autocomplete="off" value="<?php echo $item['app_id'];?>" class="layui-input">
                             </div>
                         </div>
+						
+						<?php if($item['alias']=='codepay'):?>
+                        <div class="layui-form-item layui-form-text">
+                            <label for="app_secret" class="layui-form-label">密钥</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="" id="app_secret" name="app_secret" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['app_secret'];?></textarea>
+                            </div>
+                        </div>
+						<?php else:?>
                         <div class="layui-form-item layui-form-text">
                             <label for="ali_public_key" class="layui-form-label">ali_public_key</label>
                             <div class="layui-input-block">
@@ -44,6 +53,7 @@
                                 </select>
                             </div>
                         </div>
+						<?php endif;?>
                         <div class="layui-form-item">
                             <label class="layui-form-label">是否激活</label>
                             <div class="layui-input-inline">
