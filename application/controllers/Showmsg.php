@@ -4,7 +4,7 @@
  * Author:资料空白
  * Date:20180604
  */
-class ShowmsgController extends PcBasicController
+class ShowmsgController extends BasicController
 {
 
  	public function init()

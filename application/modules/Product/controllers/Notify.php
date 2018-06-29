@@ -40,7 +40,6 @@ class NotifyController extends PcBasicController
 					var_dump($ret);
 					exit();
 				} catch (PayException $e) {
-					echo $e->errorMessage();
 					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
 					exit;
 				}

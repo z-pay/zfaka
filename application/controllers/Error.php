@@ -4,7 +4,7 @@
  * Author:资料空白
  * Date:20180604
  */
-class ErrorController extends PcBasicController
+class ErrorController extends BasicController
 {
 
     public function errorAction($exception)
