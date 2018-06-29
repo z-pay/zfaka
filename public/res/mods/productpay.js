@@ -4,7 +4,7 @@
 	var oid = $("#oid").val();
 	var t = '';
 
-	$('.layui-btn').on('click', function(event) {
+	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
         $.ajax({
