@@ -226,26 +226,29 @@ CREATE TABLE IF NOT EXISTS `t_order` (
 --
 -- 表的结构 `t_payment`
 --
-
 CREATE TABLE IF NOT EXISTS `t_payment` (
   `id` int(11) NOT NULL,
   `payment` varchar(55) NOT NULL COMMENT '支付名',
+  `payname` varchar(55) NOT NULL COMMENT '显示名称',
+  `payimage` varchar(200) NOT NULL COMMENT '图片',
   `alias` varchar(55) NOT NULL COMMENT '别名',
   `sign_type` enum('RSA','RSA2','','') NOT NULL DEFAULT 'RSA2',
   `app_id` varchar(55) NOT NULL,
+  `app_secret` varchar(100) NOT NULL,
   `ali_public_key` text NOT NULL,
   `rsa_private_key` text NOT NULL,
   `notify_url` varchar(255) NOT NULL,
   `return_url` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_payment`
 --
 
-INSERT INTO `t_payment` (`id`, `payment`, `alias`, `sign_type`, `app_id`, `ali_public_key`, `rsa_private_key`, `notify_url`, `return_url`, `active`) VALUES
-(1, '支付宝当面付', 'zfbf2f', 'RSA2', '', '', '', '/product/notify/', '/product/query/', 0);
+INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `notify_url`, `return_url`, `active`) VALUES
+(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '', '/product/notify/', '/product/query/', 0),
+(2, '支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', '', '', '', '', '', '/product/notify/', '/product/query/', 1);
 
 -- --------------------------------------------------------
 
