@@ -31,7 +31,7 @@
 
 * nginx下rewrite规则
 <pre>      location / {
-                if (!-e $request_filename){
+                if (!-e $request_filename) {
                         rewrite ^/(.*)$ /index.php?$1 last;
                 }
         }
@@ -39,7 +39,7 @@
 
 * nginx下rewrite规则(如果上面的不行，就用这个，有一个问号的差别)
 <pre>      location / {
-                if (!-e $request_filename){
+                if (!-e $request_filename) {
                         rewrite ^/(.*)$ /index.php$1 last;
                 }
         }
