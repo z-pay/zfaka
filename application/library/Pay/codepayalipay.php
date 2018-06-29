@@ -6,6 +6,8 @@
  * Date: 2018-6-29
  */
 namespace Pay;
+use \Pay\notify;
+
 class codepayalipay
 {
 	private $apiHost="http://api2.fateqq.com:52888/creat_order/?";
@@ -13,41 +15,47 @@ class codepayalipay
 	//处理请求
 	public function pay($payconfig,$params)
 	{
-		$parameter = array(
-			"id" => (int)$codepay_config['id'],//平台ID号
+		$config = array(
+			"id" => (int)$payconfig['app_id'],//平台ID号
 			"type" => $type,//支付方式
-			"price" => (float)$price,//原价
-			"pay_id" => $pay_id, //可以是用户ID,站内商户订单号,用户名
-			"param" => $param,//自定义参数
-			"act" => (int)$codepay_config['act'],//此参数即将弃用
-			"outTime" => (int)$codepay_config['outTime'],//二维码超时设置
-			"page" => (int)$codepay_config['page'],//订单创建返回JS 或者JSON
-			"return_url" => $codepay_config["return_url"],//付款后附带加密参数跳转到该页面
-			"notify_url" => $codepay_config["notify_url"],//付款后通知该页面处理业务
-			"style" => (int)$codepay_config['style'],//付款页面风格
-			"pay_type" => $codepay_config['pay_type'],//支付宝使用官方接口
-			"user_ip" => getIp(),//付款人IP
-			"qrcode_url" => $codepay_config['qrcode_url'],//本地化二维码
-			"chart" => trim(strtolower($codepay_config['chart']))//字符编码方式
+			"price" => (float)$params['money'],//原价
+			"pay_id" => $params['orderid'], //可以是用户ID,站内商户订单号,用户名
+			"param" => '',//自定义参数
+			"act" => 0,//此参数即将弃用
+			"outTime" => 360,//二维码超时设置
+			"page" => 4,//订单创建返回JS 或者JSON
+			"return_url" => $params['web_url']. $payconfig['notify_url'].'?paymethod=codepayalipay&orderid='.$params['orderid'],//付款后附带加密参数跳转到该页面
+			"notify_url" => $params['web_url'] . $payconfig['notify_url'],//付款后通知该页面处理业务
+			"style" =>1,//付款页面风格
+			"pay_type" => 1,//支付宝使用官方接口
+			"user_ip" => getClientIP(),//付款人IP
+			"qrcode_url" =>'',//本地化二维码
+			"chart" => trim(strtolower('utf-8'))//字符编码方式
 			//其他业务参数根据在线开发文档，添加参数.文档地址:https://codepay.fateqq.com/apiword/
 			//如"参数名"=>"参数值"
 		);
 		
-		$back = create_link($parameter, $payconfig['key'],$payconfig['gateway']); //生成支付URL
-		if (function_exists('file_get_contents')) { //如果开启了获取远程HTML函数 file_get_contents
-			$codepay_json = file_get_contents($back['url']); //获取远程HTML
-		} else if (function_exists('curl_init')) {
-			$ch = curl_init(); //使用curl请求
-			$timeout = 5;
-			curl_setopt($ch, CURLOPT_URL, $back['url']);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-			$codepay_json = curl_exec($ch);
-			curl_close($ch);
+		try{
+			
+			$back = $this->_create_link($config, $payconfig['app_secret']); //生成支付URL
+			if (function_exists('file_get_contents')) { //如果开启了获取远程HTML函数 file_get_contents
+				$codepay_json = file_get_contents($back['url']); //获取远程HTML
+			} else if (function_exists('curl_init')) {
+				$ch = curl_init(); //使用curl请求
+				curl_setopt($ch, CURLOPT_URL, $back['url']);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+				$codepay_json = curl_exec($ch);
+				curl_close($ch);
+			}
+			$codepay_data = json_decode($codepay_json);
+			$qr = $codepay_data ? $codepay_data->qrcode : '';
+			
+			$result = array('paymethod'=>'codepayalipay','qr'=>$qr);
+			return array('code'=>1,'msg'=>'success','data'=>$result);
+		} catch (PayException $e) {
+			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
 		}
-		$codepay_data = json_decode($codepay_json);
-		$qr = $codepay_data ? $codepay_data->qrcode : '';
-		
 	}
 	
 	
@@ -68,12 +76,13 @@ class codepayalipay
 				$urls .= "$key=" . urlencode($val); //拼接为url参数形式
 			}
 		}
-		if (!$params['pay_no'] || md5($sign . $payconfig['security_code']) != $params['sign']) { //不合法的数据 KEY密钥为你的密钥
-			exit('fail');
+		if (!$params['pay_no'] || md5($sign . $payconfig['app_secret']) != $params['sign']) { //不合法的数据 KEY密钥为你的密钥
+			return $data =array('code'=>1001,'msg'=>'验证失败');
 		} else { //合法的数据
 			//业务处理
-			
-			exit('success');
+			$config = array('paymethod'=>'codepayalipay','tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
+			$notify = new \Pay\notify();
+			return $data = $notify->run($config);
 		}
 	}
 	

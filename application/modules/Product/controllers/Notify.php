@@ -7,23 +7,17 @@
 use \Payment\Common\PayException;
 use \Payment\Client\Notify;
 use \Pay\zfbf2f;
+use \Pay\codepayalipay;
 class NotifyController extends PcBasicController
 {
-	private $m_order;
 	private $m_payment;
-	private $m_products_card;
-	private $m_email_queue;
-	private $m_products;
     public function init()
     {
         parent::init();
-		$this->m_order = $this->load('order');
 		$this->m_payment = $this->load('payment');
-		$this->m_products_card = $this->load('products_card');
-		$this->m_email_queue = $this->load('email_queue');
-		$this->m_products = $this->load('products');
     }
 
+	
     public function indexAction()
     {
 		if(!empty($_POST)){
@@ -42,6 +36,57 @@ class NotifyController extends PcBasicController
 				} catch (PayException $e) {
 					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
 					exit;
+				}
+			}else{
+				echo 'error';exit();
+			}
+		}else{
+			echo 'error';exit();
+		}
+    }
+	
+    public function zfbf2fAction()
+    {
+		if(!empty($_POST)){
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
+			$paymethod = 'zfbf2f';
+			$payments = $this->m_payment->getConfig();
+			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
+				$payconfig = $payments[$paymethod];
+				unset($_POST['paymethod']);
+				try {
+					$callback = new \Pay\zfbf2f();
+					$ret = Notify::run("ali_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($ret).PHP_EOL, FILE_APPEND);
+					var_dump($ret);
+					exit();
+				} catch (PayException $e) {
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
+					exit();
+				}
+			}else{
+				echo 'error';exit();
+			}
+		}else{
+			echo 'error';exit();
+		}
+    }
+	
+    public function codepayalipayAction()
+    {
+		if(!empty($_POST)){
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
+			$paymethod = 'codepayalipay';
+			$payments = $this->m_payment->getConfig();
+			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
+				$payconfig = $payments[$paymethod];
+				try {
+					$callback = new \Pay\codepayalipay();
+					$callback->notifyProcess($payconfig,$_POST);
+					exit();
+				} catch (PayException $e) {
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
+					exit();
 				}
 			}else{
 				echo 'error';exit();

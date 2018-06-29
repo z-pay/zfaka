@@ -14,12 +14,17 @@
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
             success: function(res) {
                 if (res.code == 1) {
+					var html='';
+					if(res.data.paymethod =='zfbf2f'){
+						html = '<div style="text-align: center;"><img src="/product/order/showqr/?url='+res.data.qr+'" alt="当面付" width="230" height="230"><p>请使用手机支付宝扫一扫</p><p>扫描二维码完成支付</p></div>';
+					}
+					
 					layer.open({
 						type: 1
 						,title: false
 						,offset: 'auto'
 						,id: 'layerDemoauto' //防止重复弹出
-						,content: '<div style="text-align: center;"><img src="/product/order/showqr/?url='+res.data+'" alt="当面付" width="230" height="230"><p>请使用手机支付宝扫一扫</p><p>扫描二维码完成支付</p></div>'
+						,content: html
 						,btn: '关闭'
 						,btnAlign: 'c' //按钮居中
 						,shade: 0 //不显示遮罩
