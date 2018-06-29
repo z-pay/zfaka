@@ -159,7 +159,8 @@ class OrderController extends PcBasicController
 							$data = array('code' => 1004, 'msg' => '订单已支付成功');
 						}else{
 							try{
-								$PAY = "\\Pay\\".$paymethod."\\".$paymethod;
+								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
+								$PAY = new $payclass();
 								$params =array('orderid'=>$order['orderid'],'money'=>$order['money'],'productname'=>$order['productname'],'web_url'=>$this->config['web_url']);
 								$data = $PAY->pay($payconfig,$params);
 							} catch (\Exception $e) {
