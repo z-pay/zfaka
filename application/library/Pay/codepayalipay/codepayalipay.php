@@ -5,7 +5,7 @@
  * Author: 资料空白
  * Date: 2018-6-29
  */
-namespace Pay;
+namespace Pay\codepayalipay;
 use \Pay\notify;
 
 class codepayalipay
