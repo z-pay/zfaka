@@ -1,6 +1,8 @@
 <?php
 date_default_timezone_set('Asia/Chongqing');
 define('ENV', strtoupper(ini_get('yaf.environ')));
+define('VERSION', '1.0.0');
+define('WEB_NAME',"ZFAKA平台");
 define('URL_KEY', 'faG2#@@1');
 define('CUR_DATE', date('Y-m-d'));
 define('CUR_DATETIME', date('Y-m-d H:i:s'));
@@ -22,7 +24,6 @@ define('CRONTAB_FILE',APP_PATH.'/log/crontab/'.CUR_DATE.'.log');
 define('YEWU_FILE',APP_PATH.'/log/yewu/'.CUR_DATE.'.log');
 define('INSTALL_PATH',APP_PATH.'/install/');
 define('INSTALL_LOCK',INSTALL_PATH.'install.lock');
-define('WEB_NAME',"ZFAKA平台");
 error_reporting(0);
 error_reporting(E_ALL ^E_NOTICE);
 ini_set('display_errors', 'off');

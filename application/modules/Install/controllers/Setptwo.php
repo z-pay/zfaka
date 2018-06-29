@@ -80,7 +80,7 @@ class SetptwoController extends BasicController
 					]);
 					$ini->write();
 					
-					$result = @file_put_contents(INSTALL_LOCK, 1);
+					$result = @file_put_contents(INSTALL_LOCK,VERSION,LOCK_EX);
 					if (!$result){
 						$data = array('code' => 1004, 'msg' =>"无法写入安装锁定到".INSTALL_LOCK."文件，请检查是否有写权限");
 					}
