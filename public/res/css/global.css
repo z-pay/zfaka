@@ -588,3 +588,4 @@ body .fly-user-main{position: relative; min-height: 600px;}
 	.layui-form-item .query_yzm {position: absolute;right: 0;top: 1px;cursor: pointer;}
 	.layui-table-querey{overflow-y: auto;}
 }
+.orderpaymethod img{width: 100%;max-width: 150px;border: 1px solid #EAEAEA;cursor: pointer;}
