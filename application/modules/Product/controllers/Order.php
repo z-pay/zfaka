@@ -105,8 +105,12 @@ class OrderController extends PcBasicController
 						'addtime'=>time(),
 					);
 					$id=$this->m_order->Insert($m);
-					$oid = base64_encode($id);
-					$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));
+					if($id>0){
+						$oid = base64_encode($id);
+						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));	
+					}else{
+						$data = array('code' => 1003, 'msg' => '订单异常');
+					}
 				}else{
 					$data = array('code' => 1002, 'msg' => '商品不存在');
 				}

@@ -27,11 +27,11 @@
 >参考：https://zlkb.net/241.html
 
 >相关配置
-* nginx下root的配置r oot路径一定要加上public目录. 参考:/alidata/wwwroot/faka.zlkb.net/public;
+* nginx下root的配置root路径一定要加上public目录. 参考:/alidata/wwwroot/faka.zlkb.net/public;
 
 * nginx下rewrite规则
 <pre>      location / {
-                if (!-e $request_filename){
+                if (!-e $request_filename) {
                         rewrite ^/(.*)$ /index.php?$1 last;
                 }
         }
@@ -39,7 +39,7 @@
 
 * nginx下rewrite规则(如果上面的不行，就用这个，有一个问号的差别)
 <pre>      location / {
-                if (!-e $request_filename){
+                if (!-e $request_filename) {
                         rewrite ^/(.*)$ /index.php$1 last;
                 }
         }
