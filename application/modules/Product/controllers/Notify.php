@@ -16,9 +16,9 @@ class NotifyController extends PcBasicController
 	
     public function indexAction()
     {
-		if(!empty($_POST) AND !empty($_GET) AND isset($_GET['paymethod'])){
+		if(!empty($_POST)){
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
-			$paymethod = $_GET['paymethod'];
+			$paymethod = isset($_GET['paymethod'])?$_GET['paymethod']:'zfbf2f';
 			$payments = $this->m_payment->getConfig();
 			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
 				try {
