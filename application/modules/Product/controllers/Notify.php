@@ -18,7 +18,7 @@ class NotifyController extends PcBasicController
     {
 		if(!empty($_POST)){
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
-			$paymethod = isset($_GET['paymethod'])?$_GET['paymethod']:'zfbf2f';
+			$paymethod = isset($_GET['paymethod'])?$_GET['paymethod']:(isset($_POST['paymethod'])?$_POST['paymethod']:'zfbf2f');
 			$payments = $this->m_payment->getConfig();
 			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
 				try {
