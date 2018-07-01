@@ -98,7 +98,7 @@ class SettingController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $name AND $value AND $csrf_token){
+		if($method AND $name AND ($value OR is_numeric($value))AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'name'=>$name,
