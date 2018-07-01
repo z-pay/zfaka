@@ -76,10 +76,10 @@ CREATE TABLE IF NOT EXISTS `t_config` (
 
 INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updatetime`) VALUES
 (1, 1, 'is_open_register', '0', '是否开放注册功能,1是开放,0是关闭', 1, 1453452674),
-(2, 1, 'limit_ip_order', '3', '同一ip下单限制（针对未付款订单）', 1, 1453452674),
-(3, 1, 'limit_email_order', '3', '同一email下单限制（针对未付款订单）', 1, 1453452674),
-(4, 1, 'web_url', 'http://faka.zlkb.net', '当前网站地址', 1, 1453452674),
-(5, 1, 'admin_email', '43036456@qq.com', '管理员邮箱', 1, 1453452674),
+(2, 1, 'limit_ip_order', '3', '同一ip当日下单限制（针对未付款订单）,不限制请设置为0', 1, 1453452674),
+(3, 1, 'limit_email_order', '3', '同一email当日下单限制（针对未付款订单）,不限制请设置为0', 1, 1453452674),
+(4, 1, 'web_url', 'http://faka.zlkb.net', '当前网站地址,用于支付站点异步返回，务必修改正确', 1, 1453452674),
+(5, 1, 'admin_email', '43036456@qq.com', '管理员邮箱,用于接收邮件提醒用', 1, 1453452674),
 (6, 1, 'web_name', 'ZFAKA平台', '当前站点名称', 1, 1453452674),
 (7, 1, 'web_description', '本系统由资料空白开发', '当前站点描述', 1, 0);
 
