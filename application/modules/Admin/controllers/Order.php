@@ -220,7 +220,7 @@ class OrderController extends AdminBasicController
 						$data = array('code' => 1, 'msg' => '订单状态不需要处理', 'data' => '');
 					}else{
 						//业务处理
-						$this->m_order->Where(array('orderid'=>$id,'status'=>1))->Update(array('status'=>2,'kami'=>$kami));
+						$this->m_order->Where(array('id'=>$id,'status'=>1))->Update(array('status'=>2,'kami'=>$kami));
 						
 						$m = array();
 						//3.1.4.1通知用户,定时任务去执行
