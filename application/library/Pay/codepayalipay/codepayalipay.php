@@ -11,6 +11,7 @@ use \Pay\notify;
 class codepayalipay
 {
 	private $apiHost="http://api2.fateqq.com:52888/creat_order/?";
+	private $paymethod ="codepayqq";
 	
 	//处理请求
 	public function pay($payconfig,$params)
@@ -24,8 +25,8 @@ class codepayalipay
 			"act" => 0,//此参数即将弃用
 			"outTime" => 86400,//二维码超时设置
 			"page" => 4,//订单创建返回JS 或者JSON
-			"return_url" => $params['web_url'] . '/product/query/?paymethod=codepayalipay&orderid='.$params['orderid'],
-			"notify_url" => $params['web_url'] . '/product/notify/?paymethod=codepayalipay',
+			"return_url" => $params['web_url'] . '/product/query/?paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
+			"notify_url" => $params['web_url'] . '/product/notify/?paymethod='.$this->paymethod,
 			"style" =>1,//付款页面风格
 			"pay_type" => 1,//支付宝使用官方接口
 			"user_ip" => getClientIP(),//付款人IP
@@ -51,7 +52,7 @@ class codepayalipay
 			$codepay_data = json_decode($codepay_json);
 			$qr = $codepay_data ? $codepay_data->qrcode : '';
 			
-			$result = array('paymethod'=>'codepayalipay','qr'=>$qr,'payname'=>$payconfig['name']);
+			$result = array('paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['name']);
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
@@ -80,7 +81,7 @@ class codepayalipay
 			return $data =array('code'=>1001,'msg'=>'验证失败');
 		} else { //合法的数据
 			//业务处理
-			$config = array('paymethod'=>'codepayalipay','tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
+			$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
 			$notify = new \Pay\notify();
 			return $data = $notify->run($config);
 		}

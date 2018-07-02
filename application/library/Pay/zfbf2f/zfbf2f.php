@@ -16,6 +16,7 @@ use \Pay\zfbf2f\callback;
 
 class zfbf2f
 {
+	private $paymethod ="zfbf2f";
 	//处理请求
 	public function pay($payconfig,$params)
 	{
@@ -25,8 +26,8 @@ class zfbf2f
 			'sign_type' => $payconfig['sign_type'],
 			'ali_public_key' => $payconfig['ali_public_key'],
 			'rsa_private_key' => $payconfig['rsa_private_key'],
-			'return_url' => $params['web_url']. '/product/query/?paymethod=zfbf2f&orderid='.$params['orderid'],
-			'notify_url' => $params['web_url'] . '/product/notify/?paymethod=zfbf2f',
+			'return_url' => $params['web_url']. '/product/query/?paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
+			'notify_url' => $params['web_url'] . '/product/notify/?paymethod='.$this->paymethod,
 			'return_raw' => true
 		];
 
@@ -34,11 +35,11 @@ class zfbf2f
 			'order_no' => $params['orderid'],
 			'amount' => $params['money'],
 			'subject' => $params['productname'],
-			'body' => 'zfbf2f', 
+			'body' => $this->paymethod, 
 		];
 		try {
 			$qr = Charge::run(Config::ALI_CHANNEL_QR, $config, $data);
-			$result = array('paymethod'=>'zfbf2f','qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['name']);
+			$result = array('paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['name']);
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
