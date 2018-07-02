@@ -66,7 +66,7 @@
 									<div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
 										<input type="hidden" id="oid" value="<?php echo $order['id'];?>">
 										<?php foreach($payments AS $payment):?>
-											<a class="orderpaymethod" data-type="<?php echo $payment['alias'];?>"><img src="<?php echo $payment['payimage'];?>"></a>
+											<?php if($payment['active']>0):?><a class="orderpaymethod" data-type="<?php echo $payment['alias'];?>"><img src="<?php echo $payment['payimage'];?>"></a><?php endif;?>
 										<?php endforeach;?>
 									</div>
 								</div>
