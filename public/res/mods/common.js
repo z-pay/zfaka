@@ -89,7 +89,7 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 
 		var url = $(this).data('href');
         var deltip = $(this).data('deltip') || '真的要删除该记录吗？';
-
+		
 		if (layEvent === 'del') { //删除
 			layer.confirm(deltip, function(index) {
 				layer.close(index);
@@ -97,7 +97,8 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 				$.ajax({
 					url: url,
 					type: 'POST',
-					dataType: 'json'
+					dataType: 'json',
+					data: {'csrf_token':TOKEN}
 				})
 				.done(function(res) {
 					if ( res.code == '1' ) {
@@ -119,7 +120,8 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 			$.ajax({
 				url: url,
 				type: 'POST',
-				dataType: 'json'
+				dataType: 'json',
+				data: {'csrf_token':TOKEN}
 			})
 			.done(function(res) {
 				if ( res.code == '1' ) {

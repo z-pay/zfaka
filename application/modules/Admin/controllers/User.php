@@ -68,10 +68,20 @@ class UserController extends AdminBasicController
 	
     public function deleteAction()
     {
-        $id = $this->get('id');
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$id = $this->get('id');
+		$csrf_token = $this->getPost('csrf_token', false);
+		
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
-            $delete = $this->m_user->DeleteByID($id);
-            $data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$delete = $this->m_user->DeleteByID($id);
+				$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
         } else {
             $data = array('code' => 0, 'msg' => '缺少字段', 'data' => '');
         }
