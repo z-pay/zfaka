@@ -59,12 +59,12 @@ class ProductsController extends AdminBasicController
 			$sql = "SELECT p1.id,p1.name,p1.price,p1.qty,p1.auto,p1.active,p1.stockcontrol,p2.name as typename FROM `t_products` as p1 left join `t_products_type` as p2 on p1.typeid = p2.id Order by p1.id desc LIMIT {$limits}";
 			$items=$this->m_products->Query($sql);
             if (empty($items)) {
-                $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+                $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
             } else {
                 $data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
             }
         } else {
-            $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+            $data = array('code'=>1001,'count'=>0,'data'=>array(),'msg'=>'无数据');
         }
 		Helper::response($data);
 	}

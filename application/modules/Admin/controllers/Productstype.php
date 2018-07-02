@@ -55,12 +55,12 @@ class ProductstypeController extends AdminBasicController
 			$items=$this->m_products_type->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
-                $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+                $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
             } else {
                 $data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
             }
         } else {
-            $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+            $data = array('code'=>1001,'count'=>0,'data'=>array(),'msg'=>'无数据');
         }
 		Helper::response($data);
 	}
