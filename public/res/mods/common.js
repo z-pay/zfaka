@@ -82,6 +82,60 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'util'], function(exports){
     $('body').removeClass('site-mobile');
   });
 
+  
+ 	//全局删除信息提示
+	table.on('tool(table)', function(obj) {
+		var layEvent = obj.event;
+
+		var url = $(this).data('href');
+        var deltip = $(this).data('deltip') || '真的要删除该记录吗？';
+
+		if (layEvent === 'del') { //删除
+			layer.confirm(deltip, function(index) {
+				layer.close(index);
+				var loading = layer.load(2);
+				$.ajax({
+					url: url,
+					type: 'POST',
+					dataType: 'json'
+				})
+				.done(function(res) {
+					if ( res.state == 'ok' ) {
+                        obj.del();
+                        layer.msg(res.message,{icon:1})
+                    } else {
+                    	layer.msg(res.message,{icon:2})
+                    }
+				})
+				.fail(function() {
+					layer.alert('error',{time:3000});
+				})
+				.always(function() {
+					layer.close(loading);
+				});
+			});
+		}else if (layEvent === 'dochange') {
+			var loading = layer.load(2);
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: 'json'
+			})
+			.done(function(res) {
+				if ( res.state == 'ok' ) {
+                    layer.msg(res.message,{icon:1,time:1500},function(){location.reload();})
+                } else {
+                	layer.msg(res.message,{icon:2,time:3000})
+                }
+			})
+			.fail(function() {
+				layer.alert('error',{icon:2},function(){location.reload();});
+			})
+			.always(function() {
+				layer.close(loading);
+			});
+		}
+	}); 
   exports('common',null);
 
 });
