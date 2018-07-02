@@ -56,6 +56,43 @@ layui.define(['layer', 'form'], function(exports){
 		return false; //阻止表单跳转。
 	});
 
+	form.on('submit(upgrade_button)', function(data){
+
+		data.field.csrf_token = TOKEN;
+		var i = layer.load(2,{shade: [0.5,'#fff']});
+		$.ajax({
+			url: '/install/upgrade/ajax',
+			type: 'POST',
+			dataType: 'json',
+			data: data.field,
+		})
+		.done(function(res) {
+			if (res.code == '1') {
+				layer.open({
+					type: 1
+					,offset: 'auto' 
+					,id: 'result'
+					,content: '<div style="padding: 20px 100px;">更新成功</div>'
+					,btn: '确定'
+					,btnAlign: 'c' 
+					,shade: 0 
+					,yes: function(){
+						location.href = '/admin/';
+					}
+				});
+			} else {
+				layer.msg(res.msg,{icon:2,time:5000});
+			}
+		})
+		.fail(function() {
+			layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
+		})
+		.always(function() {
+			layer.close(i);
+		});
+
+		return false; //阻止表单跳转。
+	});
 	
 	exports('install',null)
 });
