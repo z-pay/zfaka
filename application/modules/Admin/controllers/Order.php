@@ -59,12 +59,12 @@ class OrderController extends AdminBasicController
 			$items=$this->m_order->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
-                $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+                $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
             } else {
-                $data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+                $data = array('code'=>1,'count'=>$total,'data'=>$items,'msg'=>'有数据');
             }
         } else {
-            $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+            $data = array('code'=>1001,'count'=>0,'data'=>array(),'msg'=>'无数据');
         }
 		Helper::response($data);
 	}
@@ -105,10 +105,10 @@ class OrderController extends AdminBasicController
 				$delete = $this->m_order->Where(array('status'=>0))->DeleteByID($id);
 				$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
 			} else {
-                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+                $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
             }
         } else {
-            $data = array('code' => 1000, 'msg' => '缺少字段', 'data' => '');
+            $data = array('code' => 1001, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
     }
@@ -218,16 +218,20 @@ class OrderController extends AdminBasicController
 				if(is_array($order) AND !empty($order)){
 					if($order['status']=='1' OR $order['status']=='3'){
 						//业务处理
-						$this->m_order->Where(array('id'=>$id,'status'=>1))->Update(array('status'=>2,'kami'=>$kami));
+						$update = $this->m_order->Where(array('id'=>$id))->Where('status=1 or status=3')->Update(array('status'=>2,'kami'=>$kami));
+						if($update){
 						$m = array();
-						//3.1.4.1通知用户,定时任务去执行
-						$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$kami;
-						$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
-						//3.1.4.2通知管理员,定时任务去执行
-						$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
-						$m[]=array('email'=>$this->config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
-						$this->m_email_queue->MultiInsert($m);
-						$data = array('code' => 1, 'msg' => '订单已处理', 'data' => '');
+							//3.1.4.1通知用户,定时任务去执行
+							$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$kami;
+							$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
+							//3.1.4.2通知管理员,定时任务去执行
+							$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
+							$m[]=array('email'=>$this->config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
+							$this->m_email_queue->MultiInsert($m);
+							$data = array('code' => 1, 'msg' => '订单已处理', 'data' => '');
+						}else{
+							$data = array('code' => 1004, 'msg' => '处理失败', 'data' => '');
+						}
 					}else{
 						$data = array('code' => 1, 'msg' => '订单状态不需要处理', 'data' => '');
 					}
