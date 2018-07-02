@@ -14,6 +14,7 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'email', title: '邮箱', minWidth:160},
 			{field: 'qq', title: 'QQ', minWidth:160},
 			{field: 'createtime', title: '注册时间', width:200, templet: '#createtime',align:'center'}
+			{field: 'opt', title: '操作', width:200, templet: '#opt',align:'center'}
 		]]
 	});
 
