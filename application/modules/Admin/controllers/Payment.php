@@ -102,17 +102,29 @@ class PaymentController extends AdminBasicController
 			Helper::response($data);
         }
 		
+		
 		if($method AND $payment AND is_numeric($active) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'payment'=>$payment,
-					'sign_type'=>$sign_type,
 					'app_id'=>$app_id,
-					'app_secret'=>$app_secret,
-					'ali_public_key'=>$ali_public_key,
-					'rsa_private_key'=>$rsa_private_key,
 					'active'=>$active,
 				);
+				
+				$sign=array('RSA','RSA2');
+				if(isset($sign_type) AND strlen($sign_type)>0 AND in_array($sign_type,$sign)){
+					$m['sign_type']=$sign_type;
+				}
+				if(isset($app_secret) AND strlen($app_secret)>0){
+					$m['app_secret']=$app_secret;
+				}
+				if(isset($ali_public_key) AND strlen($ali_public_key)>0){
+					$m['ali_public_key']=$ali_public_key;
+				}
+				if(isset($rsa_private_key) AND strlen($rsa_private_key)>0){
+					$m['rsa_private_key']=$rsa_private_key;
+				}
+				
 				if($method == 'edit' AND $id>0){
 					$u = $this->m_payment->UpdateByID($m,$id);
 					if($u){
