@@ -73,7 +73,7 @@ class UserController extends AdminBasicController
             $delete = $this->m_user->DeleteByID($id);
             $data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
         } else {
-            $data = array('state' => 0, 'msg' => '缺少字段', 'data' => '');
+            $data = array('code' => 0, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
     }

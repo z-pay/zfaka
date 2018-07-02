@@ -97,7 +97,7 @@ class OrderController extends AdminBasicController
             $delete = $this->m_order->Where(array('status'=>0))->DeleteByID($id);
             $data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
         } else {
-            $data = array('state' => 0, 'msg' => '缺少字段', 'data' => '');
+            $data = array('code' => 0, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
     }
@@ -136,11 +136,11 @@ class OrderController extends AdminBasicController
 				$notify = new \Pay\notify();
 				$data = $notify->run($config);
 			}else{
-				$data = array('state' => 0, 'msg' => '订单不存在', 'data' => '');
+				$data = array('code' => 0, 'msg' => '订单不存在', 'data' => '');
 			}
         } else {
-            $data = array('state' => 0, 'msg' => '缺少字段', 'data' => '');
+            $data = array('code' => 0, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
-    }	
+    }
 }

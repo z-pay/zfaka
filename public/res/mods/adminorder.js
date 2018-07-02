@@ -33,7 +33,17 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				location.href = 'admin/order/view/?id='+data.field.id;
+				layer.open({
+					title: '提示',
+					content: '确认支付成功',
+					btn: ['确定'],
+					yes: function(index, layero){
+					    location.href = 'admin/order/view/?id='+data.field.id;
+					},
+					cancel: function(){ 
+					    location.reload();
+					}
+				});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
