@@ -46,7 +46,7 @@ class M_Payment extends Model
 	private function _getData()
 	{
 		$_config = array();
-		$result=$this->Select();
+		$result=$this->Where(array('active'=>1))->Select();
 		foreach($result AS $i){
 			$k=$i['alias'];
 			$_config[$k]=$i;

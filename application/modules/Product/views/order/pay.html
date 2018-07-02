@@ -2,77 +2,81 @@
 <div class="layui-container fly-marginTop">
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
-            <blockquote class="layui-elem-quote">
-                <ul class="layui-form">
-                    <li class="layui-form-li" style="line-height: 26px;">
-                        <div>
-                            <p>友情提示:</p>
-                            <p>当面付已经可以了....</p>
-                        </div>
-                    </li>
-                </ul>
-            </blockquote>
-            <table class="layui-table" id="query-table">
-                <colgroup>
-                    <col width="150">
-                    <col width="200">
-                    <col>
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th>订单ID</th>
-                        <th>订单名称</th>
-                        <th>单价</th>
-                        <th>数量</th>
-                        <th>金额</th>
-                        <th>下单时间</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <?php echo $order['orderid'];?>
-                        </td>
-                        <td>
-                            <?php echo $order['productname'];?>
-                        </td>
-                        <td>
-                            <?php echo $order['price'];?>
-                        </td>
-                        <td>
-                            <?php echo $order['number'];?>
-                        </td>
-                        <td>
-                            <?php echo $order['money'];?>
-                        </td>
-                        <td>
-                            <?php echo date('Y-m-d H:i:s',$order['addtime']);?>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
-                <div class="layui-tab-item layui-show">
-                    <div class="layui-form-pane">
-                        <div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
-                            <input type="hidden" id="oid" value="<?php echo $order['id'];?>">
-                            <?php if($code>1):?>
-                            <p><?php echo $msg;?></p>
-                            <?php else:?>
-                            <?php if(!empty($payments)):?>
-                            <?php foreach($payments AS $payment):?>
-								<?php if($payment['active']>0):?>
-									<a class="orderpaymethod" data-type="<?php echo $payment['alias'];?>"><img src="<?php echo $payment['payimage'];?>"></a>
-								<?php endif;?>
-                            <?php endforeach;?>
-                            <?php else:?>
-                            <p>站长正在加紧配置，请耐心等待....</p>
-                            <?php endif;?>
-                            <?php endif;?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+			<?php if($code>1):?>
+				<blockquote class="layui-elem-quote">
+					<ul class="layui-form">
+						<li class="layui-form-li" style="line-height: 26px;">
+							<div>
+								<p><?php echo $msg;?></p>
+							</div>
+						</li>
+					</ul>
+				</blockquote>
+			<?php else:?>
+				<?php if(isset($order) AND !empty($order)):?>
+				<table class="layui-table" id="query-table">
+					<colgroup>
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th>订单ID</th>
+							<th>订单名称</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>金额</th>
+							<th>下单时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<?php echo $order['orderid'];?>
+							</td>
+							<td>
+								<?php echo $order['productname'];?>
+							</td>
+							<td>
+								<?php echo $order['price'];?>
+							</td>
+							<td>
+								<?php echo $order['number'];?>
+							</td>
+							<td>
+								<?php echo $order['money'];?>
+							</td>
+							<td>
+								<?php echo date('Y-m-d H:i:s',$order['addtime']);?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<?php endif;?>
+				
+				<?php if($order['status']>0):?>
+					<button class="layui-btn layui-btn-warm">已支付</button>
+				<?php else:?>
+					<?php if(!empty($payments)):?>
+						<div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+							<div class="layui-tab-item layui-show">
+								<div class="layui-form-pane">
+									<div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
+										<input type="hidden" id="oid" value="<?php echo $order['id'];?>">
+										<?php foreach($payments AS $payment):?>
+											<a class="orderpaymethod" data-type="<?php echo $payment['alias'];?>"><img src="<?php echo $payment['payimage'];?>"></a>
+										<?php endforeach;?>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php else:?>
+						<p>站长正在加紧配置，请耐心等待....</p>
+					<?php endif;?>
+				<?php endif;?>
+			<?php endif;?>
         </div>
     </div>
 </div>
