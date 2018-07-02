@@ -1,14 +1,14 @@
 <?php
 /**
- * File: codepayalipay.php
- * Functionality: 码支付-支付宝扫码支付
+ * File: codepayqq.php
+ * Functionality: 码支付-QQ扫码支付
  * Author: 资料空白
- * Date: 2018-6-29
+ * Date: 2018-07-02
  */
-namespace Pay\codepayalipay;
+namespace Pay\codepayqq;
 use \Pay\notify;
 
-class codepayalipay
+class codepayqq
 {
 	private $apiHost="http://api2.fateqq.com:52888/creat_order/?";
 	
@@ -17,7 +17,7 @@ class codepayalipay
 	{
 		$config = array(
 			"id" => (int)$payconfig['app_id'],//平台ID号
-			"type" => 1,//支付方式
+			"type" => 2,//支付方式
 			"price" => (float)$params['money'],//原价
 			"pay_id" => $params['orderid'], //可以是用户ID,站内商户订单号,用户名
 			"param" => '',//自定义参数
