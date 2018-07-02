@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
   `chapwd` varchar(55) NOT NULL DEFAULT '' COMMENT '查询密码',
   `ip` varchar(55) NOT NULL DEFAULT '' COMMENT 'ip',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态0下单',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态0待支付,1待处理,2已完成,3处理失败',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '下单时间',
   `paytime` int(11) NOT NULL DEFAULT '0' COMMENT '支付时间',
   `tradeid` varchar(255) NOT NULL DEFAULT '' COMMENT '外部订单id',

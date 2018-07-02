@@ -10,11 +10,13 @@ class OrderController extends AdminBasicController
 {
 	private $m_order;
 	private $m_products_card;
+	private $m_email_queue;
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
 		$this->m_products_card = $this->load('products_card');
+		$this->m_email_queue = $this->load('email_queue');
     }
 
     public function indexAction()
@@ -106,7 +108,7 @@ class OrderController extends AdminBasicController
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
         } else {
-            $data = array('code' => 0, 'msg' => '缺少字段', 'data' => '');
+            $data = array('code' => 1000, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
     }
@@ -152,18 +154,93 @@ class OrderController extends AdminBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$order = $this->m_order->SelectByID('',$id);
 				if(is_array($order) AND !empty($order)){
-					//业务处理
-					$config = array('paymethod'=>'admin','tradeid'=>0,'paymoney'=>0,'orderid'=>$order['orderid'] );
-					$notify = new \Pay\notify();
-					$data = $notify->run($config);
+					if($order['status']>0){
+						$data = array('code' => 1, 'msg' => '订单已支付', 'data' => '');
+					}else{
+						//业务处理
+						$config = array('paymethod'=>'admin','tradeid'=>0,'paymoney'=>0,'orderid'=>$order['orderid'] );
+						$notify = new \Pay\notify();
+						$data = $notify->run($config);
+					}
 				}else{
-					$data = array('code' => 0, 'msg' => '订单不存在', 'data' => '');
+					$data = array('code' => 1002, 'msg' => '订单不存在', 'data' => '');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
         } else {
-            $data = array('code' => 0, 'msg' => '缺少字段', 'data' => '');
+            $data = array('code' => 1000, 'msg' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }
+	
+	public function sendAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$order = $this->m_order->SelectByID('',$id);
+			if(is_array($order) AND !empty($order)){
+				if($order['status']!='1'){
+					$this->redirect("/admin/order/view/?id=".$order['id']);
+					return FALSE;
+				}else{
+					$data['order'] = $order;
+					$this->getView()->assign($data);
+				}
+			}else{
+				$this->redirect("/admin/order");
+				return FALSE;
+			}
+		}else{
+            $this->redirect("/admin/order");
+            return FALSE;
+		}
+    }
+	
+    public function sendajaxAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$id = $this->getPost('id');
+		$kami = $this->getPost('kami');
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$order = $this->m_order->SelectByID('',$id);
+				if(is_array($order) AND !empty($order)){
+					if($order['status']!='1'){
+						$data = array('code' => 1, 'msg' => '订单状态不需要处理', 'data' => '');
+					}else{
+						//业务处理
+						$this->m_order->Where(array('orderid'=>$id,'status'=>1))->Update(array('status'=>2,'kami'=>$kami));
+						
+						$m = array();
+						//3.1.4.1通知用户,定时任务去执行
+						$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$kami;
+						$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
+						//3.1.4.2通知管理员,定时任务去执行
+						$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
+						$m[]=array('email'=>$this->config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
+						$this->m_email_queue->MultiInsert($m);
+						
+						$data = array('code' => 1, 'msg' => '订单已处理', 'data' => '');
+					}
+				}else{
+					$data = array('code' => 1002, 'msg' => '订单不存在', 'data' => '');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+        } else {
+            $data = array('code' => 1000, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
     }
