@@ -17,7 +17,7 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'number', title: '数量',width:80},
 			{field: 'paymoney', title: '支付金额',width:80},
 			{field: 'status', title: '状态', width:80, templet: '#status',align:'center'},
-			{field: 'opt', title: '操作', width:80, templet: '#opt',align:'center'},
+			{field: 'opt', title: '操作', templet: '#opt',align:'center',fixed: 'right', width: 160,},
 		]]
 	});
 
