@@ -64,4 +64,17 @@ class UserController extends AdminBasicController
         }
 		Helper::response($data);
 	}
+	
+	
+    public function deleteAction()
+    {
+        $id = $this->get('id');
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+            $delete = $this->m_user->DeleteByID($id);
+            $result = array('state' => 'ok', 'message' => '删除成功', 'data' => '');
+        } else {
+            $result = array('state' => 'error', 'message' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }
 }
