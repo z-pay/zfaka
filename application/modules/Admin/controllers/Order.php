@@ -38,7 +38,7 @@ class OrderController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		$where = 'status>0';
+		$where = 'status>-1';
 		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
