@@ -89,4 +89,16 @@ class OrderController extends AdminBasicController
             return FALSE;
 		}
     }
+	
+    public function deleteAction()
+    {
+        $id = $this->get('id');
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+            $delete = $this->m_order->Where(array('status'=>0))->DeleteByID($id);
+            $data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+        } else {
+            $data = array('state' => 0, 'msg' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }
 }

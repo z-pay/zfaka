@@ -5,7 +5,7 @@ layui.define(['layer', 'table'], function(exports){
 
 
 	table.render({
-		elem: '#order',
+		elem: '#table',
 		url: '/admin/order/ajax',
 		page: true,
 		cellMinWidth:60,
