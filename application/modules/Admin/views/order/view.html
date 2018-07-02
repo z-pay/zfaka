@@ -54,6 +54,12 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
+                            <label for="paymethod" class="layui-form-label">支付渠道</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="paymethod" name="paymethod" disabled autocomplete="off" value="<?php echo $order['paymethod'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
                             <label for="paytime" class="layui-form-label">支付时间</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="paytime" name="paytime" disabled autocomplete="off" value="<?php echo $order['paytime']>0?date('Y-m-d H:i:s',$order['paytime']):'';?>" class="layui-input">
