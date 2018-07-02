@@ -81,11 +81,11 @@ class OrderController extends AdminBasicController
 				$data['order'] = $order;
 				$this->getView()->assign($data);
 			}else{
-				$this->redirect("/admin/products");
+				$this->redirect("/admin/order");
 				return FALSE;
 			}
 		}else{
-            $this->redirect("/admin/products");
+            $this->redirect("/admin/order");
             return FALSE;
 		}
     }
@@ -113,14 +113,19 @@ class OrderController extends AdminBasicController
 			$data = array();
 			$order = $this->m_order->SelectByID('',$id);
 			if(is_array($order) AND !empty($order)){
-				$data['order'] = $order;
-				$this->getView()->assign($data);
+				if($order['status']>0){
+					$this->redirect("/admin/order/view/?id=".$order['id']);
+					return FALSE;
+				}else{
+					$data['order'] = $order;
+					$this->getView()->assign($data);
+				}
 			}else{
-				$this->redirect("/admin/products");
+				$this->redirect("/admin/order");
 				return FALSE;
 			}
 		}else{
-            $this->redirect("/admin/products");
+            $this->redirect("/admin/order");
             return FALSE;
 		}
     }

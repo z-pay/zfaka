@@ -38,7 +38,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 					content: '确认支付成功',
 					btn: ['确定'],
 					yes: function(index, layero){
-					    location.href = 'admin/order/view/?id='+data.field.id;
+					    location.href = '/admin/order/view/?id='+data.field.id;
 					},
 					cancel: function(){ 
 					    location.reload();
