@@ -100,7 +100,7 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 					dataType: 'json'
 				})
 				.done(function(res) {
-					if ( res.code == 1 ) {
+					if ( res.code == '1' ) {
                         obj.del();
                         layer.msg(res.msg,{icon:1})
                     } else {
@@ -122,7 +122,7 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 				dataType: 'json'
 			})
 			.done(function(res) {
-				if ( res.code == 1 ) {
+				if ( res.code == '1' ) {
                     layer.msg(res.msg,{icon:1,time:1500},function(){location.reload();})
                 } else {
                 	layer.msg(res.msg,{icon:2,time:3000})

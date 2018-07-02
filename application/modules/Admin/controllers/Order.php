@@ -124,4 +124,23 @@ class OrderController extends AdminBasicController
             return FALSE;
 		}
     }
+	
+    public function payajaxAction()
+    {
+        $id = $this->get('id');
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+			$order = $this->m_order->SelectByID('',$id);
+			if(is_array($order) AND !empty($order)){
+				//业务处理
+				$config = array('paymethod'=>'admin','tradeid'=>0,'paymoney'=>0,'orderid'=>$order['orderid'] );
+				$notify = new \Pay\notify();
+				$data = $notify->run($config);
+			}else{
+				$data = array('state' => 0, 'msg' => '订单不存在', 'data' => '');
+			}
+        } else {
+            $data = array('state' => 0, 'msg' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }	
 }

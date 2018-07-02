@@ -56,7 +56,7 @@
                         <div class="layui-form-item">
                             <label for="paytime" class="layui-form-label">支付时间</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="paytime" name="paytime" disabled autocomplete="off" value="<?php echo date('Y-m-d H:i:s',$order['paytime']);?>" class="layui-input">
+                                <input type="text" id="paytime" name="paytime" disabled autocomplete="off" value="<?php echo $order['paytime']>0?date('Y-m-d H:i:s',$order['paytime']):'';?>" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -97,5 +97,5 @@
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('adminproducts');
+layui.use('adminorder');
 </script>

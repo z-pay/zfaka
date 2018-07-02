@@ -10,6 +10,11 @@
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
+                    <blockquote class="layui-elem-quote">
+                        <p>
+							注意事项： 本功能用于管理员主动确认订单已付款，请慎用。
+						</p>
+                    </blockquote>
                     <form class="layui-form layui-show" method="post">
                         <div class="layui-form-item">
                             <label for="orderid" class="layui-form-label">订单编号</label>
@@ -23,8 +28,11 @@
                                 <input type="text" id="productname" name="productname" disabled autocomplete="off" value="<?php echo $order['productname'];?>" class="layui-input">
                             </div>
                         </div>
-
-
+						
+                        <div class="layui-form-item">
+							<input type="hidden" name="id" value="<?php echo $order['id'];?>">
+                            <button class="layui-btn" key="set-mine" lay-filter="order-pay-button" lay-submit>确认付款</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -34,5 +42,5 @@
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('adminproducts');
+layui.use('adminorder');
 </script>
