@@ -100,11 +100,11 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 					dataType: 'json'
 				})
 				.done(function(res) {
-					if ( res.state == 'ok' ) {
+					if ( res.code == 1 ) {
                         obj.del();
-                        layer.msg(res.message,{icon:1})
+                        layer.msg(res.msg,{icon:1})
                     } else {
-                    	layer.msg(res.message,{icon:2})
+                    	layer.msg(res.msg,{icon:2})
                     }
 				})
 				.fail(function() {
@@ -122,10 +122,10 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 				dataType: 'json'
 			})
 			.done(function(res) {
-				if ( res.state == 'ok' ) {
-                    layer.msg(res.message,{icon:1,time:1500},function(){location.reload();})
+				if ( res.code == 1 ) {
+                    layer.msg(res.msg,{icon:1,time:1500},function(){location.reload();})
                 } else {
-                	layer.msg(res.message,{icon:2,time:3000})
+                	layer.msg(res.msg,{icon:2,time:3000})
                 }
 			})
 			.fail(function() {
