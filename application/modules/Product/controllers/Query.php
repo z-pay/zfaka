@@ -20,7 +20,7 @@ class QueryController extends PcBasicController
 		$data = array();
 		$orderid  = $this->get('orderid',false);
 		if($orderid){
-			$order = $this->m_order->Where(array('orderid'=>$orderid))->SelectOne();
+			$order = $this->m_order->Where(array('orderid'=>$orderid))->Where('status>-1')->SelectOne();
 			$data['order'] = $order;
 			$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span><a style="color:red" href="/product/order/pay/?oid='.base64_encode($order['id']).'">去支付</a>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>  <button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="'.$order['orderid'].'">提取卡密</button>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
 			$data['querymethod'] = 'get';
@@ -44,7 +44,7 @@ class QueryController extends PcBasicController
 				if(isEmail($email)){
 					if(strtolower($this->getSession('productqueryCaptcha')) ==strtolower($vercode)){
 						$this->unsetSession('productqueryCaptcha');
-						$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Select();
+						$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where('status>-1')->Select();
 						if(empty($order)){
 							$data=array('code'=>1005,'msg'=>'没有订单');
 						}else{
@@ -99,7 +99,11 @@ class QueryController extends PcBasicController
 					$data=array('code'=>1002,'msg'=>'没有订单');
 				}else{
 					if($order['status']<1){
-						$data = array('code' => 1003, 'msg' => '未支付');
+						if($order['status']>-1){
+							$data = array('code' => 1003, 'msg' => '未支付');
+						}else{
+							$data = array('code' => 1004, 'msg' => '已删除');
+						}
 					}else{
 						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
 					}
