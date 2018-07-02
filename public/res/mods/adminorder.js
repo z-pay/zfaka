@@ -14,7 +14,7 @@ layui.define(['layer', 'table'], function(exports){
 			{field: 'orderid', title: '订单号', minWidth:160},
 			{field: 'email', title: '邮箱', minWidth:160},
 			{field: 'productname', title: '商品', minWidth:160},
-			{field: 'number', title: '数量',width:40},
+			{field: 'number', title: '数量',width:80},
 			{field: 'status', title: '状态', width:80, templet: '#status',align:'center'},
 			{field: 'paymoney', title: '支付金额',width:80},
 			{field: 'opt', title: '操作', templet: '#opt',align:'center',fixed: 'right', width: 160,},

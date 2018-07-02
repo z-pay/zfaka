@@ -101,4 +101,27 @@ class OrderController extends AdminBasicController
         }
        Helper::response($data);
     }
+	
+	public function payAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$order = $this->m_order->SelectByID('',$id);
+			if(is_array($order) AND !empty($order)){
+				$data['order'] = $order;
+				$this->getView()->assign($data);
+			}else{
+				$this->redirect("/admin/products");
+				return FALSE;
+			}
+		}else{
+            $this->redirect("/admin/products");
+            return FALSE;
+		}
+    }
 }
