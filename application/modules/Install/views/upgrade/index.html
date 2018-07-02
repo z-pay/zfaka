@@ -9,7 +9,18 @@
 						<p>为防止升级失败,升级前,请自行备份好数据库!</p>
 					</blockquote>
 					
+					<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+					  <legend>本次更新内容：</legend>
+					</fieldset>
+					<blockquote class="layui-elem-quote layui-quote-nm">
+					  <?php echo $upgrade_desc;?>
+					</blockquote>
 					
+					<pre class="layui-code layui-box layui-code-view"><?php echo $upgrade_sql;?></pre>
+					
+					 <p style="margin-bottom: 0;text-align:center">
+						<button class="layui-btn" key="set-mine" lay-filter="upgrade_button" lay-submit>立即升级</button>
+                    </p>
 				</div>
 			  </div>
 			</div>
