@@ -12,6 +12,7 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
   ,form = layui.form
   ,element = layui.element
   ,upload = layui.upload
+  ,table = layui.table
   ,device = layui.device()
 
   ,DISABLED = 'layui-btn-disabled';
