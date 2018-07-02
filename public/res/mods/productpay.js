@@ -14,7 +14,7 @@
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
             success: function(res) {
                 if (res.code == 1) {
-					var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div style="text-align: center;"><p<img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
+					var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
 					layer.open({
 						type: 1
 						,title: false
