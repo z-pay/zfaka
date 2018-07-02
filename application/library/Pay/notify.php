@@ -38,7 +38,7 @@ class notify
 					//2.开始进行订单处理
 					//通过orderid,查询order订单,与商品信息
 					$order = $m_order->Where(array('orderid'=>$orderid))->SelectOne();
-					$product = $m_products->SelectByID('auto,stockcontrol',$order['pid']);
+					$product = $m_products->SelectByID('auto,stockcontrol,qty',$order['pid']);
 					
 					if(!empty($order) AND !empty($product)){
 						if($product['auto']>0){
@@ -58,8 +58,10 @@ class notify
 									//3.1.2.2 然后进行库存清减
 									$qty_m = array('qty' => 'qty-'.$order['number']);
 									$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
+									$kucunNotic=";当前商品库存剩余:".($product['qty']-$order['number']);
 								}else{
 									//3.1.2.3不进行库存控制时,自动发货商品是不需要减库存，也不需要取消卡密；因为这种情况下的卡密是通用的；
+									$kucunNotic="";
 								}
 								//3.1.3 更新订单状态,同时把卡密写到订单中
 								$m_order->Where(array('orderid'=>$orderid,'status'=>1))->Update(array('status'=>2,'kami'=>$card_mi_str));
@@ -69,7 +71,7 @@ class notify
 								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$card_mi_str;
 								$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
 								//3.1.4.2通知管理员,定时任务去执行
-								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
+								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功'.$kucunNotic;
 								$m[]=array('email'=>$web_config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
 								$m_email_queue->MultiInsert($m);
 								$data =array('code'=>1,'msg'=>'自动发卡');

@@ -185,12 +185,12 @@ class OrderController extends AdminBasicController
 			$data = array();
 			$order = $this->m_order->SelectByID('',$id);
 			if(is_array($order) AND !empty($order)){
-				if($order['status']!='1'){
-					$this->redirect("/admin/order/view/?id=".$order['id']);
-					return FALSE;
-				}else{
+				if($order['status']=='1' OR $order['status']=='3'){
 					$data['order'] = $order;
 					$this->getView()->assign($data);
+				}else{
+					$this->redirect("/admin/order/view/?id=".$order['id']);
+					return FALSE;
 				}
 			}else{
 				$this->redirect("/admin/order");
@@ -216,12 +216,9 @@ class OrderController extends AdminBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$order = $this->m_order->SelectByID('',$id);
 				if(is_array($order) AND !empty($order)){
-					if($order['status']!='1'){
-						$data = array('code' => 1, 'msg' => '订单状态不需要处理', 'data' => '');
-					}else{
+					if($order['status']=='1' OR $order['status']=='3'){
 						//业务处理
 						$this->m_order->Where(array('id'=>$id,'status'=>1))->Update(array('status'=>2,'kami'=>$kami));
-						
 						$m = array();
 						//3.1.4.1通知用户,定时任务去执行
 						$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$kami;
@@ -230,8 +227,9 @@ class OrderController extends AdminBasicController
 						$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
 						$m[]=array('email'=>$this->config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
 						$this->m_email_queue->MultiInsert($m);
-						
 						$data = array('code' => 1, 'msg' => '订单已处理', 'data' => '');
+					}else{
+						$data = array('code' => 1, 'msg' => '订单状态不需要处理', 'data' => '');
 					}
 				}else{
 					$data = array('code' => 1002, 'msg' => '订单不存在', 'data' => '');
