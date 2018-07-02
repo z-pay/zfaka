@@ -13,6 +13,7 @@
 						</li>
 					</ul>
 				</blockquote>
+				<p style="margin-bottom: 0;text-align:center"><a class="layui-btn layui-btn-warm" href="/product">返回</a></p>
 			<?php else:?>
 				<?php if(isset($order) AND !empty($order)):?>
 				<table class="layui-table" id="query-table">
@@ -57,7 +58,7 @@
 				<?php endif;?>
 				
 				<?php if($order['status']>0):?>
-					<button class="layui-btn layui-btn-warm">已支付</button>
+					<p style="margin-bottom: 0;text-align:center"><button class="layui-btn layui-btn-warm">已支付</button></p>
 				<?php else:?>
 					<?php if(!empty($payments)):?>
 						<div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
