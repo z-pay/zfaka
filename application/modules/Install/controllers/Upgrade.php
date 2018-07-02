@@ -24,7 +24,7 @@ class UpgradeController extends BasicController
 			$this->getView()->assign($data);
 		}*/
 		$data = array();
-		$desc = @file_get_contents(INSTALL_PATH.'/'.VERSION.'/upgrade.text');
+		$desc = @file_get_contents(INSTALL_PATH.'/'.VERSION.'/upgrade.txt');
 		$data['upgrade_desc'] = $desc;
 		if(file_exists(INSTALL_PATH.'/'.VERSION.'/upgrade.sql')){
 			$data['upgrade_sql'] = INSTALL_PATH.'/'.VERSION.'/upgrade.sql';
