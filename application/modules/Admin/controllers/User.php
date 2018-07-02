@@ -71,9 +71,9 @@ class UserController extends AdminBasicController
         $id = $this->get('id');
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
             $delete = $this->m_user->DeleteByID($id);
-            $result = array('state' => 'ok', 'message' => '删除成功', 'data' => '');
+            $data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
         } else {
-            $result = array('state' => 'error', 'message' => '缺少字段', 'data' => '');
+            $data = array('state' => 0, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
     }
