@@ -45,8 +45,8 @@ class OrderController extends AdminBasicController
 		
         //查询条件
         $get_params = [
-            'title' => $title,
-            'alias' => $alias
+            'orderid' => $orderid,
+            'email' => $email
         ];   
         $where = $this->conditionSQL($get_params);
 		
