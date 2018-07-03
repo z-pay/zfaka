@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
   `chapwd` varchar(55) NOT NULL DEFAULT '' COMMENT '查询密码',
   `ip` varchar(55) NOT NULL DEFAULT '' COMMENT 'ip',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态0待支付,1待处理,2已完成,3处理失败',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态0待支付,1待处理,2已完成,3处理失败,-1删除',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '下单时间',
   `paytime` int(11) NOT NULL DEFAULT '0' COMMENT '支付时间',
   `tradeid` varchar(255) NOT NULL DEFAULT '' COMMENT '外部订单id',
@@ -230,11 +230,11 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
 -- 转存表中的数据 `t_payment`
 --
 
-INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `notify_url`, `return_url`, `active`) VALUES
-(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '', '/product/notify/', '/product/query/', 0),
-(2, '支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '', '/product/notify/', '/product/query/', 0),
-(3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '', '/product/notify/', '/product/query/', 0),
-(4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '', '/product/notify/', '/product/query/', 0);
+INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `active`) VALUES
+(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '', 0),
+(2, '码支付-支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '',  0),
+(3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '', 0),
+(4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
