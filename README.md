@@ -22,6 +22,9 @@
 
 # 二、系统部署
 
+## 宝塔用户请注意：请在安装本系统前在/www/server/nginx/conf/目录下，找到对应的配置文件例如：enable-php-71.conf,然后删除掉include pathinfo.conf;即可正常安装使用;
+
+
 2.1 环境安装，推荐使用lnmp套件
 
 >参考：https://zlkb.net/241.html
