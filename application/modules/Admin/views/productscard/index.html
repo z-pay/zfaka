@@ -46,7 +46,7 @@
             </script>
             <script type="text/html" id="opt">
                 {{# if(d.active >0){ }}
-                /
+                 <button class="delete layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-cardid="{{d.id}}">删除</button>
                 {{# } else { }}
                 <button class="delete layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-cardid="{{d.id}}">删除</button>
                 {{# } }}
