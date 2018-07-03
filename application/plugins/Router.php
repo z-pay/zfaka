@@ -56,8 +56,9 @@ class RouterPlugin extends Yaf\Plugin_Abstract
 								$controller = str_replace(".php","",$uriInfo[2]);
 								$request->setControllerName(ucfirst(strtolower($controller)));
 								if (isset($uriInfo[3]) AND strlen($uriInfo[3])>0) {
-									if (!preg_match("#html#", $uriInfo[3])){ 
-										$request->setActionName(ucfirst(strtolower($uriInfo[3])));
+									if (!preg_match("#html#", $uriInfo[3])){
+										$action = str_replace(".php","",$uriInfo[3]);
+										$request->setActionName(ucfirst(strtolower($action)));
 									}
 								} else {
 									$action = 'index';
