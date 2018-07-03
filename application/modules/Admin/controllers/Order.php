@@ -38,7 +38,17 @@ class OrderController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		$where = 'status>-1';
+		$where1 = 'status>-1';
+		
+		$orderid = $this->get('orderid');
+		$email = $this->get('email',false);
+		
+        //查询条件
+        $get_params = [
+            'title' => $title,
+            'alias' => $alias
+        ];   
+        $where = $this->conditionSQL($get_params);
 		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
@@ -46,7 +56,7 @@ class OrderController extends AdminBasicController
 		$limit = $this->get('limit');
 		$limit = is_numeric($limit) ? $limit : 10;
 		
-		$total=$this->m_order->Where($where)->Total();
+		$total=$this->m_order->Where($where1)->Where($where)->Total();
 		
         if ($total > 0) {
             if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
@@ -56,7 +66,7 @@ class OrderController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$items=$this->m_order->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
+			$items=$this->m_order->Where($where1)->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
                 $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
@@ -245,5 +255,18 @@ class OrderController extends AdminBasicController
             $data = array('code' => 1000, 'msg' => '缺少字段', 'data' => '');
         }
        Helper::response($data);
+    }
+	
+    private function conditionSQL($param)
+    {
+        $condition = "1";
+        if (isset($param['orderid']) AND empty($param['orderid']) === FALSE) {
+            $condition .= " AND `orderid` LIKE '%{$param['orderid']}%'";
+        }
+        if (isset($param['email']) AND empty($param['email']) === FALSE) {
+            $condition .= " AND `email` LIKE '%{$param['email']}%'";
+        }
+
+        return ltrim($condition, " AND ");
     }
 }

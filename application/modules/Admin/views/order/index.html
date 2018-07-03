@@ -9,6 +9,18 @@
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form layui-form-pane layui-tab-item layui-show">
                     <div class="layui-form-item layui-show">
+						<div class="layui-form layui-row layui-col-space10">
+							<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
+								<input type="text" name="orderid" class="layui-input" value="" placeholder="订单号" />
+							</div>
+							<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
+								<input type="text" name="email" class="layui-input" value="" placeholder="邮箱" />
+							</div>
+							<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
+								<button lay-submit class="layui-btn" lay-filter="search">查询</button>
+							</div>
+						</div>
+
                         <table class="layui-table" id="table" lay-filter="table"></table>
                     </div>
                 </div>
