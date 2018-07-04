@@ -259,7 +259,7 @@ class ProductscardController extends AdminBasicController
 				if(!empty($cards)){
 					$content = '';
 					foreach($cards AS $card){
-						$content .= $card['card'].PHP_EOL;
+						$content .= $card['card'].'\r\n';
 					}
 					$data = array('code' => 1, 'msg' => 'success','data'=>$content);
 				}else{
