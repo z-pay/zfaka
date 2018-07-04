@@ -9,10 +9,13 @@
 class ProductstypeController extends AdminBasicController
 {
 	private $m_products_type;
-    public function init()
+    private $m_products;
+	
+	public function init()
     {
         parent::init();
 		$this->m_products_type = $this->load('products_type');
+		$this->m_products = $this->load('products');
     }
 
     public function indexAction()
@@ -154,12 +157,18 @@ class ProductstypeController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$where = 'active=0';//只有未激活的才可以删除
-				$delete = $this->m_products_type->Where($where)->UpdateByID(array('isdelete'=>1),$id);
-				if($delete){
-					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				//检查是否存在可用的商品
+				$qty = $this->m_products->Where(array('typeid'=>$id,'active'=>1,'isdelete'=>0))->Total();
+				if($qty>0){
+					$data = array('code' => 1004, 'msg' => '当前分类下存在可用商品，请先处理', 'data' => '');
 				}else{
-					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+					$where = 'active=0';//只有未激活的才可以删除
+					$delete = $this->m_products_type->Where($where)->UpdateByID(array('isdelete'=>1),$id);
+					if($delete){
+						$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+					}else{
+						$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+					}
 				}
 			} else {
                 $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');

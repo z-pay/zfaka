@@ -201,7 +201,8 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `tradeid` varchar(255) NOT NULL DEFAULT '' COMMENT '外部订单id',
   `paymethod` varchar(255) NOT NULL DEFAULT '' COMMENT '支付渠道',
   `paymoney` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '支付总金额',
-  `kami` text COMMENT '卡密'
+  `kami` text COMMENT '卡密',
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

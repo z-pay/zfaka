@@ -38,7 +38,7 @@ class OrderController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		$where1 = 'status>-1';
+		$where1 = array('isdelete'=>0);
 		
 		$orderid = $this->get('orderid');
 		$email = $this->get('email',false);
@@ -113,8 +113,13 @@ class OrderController extends AdminBasicController
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$where = 'status=0 or status=2';//已完成和未支付的才可以删
-				$delete = $this->m_order->Where($where)->UpdateByID(array('status'=>-1),$id);
-				$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				$delete = $this->m_order->Where($where)->UpdateByID(array('isdelete'=>1),$id);
+				if($delete){
+					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				}else{
+					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+				}
+				
 			} else {
                 $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
             }
