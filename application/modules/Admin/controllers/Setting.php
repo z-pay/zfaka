@@ -52,7 +52,8 @@ class SettingController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$field = array('id','name','updatetime');
+			//$field = array('id','name','updatetime','tag');
+			$field = array();
 			$items=$this->m_config->Field($field)->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
