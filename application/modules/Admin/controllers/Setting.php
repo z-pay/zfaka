@@ -104,7 +104,7 @@ class SettingController extends AdminBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'name'=>$name,
-					'value'=>$value,
+					'value'=>htmlspecialchars($value),
 					'tag'=>$tag,
 				);
 				if($method == 'edit' AND $id>0){
