@@ -168,11 +168,11 @@ class OrderController extends PcBasicController
 								//这里对有订单超时处理的支付渠道进行特别处理
 								
 								if($payconfig['overtime']>0){
-									if(($order['addtime']+$payconfig['overtime'])>time()){
+									if(($order['addtime']+$payconfig['overtime'])<time()){
 										//需要重新生成订单再提交
 										//生成orderid
 										$new_orderid = 'zlkb' . date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
-										$u = $this->m_order->UpdateByID(array('orderid'=>$orderid),$oid);
+										$u = $this->m_order->UpdateByID(array('orderid'=>$new_orderid),$oid);
 										if($u){
 											$orderid = $new_orderid;
 										}else{
