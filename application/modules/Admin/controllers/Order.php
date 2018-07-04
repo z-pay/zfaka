@@ -112,8 +112,9 @@ class OrderController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				$where1 = array('id'=>$id);
 				$where = 'status=0 or status=2';//已完成和未支付的才可以删
-				$delete = $this->m_order->Where($where)->UpdateByID(array('isdelete'=>1),$id);
+				$delete = $this->m_order->Where($where1)->Where($where)->Update(array('isdelete'=>1));
 				if($delete){
 					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
 				}else{
