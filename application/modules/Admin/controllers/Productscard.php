@@ -39,12 +39,12 @@ class ProductscardController extends AdminBasicController
         }
 		
 		$card = $this->get('card',false);
-		$status = $this->get('status');
+		$active = $this->get('active');
 		$pid = $this->get('pid');
         //查询条件
         $get_params = [
             'card' => $card,
-			'status' => $status,
+			'active' => $active,
 			'pid' => $pid,
         ];   
         $where = $this->conditionSQL($get_params);
@@ -239,8 +239,8 @@ class ProductscardController extends AdminBasicController
         if (isset($param['card']) AND empty($param['card']) === FALSE) {
             $condition .= " AND {$alias}`card` LIKE '%{$param['card']}%'";
         }
-        if (isset($param['status']) AND $param['status']>-1 ) {
-            $condition .= " AND {$alias}`status` = {$param['status']}";
+        if (isset($param['active']) AND $param['active']>-1 ) {
+            $condition .= " AND {$alias}`active` = {$param['active']}";
         }
         if (isset($param['pid']) AND empty($param['pid']) === FALSE AND $param['pid']>0 ) {
             $condition .= " AND {$alias}`pid` = {$param['pid']}";
