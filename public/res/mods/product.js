@@ -68,7 +68,7 @@
 						var str = '<span class="layui-badge layui-bg-black">手工发货</span>';
 					}
 					
-					html = str + product.description;
+					html = str + htmlspecialchars_decode(product.description);
 					$('#prodcut_description').html(html);
 					form.render();
 				} else {
