@@ -255,7 +255,7 @@ class ProductscardController extends AdminBasicController
 					'pid' => $pid,
 				];  
 				$where  = $this->conditionSQL($get_params);
-				$cards = $this->m_products_card->Where($where)->Select();
+				$cards = $this->m_products_card->Where(array('isdelete'=>0))->Where($where)->Select();
 				if(!empty($cards)){
 					$content = '';
 					foreach($cards AS $card){
