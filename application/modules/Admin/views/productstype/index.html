@@ -19,7 +19,9 @@
 </div>
 <script type="text/html" id="opt">
     <a class="layui-btn layui-btn-warm layui-btn-xs" href="/admin/productstype/edit/?id={{d.id}}">编辑</a>
+	 {{# if(d.active ==0){ }}
 	<a data-href="/admin/productstype/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+	 {{# } }}
 </script>
 <script type="text/html" id="active">
     {{# if(d.active >0){ }}
