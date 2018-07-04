@@ -246,40 +246,47 @@ class ProductscardController extends AdminBasicController
     }
 	
 	public function downloadajaxAction(){
-			$pid = $this->getPost('pid');
-			if(is_numeric($pid) AND $pid>0){
-				try{
-					$active = $this->getPost('active');
-					$get_params = [
-						'active' => $active,
-						'pid' => $pid,
-					];  
-					$where  = $this->conditionSQL($get_params);
-					$cards = $this->m_products_card->Where($where)->Select();
-					if(!empty($cards)){
-						$content = '';
-						foreach($cards AS $card){
-							$content .= $card['card'].PHP_EOL;
-						}
-						header("Content-type:application/octet-stream");
-						header("Accept-Ranges:bytes");
-						header("Content-Disposition:attachment;filename=".'卡密下载'.date("YmdHis").".txt");
-						header("Expires: 0");
-						header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
-						header("Pragma:public");
-						echo $content;
-						exit();
-					}else{
-						$data = array('code' => 1002, 'msg' => '没有卡密存在','data'=>array());
+		$pid = $this->getPost('pid');
+		if(is_numeric($pid) AND $pid>0){
+			try{
+				$active = $this->getPost('active');
+				$get_params = [
+					'active' => $active,
+					'pid' => $pid,
+				];  
+				$where  = $this->conditionSQL($get_params);
+				$cards = $this->m_products_card->Where($where)->Select();
+				if(!empty($cards)){
+					$content = '';
+					foreach($cards AS $card){
+						$content .= $card['card'].PHP_EOL;
 					}
-				}catch(\Exception $e) {
-					$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
+					$data = array('code' => 1, 'msg' => 'success','data'=>$content);
+				}else{
+					$data = array('code' => 1002, 'msg' => '没有卡密存在','data'=>array());
 				}
-			}else{
-				$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
+			}catch(\Exception $e) {
+				$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
 			}
-
-		Helper::response($data);
+		}else{
+			$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
+		}
+			
+		$filename = '卡密下载_'.date("YmdHis").'.txt';
+		if($data['code']>0){
+			$content = $data['msg'];
+		}else{
+			$content = $data['data'];
+		}
+			
+		header("Content-type:application/octet-stream");
+		header("Accept-Ranges:bytes");
+		header("Content-Disposition:attachment;filename=".$filename);
+		header("Expires: 0");
+		header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
+		header("Pragma:public");
+		echo $content;
+		exit();
 	}
 	
     private function conditionSQL($param,$alias='')
