@@ -25,6 +25,8 @@ class ProductscardController extends AdminBasicController
         }
 
 		$data = array();
+		$products=$this->m_products->Where(array('isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
+		$data['products'] = $products;
 		$this->getView()->assign($data);
     }
 
@@ -36,7 +38,17 @@ class ProductscardController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		$where = array();
+		$card = $this->get('card',false);
+		$status = $this->get('status');
+		$pid = $this->get('pid');
+        //查询条件
+        $get_params = [
+            'card' => $card,
+			'status' => $status,
+			'pid' => $pid,
+        ];   
+        $where = $this->conditionSQL($get_params);
+		$where1 = $this->conditionSQL($get_params,'p1');
 		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
@@ -54,7 +66,7 @@ class ProductscardController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$sql ="SELECT p1.*,p2.name FROM `t_products_card` as p1 left join `t_products` as p2 on p1.pid=p2.id Where p1.isdelete=0 Order by p1.id desc LIMIT {$limits}";
+			$sql ="SELECT p1.*,p2.name FROM `t_products_card` as p1 left join `t_products` as p2 on p1.pid=p2.id Where p1.isdelete=0 {$where1} Order by p1.id desc LIMIT {$limits}";
 			$items=$this->m_products_card->Query($sql);
 			
             if (empty($items)) {
@@ -220,4 +232,19 @@ class ProductscardController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
+	
+    private function conditionSQL($param,$alias='')
+    {
+        $condition = "1";
+        if (isset($param['card']) AND empty($param['card']) === FALSE) {
+            $condition .= " AND {$alias}.`card` LIKE '%{$param['card']}%'";
+        }
+        if (isset($param['status']) AND $param['status']>-1 ) {
+            $condition .= " AND {$alias}.`status` = {$param['status']}";
+        }
+        if (isset($param['pid']) AND empty($param['pid']) === FALSE AND $param['pid']>0 ) {
+            $condition .= " AND {$alias}.`pid` = {$param['pid']}";
+        }		
+        return ltrim($condition, " AND ");
+    }
 }
