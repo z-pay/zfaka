@@ -56,7 +56,7 @@ class ProductscardController extends AdminBasicController
 		$limit = $this->get('limit');
 		$limit = is_numeric($limit) ? $limit : 10;
 		
-		$total=$this->m_products_card->Where($where)->Total();
+		$total=$this->m_products_card->Where(array('isdelete'=>0))->Where($where)->Total();
 		
         if ($total > 0) {
             if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
