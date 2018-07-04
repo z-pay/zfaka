@@ -8,7 +8,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	var edit_description=layedit.build('description'); //建立编辑器
 		
 	table.render({
-		elem: '#products',
+		elem: '#table',
 		url: '/admin/products/ajax',
 		page: true,
 		cellMinWidth:60,
@@ -27,7 +27,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
   
   
 	//更新库存
-	$("#products_table").on("click","#updateQty",function(event){
+	$("#products_form").on("click","#updateQty",function(event){
 		event.preventDefault();
 		var pid = $("#pid").val();
 		$(this).attr({"disabled":"disabled"});
