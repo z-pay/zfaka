@@ -66,7 +66,7 @@ class ProductscardController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$sql ="SELECT p1.*,p2.name FROM `t_products_card` as p1 left join `t_products` as p2 on p1.pid=p2.id Where p1.isdelete=0 {$where1} Order by p1.id desc LIMIT {$limits}";
+			$sql ="SELECT p1.*,p2.name FROM `t_products_card` as p1 left join `t_products` as p2 on p1.pid=p2.id Where p1.isdelete=0 and {$where1} Order by p1.id desc LIMIT {$limits}";
 			$items=$this->m_products_card->Query($sql);
 			
             if (empty($items)) {
