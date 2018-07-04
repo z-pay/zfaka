@@ -49,11 +49,18 @@ class codepayalipay
 				$codepay_json = curl_exec($ch);
 				curl_close($ch);
 			}
-			$codepay_data = json_decode($codepay_json);
-			$qr = $codepay_data ? $codepay_data->qrcode : '';
-			
-			$result = array('paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['name']);
-			return array('code'=>1,'msg'=>'success','data'=>$result);
+			$codepay_data = json_decode($codepay_json,true);
+			if(is_array($codepay_data)){
+				if($codepay_data['status']<0){
+					return array('code'=>1002,'msg'=>$codepay_data['msg'],'data'=>'');
+				}else{
+					$qr = $codepay_data ? $codepay_data['qrcode'] : '';
+					$result = array('paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['name']);
+					return array('code'=>1,'msg'=>'success','data'=>$result);
+				}
+			}else{
+				return array('code'=>1001,'msg'=>"支付接口请求失败",'data'=>'');
+			}
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
 		}
