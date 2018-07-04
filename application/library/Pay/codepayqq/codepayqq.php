@@ -23,7 +23,7 @@ class codepayqq
 			"pay_id" => $params['orderid'], //可以是用户ID,站内商户订单号,用户名
 			"param" => '',//自定义参数
 			"act" => 0,//此参数即将弃用
-			"outTime" => 360,//二维码超时设置
+			"outTime" => $payconfig['overtime'],//二维码超时设置
 			"page" => 4,//订单创建返回JS 或者JSON
 			"return_url" => $params['web_url'] . '/product/query/?paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
 			"notify_url" => $params['web_url'] . '/product/notify/?paymethod='.$this->paymethod,

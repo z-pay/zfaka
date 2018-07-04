@@ -225,6 +225,7 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
   `app_secret` varchar(255) NOT NULL DEFAULT '',
   `ali_public_key` text,
   `rsa_private_key` text,
+  `overtime` int(11) NOT NULL DEFAULT '0' COMMENT '支付超时,0是不限制',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
@@ -232,11 +233,11 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
 -- 转存表中的数据 `t_payment`
 --
 
-INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `active`) VALUES
-(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '', 0),
-(2, '码支付-支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '',  0),
-(3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '', 0),
-(4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '', 0);
+INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`,`overtime`, `active`) VALUES
+(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '',0, 0),
+(2, '码支付-支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '', 300, 0),
+(3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '',300, 0),
+(4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '',300, 0);
 
 -- --------------------------------------------------------
 

@@ -165,9 +165,23 @@ class OrderController extends PcBasicController
 							$data = array('code' => 1004, 'msg' => '订单已支付成功');
 						}else{
 							try{
+								//这里对有订单超时处理的支付渠道进行特别处理
+								if($payconfig['overtime']>0){
+									if(($order['addtime']+$payconfig['overtime'])>time()){
+										//需要重新生成订单再提交
+										//生成orderid
+										$new_orderid = 'zlkb' . date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
+										$u = $this->m_order->UpdateByID(array('orderid'=>$orderid),$oid);
+										if($u){
+											$orderid = $new_orderid;
+										}else{
+											$orderid = $order['orderid'];
+										}
+									}
+								}
 								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 								$PAY = new $payclass();
-								$params =array('orderid'=>$order['orderid'],'money'=>$order['money'],'productname'=>$order['productname'],'web_url'=>$this->config['web_url']);
+								$params =array('orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'web_url'=>$this->config['web_url']);
 								$data = $PAY->pay($payconfig,$params);
 							} catch (\Exception $e) {
 								$data = array('code' => 1005, 'msg' => $e->errorMessage());
