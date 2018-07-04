@@ -3,7 +3,8 @@
 	var layer = layui.layer;
 	var oid = $("#oid").val();
 	var t = '';
-
+	var myTimer;
+	
 	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
@@ -14,7 +15,14 @@
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
             success: function(res) {
                 if (res.code == 1) {
-					var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
+					if(res.data.overtime>0){
+						timer(res.data.overtime);
+						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
+						html +='<div class="time-item"><strong id="hour_show"><s id="h"></s>0时</strong><strong id="minute_show"><s></s>05分</strong><strong id="second_show"><s></s>08秒</strong></div>';
+						html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
+					}else{
+						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
+					}
 					layer.open({
 						type: 1
 						,title: false
@@ -66,6 +74,32 @@
         });
 		//return true;
     }
-
+	
+	function timer(intDiff) {
+		var i = 0;
+		myTimer = window.setInterval(function () {
+			i++;
+			var day = 0,
+				hour = 0,
+				minute = 0,
+				second = 0;//时间默认值
+			if (intDiff > 0) {
+				day = Math.floor(intDiff / (60 * 60 * 24));
+				hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+				minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+				second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+			}
+			if (minute <= 9) minute = '0' + minute;
+			if (second <= 9) second = '0' + second;
+			$('#hour_show').html('<s id="h"></s>' + hour + '时');
+			$('#minute_show').html('<s></s>' + minute + '分');
+			$('#second_show').html('<s></s>' + second + '秒');
+			if (hour <= 0 && minute <= 0 && second <= 0) {
+				//qrcode_timeout()
+				clearInterval(myTimer);
+			}
+			intDiff--;
+		}, 1000);
+	}
 	exports('productpay',null)
 });
