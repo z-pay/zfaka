@@ -44,9 +44,9 @@ class QueryController extends PcBasicController
 				if(isEmail($email)){
 					if(strtolower($this->getSession('productqueryCaptcha')) ==strtolower($vercode)){
 						$this->unsetSession('productqueryCaptcha');
-						$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where('status>-1')->Select();
+						$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where(array('isdelete'=>0))->Select();
 						if(empty($order)){
-							$data=array('code'=>1005,'msg'=>'没有订单');
+							$data=array('code'=>1005,'msg'=>'订单不存在');
 						}else{
 							$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>1);
 						}
@@ -94,16 +94,12 @@ class QueryController extends PcBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($oid AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$order = $this->m_order->Where(array('id'=>$oid))->SelectOne();
+				$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
 				if(empty($order)){
 					$data=array('code'=>1002,'msg'=>'没有订单');
 				}else{
 					if($order['status']<1){
-						if($order['status']>-1){
-							$data = array('code' => 1003, 'msg' => '未支付');
-						}else{
-							$data = array('code' => 1004, 'msg' => '已删除');
-						}
+						$data = array('code' => 1003, 'msg' => '未支付');
 					}else{
 						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
 					}
