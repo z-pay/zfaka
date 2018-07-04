@@ -52,7 +52,8 @@ class SettingController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$items=$this->m_config->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
+			$field = array('id','name','updatetime');
+			$items=$this->m_config->Field($field)->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
                 $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
