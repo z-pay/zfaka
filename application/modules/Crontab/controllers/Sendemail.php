@@ -39,7 +39,9 @@ class SendemailController extends BasicController
 			$config['sendmail'] = $emainConfig['sendmail'];
 			$config['sendname'] = $emainConfig['sendname'];
 			foreach($queue AS $q){
-				$results[] = $this->_send($config,$q);
+				if(isEmail($q['email'])){
+					$results[] = $this->_send($config,$q);
+				}
 				sleep(1);
 			}
         }
