@@ -12,7 +12,7 @@ class UpgradeController extends BasicController
 	public function init()
     {
         parent::init();
-		$this->all_version=['1.0.0','1.0.1','1.0.2','1.0.3'];
+		$this->all_version = ['1.0.0','1.0.1','1.0.2','1.0.3'];
     }
 
     public function indexAction()
@@ -96,7 +96,7 @@ class UpgradeController extends BasicController
 	//获取下一版本号
 	private _getUpdateVersion($version){
 		$offset=array_search($version,$this->all_version);
-		$k =$offset+1;
+		$k = $offset+1;
 		return $this->all_version[$k];
 	}
 }
