@@ -98,7 +98,7 @@
 				layer.closeAll();
 				layer.open({
 					type: 1
-					,title: false
+					,title: "提示"
 					,offset: 'auto'
 					,id: 'layerNotice' //防止重复弹出
 					,content: "支付超时"
