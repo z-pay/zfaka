@@ -72,9 +72,9 @@
 					}
 					
 					if(product.auto>0){
-						var str = '<span class="layui-badge layui-bg-green">自动发货</span>';
+						var str = '<p><span class="layui-badge layui-bg-green">自动发货</span></p>';
 					}else{
-						var str = '<span class="layui-badge layui-bg-black">手工发货</span>';
+						var str = '<p><span class="layui-badge layui-bg-black">手工发货</span></p>';
 					}
 					
 					html = str + htmlspecialchars_decode(product.description);
