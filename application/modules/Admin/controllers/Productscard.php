@@ -136,7 +136,7 @@ class ProductscardController extends AdminBasicController
 		Helper::response($data);
 	}
 	
-	public function deleteajaxAction()
+	public function deleteAction()
 	{
 		$cardid = $this->getPost('cardid',false);
 		$csrf_token = $this->getPost('csrf_token', false);
