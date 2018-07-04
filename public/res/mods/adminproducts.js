@@ -95,5 +95,13 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
+	
+    form.on('submit(search)', function(data){
+        table.reload('table', {
+            url: '/admin/products/ajax',
+            where: data.field
+        });
+        return false;
+    });
 	exports('adminproducts',null)
 });
