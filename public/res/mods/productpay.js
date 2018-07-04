@@ -27,7 +27,7 @@
 						type: 1
 						,title: false
 						,offset: 'auto'
-						,id: 'layerDemoauto' //防止重复弹出
+						,id: 'layerPay' //防止重复弹出
 						,content: html
 						,btn: '关闭'
 						,btnAlign: 'c' //按钮居中
@@ -96,6 +96,19 @@
 			$('#second_show').html('<s></s>' + second + '秒');
 			if (hour <= 0 && minute <= 0 && second <= 0) {
 				layer.closeAll();
+				layer.open({
+					type: 1
+					,title: false
+					,offset: 'auto'
+					,id: 'layerNotice' //防止重复弹出
+					,content: "支付超时"
+					,btn: '关闭'
+					,btnAlign: 'c' //按钮居中
+					,shade: 0.8 //不显示遮罩
+					,yes: function(){
+						layer.closeAll();
+					}
+				});
 				clearInterval(myTimer);
 			}
 			intDiff--;
