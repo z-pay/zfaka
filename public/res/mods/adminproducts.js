@@ -63,7 +63,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	form.on('submit(edit)', function(data){
 		layedit.sync(edit_description);
 		data.field.csrf_token = TOKEN;
-		data.field.description = layedit.getText(edit_description);
+		data.field.description = layedit.getContent(edit_description);
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
 			url: '/admin/products/editajax',
