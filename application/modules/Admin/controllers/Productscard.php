@@ -233,6 +233,44 @@ class ProductscardController extends AdminBasicController
 		Helper::response($data);
 	}
 	
+	
+	public function downloadajaxAction(){
+			$pid = $this->getPost('pid');
+			if(is_numeric($pid) AND $pid>0){
+				try{
+					$active = $this->getPost('active');
+					$get_params = [
+						'active' => $active,
+						'pid' => $pid,
+					];  
+					$where  = $this->conditionSQL($get_params);
+					$cards = $this->m_products_card->Where($where)->Select();
+					if(!empty($cards)){
+						$content = '';
+						foreach($cards AS $card){
+							$content .= $card['card'].PHP_EOL;
+						}
+						header("Content-type:application/octet-stream");
+						header("Accept-Ranges:bytes");
+						header("Content-Disposition:attachment;filename=".'卡密下载'.date("YmdHis").".txt");
+						header("Expires: 0");
+						header("Cache-Control:must-revalidate,post-check=0,pre-check=0");
+						header("Pragma:public");
+						echo $content;
+						exit();
+					}else{
+						$data = array('code' => 1002, 'msg' => '没有卡密存在','data'=>array());
+					}
+				}catch(\Exception $e) {
+					$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
+				}
+			}else{
+				$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
+			}
+
+		Helper::response($data);
+	}
+	
     private function conditionSQL($param,$alias='')
     {
         $condition = "1";

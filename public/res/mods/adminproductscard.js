@@ -55,7 +55,45 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	});
-
+	
+	//导出
+	form.on('submit(download)', function(data){
+		data.field.csrf_token = TOKEN;
+		var i = layer.load(2,{shade: [0.5,'#fff']});
+		var formData = new FormData(document.getElementById("download_form"));
+		$.ajax({
+			url: '/admin/productscard/downloadajax',
+			type: 'POST',
+			dataType: 'json',
+			data:formData,
+			processData: false,
+            contentType: false,
+		})
+		.done(function(res) {
+			if (res.code == '1') {
+				layer.open({
+					title: '提示',
+					content: '导入成功',
+					btn: ['确定'],
+					yes: function(index, layero){
+					    location.reload();
+					},
+					cancel: function(){
+					    location.reload();
+					}
+				});
+			} else {
+				layer.msg(res.msg,{icon:2,time:5000});
+			}
+		})
+		.fail(function() {
+			layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
+		})
+		.always(function() {
+			layer.close(i);
+		});
+		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+	});
 
 	table.render({
 		elem: '#table',
