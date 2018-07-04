@@ -94,7 +94,7 @@ class UpgradeController extends BasicController
 	}
 	
 	//获取下一版本号
-	private _getUpdateVersion($version){
+	private function _getUpdateVersion($version){
 		$offset=array_search($version,$this->all_version);
 		$k = $offset+1;
 		return $this->all_version[$k];
