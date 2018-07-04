@@ -16,6 +16,26 @@
 							<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
 								<input type="text" name="email" class="layui-input" value="" placeholder="邮箱" />
 							</div>
+							<div class="layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
+								<select name="pid">
+									<option value="0" >筛选商品</option>
+                                    <?php if(!empty($products)):?>
+                                    <?php foreach($products AS $p):?>
+                                    <option value="<?php echo $p['id'];?>"><?php echo $p['name'];?></option>
+                                    <?php endforeach;?>
+                                    <?php endif;?>
+								</select>
+							</div>
+							<div class="layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
+								<select name="status">
+									<option value="-1" >筛选状态</option>
+									<option value="0">待付款</option>
+									<option value="1">待处理</option>
+									<option value="2">已完成</option>
+									<option value="３">处理失败</option>
+								</select>
+							</div>
+
 							<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
 								<button lay-submit class="layui-btn" lay-filter="search">查询</button>
 							</div>

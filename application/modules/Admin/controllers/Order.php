@@ -10,12 +10,14 @@ class OrderController extends AdminBasicController
 {
 	private $m_order;
 	private $m_products_card;
+	private $m_products;
 	private $m_email_queue;
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
 		$this->m_products_card = $this->load('products_card');
+		$this->m_products = $this->load('products');
 		$this->m_email_queue = $this->load('email_queue');
     }
 
@@ -25,8 +27,9 @@ class OrderController extends AdminBasicController
             $this->redirect("/admin/login");
             return FALSE;
         }
-
 		$data = array();
+		$products=$this->m_products->Where(array('isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
+		$data['products'] = $products;
 		$this->getView()->assign($data);
     }
 
@@ -42,11 +45,15 @@ class OrderController extends AdminBasicController
 		
 		$orderid = $this->get('orderid');
 		$email = $this->get('email',false);
+		$status = $this->get('status');
+		$pid = $this->get('pid');
 		
         //查询条件
         $get_params = [
             'orderid' => $orderid,
-            'email' => $email
+            'email' => $email,
+			'status' => $status,
+			'pid' => $pid,
         ];   
         $where = $this->conditionSQL($get_params);
 		
@@ -273,7 +280,12 @@ class OrderController extends AdminBasicController
         if (isset($param['email']) AND empty($param['email']) === FALSE) {
             $condition .= " AND `email` LIKE '%{$param['email']}%'";
         }
-
+        if (isset($param['status']) AND empty($param['status']) === FALSE AND $param['status']>0 ) {
+            $condition .= " AND `status` = {$param['status']}";
+        }
+        if (isset($param['pid']) AND empty($param['pid']) === FALSE AND $param['pid']>0 ) {
+            $condition .= " AND `pid` = {$param['pid']}";
+        }		
         return ltrim($condition, " AND ");
     }
 }
