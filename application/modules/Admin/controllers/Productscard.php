@@ -233,6 +233,17 @@ class ProductscardController extends AdminBasicController
 		Helper::response($data);
 	}
 	
+    public function downloadAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$data = array();
+		$products=$this->m_products->Where(array('auto'=>1,'isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
+		$data['products'] = $products;
+		$this->getView()->assign($data);
+    }
 	
 	public function downloadajaxAction(){
 			$pid = $this->getPost('pid');
