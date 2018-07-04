@@ -92,6 +92,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。*/
 		$('#download_form').submit();
+		layer.close(i);
 	});
 
 	table.render({
