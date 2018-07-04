@@ -17,11 +17,12 @@
                 if (res.code == 1) {
 					if(res.data.overtime>0){
 						timer(res.data.overtime);
-						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
-						html +='<div class="time-item"><strong id="hour_show"><s id="h"></s>0时</strong><strong id="minute_show"><s></s>05分</strong><strong id="second_show"><s></s>08秒</strong></div>';
+						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
+						html +='<div id="time-item" class="time-item"><strong id="hour_show"><s id="h"></s>0时</strong><strong id="minute_show"><s></s>05分</strong><strong id="second_show"><s></s>08秒</strong></div>';
 						html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
 					}else{
-						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
+						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
+						html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div>';
 					}
 					layer.open({
 						type: 1
@@ -95,20 +96,10 @@
 			$('#minute_show').html('<s></s>' + minute + '分');
 			$('#second_show').html('<s></s>' + second + '秒');
 			if (hour <= 0 && minute <= 0 && second <= 0) {
-				layer.closeAll();
-				layer.open({
-					type: 1
-					,title: "提示"
-					,offset: 'auto'
-					,id: 'layerNotice' //防止重复弹出
-					,content: "支付超时"
-					,btn: '关闭'
-					,btnAlign: 'c' //按钮居中
-					,shade: 0.8 //不显示遮罩
-					,yes: function(){
-						layer.closeAll();
-					}
-				});
+				//layer.closeAll();
+				$("#pay_qrcode").attr("src", '');
+				$("#pay_qrcode").attr("alt", '二维码失效');
+				$("#time-item").html("支付超时 请重新提交订单");
 				clearInterval(myTimer);
 			}
 			intDiff--;
