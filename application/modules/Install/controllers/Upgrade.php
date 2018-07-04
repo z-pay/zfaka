@@ -31,6 +31,7 @@ class UpgradeController extends BasicController
 					$data['upgrade_sql'] = '';
 				}
 				$data['update_version'] = $update_version;
+				$data['version'] = $version;
 				$this->getView()->assign($data);
 			}else{
 				$this->redirect("/product/");
