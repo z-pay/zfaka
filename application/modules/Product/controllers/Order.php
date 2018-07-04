@@ -51,7 +51,7 @@ class OrderController extends PcBasicController
 					$endtime = strtotime(date("Y-m-d 23:59:59"));
 					//进行同一ip，下单未付款的处理判断
 					if(isset($this->config['limit_ip_order']) AND $this->config['limit_ip_order']>0){
-						$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
+						$total = $this->m_order->Where(array('ip'=>$myip,'status'=>0,'isdelete'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
 						if($total>$this->config['limit_ip_order']){
 							$data = array('code' => 1005, 'msg' => '处理失败,您有太多未付款订单了');
 							Helper::response($data);
@@ -60,7 +60,7 @@ class OrderController extends PcBasicController
 
 					//进行同一email，下单未付款的处理判断
 					if(isset($this->config['limit_email_order']) AND $this->config['limit_email_order']>0){
-						$total = $this->m_order->Where(array('email'=>$email,'status'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
+						$total = $this->m_order->Where(array('email'=>$email,'status'=>0,'isdelete'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
 						if($total>$this->config['limit_email_order']){
 							$data = array('code' => 1006, 'msg' => '处理失败,您有太多未付款订单了');
 							Helper::response($data);
@@ -68,7 +68,7 @@ class OrderController extends PcBasicController
 					}
 					
 					//进行同一商品，禁止重复下单的判断
-					$total = $this->m_order->Where(array('email'=>$email,'status'=>0,'pid'=>$pid))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
+					$total = $this->m_order->Where(array('email'=>$email,'status'=>0,'pid'=>$pid,'isdelete'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
 					if($total>0){
 						$data = array('code' => 1007, 'msg' => '处理失败,商品限制重复下单,请直接查询订单进行支付');
 						Helper::response($data);
