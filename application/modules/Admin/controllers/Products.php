@@ -38,15 +38,13 @@ class ProductsController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		$where = array();
-		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
 		
 		$limit = $this->get('limit');
 		$limit = is_numeric($limit) ? $limit : 10;
 		
-		$total=$this->m_products->Where($where)->Total();
+		$total=$this->m_products->Where($where1)->Where($where)->Total();
 		
         if ($total > 0) {
             if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
@@ -56,7 +54,7 @@ class ProductsController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$sql = "SELECT p1.id,p1.name,p1.price,p1.qty,p1.auto,p1.active,p1.stockcontrol,p2.name as typename FROM `t_products` as p1 left join `t_products_type` as p2 on p1.typeid = p2.id Order by p1.id desc LIMIT {$limits}";
+			$sql = "SELECT p1.id,p1.name,p1.price,p1.qty,p1.auto,p1.active,p1.stockcontrol,p2.name as typename FROM `t_products` as p1 left join `t_products_type` as p2 on p1.typeid = p2.id WHERE p1.isdelete=0 Order by p1.id desc LIMIT {$limits}";
 			$items=$this->m_products->Query($sql);
             if (empty($items)) {
                 $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
@@ -209,4 +207,30 @@ class ProductsController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
+	
+    public function deleteAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$id = $this->get('id');
+		$csrf_token = $this->getPost('csrf_token', false);
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$where = 'active=0';//只有未激活的才可以删除
+				$delete = $this->m_products->Where($where)->UpdateByID(array('isdelete'=>1),$id);
+				if($delete){
+					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				}else{
+					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+				}
+			} else {
+                $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+        } else {
+            $data = array('code' => 1001, 'msg' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }
 }

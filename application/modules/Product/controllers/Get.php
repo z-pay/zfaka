@@ -25,7 +25,7 @@ class GetController extends PcBasicController
 				$data = array();
 				$order = array('sort_num' => 'ASC');
 				$field = array('id', 'name');
-				$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1))->Order($order)->Select();
+				$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1,'isdelete'=>0))->Order($order)->Select();
 				$data['products'] = $products;
 				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
 			} else {

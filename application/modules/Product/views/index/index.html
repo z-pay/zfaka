@@ -1,6 +1,12 @@
 <?php include COMMON_PATH.'/header.html';?>
 <div class="layui-container fly-marginTop fly-user-main">
-    <div class="layui-row layui-col-space15">
+    <div class="layui-row">
+		<!-- 公告-->
+		<?php if(isset($config['notice']) AND $config['notice']):?>
+		<blockquote class="layui-elem-quote layui-text" style="background-color: #ffffff;">
+			<i class="layui-icon layui-icon-speaker"></i><?php echo $config['notice'];?>
+		</blockquote>
+		<?php endif;?>
         <div class="layui-col-md6">
             <div class="layui-card">
                 <div class="layui-card-header">购买商品</div>

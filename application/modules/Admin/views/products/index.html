@@ -40,6 +40,7 @@
 </script>
 <script type="text/html" id="opt">
     <a class="layui-btn layui-btn-warm layui-btn-xs" href="/admin/products/edit/?id={{d.id}}">编辑</a>
+	<a data-href="/admin/products/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
 </script>
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>

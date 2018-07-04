@@ -221,8 +221,6 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
   `app_secret` varchar(255) NOT NULL DEFAULT '',
   `ali_public_key` text,
   `rsa_private_key` text,
-  `notify_url` varchar(255) NOT NULL DEFAULT '',
-  `return_url` varchar(255) NOT NULL DEFAULT '',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
@@ -253,15 +251,16 @@ CREATE TABLE IF NOT EXISTS `t_products` (
   `price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `auto` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0手动,1自动',
   `sort_num` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
-  `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间'
+  `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_products`
 --
 
-INSERT INTO `t_products` (`id`, `typeid`, `active`, `name`, `description`, `stockcontrol`, `qty`, `price`, `auto`, `sort_num`, `addtime`) VALUES
-(1, 1, 1, '测试商品', '测试使用', 0, 0, '0.10', 1, 99, 1528962221);
+INSERT INTO `t_products` (`id`, `typeid`, `active`, `name`, `description`, `stockcontrol`, `qty`, `price`, `auto`, `sort_num`, `addtime`,`isdelete`) VALUES
+(1, 1, 1, '测试商品', '测试使用', 0, 0, '0.10', 1, 99, 1528962221,0);
 
 -- --------------------------------------------------------
 
