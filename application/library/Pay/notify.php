@@ -81,7 +81,7 @@ class notify
 								if(!empty($m)){
 									$m_email_queue->MultiInsert($m);
 								}
-{								$data =array('code'=>1,'msg'=>'自动发卡');
+								$data =array('code'=>1,'msg'=>'自动发卡');
 							}else{
 								//3.2 这里说明库存不足了，干脆就什么都不处理，直接记录异常，同时更新订单状态
 								$m_order->Where(array('orderid'=>$orderid,'status'=>1))->Update(array('status'=>3));
