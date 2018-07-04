@@ -43,8 +43,7 @@
                         <div class="layui-form-item layui-form-text">
                             <label for="description" class="layui-form-label">描述</label>
                             <div class="layui-input-block">
-								<script id="container" name="description" type="text/plain"></script>
-                                <!--<textarea placeholder="" id="description" name="description" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $product['description'];?></textarea>-->
+                                <textarea placeholder="" id="description" name="description" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $product['description'];?></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -112,13 +111,4 @@
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
 layui.use('adminproducts');
-</script>
-<!-- 配置文件 -->
-<script type="text/javascript" src="/res/umeditor/third-party/jquery.min.js"></script>
-<script type="text/javascript" src="/res/umeditor/umeditor.config.js"></script>
-<!-- 编辑器源码文件 -->
-<script type="text/javascript" src="/res/umeditor/umeditor.min.js"></script>
-<!-- 实例化编辑器 -->
-<script type="text/javascript">
-   var ue = UM.getEditor('container');
 </script>
