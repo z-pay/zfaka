@@ -60,7 +60,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	form.on('submit(download)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
-	
+		/*
 		$.ajax({
 			url: '/admin/productscard/downloadajax',
 			type: 'POST',
@@ -90,7 +90,8 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		.always(function() {
 			layer.close(i);
 		});
-		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。*/
+		$('#download_form').submit();
 	});
 
 	table.render({
