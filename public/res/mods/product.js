@@ -4,11 +4,11 @@
 	var form = layui.form;
 
     function htmlspecialchars_decode(str){
-        str = str.replace(/&amp;/g, '&'); 
         str = str.replace(/&lt;/g, '<');
-        str = str.replace(/&gt;/g, '>');
-        str = str.replace(/&quot;/g, "''");  
-        str = str.replace(/&#039;/g, "'");  
+		str = str.replace(/&gt;/g, '>');
+		str = str.replace(/&quot;/g, '"');
+		str = str.replace(/&amp;/g, '&');
+        str = str.replace(/&#039;/g, "'");
         return str;  
     }
 	
