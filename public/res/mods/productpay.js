@@ -27,7 +27,7 @@
 						type: 1
 						,title: false
 						,offset: 'auto'
-						,id: 'layerPay' //防止重复弹出
+						,id: 'layerPayone' //防止重复弹出
 						,content: html
 						,btn: '关闭'
 						,btnAlign: 'c' //按钮居中
