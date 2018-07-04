@@ -273,8 +273,8 @@ class ProductscardController extends AdminBasicController
 		}
 			
 		$filename = '卡密下载_'.date("YmdHis").'.txt';
-		if($data['code']>0){
-			$content = $data['msg'];
+		if($data['code']>1){
+			$content = '下载失败,失败原因：'.$data['msg'];
 		}else{
 			$content = $data['data'];
 		}
