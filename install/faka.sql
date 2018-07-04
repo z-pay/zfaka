@@ -82,7 +82,7 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (5, 1, 'admin_email', '43036456@qq.com', '管理员邮箱,用于接收邮件提醒用', 1, 1453452674),
 (6, 1, 'web_name', 'ZFAKA平台', '当前站点名称', 1, 1453452674),
 (7, 1, 'web_description', '本系统由资料空白开发', '当前站点描述', 1, 0),
-(8, 0, 'notice', '本系统商品均可正常购买。开源下载地址：github地址:<a href="https://github.com/zlkbdotnet/zfaka/releases" target="_blank">https://github.com/zlkbdotnet/zfaka/releases</a>', '首页公告', 1, 1453452674);
+(8, 0, 'notice', '本系统商品均可正常购买。开源下载地址：github地址:&lt;a href=&quot;https://github.com/zlkbdotnet/zfaka/&quot; target=&quot;_blank&quot;&gt;https://github.com/zlkbdotnet/zfaka/&lt;/a&gt;', '首页公告', 1, 1453452674);
 
 
 -- --------------------------------------------------------
