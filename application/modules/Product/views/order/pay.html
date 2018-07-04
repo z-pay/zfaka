@@ -16,6 +16,7 @@
 				<p style="margin-bottom: 0;text-align:center"><a class="layui-btn layui-btn-warm" href="/product">返回</a></p>
 			<?php else:?>
 				<?php if(isset($order) AND !empty($order)):?>
+				<div class="layui-table-zlkb">
 				<table class="layui-table" id="query-table">
 					<colgroup>
 						<col width="150">
@@ -55,6 +56,7 @@
 						</tr>
 					</tbody>
 				</table>
+				</div>
 				<?php endif;?>
 				
 				<?php if($order['status']>0):?>

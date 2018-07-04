@@ -585,8 +585,8 @@ body .fly-user-main{position: relative; min-height: 600px;}
 }
 
 @media screen and (max-width: 450px){
-	.layui-form-item .query_yzm {position: absolute;right: 0;top: 1px;cursor: pointer;}
-	.layui-table-querey{overflow-y: auto;}
+	.layui-form-item .zlkb_yzm {position: absolute;right: 0;top: 1px;cursor: pointer;}
+	.layui-table-zlkb{overflow-y: auto;}
 }
 .orderpaymethod img{width: 100%;max-width: 150px;border: 1px solid #EAEAEA;cursor: pointer;}
 .mod-title {height: 60px;line-height: 60px;text-align: center;border-bottom: 1px solid #ddd;background: #fff}
