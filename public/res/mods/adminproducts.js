@@ -5,7 +5,9 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	var form = layui.form;
 	var layedit = layui.layedit;
 	
-	var edit_description=layedit.build('description'); //建立编辑器
+	var edit_description=layedit.build('description',{
+		tool: ['strong','italic','underline','|','del','left','center','right','link','unlink','face','help' ]
+	});	 //建立编辑器
 		
 	table.render({
 		elem: '#table',
