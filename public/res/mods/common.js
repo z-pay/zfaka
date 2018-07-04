@@ -82,14 +82,6 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
     $('body').removeClass('site-mobile');
   });
 
-    function htmlspecialchars_decode(str){
-        str = str.replace(/&amp;/g, '&'); 
-        str = str.replace(/&lt;/g, '<');
-        str = str.replace(/&gt;/g, '>');
-        str = str.replace(/&quot;/g, "''");  
-        str = str.replace(/&#039;/g, "'");  
-        return str;  
-    } 
  	//全局删除信息提示
 	table.on('tool(table)', function(obj) {
 		var layEvent = obj.event;
