@@ -95,7 +95,7 @@
 			$('#minute_show').html('<s></s>' + minute + '分');
 			$('#second_show').html('<s></s>' + second + '秒');
 			if (hour <= 0 && minute <= 0 && second <= 0) {
-				//qrcode_timeout()
+				layer.closeAll();
 				clearInterval(myTimer);
 			}
 			intDiff--;
