@@ -166,6 +166,7 @@ class OrderController extends PcBasicController
 						}else{
 							try{
 								//这里对有订单超时处理的支付渠道进行特别处理
+								
 								if($payconfig['overtime']>0){
 									if(($order['addtime']+$payconfig['overtime'])>time()){
 										//需要重新生成订单再提交
@@ -175,9 +176,13 @@ class OrderController extends PcBasicController
 										if($u){
 											$orderid = $new_orderid;
 										}else{
-											$orderid = $order['orderid'];
+											$data = array('code' => 1006, 'msg' =>"订单超时关闭");
 										}
+									}else{
+										$orderid = $order['orderid'];
 									}
+								}else{
+									$orderid = $order['orderid'];
 								}
 								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 								$PAY = new $payclass();
