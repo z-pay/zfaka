@@ -100,13 +100,16 @@ git clone https://github.com/zlkbdotnet/zfaka.git   [这是测试版]
 */2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
 </pre> 	
 	
-# 三、BUG与问题反馈
-   请联系我QQ:43036456
+# 三、系统升级
+> 升级时，请先备份 /conf/application.ini 与 /install/install.lock 这二个文件;下载最新代码后直接覆盖，登录后台即可按照提示完成升级；
+
+# 四、BUG与问题反馈
+* 请联系我QQ:43036456
    
-   相关问题QQ交流群：701035212
+* 相关问题QQ交流群：701035212
    
-# 四、推广QQ群
-   全国IDC行业精英群:572511758
+# 五、推广QQ群
+* 全国IDC行业精英群:572511758
    
-   DirectAdmin用户交流群:337686498
+* DirectAdmin用户交流群:337686498
    
