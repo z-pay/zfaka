@@ -60,14 +60,12 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	form.on('submit(download)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
-		var formData = new FormData(document.getElementById("download_form"));
+	
 		$.ajax({
 			url: '/admin/productscard/downloadajax',
 			type: 'POST',
 			dataType: 'json',
-			data:formData,
-			processData: false,
-            contentType: false,
+			data: data.field,
 		})
 		.done(function(res) {
 			if (res.code == '1') {
