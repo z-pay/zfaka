@@ -81,7 +81,9 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (4, 1, 'web_url', 'http://faka.zlkb.net', '当前网站地址,用于支付站点异步返回，务必修改正确', 1, 1453452674),
 (5, 1, 'admin_email', '43036456@qq.com', '管理员邮箱,用于接收邮件提醒用', 1, 1453452674),
 (6, 1, 'web_name', 'ZFAKA平台', '当前站点名称', 1, 1453452674),
-(7, 1, 'web_description', '本系统由资料空白开发', '当前站点描述', 1, 0);
+(7, 1, 'web_description', '本系统由资料空白开发', '当前站点描述', 1, 0),
+(8, 0, 'notice', '本系统商品均可正常购买。开源下载地址：github地址:<a href="https://github.com/zlkbdotnet/zfaka/releases" target="_blank">https://github.com/zlkbdotnet/zfaka/releases</a>', '首页公告', 1, 1453452674);
+
 
 -- --------------------------------------------------------
 

@@ -78,8 +78,10 @@
 
 2.3 下载代码
 <pre>
-git clone https://github.com/zlkbdotnet/zfaka.git
+git clone https://github.com/zlkbdotnet/zfaka.git   [这是测试版]
 </pre> 
+
+>请访问这里下载正式版：https://github.com/zlkbdotnet/zfaka/releases　
 
 2.4 配置目录权限
 
