@@ -138,7 +138,7 @@ class ProductscardController extends AdminBasicController
 	
 	public function deleteAction()
 	{
-		$cardid = $this->getPost('cardid',false);
+		$id = $this->get('id',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
@@ -148,12 +148,12 @@ class ProductscardController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($cardid AND $cardid>0 AND $csrf_token){
+		if($id AND $id>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$delete = $this->m_products_card->UpdateByID(array('isdelete'=>1),$cardid);
+				$delete = $this->m_products_card->UpdateByID(array('isdelete'=>1),$id);
 				if($delete){
 					//减少商品数量
-					$cards = $this->m_products_card->SelectByID('pid',$cardid);
+					$cards = $this->m_products_card->SelectByID('pid',$id);
 					$qty_m = array('qty' => 'qty-1');
 					$this->m_products->Where(array('id'=>$cards['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
 					$data = array('code' => 1, 'msg' => '成功');
