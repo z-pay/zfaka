@@ -48,7 +48,7 @@ class ProductscardController extends AdminBasicController
 			'pid' => $pid,
         ];   
         $where = $this->conditionSQL($get_params);
-		$where1 = $this->conditionSQL($get_params,'p1');
+		$where1 = $this->conditionSQL($get_params,'p1.');
 		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
@@ -237,13 +237,13 @@ class ProductscardController extends AdminBasicController
     {
         $condition = "1";
         if (isset($param['card']) AND empty($param['card']) === FALSE) {
-            $condition .= " AND {$alias}.`card` LIKE '%{$param['card']}%'";
+            $condition .= " AND {$alias}`card` LIKE '%{$param['card']}%'";
         }
         if (isset($param['status']) AND $param['status']>-1 ) {
-            $condition .= " AND {$alias}.`status` = {$param['status']}";
+            $condition .= " AND {$alias}`status` = {$param['status']}";
         }
         if (isset($param['pid']) AND empty($param['pid']) === FALSE AND $param['pid']>0 ) {
-            $condition .= " AND {$alias}.`pid` = {$param['pid']}";
+            $condition .= " AND {$alias}`pid` = {$param['pid']}";
         }		
         return ltrim($condition, " AND ");
     }
