@@ -280,7 +280,7 @@ class OrderController extends AdminBasicController
         if (isset($param['email']) AND empty($param['email']) === FALSE) {
             $condition .= " AND `email` LIKE '%{$param['email']}%'";
         }
-        if (isset($param['status']) AND empty($param['status']) === FALSE AND $param['status']>0 ) {
+        if (isset($param['status']) AND $param['status']>-1 ) {
             $condition .= " AND `status` = {$param['status']}";
         }
         if (isset($param['pid']) AND empty($param['pid']) === FALSE AND $param['pid']>0 ) {
