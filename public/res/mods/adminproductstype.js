@@ -5,7 +5,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 	var form = layui.form;
 
 	table.render({
-		elem: '#productstype',
+		elem: '#table',
 		url: '/admin/productstype/ajax',
 		page: true,
 		cellMinWidth:60,
@@ -13,7 +13,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 			{field: 'id', title: 'ID', width:80},
 			{field: 'name', title: '分类名', minWidth:160},
 			{field: 'active', title: '是否激活', width:100, templet: '#active',align:'center'},
-			{field: 'opt', title: '操作', width:100, templet: '#opt',align:'center'}
+			{field: 'opt', title: '操作', width:160, templet: '#opt',align:'center'}
 		]]
 	});
 

@@ -142,4 +142,31 @@ class ProductstypeController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
+	
+	
+    public function deleteAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$id = $this->get('id');
+		$csrf_token = $this->getPost('csrf_token', false);
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$where = 'active=0';//只有未激活的才可以删除
+				$delete = $this->m_products_type->Where($where)->UpdateByID(array('isdelete'=>1),$id);
+				if($delete){
+					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				}else{
+					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+				}
+			} else {
+                $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+        } else {
+            $data = array('code' => 1001, 'msg' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }
 }

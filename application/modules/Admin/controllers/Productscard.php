@@ -54,7 +54,7 @@ class ProductscardController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$sql ="SELECT p1.*,p2.name FROM `t_products_card` as p1 left join `t_products` as p2 on p1.pid=p2.id Order by p1.id desc LIMIT {$limits}";
+			$sql ="SELECT p1.*,p2.name FROM `t_products_card` as p1 left join `t_products` as p2 on p1.pid=p2.id Where p1.isdelete=0 Order by p1.id desc LIMIT {$limits}";
 			$items=$this->m_products_card->Query($sql);
 			
             if (empty($items)) {
@@ -76,7 +76,7 @@ class ProductscardController extends AdminBasicController
         }
 		$data = array();
 		
-		$products=$this->m_products->Where(array('auto'=>1))->Order(array('id'=>'DESC'))->Select();
+		$products=$this->m_products->Where(array('auto'=>1,'isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
 		$data['products'] = $products;
 		
 		$this->getView()->assign($data);
@@ -138,15 +138,15 @@ class ProductscardController extends AdminBasicController
 		
 		if($cardid AND $cardid>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$u = $this->m_products_card->DeleteByID($cardid);
-				if($u){
+				$delete = $this->m_products_card->UpdateByID(array('isdelete'=>1),$cardid);
+				if($delete){
 					//减少商品数量
 					$cards = $this->m_products_card->SelectByID('pid',$cardid);
 					$qty_m = array('qty' => 'qty-1');
 					$this->m_products->Where(array('id'=>$cards['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
 					$data = array('code' => 1, 'msg' => '成功');
 				}else{
-					$data = array('code' => 1003, 'msg' => '失败');
+					$data = array('code' => 1003, 'msg' => '删除失败');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
@@ -164,7 +164,7 @@ class ProductscardController extends AdminBasicController
             return FALSE;
         }
 		$data = array();
-		$products=$this->m_products->Where(array('auto'=>1))->Order(array('id'=>'DESC'))->Select();
+		$products=$this->m_products->Where(array('auto'=>1,'isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
 		$data['products'] = $products;
 		$this->getView()->assign($data);
     }

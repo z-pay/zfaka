@@ -273,15 +273,16 @@ CREATE TABLE IF NOT EXISTS `t_products_card` (
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '商品id',
   `card` text COMMENT '卡密',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0可用 1已使用'
+  `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0可用 1已使用',
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_products_card`
 --
 
-INSERT INTO `t_products_card` (`id`, `pid`, `card`, `addtime`, `active`) VALUES
-(1, 1, '资料空白是大帅锅', 1530082076, 0);
+INSERT INTO `t_products_card` (`id`, `pid`, `card`, `addtime`, `active`,`isdelete`) VALUES
+(1, 1, '资料空白是大帅锅', 1530082076, 0,0);
 
 -- --------------------------------------------------------
 
@@ -293,15 +294,16 @@ CREATE TABLE IF NOT EXISTS `t_products_type` (
   `id` int(11) NOT NULL,
   `name` varchar(55) NOT NULL DEFAULT '' COMMENT '类型命名',
   `sort_num` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
-  `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
+  `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活',
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `t_products_type`
 --
 
-INSERT INTO `t_products_type` (`id`, `name`, `sort_num`, `active`) VALUES
-(1, '测试商品', 1, 1);
+INSERT INTO `t_products_type` (`id`, `name`, `sort_num`, `active`,`isdelete`) VALUES
+(1, '测试商品', 1, 1,0);
 
 -- --------------------------------------------------------
 
