@@ -18,13 +18,15 @@
                         </div>
                         <div class="layui-form-item">
                             <label for="value" class="layui-form-label">值</label>
-                            <div class="layui-input-inline">
-								<?php if($item['name']=='notice'):?>
+                            <?php if($item['name']=='notice'):?>
+								 <div class="layui-input-block">
 								 <textarea placeholder="" id="value" name="value" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['value'];?></textarea>
-								<?php else:?>
+								 </div>
+							<?php else:?>
+								<div class="layui-input-inline">
 								<input type="text" id="value" name="value" required lay-verify="required" autocomplete="off" value="<?php echo $item['value'];?>" class="layui-input">
-								<?php endif;?>
-                            </div>
+								</div>
+							<?php endif;?>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label for="L_sign" class="layui-form-label">备注</label>
