@@ -214,6 +214,8 @@ class OrderController extends PcBasicController
 			$referer_url = parse_url($_SERVER['HTTP_REFERER']);
 			$web_url = parse_url($this->config['web_url']);
 			if($referer_url['host']!=$web_url['host']){
+				echo 'fuck you!';exit();
+			}else{
 				$url = $this->get('url');
 				try{
 					if($url){
@@ -226,12 +228,9 @@ class OrderController extends PcBasicController
 				} catch (\Exception $e) {
 					echo $e->errorMessage();exit();
 				}
-			}else{
-				echo 'fuck you!';exit();
 			}
         }else{
             echo 'fuck you!';exit();
         }
-
 	}
 }
