@@ -35,6 +35,7 @@
 						,shade: 0.8 //不显示遮罩
 						,yes: function(){
 							layer.closeAll();
+							clearTimeout(t);
 						}
 					});
 					queryPay();
