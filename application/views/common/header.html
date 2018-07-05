@@ -18,34 +18,6 @@
         top.location = self.location;
     }
     </script>
-	<script type="text/javascript">
-	function setClassName() {
-		var menuChild = document.getElementById('webmenu').childNodes,
-			aName = window.location.pathname,
-			aMenu = [];
-		for (var i = 0, j = menuChild.length; i < j; i++) {
-			if (menuChild[i].nodeType != 3) {
-				aMenu.push(menuChild[i]);
-			}
-		}
-		<?php if($login):?>
-		if (aName.indexOf('/member') == 0) {
-			aMenu[0].className += ' layui-this';
-		} else if (aName.indexOf('/product') > -1) {
-			aMenu[1].className += ' layui-this';
-		} else if (aName.indexOf('/help') > -1) {
-			aMenu[2].className += ' layui-this';
-		}
-		<?php else:?>
-		if (aName.indexOf('/product/query') == 0) {
-			aMenu[1].className += ' layui-this';
-		} else if (aName.indexOf('/product') > -1) {
-			aMenu[0].className += ' layui-this';
-		}
-		<?php endif;?>
-	}
-	setClassName();
-	</script>
 </head>
 
 <body>
@@ -108,3 +80,31 @@
             </ul>
         </div>
     </div>
+	<script type="text/javascript">
+	function setClassName() {
+		var menuChild = document.getElementById('webmenu').childNodes,
+			aName = window.location.pathname,
+			aMenu = [];
+		for (var i = 0, j = menuChild.length; i < j; i++) {
+			if (menuChild[i].nodeType != 3) {
+				aMenu.push(menuChild[i]);
+			}
+		}
+		<?php if($login):?>
+		if (aName.indexOf('/member') == 0) {
+			aMenu[0].className += ' layui-this';
+		} else if (aName.indexOf('/product') > -1) {
+			aMenu[1].className += ' layui-this';
+		} else if (aName.indexOf('/help') > -1) {
+			aMenu[2].className += ' layui-this';
+		}
+		<?php else:?>
+		if (aName.indexOf('/product/query') == 0) {
+			aMenu[1].className += ' layui-this';
+		} else if (aName.indexOf('/product') > -1) {
+			aMenu[0].className += ' layui-this';
+		}
+		<?php endif;?>
+	}
+	setClassName();
+	</script>
