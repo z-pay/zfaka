@@ -4,6 +4,7 @@
 	var oid = $("#oid").val();
 	var t = '';
 	var myTimer;
+	var i = 1;
 	
 	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
@@ -35,7 +36,7 @@
 						,shade: 0.8 //不显示遮罩
 						,yes: function(){
 							layer.closeAll();
-							clearTimeout(t);
+							i = 0;
 						}
 					});
 					queryPay();
@@ -58,7 +59,7 @@
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
 				clearTimeout(t);
-                if (res.code>1) {
+                if (res.code>1 && i>0) {
 					t=setTimeout(queryPay, 3000);
                 } else {
 					layer.closeAll();
