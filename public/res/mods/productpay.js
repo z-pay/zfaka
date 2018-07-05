@@ -16,6 +16,7 @@
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
             success: function(res) {
                 if (res.code == 1) {
+					queryRadio = 1;
 					if(res.data.overtime>0){
 						timer(res.data.overtime,paymethod);
 						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
