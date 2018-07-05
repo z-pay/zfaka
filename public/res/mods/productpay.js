@@ -18,7 +18,7 @@
 					if(res.data.overtime>0){
 						timer(res.data.overtime,paymethod);
 						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
-						html +='<div id="time-item_'+paymethod+'" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>08秒</strong>';
+						html +='<div id="time-item_'+paymethod+'" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>00秒</strong>';
 						html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
 					}else{
 						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
