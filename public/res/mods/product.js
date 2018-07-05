@@ -79,6 +79,7 @@
 					
 					html = str + htmlspecialchars_decode(product.description);
 					$('#prodcut_description').html(html);
+					autoHeight();
 					form.render();
 				} else {
 					layer.msg(res.msg,{icon:2,time:5000});
@@ -120,12 +121,16 @@
 	});
 
 	//左右框高度
-	var leftHeight = parseInt($('#prodcut_num').height());
-	var rightHeight = parseInt($('#prodcut_description').height());
-	if (leftHeight > rightHeight) {
-		$('#prodcut_description').height(leftHeight);
-	} else {
-		$('#prodcut_num').height(rightHeight);
+	function autoHeight(){
+		var leftHeight = parseInt($('#prodcut_num').height());
+		var rightHeight = parseInt($('#prodcut_description').height());
+		if (leftHeight > rightHeight) {
+			$('#prodcut_description').height(leftHeight);
+		} else {
+			$('#prodcut_num').height(rightHeight);
+		}
 	}
+
+	autoHeight();
 	exports('product',null)
 });
