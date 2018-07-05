@@ -59,8 +59,12 @@
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
 				clearTimeout(t);
-                if (res.code>1 && i>0) {
-					t=setTimeout(queryPay, 3000);
+                if (res.code>1) {
+					if(i>0){
+						t=setTimeout(queryPay, 3000);
+					}else{
+						layer.closeAll();
+					}
                 } else {
 					layer.closeAll();
 					location.href = '/product/query/?orderid='+res.data.orderid;
@@ -102,6 +106,7 @@
 				$('#pay_qrcode_'+paymethod).attr("alt", '二维码失效');
 				$('#time-item_'+paymethod).html("");
 				clearInterval(myTimer);
+				i = 0;
 			}
 			intDiff--;
 		}, 1000);
