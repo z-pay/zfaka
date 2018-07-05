@@ -182,6 +182,10 @@ class ProductscardController extends AdminBasicController
     }
 	
 	public function importajaxAction(){
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
 		if(is_array($_FILES) AND !empty($_FILES) AND isset($_FILES['file'])){
 			$pid = $this->getPost('pid');
 			if(is_numeric($pid) AND $pid>0){
@@ -247,38 +251,48 @@ class ProductscardController extends AdminBasicController
 	
 	public function downloadajaxAction(){
 		$pid = $this->getPost('pid');
-		if(is_numeric($pid) AND $pid>0){
-			try{
-				$active = $this->getPost('active');
-				$get_params = [
-					'active' => $active,
-					'pid' => $pid,
-				];  
-				$where  = $this->conditionSQL($get_params);
-				$cards = $this->m_products_card->Where(array('isdelete'=>0))->Where($where)->Select();
-				if(!empty($cards)){
-					$content = '';
-					foreach($cards AS $card){
-						$content .= $card['card']."\r\n";
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		
+		if ($this->VerifyCsrfToken($csrf_token)) {
+			if(is_numeric($pid) AND $pid>0){
+				try{
+					$active = $this->getPost('active');
+					$get_params = [
+						'active' => $active,
+						'pid' => $pid,
+					];  
+					$where  = $this->conditionSQL($get_params);
+					$cards = $this->m_products_card->Where(array('isdelete'=>0))->Where($where)->Select();
+					if(!empty($cards)){
+						$content = '';
+						foreach($cards AS $card){
+							$content .= $card['card']."\r\n";
+						}
+						$data = array('code' => 1, 'msg' => 'success','data'=>$content);
+					}else{
+						$data = array('code' => 1002, 'msg' => '没有卡密存在','data'=>array());
 					}
-					$data = array('code' => 1, 'msg' => 'success','data'=>$content);
-				}else{
-					$data = array('code' => 1002, 'msg' => '没有卡密存在','data'=>array());
+				}catch(\Exception $e) {
+					$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
 				}
-			}catch(\Exception $e) {
-				$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
+			}else{
+				$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
 			}
 		}else{
-			$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
+			$data = array('code' => 1003, 'msg' => '页面超时，请刷新页面后重试!','data'=>array());
 		}
-			
+		
 		$filename = '卡密下载_'.date("YmdHis").'.txt';
 		if($data['code']>1){
 			$content = '下载失败,失败原因：'.$data['msg'];
 		}else{
 			$content = $data['data'];
 		}
-			
 		header("Content-Type:application/force-download");
 		header("Accept-Ranges:bytes");
 		header("Content-Disposition:attachment;filename=".$filename);
