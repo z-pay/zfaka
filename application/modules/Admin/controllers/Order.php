@@ -9,14 +9,12 @@
 class OrderController extends AdminBasicController
 {
 	private $m_order;
-	private $m_products_card;
 	private $m_products;
 	private $m_email_queue;
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
-		$this->m_products_card = $this->load('products_card');
 		$this->m_products = $this->load('products');
 		$this->m_email_queue = $this->load('email_queue');
     }
@@ -244,14 +242,20 @@ class OrderController extends AdminBasicController
 						//业务处理
 						$update = $this->m_order->Where(array('id'=>$id))->Where('status=1 or status=3')->Update(array('status'=>2,'kami'=>$kami));
 						if($update){
-						$m = array();
+							$m = array();
 							//3.1.4.1通知用户,定时任务去执行
-							$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$kami;
-							$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
+							if(isEmail($order['email'])){
+								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密是:'.$kami;
+								$m[]=array('email'=>$order['email'],'subject'=>'商品购买成功','content'=>$content,'addtime'=>time(),'status'=>0);
+							}
 							//3.1.4.2通知管理员,定时任务去执行
-							$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
-							$m[]=array('email'=>$this->config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
-							$this->m_email_queue->MultiInsert($m);
+							if(isEmail($this->config['admin_email'])){
+								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],卡密发送成功';
+								$m[]=array('email'=>$this->config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
+							}
+							if(!empty($m)){
+								$this->m_email_queue->MultiInsert($m);
+							}
 							$data = array('code' => 1, 'msg' => '订单已处理', 'data' => '');
 						}else{
 							$data = array('code' => 1004, 'msg' => '处理失败', 'data' => '');

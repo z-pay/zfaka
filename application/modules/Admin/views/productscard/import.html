@@ -37,6 +37,7 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
+							<input type ="hidden" name ="csrf_token" value="<?php echo $csrf_token;?>">
                             <button class="layui-btn" id="startUpload" key="set-mine" lay-filter="import" lay-submit>确认导入</button>
                         </div>
                     </form>

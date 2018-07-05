@@ -188,45 +188,50 @@ class ProductscardController extends AdminBasicController
         }
 		if(is_array($_FILES) AND !empty($_FILES) AND isset($_FILES['file'])){
 			$pid = $this->getPost('pid');
+			$csrf_token = $this->getPost('csrf_token', false);
 			if(is_numeric($pid) AND $pid>0){
-				try{
-					$m = array();
-					//读取文件
-					$txtfile = $_FILES['file']['tmp_name'];
-					$txtFileData = file_get_contents($txtfile);
-					//处理编码问题
-					$encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
-					if($encoding != false){
-						$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
-					}else{
-						$txtFileData = mb_convert_encoding ( $txtFileData, 'UTF-8','Unicode');
-					}
-					//开始处理
-					$huiche=array("\n","\r");
-					$replace='\r\n';
-					$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
-					$newTxtFileData_array = explode($replace,$newTxtFileData);
-					foreach($newTxtFileData_array AS $line){
-						if(strlen($line)>0){
-							$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
-						}
-					}
-					if(!empty($m)){
-						$u = $this->m_products_card->MultiInsert($m);
-						if($u){
-							//增加商品数量
-							$addNum = count($m);
-							$qty_m = array('qty' => 'qty+'.$addNum);
-							$this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m,TRUE);
-							$data = array('code' => 1, 'msg' => '成功');
+				if ($csrf_token AND $this->VerifyCsrfToken($csrf_token)) {
+					try{
+						$m = array();
+						//读取文件
+						$txtfile = $_FILES['file']['tmp_name'];
+						$txtFileData = file_get_contents($txtfile);
+						//处理编码问题
+						$encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
+						if($encoding != false){
+							$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
 						}else{
-							$data = array('code' => 1004, 'msg' => '失败');
+							$txtFileData = mb_convert_encoding ( $txtFileData, 'UTF-8','Unicode');
 						}
-					}else{
-						$data = array('code' => 1003, 'msg' => '没有卡密存在','data'=>array());
+						//开始处理
+						$huiche=array("\n","\r");
+						$replace='\r\n';
+						$newTxtFileData=str_replace($huiche,$replace,$txtFileData); 
+						$newTxtFileData_array = explode($replace,$newTxtFileData);
+						foreach($newTxtFileData_array AS $line){
+							if(strlen($line)>0){
+								$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
+							}
+						}
+						if(!empty($m)){
+							$u = $this->m_products_card->MultiInsert($m);
+							if($u){
+								//增加商品数量
+								$addNum = count($m);
+								$qty_m = array('qty' => 'qty+'.$addNum);
+								$this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m,TRUE);
+								$data = array('code' => 1, 'msg' => '成功');
+							}else{
+								$data = array('code' => 1004, 'msg' => '失败');
+							}
+						}else{
+							$data = array('code' => 1003, 'msg' => '没有卡密存在','data'=>array());
+						}
+					}catch(\Exception $e) {
+						$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
 					}
-				}catch(\Exception $e) {
-					$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
+				}else{
+					$data = array('code' => 1005, 'msg' => '页面超时，请刷新页面后重试!','data'=>array());
 				}
 			}else{
 				$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());

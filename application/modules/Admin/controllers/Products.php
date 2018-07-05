@@ -45,7 +45,9 @@ class ProductsController extends AdminBasicController
 		$limit = $this->get('limit');
 		$limit = is_numeric($limit) ? $limit : 10;
 		
-		$total=$this->m_products->Where($where1)->Where($where)->Total();
+		$where = array('isdelete'=>0);
+		
+		$total=$this->m_products->Where($where)->Total();
 		
         if ($total > 0) {
             if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
@@ -80,7 +82,7 @@ class ProductsController extends AdminBasicController
 			$product=$this->m_products->SelectByID('',$id);
 			$data['product'] = $product;
 			
-			$productstype=$this->m_products_type->Order(array('id'=>'DESC'))->Select();
+			$productstype=$this->m_products_type->Where(array('isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
 			$data['productstype'] = $productstype;
 			
 			$this->getView()->assign($data);
@@ -98,7 +100,7 @@ class ProductsController extends AdminBasicController
         }
 
 		$data = array();
-		$productstype=$this->m_products_type->Order(array('id'=>'DESC'))->Select();
+		$productstype=$this->m_products_type->Where(array('isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
 		$data['productstype'] = $productstype;
 		$this->getView()->assign($data);
     }
@@ -220,7 +222,7 @@ class ProductsController extends AdminBasicController
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				//检查是否存在可用的卡密
-				$qty = $this->m_products_card->Where(array('pid'=>$id,'active'=>0))->Total();
+				$qty = $this->m_products_card->Where(array('pid'=>$id,'active'=>0,'isdelete'=>0))->Total();
 				if($qty>0){
 					$data = array('code' => 1004, 'msg' => '存在可用卡密，请导出', 'data' => '');
 				}else{
