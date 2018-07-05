@@ -17,8 +17,8 @@
                 if (res.code == 1) {
 					if(res.data.overtime>0){
 						timer(res.data.overtime,paymethod);
-						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
-						html +='<div id="time-item" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>08秒</strong>';
+						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
+						html +='<div id="time-item_'+paymethod+'" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>08秒</strong>';
 						html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
 					}else{
 						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
@@ -96,9 +96,9 @@
 			$('#minute_show_'+paymethod).html('<s></s>' + minute + '分');
 			$('#second_show_'+paymethod).html('<s></s>' + second + '秒');
 			if (hour <= 0 && minute <= 0 && second <= 0) {
-				$("#pay_qrcode").attr("src", '/res/images/pay/overtime.jpg');
-				$("#pay_qrcode").attr("alt", '二维码失效');
-				$("#time-item").html("");
+				$('#pay_qrcode_'+paymethod).attr("src", '/res/images/pay/overtime.jpg');
+				$('#pay_qrcode_'+paymethod).attr("alt", '二维码失效');
+				$('#time-item_'+paymethod).html("");
 				clearInterval(myTimer);
 			}
 			intDiff--;
