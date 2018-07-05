@@ -39,6 +39,9 @@
 							layer.closeAll();
 							queryRadio = 0;
 						}
+						,cancel: function(){ 
+						   queryRadio = 0;
+						} 
 					});
 					queryPay();
                 } else {
