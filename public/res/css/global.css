@@ -599,4 +599,5 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .mod-content img{margin-left: 20px;margin-right: 20px;}
 .time-item strong {background: #3ec742;color: #fff;line-height: 25px;font-size: 15px;font-family: Arial;padding: 0 10px;margin-right: 10px;border-radius: 5px;box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);}
 .item-title {background: none;line-height: 25px;font-size: 24px;padding: 0 10px;float: left;}
-#prodcut_description img{ width: 100%;height: 100%;}
+#prodcut_description {display: table-cell; vertical-align: middle;text-align: center;word-break:break-all;overflow:auto;white-space:normal; }
+#prodcut_description img{ width: 100%;height: auto;}
