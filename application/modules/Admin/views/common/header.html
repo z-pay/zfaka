@@ -25,7 +25,7 @@
     <div class="fly-header layui-bg-black">
         <div class="layui-container">
             <a class="fly-logo" href="/admin"><img src="/res/images/logo.png" alt="layui"></a>
-            <ul class="layui-nav fly-nav layui-hide-xs">
+            <ul class="layui-nav fly-nav layui-hide-xs" id="webmenu">
                 <li class="layui-nav-item">
                     <a href="/admin/">账户中心</a>
                 </li>
@@ -62,3 +62,27 @@
             </ul>
         </div>
     </div>
+	<script type="text/javascript">
+	function setClassName() {
+		var menuChild = document.getElementById('webmenu').childNodes,
+			aName = window.location.pathname,
+			aMenu = [];
+		for (var i = 0, j = menuChild.length; i < j; i++) {
+			if (menuChild[i].nodeType != 3) {
+				aMenu.push(menuChild[i]);
+			}
+		}
+		if (aName.indexOf('/admin/order') == 0) {
+			aMenu[4].className += ' layui-this';
+		} else if (aName.indexOf('/admin/products') > -1) {
+			aMenu[3].className += ' layui-this';
+		} else if (aName.indexOf('/admin/user') > -1) {
+			aMenu[2].className += ' layui-this';
+		} else if (aName.indexOf('/admin/setting') > -1) {
+			aMenu[1].className += ' layui-this';
+		} else if (aName.indexOf('/admin') > -1) {
+			aMenu[0].className += ' layui-this';
+		}
+	}
+	setClassName();
+	</script>
