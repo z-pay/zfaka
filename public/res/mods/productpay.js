@@ -62,8 +62,6 @@
                 if (res.code>1) {
 					if(queryRadio>0){
 						t=setTimeout(queryPay, 3000);
-					}else{
-						layer.closeAll();
 					}
                 } else {
 					layer.closeAll();
