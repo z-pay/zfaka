@@ -21,7 +21,7 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
   if(device.ie && device.ie < 8){
     layer.alert('如果您非得使用 IE 浏览器访问本站点，那么请使用 IE8+');
   }
-
+ 
   layui.focusInsert = function(obj, str){
     var result, val = obj.value;
     obj.focus();
@@ -36,6 +36,16 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
     }
   };
 
+	console.group("欢迎使用ZFAKA开源开卡程序");
+		console.log("github地址：https://github.com/zlkbdotnet/zfaka/");
+		console.log("QQ交流群: 701035212");
+		console.log("欢迎前来围观、吐槽、点赞、捐赠、STAR......");
+	console.groupEnd();
+
+	console.group("作者信息");
+		console.log("网名：资料空白");
+		console.log("博客：http://zlkb.net");
+	console.groupEnd();
   //个人中心侧边导航
   var href = location.href + '/';
   var navItem = $('.fly-user-main .layui-nav .layui-nav-item');

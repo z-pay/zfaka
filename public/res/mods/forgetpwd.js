@@ -2,7 +2,7 @@ layui.define(['layer', 'form'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
-
+	console.log("吐槽：我最讨厌别人忘记密码了");
 	$('.loadcode').on('click', function(event) {
 		event.preventDefault();
 		$(this).attr('src','/Captcha?t=forgetpwd&n=' + Math.random())
@@ -20,7 +20,6 @@ layui.define(['layer', 'form'], function(exports){
 	});
 
 	form.on('submit(forgetpwd)', function(data){
-
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({

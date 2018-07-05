@@ -5,7 +5,7 @@
 	var t = '';
 	var myTimer;
 	var queryRadio = 1;
-	
+	console.log("注意：本页js用的比较多，请小心谨慎!");
 	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
