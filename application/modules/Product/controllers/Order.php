@@ -166,7 +166,6 @@ class OrderController extends PcBasicController
 						}else{
 							try{
 								//这里对有订单超时处理的支付渠道进行特别处理
-								
 								if($payconfig['overtime']>0){
 									if(($order['addtime']+$payconfig['overtime'])<time()){
 										//需要重新生成订单再提交
@@ -210,13 +209,29 @@ class OrderController extends PcBasicController
 	//支付宝当面付生成二维码
 	public function showqrAction()
 	{
-		$url = $this->get('url');
-		if($url){
-			\PHPQRCode\QRcode::png($url);
-			exit();
-		}else{
-			echo '';
-			exit();
-		}
+        //增加安全判断
+        if(isset($_SERVER['HTTP_REFERER'])){
+			$referer_url = parse_url($_SERVER['HTTP_REFERER']);
+			$web_url = parse_url($this->config['web_url']);
+			if($referer_url['host']!=$web_url['host']){
+				$url = $this->get('url');
+				try{
+					if($url){
+						\PHPQRCode\QRcode::png($url);
+						exit();
+					}else{
+						echo '参数丢失';
+						exit();
+					}
+				} catch (\Exception $e) {
+					echo $e->errorMessage();exit();
+				}
+			}else{
+				echo 'fuck you!';exit();
+			}
+        }else{
+            echo 'fuck you!';exit();
+        }
+
 	}
 }
