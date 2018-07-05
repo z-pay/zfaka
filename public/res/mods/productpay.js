@@ -4,7 +4,7 @@
 	var oid = $("#oid").val();
 	var t = '';
 	var myTimer;
-	var i = 1;
+	var queryRadio = 1;
 	
 	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
@@ -36,7 +36,7 @@
 						,shade: 0.8 //不显示遮罩
 						,yes: function(){
 							layer.closeAll();
-							i = 0;
+							queryRadio = 0;
 						}
 					});
 					queryPay();
@@ -60,7 +60,7 @@
                 //从服务器得到数据，显示数据并继续查询
 				clearTimeout(t);
                 if (res.code>1) {
-					if(i>0){
+					if(queryRadio>0){
 						t=setTimeout(queryPay, 3000);
 					}else{
 						layer.closeAll();
@@ -106,7 +106,7 @@
 				$('#pay_qrcode_'+paymethod).attr("alt", '二维码失效');
 				$('#time-item_'+paymethod).html("");
 				clearInterval(myTimer);
-				i = 0;
+				queryRadio = 0;
 			}
 			intDiff--;
 		}, 1000);
