@@ -33,6 +33,7 @@
 
 ### 2.1.3 YAF安装
 >参考：[lnmp环境中如何安装yaf](https://github.com/zlkbdotnet/zfaka/wiki/lnmp%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85yaf).
+
 >参考：[宝塔环境中如何安装yaf](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85yaf).
 
 ### 2.1.4 rewrite配置
