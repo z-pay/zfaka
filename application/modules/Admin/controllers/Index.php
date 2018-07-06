@@ -47,7 +47,7 @@ class IndexController extends AdminBasicController
 		if($method AND $method=='updatecheck'){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$up_version = $this->_getUpdateVersion();
-				if(version_compare(trim($VERSION), trim($up_version), '<' )){
+				if(version_compare(trim(VERSION), trim($up_version), '<' )){
 					$params = array('url'=>$this->github_url,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
 					$data = array('code' => 1, 'msg' => '有更新','data'=>$params);
 				}else{
