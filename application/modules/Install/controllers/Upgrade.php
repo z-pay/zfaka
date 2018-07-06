@@ -6,7 +6,7 @@
  * Date:20180702
  */
 
-class UpgradeController extends BasicController
+class UpgradeController extends AdminBasicController
 {
 	private $all_version;
 	public function init()
@@ -17,6 +17,10 @@ class UpgradeController extends BasicController
 
     public function indexAction()
     {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
 		if(file_exists(INSTALL_LOCK)){
 			$version = @file_get_contents(INSTALL_LOCK);
 			$version = strlen(trim($version))>0?$version:'1.0.0';
@@ -45,6 +49,10 @@ class UpgradeController extends BasicController
 	
 	public function ajaxAction()
 	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
 		$method = $this->getPost('method',false);
 		$data = array();
 		

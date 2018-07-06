@@ -18,19 +18,23 @@ layui.define(['layer', 'form'], function(exports){
 					var html = '<div class="mod-content" style="text-align: center;"><p>友情提示：有更新啦！</p><p>最新程序安装包：<a href="'+res.data.zip+'">立即下载</a>；</p><p>github站点：<a href="'+res.data.url+'">立即访问</a>；</p></div>';
 					layer.open({
 						type: 1
-						,title: false
+						,title: "更新提示"
 						,offset: 'auto'
 						,id: 'layerPayone' //防止重复弹出
 						,content: html
-						,btn: '关闭'
+						,btn: ['去GitHub','下载ZIP包', '残忍拒绝']
 						,btnAlign: 'c' //按钮居中
 						,shade: 0.8 //不显示遮罩
-						,yes: function(){
-							layer.closeAll();
-							queryRadio = 0;
-						}
-						,cancel: function(){ 
-							   ueryRadio = 0;
+						,success: function(layero){
+						  var btn = layero.find('.layui-layer-btn');
+						  btn.find('.layui-layer-btn0').attr({
+							href: res.data.url
+							,target: '_blank'
+						  });
+						  btn.find('.layui-layer-btn1').attr({
+							href: res.data.zip
+							,target: '_blank'
+						  });
 						} 
 					});
 				}
