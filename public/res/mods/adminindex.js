@@ -15,7 +15,7 @@ layui.define(['layer', 'form'], function(exports){
             success: function (res, textStatus) {
                 //从服务器得到数据，显示数据并继续查询
 				if (res.code == 1) {
-					var html = '<div class="mod-content" style="text-align: center;"><p>友情提示：有更新啦！</p><p>最新程序安装包：<a href="'+res.data.+zip'">立即下载</a>；</p><p>github站点：<a href="'+res.data.+url'">立即访问</a>；</p></div>';
+					var html = '<div class="mod-content" style="text-align: center;"><p>友情提示：有更新啦！</p><p>最新程序安装包：<a href="'+res.data.zip+'">立即下载</a>；</p><p>github站点：<a href="'+res.data.url+'">立即访问</a>；</p></div>';
 					layer.open({
 						type: 1
 						,title: false
