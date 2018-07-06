@@ -63,6 +63,8 @@ class codepaywx
 			}
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
+		} catch (\Exception $e) {
+			return array('code'=>1000,'msg'=>$e->getMessage(),'data'=>'');
 		}
 	}
 	

@@ -189,7 +189,7 @@ class OrderController extends PcBasicController
 								$params =array('orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'web_url'=>$this->config['web_url']);
 								$data = $PAY->pay($payconfig,$params);
 							} catch (\Exception $e) {
-								$data = array('code' => 1005, 'msg' => $e->errorMessage());
+								$data = array('code' => 1005, 'msg' => $e->getMessage());
 							}
 						}
 					}else{
@@ -227,7 +227,7 @@ class OrderController extends PcBasicController
 						exit();
 					}
 				} catch (\Exception $e) {
-					echo $e->errorMessage();exit();
+					echo $e->getMessage();exit();
 				}
 			}
         }else{

@@ -32,7 +32,7 @@ class NotifyController extends PcBasicController
 						echo 'error';exit();
 					}
 				} catch (\Exception $e) {
-					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
 					exit;
 				}
 			}else{

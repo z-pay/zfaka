@@ -43,6 +43,8 @@ class zfbf2f
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (PayException $e) {
 			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
+		} catch (\Exception $e) {
+			return array('code'=>1000,'msg'=>$e->getMessage(),'data'=>'');
 		}
 	}
 	
@@ -56,7 +58,7 @@ class zfbf2f
 			var_dump($ret);
 			exit();
 		} catch (\Exception $e) {
-			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->errorMessage().PHP_EOL, FILE_APPEND);
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
 			exit;
 		}
 	}
