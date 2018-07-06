@@ -14,7 +14,8 @@
 					<blockquote class="layui-elem-quote layui-quote-nm">
 						补充:最后需要在服务器上配置定时计划,用于定时发送邮件;
 					</blockquote>
-					<pre class="layui-code layui-box layui-code-view">*/2 * * * * php -q <?php echo APP_PATH;?>/public/cli.php request_uri="/crontab/sendemail/index"</pre>
+					<pre class="layui-code layui-box layui-code-view">*/2 * * * * php -q <?php echo APP_PATH;?>/public/cli.php request_uri="/crontab/sendemail/index"    #lnmp等linux环境用户,请复制此条.</pre>
+					<pre class="layui-code layui-box layui-code-view">php -q <?php echo APP_PATH;?>/public/cli.php request_uri="/crontab/sendemail/index"    #宝塔环境用户,请复制此条.</pre>
 				</div>
 			  </div>
 			</div>
