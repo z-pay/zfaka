@@ -67,7 +67,7 @@
 
 >稳定版：请访问这里下载：https://github.com/zlkbdotnet/zfaka/releases　
 
-## 2.2.2 配置目录权限
+### 2.2.2 配置目录权限
 
 * /conf/application.ini 配置文件，可读可写
 
@@ -77,9 +77,9 @@
 
 * /temp     缓存目录，需要可读写
 
-## 2.2.3 直接访问安装
+### 2.2.3 直接访问安装
 
-## 2.2.4 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
+### 2.2.4 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
 * 常规计划任务crontab的部署,/alidata/wwwroot/faka.zlkb.net/路径请替换成自己的
 <pre>
 */2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
