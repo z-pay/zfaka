@@ -176,6 +176,7 @@ class OrderController extends PcBasicController
 											$orderid = $new_orderid;
 										}else{
 											$data = array('code' => 1006, 'msg' =>"订单超时关闭");
+											Helper::response($data);
 										}
 									}else{
 										$orderid = $order['orderid'];
