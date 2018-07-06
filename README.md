@@ -31,22 +31,12 @@
 ### 2.1.2 宝塔环境
 >参考：[宝塔环境中如何进行配置](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE).
 
+### 2.1.3 YAF安装
+>参考：[lnmp环境中如何安装yaf](https://github.com/zlkbdotnet/zfaka/wiki/lnmp%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85yaf).
+>参考：[宝塔环境中如何安装yaf](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85yaf).
 
-## 2.2 YAF安装配置
-
->参考：https://zlkb.net/243.html [Centos系统的lnmp环境下安装yaf扩展]
-
->补充：php.ini中一定要配置 yaf.use_namespace=1
-
-## 2.3 rewrite配置
-
-* nginx下rewrite规则
-<pre>      location / {
-                if (!-e $request_filename) {
-                        rewrite ^/(.*)$ /index.php?$1 last;
-                }
-        }
-</pre> 
+### 2.1.4 rewrite配置
+>参考：[rewrite配置](https://github.com/zlkbdotnet/zfaka/wiki/rewrite%E9%85%8D%E7%BD%AE).
 
 <pre>#####################################################</pre> 
 
@@ -58,20 +48,22 @@
 
 * 务必：取消防跨站攻击(open_basedir)
 
+* 务必：注意nginx环境下path_info的配置
+
 * 务必：项目运行给站点用户权限
 
 * 建议：mysql数据库配置时建议这样操作参考：https://zlkb.net/302.html
 
 <pre>#######################################################</pre> 
 
-## 2.4 下载代码
+## 2.2 下载代码
 <pre>
 	git clone https://github.com/zlkbdotnet/zfaka.git [这是最新测试版]
 </pre> 
 
 >稳定版：请访问这里下载：https://github.com/zlkbdotnet/zfaka/releases　
 
-## 2.5 配置目录权限
+## 2.3 配置目录权限
 
 * /conf/application.ini 配置文件，可读可写
 
@@ -81,23 +73,27 @@
 
 * /temp     缓存目录，需要可读写
 
-## 2.6 直接访问安装
+## 2.4 直接访问安装
 
-## 2.7 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
+## 2.5 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
+* 常规计划任务crontab的部署,/alidata/wwwroot/faka.zlkb.net/路径请替换成自己的
 <pre>
 */2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
 </pre> 	
-	
+
+* 宝塔环境计划任务crontab的部署
+>参考：[宝塔环境中如何部署计划任务](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1).
+
 # 三、系统升级
 > 升级时，请先备份 /conf/application.ini 与 /install/install.lock 这二个文件;下载最新代码后直接覆盖，登录后台即可按照提示完成升级；
 
 # 四、BUG与问题反馈
 * 请联系我QQ:43036456
-   
 * 相关问题QQ交流群：701035212
    
 # 五、推广QQ群
-* 全国IDC行业精英群:572511758
-   
+* 全国IDC行业精英群:572511758   
 * DirectAdmin用户交流群:337686498
-   
+
+# 六、捐赠&打赏
+![1](https://github.com/zlkbdotnet/zfaka/blob/master/public/res/images/pay/supportme.jpg)
