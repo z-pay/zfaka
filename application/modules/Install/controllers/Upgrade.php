@@ -38,7 +38,7 @@ class UpgradeController extends AdminBasicController
 				$data['version'] = $version;
 				$this->getView()->assign($data);
 			}else{
-				$this->redirect("/product/");
+				$this->redirect("/admin/");
 				return FALSE;
 			}
 		}else{
