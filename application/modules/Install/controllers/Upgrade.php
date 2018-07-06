@@ -27,14 +27,20 @@ class UpgradeController extends AdminBasicController
 			if(version_compare(trim($version), trim(VERSION), '<' )){
 				$data = array();
 				$update_version = $this->_getUpdateVersion($version);
-				$desc = @file_get_contents(INSTALL_PATH.'/'.$update_version.'/upgrade.txt');
-				$data['upgrade_desc'] = $desc;
-				if(file_exists(INSTALL_PATH.'/'.$update_version.'/upgrade.sql')){
-					$data['upgrade_sql'] = INSTALL_PATH.'/'.$update_version.'/upgrade.sql';
-				}else{
+				if($update_version=='' OR is_dir(INSTALL_PATH.'/'.$update_version)){
+					$data['update_version'] = $update_version!=''?$update_version:'未知的版本';
+					$data['upgrade_desc'] = "抱歉,我表示很难理解你为什么能看到这条信息";
 					$data['upgrade_sql'] = '';
+				}else{
+					$data['update_version'] = $update_version;
+					$desc = @file_get_contents(INSTALL_PATH.'/'.$update_version.'/upgrade.txt');
+					$data['upgrade_desc'] = $desc;
+					if(file_exists(INSTALL_PATH.'/'.$update_version.'/upgrade.sql')){
+						$data['upgrade_sql'] = INSTALL_PATH.'/'.$update_version.'/upgrade.sql';
+					}else{
+						$data['upgrade_sql'] = '';
+					}
 				}
-				$data['update_version'] = $update_version;
 				$data['version'] = $version;
 				$this->getView()->assign($data);
 			}else{
@@ -62,6 +68,10 @@ class UpgradeController extends AdminBasicController
 				$version = strlen(trim($version))>0?$version:'1.0.0';
 				if(version_compare(trim($version), trim(VERSION), '<' )){
 					$update_version = $this->_getUpdateVersion($version);
+					if($update_version==''){
+						$data = array('code' => 1, 'msg' =>"版本信息异常");
+						Helper::response($data);
+					}
 				}else{
 					$data = array('code' => 1, 'msg' =>"请勿重复升级");
 					Helper::response($data);
@@ -106,6 +116,10 @@ class UpgradeController extends AdminBasicController
 	private function _getUpdateVersion($version){
 		$offset=array_search($version,$this->all_version);
 		$k = $offset+1;
-		return $this->all_version[$k];
+		if(isset($this->all_version[$k])){
+			return $this->all_version[$k];
+		}else{
+			return '';
+		}
 	}
 }
