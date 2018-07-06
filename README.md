@@ -26,18 +26,16 @@
 ## 2.1 环境安装
 
 ### 2.1.1 lnmp环境
->参考 https://zlkb.net/241.html [如何安装lnmp]
-
-此环境下需要在lnmp安装目录下，运行tools/remove_open_basedir_restriction.sh，用于取消防跨站攻击(open_basedir);添加vhost站点后，把nginx配置中的root路径添加上public即可；
+>参考：[lnmp环境中如何进行配置](https://github.com/zlkbdotnet/zfaka/wiki/lnmp%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE).
 
 ### 2.1.2 宝塔环境
->参考：这里我找个时间用宝塔环境给大家做一个演示吧。
+>参考：https://www.bt.cn/bbs/thread-1186-1-1.html 
 
 此环境下需要在PHP配置的扩展配置下，关闭PATH_INFO；您也可以在/www/server/nginx/conf/目录下，找到对应的配置文件例如：enable-php-71.conf,然后删除掉include pathinfo.conf;即可正常安装使用;
 
 
-## 2.2 环境配置
-YAF扩展安装
+## 2.2 YAF安装配置
+
 >参考：https://zlkb.net/243.html [Centos系统的lnmp环境下安装yaf扩展]
 
 >补充：php.ini中一定要配置 yaf.use_namespace=1
