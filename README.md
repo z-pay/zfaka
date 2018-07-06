@@ -29,9 +29,7 @@
 >参考：[lnmp环境中如何进行配置](https://github.com/zlkbdotnet/zfaka/wiki/lnmp%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE).
 
 ### 2.1.2 宝塔环境
->参考：https://www.bt.cn/bbs/thread-1186-1-1.html 
-
-此环境下需要在PHP配置的扩展配置下，关闭PATH_INFO；您也可以在/www/server/nginx/conf/目录下，找到对应的配置文件例如：enable-php-71.conf,然后删除掉include pathinfo.conf;即可正常安装使用;
+>参考：[宝塔环境中如何进行配置](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE).
 
 
 ## 2.2 YAF安装配置
