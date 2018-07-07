@@ -6,7 +6,7 @@
 	form.verify({
 		number: function(value, item){ //value：表单的值、item：表单的DOM对象
 			var number = $('#number').val();
-			var stockcontrol = $('#stockcontrol').val('');
+			var stockcontrol = $('#stockcontrol').val();
 			if(stockcontrol>0){
 				if(number > value){
 					 return '下单数量超限';
