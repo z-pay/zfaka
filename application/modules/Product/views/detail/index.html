@@ -27,7 +27,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品库存</label>
                             <div class="layui-input-block">
-                                <input type="text" name="qty" id="qty" readonly disabled class="layui-input" value ="<?php echo $product['qty'];?>">
+                                <input type="text" name="qty" id="qty" readonly disabled class="layui-input" value ="<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>">
                             </div>
                         </div>
                         <div class="layui-form-item">
