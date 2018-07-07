@@ -20,9 +20,15 @@ class QueryController extends PcBasicController
 		$data = array();
 		$orderid  = $this->get('orderid',false);
 		if($orderid){
-			$order = $this->m_order->Where(array('orderid'=>$orderid))->Where(array('isdelete'=>0))->SelectOne();
-			$data['order'] = $order;
-			$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span><a style="color:red" href="/product/order/pay/?oid='.base64_encode($order['id']).'">去支付</a>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>  <button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="'.$order['orderid'].'">提取卡密</button>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
+			$data['order'] = $data['cnstatus'] = array();
+			$order_email = $this->getSession('order_email');
+			if($order_email){
+				$order = $this->m_order->Where(array('orderid'=>$orderid,'email'=>$order_email))->Where(array('isdelete'=>0))->SelectOne();
+				if(!empty($order)){
+					$data['order'] = $order;
+					$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span><a style="color:red" href="/product/order/pay/?oid='.base64_encode($order['id']).'">去支付</a>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>  <button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="'.$order['orderid'].'">提取卡密</button>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
+				}
+			}
 			$data['querymethod'] = 'get';
 		}else{
 			$data['order'] =array();
@@ -101,6 +107,7 @@ class QueryController extends PcBasicController
 					if($order['status']<1){
 						$data = array('code' => 1003, 'msg' => '未支付');
 					}else{
+						$this->setSession('order_email',$order['email']);
 						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
 					}
 				}

@@ -33,7 +33,7 @@ class OrderController extends PcBasicController
 		
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0 AND $email AND isEmail($email) AND $chapwd AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$product = $this->m_products->Where(array('id'=>$pid))->SelectOne();
+				$product = $this->m_products->Where(array('id'=>$pid,'active'=>1,'isdelete'=>0))->SelectOne();
 				if(!empty($product)){
 					$myip = getClientIP();
 					
