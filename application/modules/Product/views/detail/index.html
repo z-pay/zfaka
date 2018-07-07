@@ -61,7 +61,7 @@
                             <div class="layui-input-block">
 								<input type="hidden" name="stockcontrol" id="stockcontrol" value="<?php echo $product['stockcontrol'];?>">
 								<input type="hidden" name="pid" id="pid" value="<?php echo $product['id'];?>">
-                                <button class="layui-btn" id="buy" lay-submit lay-filter="buy">立即提交</button>
+                                <button class="layui-btn" id="buy" lay-submit lay-filter="buy" <?php if($product['stockcontrol']>0 AND $product['qty'<1):?>disabled="disabled"<?php endif;?>>立即提交</button>
                                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
