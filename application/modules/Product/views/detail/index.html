@@ -13,23 +13,21 @@
                 <div class="layui-card-body" id="prodcut_num">
                     <form class="layui-form" action="">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">商品列表</label>
+                            <label class="layui-form-label">商品名称</label>
                             <div class="layui-input-block">
-                                <select name="productlist" id="productlist" lay-filter="productlist" lay-verify="required">
-                                    <option value="0"></option>
-                                </select>
+                                <input type="text" name="name" id="name" readonly disabled class="layui-input" value ="<?php echo $product['name'];?>">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品单价</label>
                             <div class="layui-input-block">
-                                <input type="text" name="price" id="price" readonly disabled class="layui-input">
+                                <input type="text" name="price" id="price" readonly disabled class="layui-input" value ="<?php echo $product['price'];?>">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品库存</label>
                             <div class="layui-input-block">
-                                <input type="text" name="qty" id="qty" readonly disabled class="layui-input">
+                                <input type="text" name="qty" id="qty" readonly disabled class="layui-input" value ="<?php echo $product['qty'];?>">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -73,7 +71,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">商品详情</div>
                 <div class="layui-card-body" id="prodcut_description">
-				<?php if(isset($config['ad'])):?><?php echo $config['ad'];?><?php endif;?>
+				<?php if(isset($product['description'])):?><?php echo $product['description'];?><?php endif;?>
                 </div>
             </div>
         </div>
