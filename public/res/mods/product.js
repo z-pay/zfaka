@@ -31,7 +31,7 @@
 		var number = $('#number').val();
 		var stockcontrol = $('#stockcontrol').val();
 		if(stockcontrol>0){
-			if(number > qty){
+			if(parseInt(number) > parseInt(qty)){
 				return false;
 			}
 		}
@@ -149,6 +149,7 @@
 			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 		}else{
 			layer.msg("下单数量超限",{icon:2,time:5000});
+			layer.close(i);
 		}
 		return false; 
 	});
