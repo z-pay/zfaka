@@ -73,7 +73,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">商品详情</div>
                 <div class="layui-card-body" id="prodcut_description">
-				<?php if(isset($product['auto']>0)):?><p><span class="layui-badge layui-bg-green">自动发货</span></p><?php else:?><p><span class="layui-badge layui-bg-black">手工发货</span></p><?php endif;?>
+				<?php if(isset($product['auto']) AND ($product['auto']>0) ):?><p><span class="layui-badge layui-bg-green">自动发货</span></p><?php else:?><p><span class="layui-badge layui-bg-black">手工发货</span></p><?php endif;?>
 				<?php if(isset($product['description'])):?><?php echo htmlspecialchars_decode($product['description']);?><?php endif;?>
                 </div>
             </div>
