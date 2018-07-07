@@ -22,6 +22,12 @@
                     </blockquote>
                     <form class="layui-form layui-show" method="post" id="products_form">
                         <div class="layui-form-item">
+                            <label for="name" class="layui-form-label">商品地址</label>
+                            <div class="layui-input-inline">
+                                <input type="text" disabled readonly="readonly" value="<?php echo $config['web_url'].'/product/detail?pid='.$product['id'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
                             <label class="layui-form-label">商品类型</label>
                             <div class="layui-input-inline">
                                 <select name="typeid" lay-filter="required" lay-verify="required">
