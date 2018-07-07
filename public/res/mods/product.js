@@ -14,6 +14,18 @@
         return str;  
     }
 	
+	function buyNumCheck(){
+		var qty = $('#qty').val('');
+		var number = $('#number').val('');
+		var stockcontrol = $('#stockcontrol').val('');
+		if(stockcontrol>0){
+			if(number > qty){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	form.on('select(typeid)', function(data){
 		if (data.value == 0) return;
 		$.ajax({
@@ -73,7 +85,7 @@
 						$('#qty').val("不限量");
 						$("#buy").removeAttr("disabled");
 					}
-					
+					$('#stockcontrol').val(product.stockcontrol);
 					if(product.auto>0){
 						var str = '<p><span class="layui-badge layui-bg-green">自动发货</span></p>';
 					}else{
@@ -95,32 +107,37 @@
 	form.on('submit(buy)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
-		$.ajax({
-			url: '/product/order/buy/',
-			type: 'POST',
-			dataType: 'json',
-			data: data.field,
-		})
-		.done(function(res) {
-			if (res.code == '1') {
-				var oid = res.data.oid;
-				if(oid.length>0){
-					location.href = '/product/order/pay/?oid='+res.data.oid;
-				}else{
-					layer.msg("订单异常",{icon:2,time:5000});
+		
+		if(buyNumCheck()){
+			$.ajax({
+				url: '/product/order/buy/',
+				type: 'POST',
+				dataType: 'json',
+				data: data.field,
+			})
+			.done(function(res) {
+				if (res.code == '1') {
+					var oid = res.data.oid;
+					if(oid.length>0){
+						location.href = '/product/order/pay/?oid='+res.data.oid;
+					}else{
+						layer.msg("订单异常",{icon:2,time:5000});
+					}
+				} else {
+					layer.msg(res.msg,{icon:2,time:5000});
 				}
-			} else {
-				layer.msg(res.msg,{icon:2,time:5000});
-			}
-		})
-		.fail(function() {
-			layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
-		})
-		.always(function() {
-			layer.close(i);
-		});
+			})
+			.fail(function() {
+				layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
+			})
+			.always(function() {
+				layer.close(i);
+			});
 
-		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+		}else{
+			layer.msg("下单数量超限",{icon:2,time:5000});
+		}
 	});
 
 	//左右框高度
