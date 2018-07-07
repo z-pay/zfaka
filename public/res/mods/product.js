@@ -4,11 +4,12 @@
 	var form = layui.form;
 
 	form.verify({
-		number: function(value, item){ //value：表单的值、item：表单的DOM对象
+		numberCheck: function(value, item){ //value：表单的值、item：表单的DOM对象
+			var qty = $('#qty').val();
 			var number = $('#number').val();
 			var stockcontrol = $('#stockcontrol').val();
 			if(stockcontrol>0){
-				if(parseInt(number) > parseInt(value)){
+				if(parseInt(number) > parseInt(qty)){
 					return '下单数量超限';
 				}
 			}
