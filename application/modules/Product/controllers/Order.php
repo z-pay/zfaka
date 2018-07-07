@@ -25,7 +25,7 @@ class OrderController extends PcBasicController
     public function buyAction()
     {
 		//下订单
-		$pid = ceil($this->getPost('productlist'));
+		$pid = ceil($this->getPost('pid'));
 		$number = ceil($this->getPost('number'));
 		$email = $this->getPost('email');
 		$chapwd = $this->getPost('chapwd');
