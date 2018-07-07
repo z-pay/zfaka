@@ -53,6 +53,8 @@
 
 * 务必：注意nginx环境下path_info的配置
 
+* 务必：YAF配置开启命名空间 yaf.use_namespace=1
+
 * 务必：项目运行给站点用户权限
 
 * 建议：mysql数据库配置时建议这样操作参考：https://zlkb.net/302.html
