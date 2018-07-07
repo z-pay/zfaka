@@ -71,7 +71,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">商品详情</div>
                 <div class="layui-card-body" id="prodcut_description">
-				<?php if(isset($product['description'])):?><?php echo $product['description'];?><?php endif;?>
+				<?php if(isset($product['description'])):?><?php echo htmlspecialchars_decode ($product['description']);?><?php endif;?>
                 </div>
             </div>
         </div>
