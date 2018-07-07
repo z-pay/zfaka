@@ -69,7 +69,7 @@
 	git clone https://github.com/zlkbdotnet/zfaka.git [这是最新测试版]
 </pre> 
 
->稳定版：请访问这里下载：https://github.com/zlkbdotnet/zfaka/releases　
+>稳定版：请访问这里下载：https://github.com/zlkbdotnet/zfaka/releases
 
 ### 2.2.2
 >新增：需要进入系统conf目录下，application.ini.new修改为 application.ini
