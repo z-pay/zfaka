@@ -22,7 +22,7 @@ class DetailController extends PcBasicController
 			$product = $this->m_products->Where(array('id'=>$pid,'active'=>1,'isdelete'=>0))->SelectOne();
 			if(!empty($product)){
 				$data['product'] = $product;
-				$data['title'] = "购买商品_".$product['name'];
+				$data['title'] = $product['name']."_购买商品";
 				$this->getView()->assign($data);
 			}else{
 				$this->redirect("/product/");
