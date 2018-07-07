@@ -199,7 +199,11 @@ class ProductscardController extends AdminBasicController
 						//处理编码问题
 						$encoding = mb_detect_encoding($txtFileData, array('GB2312','GBK','UTF-16','UCS-2','UTF-8','BIG5','ASCII'));
 						if($encoding != false){
-							$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
+							if($encoding=='CP936'){
+								
+							}else{
+								$txtFileData = iconv($encoding, 'UTF-8', $txtFileData);
+							}
 						}else{
 							$txtFileData = mb_convert_encoding ( $txtFileData, 'UTF-8','Unicode');
 						}
