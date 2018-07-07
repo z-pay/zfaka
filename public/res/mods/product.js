@@ -8,8 +8,8 @@
 			var number = $('#number').val();
 			var stockcontrol = $('#stockcontrol').val();
 			if(stockcontrol>0){
-				if(number > value){
-					 return '下单数量超限';
+				if(parseInt(number) > parseInt(value)){
+					return '下单数量超限';
 				}
 			}
 		}
@@ -150,6 +150,7 @@
 		}else{
 			layer.msg("下单数量超限",{icon:2,time:5000});
 		}
+		return false; 
 	});
 
 	//左右框高度
