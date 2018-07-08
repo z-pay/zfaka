@@ -29,10 +29,10 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	form.on('radio(stockcontrol)', function(data){
 		if(data.value=='1'){
 			$('#qty').val('0');
-			$("#buy").removeAttr("disabled");
+			$("#qty").removeAttr("disabled");
 		}else{
 			$('#qty').val('0');
-			$("#buy").attr("disabled","true");
+			$("#qty").attr("disabled","true");
 		}
 	});  
 	//更新库存
