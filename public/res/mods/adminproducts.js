@@ -29,6 +29,8 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	form.on('radio(stockcontrol)', function(data){
 		if(data.value=='1'){
 			//$('#qty').val('0');
+			var qty = $("#qty").attr("oldqty");
+			$('#qty').val(qty);
 			$("#qty").removeAttr("disabled");
 		}else{
 			$('#qty').val('0');
