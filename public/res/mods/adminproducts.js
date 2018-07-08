@@ -27,9 +27,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	});
 
 	form.on('radio(stockcontrol)', function(data){
-		console.log(data.elem); //得到radio原始DOM对象
-		console.log(data.value); //被点击的radio的value值
-		if(data.value>0){
+		if(data.value=='1'){
 			$('#qty').val('0');
 			$("#buy").removeAttr("disabled");
 		}else{
