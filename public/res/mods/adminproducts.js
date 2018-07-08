@@ -32,7 +32,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 			$("#buy").removeAttr("disabled");
 		}else{
 			$('#qty').val('0');
-			$("#qty").attr("disabled","true");
+			$("#buy").attr("disabled","true");
 		}
 	});  
 	//更新库存
