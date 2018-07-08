@@ -167,11 +167,11 @@
 	}
 
 	//对商品描述再做一次补充解密处理
-	var aName = window.location.pathname;
+	/*var aName = window.location.pathname;
 	if (aName.indexOf('/product/detail') >-1) {
 		html = htmlspecialchars_decode($('#prodcut_description').text());
 		$('#prodcut_description').html(html);
-	}
+	}*/
 	autoHeight();
 	exports('product',null)
 });
