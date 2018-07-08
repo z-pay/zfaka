@@ -12,12 +12,13 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		cellMinWidth:60,
 		cols: [[
 			{field: 'id', title: 'ID', width:80},
-			{field: 'orderid', title: '订单号', minWidth:160},
-			{field: 'email', title: '邮箱', minWidth:160},
-			{field: 'productname', title: '商品', minWidth:160},
-			{field: 'number', title: '数量',width:80},
+			{field: 'orderid', title: '订单号', minWidth:100},
+			{field: 'email', title: '邮箱', minWidth:100},
+			{field: 'productname', title: '商品', minWidth:100},
+			{field: 'addtime', title: '时间', templet: '#addtime',minWidth:100},
 			{field: 'status', title: '状态', width:80, templet: '#status',align:'center'},
 			{field: 'paymoney', title: '支付金额',width:80},
+			{field: 'number', title: '数量',width:80},
 			{field: 'opt', title: '操作', templet: '#opt',align:'center',fixed: 'right', width: 160,},
 		]]
 	});

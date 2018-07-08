@@ -31,6 +31,9 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 		console.log(data.value); //被点击的radio的value值
 		if(data.value>0){
 			$('#qty').val('0');
+			$("#buy").removeAttr("disabled");
+		}else{
+			$('#qty').val('0');
 			$("#qty").attr("disabled","true");
 		}
 	});  
