@@ -25,15 +25,15 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 			{field: 'opt', title: '操作', width:160, templet: '#opt',align:'center'},
 		]]
 	});
-  
-	$('input:radio[name=stockcontrol]').change(function(){
-		var stockcontrol = $("input:radio[name='stockcontrol']:checked").val();
-		if(stockcontrol>0){
+
+	form.on('radio(stockcontrol)', function(data){
+		console.log(data.elem); //得到radio原始DOM对象
+		console.log(data.value); //被点击的radio的value值
+		if(data.value>0){
 			$('#qty').val('0');
 			$("#qty").attr("disabled","true");
 		}
-	});
-  
+	});  
 	//更新库存
 	$("#products_form").on("click","#updateQty",function(event){
 		event.preventDefault();
