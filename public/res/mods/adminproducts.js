@@ -26,7 +26,13 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 		]]
 	});
   
-  
+	$('input:radio[name=stockcontrol]').change(function(){
+		var stockcontrol = $("input:radio[name='stockcontrol']:checked").val();
+		if(stockcontrol>0){
+			$('#qty').val('0');
+			$("#qty").attr("disabled","true");
+		}
+	});
   
 	//更新库存
 	$("#products_form").on("click","#updateQty",function(event){
