@@ -93,6 +93,20 @@ class ProductscardController extends AdminBasicController
 		
 		$this->getView()->assign($data);
     }
+
+    public function addplusAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect("/admin/login");
+            return FALSE;
+        }
+		$data = array();
+		
+		$products=$this->m_products->Where(array('auto'=>1,'isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
+		$data['products'] = $products;
+		$this->getView()->assign($data);
+    }	
+	
 	public function addajaxAction()
 	{
 		$method = $this->getPost('method',false);
@@ -109,12 +123,12 @@ class ProductscardController extends AdminBasicController
 		
 		if($method AND $pid AND $card AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$m=array(
-					'pid'=>$pid,
-					'card'=>$card,
-					'addtime'=>time(),
-				);
 				if($method == 'add'){
+					$m=array(
+						'pid'=>$pid,
+						'card'=>$card,
+						'addtime'=>time(),
+					);
 					$u = $this->m_products_card->Insert($m);
 					if($u){
 						//新增商品数量
@@ -123,6 +137,32 @@ class ProductscardController extends AdminBasicController
 						$data = array('code' => 1, 'msg' => '新增成功');
 					}else{
 						$data = array('code' => 1003, 'msg' => '新增失败');
+					}
+				}elseif($method == 'addplus'){
+					//开始处理
+					$m = array();
+					$huiche=array("\n","\r");
+					$replace='\r\n';
+					$newTxtFileData=str_replace($huiche,$replace,$card); 
+					$newTxtFileData_array = explode($replace,$newTxtFileData);
+					foreach($newTxtFileData_array AS $line){
+						if(strlen($line)>0){
+							$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
+						}
+					}
+					if(!empty($m)){
+						$u = $this->m_products_card->MultiInsert($m);
+						if($u){
+							//增加商品数量
+							$addNum = count($m);
+							$qty_m = array('qty' => 'qty+'.$addNum);
+							$this->m_products->Where(array('id'=>$pid,'stockcontrol'=>1))->Update($qty_m,TRUE);
+							$data = array('code' => 1, 'msg' => '成功');
+						}else{
+							$data = array('code' => 1004, 'msg' => '失败');
+						}
+					}else{
+						$data = array('code' => 1003, 'msg' => '没有卡密存在','data'=>array());
 					}
 				}else{
 					$data = array('code' => 1002, 'msg' => '未知方法');
@@ -135,20 +175,7 @@ class ProductscardController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
-	
-    public function addplusAction()
-    {
-        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
-            return FALSE;
-        }
-		$data = array();
-		
-		$products=$this->m_products->Where(array('auto'=>1,'isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
-		$data['products'] = $products;
-		$this->getView()->assign($data);
-    }	
-	
+
 	public function deleteAction()
 	{
 		$id = $this->get('id',false);
