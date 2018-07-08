@@ -210,28 +210,26 @@ class OrderController extends PcBasicController
 	//支付宝当面付生成二维码
 	public function showqrAction()
 	{
-        //增加安全判断
-        if(isset($_SERVER['HTTP_REFERER'])){
-			$referer_url = parse_url($_SERVER['HTTP_REFERER']);
-			$web_url = parse_url($this->config['web_url']);
-			if($referer_url['host']!=$web_url['host']){
-				echo 'fuck you!';exit();
-			}else{
-				$url = $this->get('url');
-				try{
-					if($url){
-						\PHPQRCode\QRcode::png($url);
-						exit();
-					}else{
-						echo '参数丢失';
-						exit();
-					}
-				} catch (\Exception $e) {
-					echo $e->getMessage();exit();
+        $url = $this->get('url',true);
+		if($url){
+			//增加安全判断
+			if(isset($_SERVER['HTTP_REFERER'])){
+				$referer_url = parse_url($_SERVER['HTTP_REFERER']);
+				$web_url = parse_url($this->config['web_url']);
+				if($referer_url['host']!=$web_url['host']){
+					echo 'fuck you!';exit();
 				}
 			}
-        }else{
-            echo 'fuck you!';exit();
-        }
+			try{
+				\PHPQRCode\QRcode::png($url);
+				exit();
+			} catch (\Exception $e) {
+				echo $e->getMessage();
+				exit();
+			}
+		}else{
+			echo '参数丢失';
+			exit();
+		}
 	}
 }

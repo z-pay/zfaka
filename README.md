@@ -107,4 +107,6 @@
 * DirectAdmin用户交流群:337686498
 
 # 六、捐赠&打赏
+>捐赠名单：[查看名单](https://github.com/zlkbdotnet/zfaka/wiki/%E6%8D%90%E8%B5%A0%E5%90%8D%E5%8D%95)
+
 ![1](https://github.com/zlkbdotnet/zfaka/blob/master/public/res/images/pay/supportme.jpg)
