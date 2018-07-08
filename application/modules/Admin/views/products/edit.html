@@ -62,7 +62,7 @@
                         <div class="layui-form-item">
                             <label for="qty" class="layui-form-label">库存数量</label>
                             <div class="layui-input-inline">
-                                <input type="number" id="qty" name="qty" lay-verify="required" autocomplete="off" value="<?php echo $product['qty'];?>" class="layui-input">
+                                <input type="number" id="qty" name="qty" lay-verify="required" autocomplete="off" value="<?php echo $product['qty'];?>" <?php if($product[ 'stockcontrol']=='0' ):?>disabled="disabled"<?php endif;?> class="layui-input">
                             </div>
                             <div class="layui-form-mid layui-word-aux">
                                 <button class="layui-btn layui-btn-warm layui-btn-xs" <?php if($product[ 'auto']=='1' AND $product[ 'stockcontrol']=='1' ):?>
