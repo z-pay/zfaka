@@ -73,7 +73,7 @@
 
 >稳定版：请访问这里下载：https://github.com/zlkbdotnet/zfaka/releases
 
-### 2.2.2
+### 2.2.2 修改配置文件名
 >新增：需要进入系统conf目录下，application.ini.new修改为 application.ini
 
 ### 2.2.3 配置目录权限
