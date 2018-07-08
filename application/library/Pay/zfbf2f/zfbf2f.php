@@ -39,10 +39,14 @@ class zfbf2f
 		];
 		try {
 			$qr = Charge::run(Config::ALI_CHANNEL_QR, $config, $data);
-			$result = array('paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime']);
-			return array('code'=>1,'msg'=>'success','data'=>$result);
+			if($qr){
+				$result_params = array('paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime']);
+				return array('code'=>1,'msg'=>'success','data'=>$result_params);
+			}else{
+				return array('code'=>1002,'msg'=>'当面付生成失败','data'=>'');
+			}
 		} catch (PayException $e) {
-			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
+			return array('code'=>1001,'msg'=>$e->errorMessage(),'data'=>'');
 		} catch (\Exception $e) {
 			return array('code'=>1000,'msg'=>$e->getMessage(),'data'=>'');
 		}
