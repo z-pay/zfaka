@@ -95,6 +95,9 @@
 * 宝塔环境计划任务crontab的部署
 >参考：[宝塔环境中如何部署计划任务](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1).
 
+### 2.3 系统配置
+>参考：[系统配置指南](https://github.com/zlkbdotnet/zfaka/wiki/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97)
+
 # 三、系统升级
 > 升级时，请先备份 /conf/application.ini 与 /install/install.lock 这二个文件;下载最新代码后直接覆盖，登录后台即可按照提示完成升级；
 
