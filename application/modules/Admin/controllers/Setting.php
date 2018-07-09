@@ -105,7 +105,7 @@ class SettingController extends AdminBasicController
 				$m=array(
 					'name'=>$name,
 					'value'=>htmlspecialchars($value),
-					'tag'=>$tag,
+					'tag'=>htmlspecialchars($tag),
 				);
 				if($method == 'edit' AND $id>0){
 					$u = $this->m_config->UpdateByID($m,$id);
