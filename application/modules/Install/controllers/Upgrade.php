@@ -27,7 +27,7 @@ class UpgradeController extends AdminBasicController
 			if(version_compare(trim($version), trim(VERSION), '<' )){
 				$data = array();
 				$update_version = $this->_getUpdateVersion($version);
-				if($update_version=='' OR is_dir(INSTALL_PATH.'/'.$update_version)){
+				if($update_version==''){
 					$data['update_version'] = $update_version!=''?$update_version:'未知的版本';
 					$data['upgrade_desc'] = "抱歉,我表示很难理解你为什么能看到这条信息";
 					$data['upgrade_sql'] = '';
