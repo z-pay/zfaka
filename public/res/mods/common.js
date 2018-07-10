@@ -95,6 +95,10 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 	$('#main-menu-mobile-switch').on('click', function(){
 		if($("#main-menu-mobile").is(":hidden")){
 			$('body').addClass('main-menu-mobile_body');
+			var body_width = parseInt($('body').width());
+			var main_menu_width = parseInt($("#main-menu-mobile").css("width"));
+			var new_width = body_width-main_menu_width;
+			$("#main-menu-mobile").css("left",new_width);
 			$('#main-menu-mobile').show();
 		}else{
 			$('body').removeClass('main-menu-mobile_body');
