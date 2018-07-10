@@ -91,7 +91,11 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
   shadeMobile.on('click', function(){
     $('body').removeClass('site-mobile');
   });
-
+  
+	$('#main-menu-mobile-switch').on('click', function(){
+		$('#main-menu-mobile').show();
+	});
+  
  	//全局删除信息提示
 	table.on('tool(table)', function(obj) {
 		var layEvent = obj.event;

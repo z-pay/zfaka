@@ -47,14 +47,11 @@
 <script src="/res/layui/layui.js"></script>
 <script>
 layui.config({
-    version: "3.0.0",
+    version: "<?php echo VERSION;?>",
     base: '/res/mods/'
-}).extend({
-    fly: 'common'
-}).use('fly');
+}).use('common');
 layui.use('element', function() {
     var element = layui.element;
 });
-
 layui.use('adminlogin');
 </script>
