@@ -94,12 +94,14 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
   
 	$('#main-menu-mobile-switch').on('click', function(){
 		if($("#main-menu-mobile").is(":hidden")){
+			$('body').addClass('main-menu-mobile_body');
 			$('#main-menu-mobile').show();
 		}else{
+			$('body').removeClass('main-menu-mobile_body');
 			$('#main-menu-mobile').hide();
 		}
 	});
-	$('body').on('click', function(){
+	$('.main-menu-mobile_body').on('click', function(){
 		$('#main-menu-mobile').hide();
 	});
  	//全局删除信息提示
