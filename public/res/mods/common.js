@@ -81,21 +81,27 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 
 
   //手机设备的简单适配
-  var treeMobile = $('.site-tree-mobile')
-  ,shadeMobile = $('.site-mobile-shade')
+	var treeMobile = $('.site-tree-mobile')
+	,shadeMobile = $('.site-mobile-shade')
 
-  treeMobile.on('click', function(){
-    $('body').addClass('site-mobile');
-  });
+	treeMobile.on('click', function(){
+		$('body').addClass('site-mobile');
+	});
 
-  shadeMobile.on('click', function(){
-    $('body').removeClass('site-mobile');
-  });
-  
-	$('#main-menu-mobile-switch').on('click', function(){
-		$('#main-menu-mobile').show();
+	shadeMobile.on('click', function(){
+		$('body').removeClass('site-mobile');
 	});
   
+	$('#main-menu-mobile-switch').on('click', function(){
+		if($("#main-menu-mobile").is(":hidden")){
+			$('#main-menu-mobile').show();
+		}else{
+			$('#main-menu-mobile').hide();
+		}
+	});
+	$('body').on('click', function(){
+		$('#main-menu-mobile').hide();
+	});
  	//全局删除信息提示
 	table.on('tool(table)', function(obj) {
 		var layEvent = obj.event;
