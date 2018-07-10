@@ -59,6 +59,11 @@
                         <dd><a href="/admin/logout/" style="text-align: center;">退出</a></dd>
                     </dl>
                 </li>
+				<li class="layui-nav-item layadmin-flexible" lay-unselect="">
+					<a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+					<i class="layui-icon layui-icon-spread-left" id="LAY_app_flexible"></i>
+				</a>
+      </li>
             </ul>
         </div>
     </div>
@@ -86,3 +91,42 @@
 	}
 	setClassName();
 	</script>
+	
+	<div class="layui-layer layui-layer-page layui-anim layui-anim-rl layui-layer-adminRight" id="layui-layer2" type="page" times="2" showtime="0" contype="string" style="z-index: 19891016; width: 300px; top: 25px; left: 100px;">
+		<div id="LAY_adminPopupMore" class="layui-layer-content">
+			<div class="layadmin-menu-list">
+				<div class="layui-card-header" layadmin-event="index">
+					<a href="/admin">
+						<i class="layui-icon layui-icon-about" style="font-size: 20px;"></i>
+						账户中心
+					</a>
+				</div>
+				  <div class="layui-card-header" layadmin-event="setting">
+					<a href="/admin/setting">
+					  <i class="layui-icon layui-icon-theme"></i>
+					  设置中心
+					</a>
+				  </div>
+				  <div class="layui-card-header" layadmin-event="user">
+					<a href="/admin/user">
+					  <i class="layui-icon layui-icon-note"></i>
+					  用户管理
+					</a>
+				  </div>
+				  <div class="layui-card-header" layadmin-event="products">
+					<a href="/admin/products">
+					  <i class="layui-icon layui-icon-note"></i>
+					  商品管理
+					</a>
+				  </div>
+				  <div class="layui-card-header" layadmin-event="order">
+					<a href="/admin/order">
+					  <i class="layui-icon layui-icon-note"></i>
+					  订单管理
+					</a>
+				  </div>
+			</div>
+		</div>
+		<span class="layui-layer-setwin"></span>
+		<span class="layui-layer-resize"></span>
+	</div>
