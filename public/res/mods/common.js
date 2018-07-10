@@ -101,7 +101,8 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 			$('#main-menu-mobile').hide();
 		}
 	});
-	$('.main-menu-mobile_body .site-mobile-shade').on('click', function(){
+	$('.site-mobile-shade').on('click', function(){
+		$('body').removeClass('main-menu-mobile_body');
 		$('#main-menu-mobile').hide();
 	});
  	//全局删除信息提示
