@@ -12,7 +12,7 @@ html,body{overflow-x: hidden;}
 html body{margin-top: 61px;}
 html{background-color: #F2F2F2;}
 i{font-style: normal;}
-
+.ovfHiden{overflow: hidden;height: 100%;}
 /* 图标 */
 
 @font-face {font-family: "layui-icon-fly";
