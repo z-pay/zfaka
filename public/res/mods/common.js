@@ -97,17 +97,17 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 			$('body').addClass('main-menu-mobile_body');
 			var body_width = parseInt($('body').width());
 			$("#main-menu-mobile").css("width",body_width);
-			$("#site-tree-mobile").css("display","none");
+			$(".site-tree-mobile").css("display","none");
 			$('#main-menu-mobile').show();
 		}else{
 			$('body').removeClass('main-menu-mobile_body');
-			$("#site-tree-mobile").css("display","block!important");
+			$(".site-tree-mobile").css("display","block!important");
 			$('#main-menu-mobile').hide();
 		}
 	});
 	$('.site-mobile-shade').on('click', function(){
 		$('body').removeClass('main-menu-mobile_body');
-		$("#site-tree-mobile").css("display","block!important");
+		$(".site-tree-mobile").css("display","block!important");
 		$('#main-menu-mobile').hide();
 	});
  	//全局删除信息提示
