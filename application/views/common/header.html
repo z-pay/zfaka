@@ -23,28 +23,33 @@
 <body>
     <div class="fly-header layui-bg-black">
         <div class="layui-container">
-            <a class="fly-logo" href="/"><img src="/res/images/logo.png" alt="layui"></a>
+             <div class="layui-hide-xs"><a class="fly-logo" href="/"><img src="/res/images/logo.png" alt="layui"></a></div>
             <ul class="layui-nav fly-nav" id="webmenu">
+				<li class="layui-nav-item layui-hide-lg layui-hide-md layui-hide-sm layadmin-flexible">
+					<a href="javascript:;" title="侧边伸缩">
+					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch"></i>
+					</a>
+				</li>
                 <?php if($login):?>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/member">我的账户</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/product">购买商品</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/help">帮助中心</a>
                 </li>
                 <?php else:?>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/product">购买商品</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/product/query">查询订单</a>
                 </li>
                 <?php endif;?>
             </ul>
-            <ul class="layui-nav fly-nav-user layui-hide-xs">
+            <ul class="layui-nav fly-nav-user">
                 <?php if($login):?>
                 <li class="layui-nav-item">
                     <a class="fly-nav-avatar" href="javascript:;">
@@ -108,3 +113,18 @@
 	}
 	setClassName();
 	</script>
+<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="main-menu" id="main-menu-mobile" style="display: none;z-index: 19891016;width: 300px;">
+  <li class="layui-nav-item layui-nav-itemed">
+    <a href="javascript:;">主菜单</a>
+    <dl class="layui-nav-child">
+		<?php if($login):?>
+		<dd><a href="/member/">我的账户</a></dd>
+		<dd><a href="/product">购买商品</a></dd>
+		<dd><a href="/help">帮助中心</a></dd>
+		<?php else:?>
+		<dd><a href="/product/">购买商品</a></dd>
+		<dd><a href="/product/query">查询订单</a></dd>
+		 <?php endif;?>
+    </dl>
+  </li>
+</ul>
