@@ -78,25 +78,19 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">单价</label>
 								<div class="layui-input-block">
-									<input type="number" value="<?php echo $order['price'];?>" class="layui-input" >
+									<input type="number" value="<?php echo $order['price'];?>" readonly disabled class="layui-input" >
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">数量</label>
 								<div class="layui-input-block">
-									<input type="text" value="<?php echo $order['number'];?>" class="layui-input">
+									<input type="text" value="<?php echo $order['number'];?>" readonly disabled class="layui-input">
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">金额</label>
 								<div class="layui-input-block">
-									<input type="text" value="<?php echo $order['money'];?>" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label class="layui-form-label">下单时间</label>
-								<div class="layui-input-block">
-									<input type="text" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" class="layui-input">
+									<input type="text" value="<?php echo $order['money'];?>" readonly disabled class="layui-input">
 								</div>
 							</div>
 						</form>
