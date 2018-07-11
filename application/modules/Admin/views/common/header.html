@@ -24,8 +24,13 @@
 <body>
     <div class="fly-header layui-bg-black">
         <div class="layui-container">
-            <div class=""><a class="fly-logo" href="/admin"><img src="/res/images/logo.png" alt="layui"></a></div>
-            <ul class="layui-nav fly-nav layui-hide-xs" id="webmenu">
+            <div class="layui-hide-xs"><a class="fly-logo" href="/admin"><img src="/res/images/logo.png" alt="layui"></a></div>
+            <ul class="layui-nav fly-nav" id="webmenu">
+				<li class="layui-nav-item layui-hide-lg layui-hide-md layui-hide-sm layadmin-flexible">
+					<a href="javascript:;" title="侧边伸缩">
+					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch"></i>
+					</a>
+				</li>
                 <li class="layui-nav-item layui-hide-xs">
                     <a href="/admin/">账户中心</a>
                 </li>
@@ -35,10 +40,10 @@
                 <li class="layui-nav-item layui-hide-xs">
                     <a href="/admin/user">用户管理</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/admin/products">商品管理</a>
                 </li>
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-hide-xs">
                     <a href="/admin/order">订单管理</a>
                 </li>
             </ul>
@@ -59,11 +64,6 @@
                         <dd><a href="/admin/logout/" style="text-align: center;">退出</a></dd>
                     </dl>
                 </li>
-				<li class="layui-nav-item layui-hide-lg layui-hide-md layui-hide-sm layadmin-flexible">
-					<a href="javascript:;" title="侧边伸缩">
-					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch"></i>
-					</a>
-				</li>
             </ul>
         </div>
     </div>
