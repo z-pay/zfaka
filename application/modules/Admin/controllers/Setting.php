@@ -102,6 +102,8 @@ class SettingController extends AdminBasicController
 		
 		if($method AND $name AND ($value OR is_numeric($value))AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				$value = str_replace(array("\t"), "", $value)
+				$tag = str_replace(array("\t"), "", $tag)
 				$m=array(
 					'name'=>$name,
 					'value'=>htmlspecialchars($value),

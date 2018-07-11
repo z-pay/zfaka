@@ -256,8 +256,10 @@ class ProductscardController extends AdminBasicController
 						$newTxtFileData_array = explode($replace,$newTxtFileData);
 						foreach($newTxtFileData_array AS $line){
 							if(strlen($line)>0){
-								$line = str_replace(array("\r","\n"), "\\n", $line);
-								$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
+								$line = trim(str_replace(array("\t"), "", $line));
+								if(strlen($line)>0){
+									$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
+								}
 							}
 						}
 						if(!empty($m)){

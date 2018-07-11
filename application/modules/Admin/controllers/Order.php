@@ -240,7 +240,7 @@ class OrderController extends AdminBasicController
 				if(is_array($order) AND !empty($order)){
 					if($order['status']=='1' OR $order['status']=='3'){
 						//业务处理
-						$kami = str_replace(array("\r","\n"), "\\n", $kami);
+						$kami = str_replace(array("\r","\n","\t"), "", $kami);
 						$update = $this->m_order->Where(array('id'=>$id))->Where('status=1 or status=3')->Update(array('status'=>2,'kami'=>$kami));
 						if($update){
 							$m = array();

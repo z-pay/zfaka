@@ -128,6 +128,7 @@ class ProductsController extends AdminBasicController
 		
 		if($method AND $typeid AND $name AND $description AND is_numeric($stockcontrol) AND is_numeric($qty) AND is_numeric($price) AND is_numeric($auto) AND is_numeric($active) AND is_numeric($sort_num) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				$description = str_replace(array("\t"), "", $description)
 				$m=array(
 					'typeid'=>$typeid,
 					'name'=>$name,
