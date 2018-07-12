@@ -114,7 +114,7 @@
 						</div>
 						
 						<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
-							<div class="layui-card-header">订单信息</div>
+							<div class="layui-card-header">订单信息-<?php echo $cnstatus[$order['status']];?></div>
 							<div class="layui-card-body" id="prodcut_num">
 								<form class="layui-form" action="">
 									<div class="layui-form-item">
@@ -147,12 +147,6 @@
 											<input type="text" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" readonly disabled class="layui-input" >
 										</div>
 									</div>
-									<div class="layui-form-item">
-										<label class="layui-form-label">状态</label>
-										<div class="layui-input-block">
-											<input type="text" value="<?php echo $cnstatus[$order['status']];?>" readonly disabled class="layui-input">
-										</div>
-									</div>
 									<?php if($order['status']=='0'):?>
 									<div class="layui-form-item">
 										<div class="layui-input-block">
@@ -162,7 +156,7 @@
 									<?php elseif($order['status']=='2'):?>
 									<div class="layui-form-item">
 										<div class="layui-input-block">
-											<button class="layui-btn view_kami" id="buy" disabled="disabled" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
+											<button class="layui-btn view_kami" id="buy" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
 										</div>
 									</div>
 									<?php endif;?>
