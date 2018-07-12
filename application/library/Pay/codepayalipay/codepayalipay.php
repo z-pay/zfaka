@@ -11,7 +11,7 @@ use \Pay\notify;
 class codepayalipay
 {
 	private $apiHost="http://api2.fateqq.com:52888/creat_order/?";
-	private $paymethod ="codepayqq";
+	private $paymethod ="codepayalipay";
 	
 	//处理请求
 	public function pay($payconfig,$params)
