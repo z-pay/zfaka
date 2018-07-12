@@ -127,17 +127,34 @@ class OrderController extends PcBasicController
 	{
 		$data = array();
 		$oid = $this->get('oid',false);
-		$oid = (int)base64_decode($oid);
-		if(is_numeric($oid) AND $oid>0){
-			$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
-			if(!empty($order)){
-				//获取支付方式
-				$payments = $this->m_payment->getConfig();
-				$data['order']=$order;
-				$data['payments']=$payments;
-				$data['code']=1;
+		$ooid = $this->get('ooid',false);
+		$id = 0;
+		if($oid OR $ooid){
+			if($oid){
+				$oid = (int)base64_decode($oid);
+				if(is_numeric($oid) AND $oid>0){
+					$id = $oid;
+				}
 			}else{
-				$data['code']=1002;
+				if(is_numeric($ooid) AND $ooid>0){
+					$id = $ooid;
+				}
+			}
+			
+			if($id>0){
+				$order = $this->m_order->Where(array('id'=>$id,'isdelete'=>0))->SelectOne();
+				if(!empty($order)){
+					//获取支付方式
+					$payments = $this->m_payment->getConfig();
+					$data['order']=$order;
+					$data['payments']=$payments;
+					$data['code']=1;
+				}else{
+					$data['code']=1002;
+					$data['msg']='订单不存在';
+				}
+			}else{
+				$data['code']=1001;
 				$data['msg']='订单不存在';
 			}
 		}else{
