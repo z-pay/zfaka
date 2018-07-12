@@ -101,7 +101,7 @@ layui.define(['layer', 'form','base64','laytpl'], function(exports){
 		.done(function(res) {
 			if (res.code == '1') {
 				if(device.weixin==true || device.android==true || device.ios==true){
-					var getTpl = demo.innerHTML
+					var getTpl = query_ajax_mobile.innerHTML
 					,view = document.getElementById('query-ajax-mobile-view');
 					laytpl(getTpl).render(res, function(html){
 					  view.innerHTML = html;
