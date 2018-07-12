@@ -17,7 +17,7 @@
             </blockquote>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
-                    <div class="layui-form-pane" id="query-table">
+                    <div class="layui-form-pane" id="query-pane">
                         <?php if($querymethod == 'ajax'):?>
                         <form class="layui-form">
                             <div class="layui-form-item">
@@ -46,7 +46,7 @@
                             </div>
                         </form>
 						<div class="layui-table-zlkb">
-							<table class="layui-table" style="display: none;">
+							<table class="layui-table" style="display: none;" id="query-table">
 								<thead>
 									<tr>
 										<th>订单ID</th>
@@ -64,7 +64,7 @@
 						</div>
                         <?php else:?>
 						<div class="layui-table-querey layui-hide-xs">
-                        <table class="layui-table">
+                        <table class="layui-table" id="query-table">
                             <thead>
                                 <tr>
                                     <th>订单ID</th>
