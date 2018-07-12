@@ -74,6 +74,7 @@
                                     <th>金额</th>
                                     <th>下单时间</th>
                                     <th>状态</th>
+									<th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,6 +96,13 @@
                                     <td>
                                         <?php echo $cnstatus[$order['status']];?>
                                     </td>
+									<td>
+										<?php if($order['status']=='0'):?>
+										<a style="color:red" href="/product/order/pay/?oid=<?php echo base64_encode($order['id']);?>">去支付</a>
+										<?php elseif($order['status']=='2'):?>
+										<button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
+										<?php endif;?>
+									</td>
                                 </tr>
                                 <?php else:?>
                                 <tr>
@@ -136,7 +144,7 @@
 									<div class="layui-form-item">
 										<label class="layui-form-label">时间</label>
 										<div class="layui-input-block">
-											<input type="number" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" readonly disabled class="layui-input" >
+											<input type="text" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" readonly disabled class="layui-input" >
 										</div>
 									</div>
 									<div class="layui-form-item">
@@ -145,6 +153,19 @@
 											<input type="text" value="<?php echo $cnstatus[$order['status']];?>" readonly disabled class="layui-input">
 										</div>
 									</div>
+									<?php if($order['status']=='0'):?>
+									<div class="layui-form-item">
+										<div class="layui-input-block">
+											<a class="layui-btn" id="buy" href="/product/order/pay/?oid=<?php echo base64_encode($order['id']);?>">去支付</a>
+										</div>
+									</div>
+									<?php elseif($order['status']=='2'):?>
+									<div class="layui-form-item">
+										<div class="layui-input-block">
+											<button class="layui-btn view_kami" id="buy" disabled="disabled" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
+										</div>
+									</div>
+									<?php endif;?>
 								</form>
 							</div>
 						</div>
