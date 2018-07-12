@@ -64,7 +64,7 @@
 							</table>
 						</div>
                         <?php else:?>
-						<div class="layui-table-querey">
+						<div class="layui-table-querey layui-hide-xs">
                         <table class="layui-table" id="query-table">
                             <thead>
                                 <tr>
@@ -103,6 +103,50 @@
                                 <?php endif;?>
                             </tbody>
                         </table>
+						</div>
+						
+						<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
+							<div class="layui-card-header">订单信息</div>
+							<div class="layui-card-body" id="prodcut_num">
+								<form class="layui-form" action="">
+									<div class="layui-form-item">
+										<label class="layui-form-label">订单</label>
+										<div class="layui-input-block">
+											<input type="text" value="<?php echo $order['orderid'];?>" readonly disabled class="layui-input">
+										</div>
+									</div>
+									<div class="layui-form-item">
+										<label class="layui-form-label">商品</label>
+										<div class="layui-input-block">
+											<input type="text" value="<?php echo $order['productname'];?>" readonly disabled class="layui-input">
+										</div>
+									</div>
+									<div class="layui-form-item">
+										<label class="layui-form-label">数量</label>
+										<div class="layui-input-block">
+											<input type="text" value="<?php echo $order['number'];?>" readonly disabled class="layui-input">
+										</div>
+									</div>
+									<div class="layui-form-item">
+										<label class="layui-form-label">金额</label>
+										<div class="layui-input-block">
+											<input type="text" value="<?php echo $order['money'];?>" readonly disabled class="layui-input">
+										</div>
+									</div>
+									<div class="layui-form-item">
+										<label class="layui-form-label">时间</label>
+										<div class="layui-input-block">
+											<input type="number" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" readonly disabled class="layui-input" >
+										</div>
+									</div>
+									<div class="layui-form-item">
+										<label class="layui-form-label">状态</label>
+										<div class="layui-input-block">
+											<input type="text" value="<?php echo $cnstatus[$order['status']];?>" readonly disabled class="layui-input">
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
                         <?php endif;?>
                     </div>
