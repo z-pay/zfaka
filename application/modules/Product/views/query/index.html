@@ -19,7 +19,7 @@
                 <div class="layui-tab-item layui-show">
                     <div class="layui-form-pane" id="query-pane">
                         <?php if($querymethod == 'ajax'):?>
-                        <form class="layui-form">
+                        <form class="layui-form" id="query-form">
                             <div class="layui-form-item">
                                 <label for="L_email" class="layui-form-label">邮箱</label>
                                 <div class="layui-input-inline">
@@ -67,7 +67,7 @@
 							<div class="layui-tab">
 							  <ul class="layui-tab-title">
 								 {{#  layui.each(d.data, function(index, item){ }}
-									<li {{# if(index ==0){ }}class="layui-this"{{# } }}>订单{{ index }}</li>
+									<li {{# if(index ==0){ }}class="layui-this"{{# } }}>订单{{ index+1 }}</li>
 								 {{#  }); }}
 							  </ul>
 							  <div class="layui-tab-content">
@@ -238,7 +238,8 @@
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('productquery');
+layui.use('productquery','jquery');
+	var $ = layui.$;
 	function converStatus(status){
 		var str = "";
 		var s = status;

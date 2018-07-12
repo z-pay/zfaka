@@ -106,7 +106,7 @@ layui.define(['layer', 'form','base64','laytpl'], function(exports){
 					laytpl(getTpl).render(res, function(html){
 					  view.innerHTML = html;
 					});
-					
+					$("#query-form").hide();
 				}else{
 					var html = "";
 					var list = res.data;
