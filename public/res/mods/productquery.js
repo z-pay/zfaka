@@ -1,4 +1,4 @@
-layui.define(['layer', 'form','base64','device'], function(exports){
+layui.define(['layer', 'form','base64'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
