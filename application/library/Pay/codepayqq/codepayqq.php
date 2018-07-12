@@ -87,12 +87,17 @@ class codepayqq
 			}
 		}
 		if (!$params['pay_no'] || md5($sign . $payconfig['app_secret']) != $params['sign']) { //不合法的数据 KEY密钥为你的密钥
-			return $data =array('code'=>1001,'msg'=>'验证失败');
+			return 'error|Notify: auth fail';
 		} else { //合法的数据
 			//业务处理
 			$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
 			$notify = new \Pay\notify();
-			return $data = $notify->run($config);
+			$data = $notify->run($config);
+			if($data['code']>1){
+				return 'error|Notify: '.$data['msg'];
+			}else{
+				return 'success';
+			}
 		}
 	}
 	

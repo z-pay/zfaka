@@ -57,13 +57,9 @@ class zfbf2f
 		try {
 			unset($_POST['paymethod']);
 			$callback = new \Pay\zfbf2f\callback();
-			$ret = Notify::run("ali_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查
-			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($ret).PHP_EOL, FILE_APPEND);
-			var_dump($ret);
-			exit();
+			return $ret = Notify::run("ali_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查	
 		} catch (\Exception $e) {
-			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
-			exit;
+			return 'error|Exception:'.$e->getMessage();
 		}
 	}
 	

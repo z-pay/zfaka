@@ -25,21 +25,18 @@ class NotifyController extends PcBasicController
 					$payconfig = $payments[$paymethod];
 					$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 					$PAY = new $payclass();
-					$data = $PAY->notify($payconfig,$_POST);
-					if($data['code']=='1'){
-						echo 'success';exit();
-					}else{
-						echo 'error';exit();
-					}
+					echo $result = $PAY->notify($payconfig,$_POST);
+					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$result.PHP_EOL, FILE_APPEND);
+					exit();
 				} catch (\Exception $e) {
 					file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
-					exit;
+					echo 'error|Exception:'.$e->getMessage();exit();
 				}
 			}else{
-				echo 'error';exit();
+				echo 'error|Paymethod is null';exit();
 			}
 		}else{
-			echo 'error';exit();
+			echo 'error|Data is null';exit();
 		}
     }
 }
