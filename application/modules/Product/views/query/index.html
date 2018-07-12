@@ -67,15 +67,62 @@
 							<div class="layui-tab">
 							  <ul class="layui-tab-title">
 								 {{#  layui.each(d.data, function(index, item){ }}
-								<li {{# if(index ==0){ }}class="layui-this"{{# } }}>订单{{ index }}</li>
+									<li {{# if(index ==0){ }}class="layui-this"{{# } }}>订单{{ index }}</li>
 								 {{#  }); }}
 							  </ul>
 							  <div class="layui-tab-content">
-								<div class="layui-tab-item layui-show">内容1</div>
-								<div class="layui-tab-item">内容2</div>
-								<div class="layui-tab-item">内容3</div>
-								<div class="layui-tab-item">内容4</div>
-								<div class="layui-tab-item">内容5</div>
+								{{#  layui.each(d.data, function(index, item){ }}
+								<div class="layui-tab-item {{# if(index ==0){ }}layui-show{{# } }}">
+									<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
+										<div class="layui-card-header">订单信息-{{ converStatus(item.status)}}</div>
+										<div class="layui-card-body" id="prodcut_num">
+												<div class="layui-form-item">
+													<label class="layui-form-label">订单</label>
+													<div class="layui-input-block">
+														<input type="text" value="{{ item.orderid}}" readonly disabled class="layui-input">
+													</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label">商品</label>
+													<div class="layui-input-block">
+														<input type="text" value="{{ item.productname}}" readonly disabled class="layui-input">
+													</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label">数量</label>
+													<div class="layui-input-block">
+														<input type="text" value="{{ item.number}}" readonly disabled class="layui-input">
+													</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label">金额</label>
+													<div class="layui-input-block">
+														<input type="text" value="{{ item.money}}" readonly disabled class="layui-input">
+													</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label">时间</label>
+													<div class="layui-input-block">
+														<input type="text" value="{{ createTime(item.addtime)}}" readonly disabled class="layui-input" >
+													</div>
+												</div>
+												{{#  if(item.status == '0'){ }}
+												<div class="layui-form-item">
+													<div class="layui-input-block">
+														<a class="layui-btn" id="buy" href="/product/order/pay/?oid={{ $.base64.encode(item.id)}}">去支付</a>  
+													</div>
+												</div>
+												{{# }else if(item.status =="2"){ }}
+												<div class="layui-form-item">
+													<div class="layui-input-block">
+														<button class="layui-btn view_kami" id="buy" data-orderid="{{ item.orderid}}">提取卡密</button>
+													</div>
+												</div>
+												{{#  } }} 
+										</div>
+									</div>
+								</div>
+								 {{#  }); }}
 							  </div>
 							</div>
 						  {{#  if(d.data.length === 0){ }}
@@ -192,4 +239,41 @@
 <?php include COMMON_PATH.'/footer.html';?>
 <script>
 layui.use('productquery');
+	function converStatus(status){
+		var str = "";
+		var s = status;
+		switch(s)
+		{
+			case '0':
+				str = '<span class="layui-badge layui-bg-gray">待付款</span>';
+				break;
+			case '1':
+				str = '<span class="layui-badge layui-bg-blue">待处理</span>';
+				break;
+			case '2':
+				str = '<span class="layui-badge layui-bg-green">已完成</span>';
+				break;
+			default:
+				str = '<span class="layui-badge layui-bg-black">处理失败</span>';
+				break;
+		}
+		return str;
+	}
+    function createTime(v) {
+       var date = new Date();
+       date.setTime(parseInt(v) * 1000);
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		m = m < 10 ? '0' + m : m;
+		var d = date.getDate();
+		d = d < 10 ? ("0" + d) : d;
+		var h = date.getHours();
+		h = h < 10 ? ("0" + h) : h;
+		var M = date.getMinutes();
+		M = M < 10 ? ("0" + M) : M;
+		var s = date.getSeconds();
+		s = s < 10 ? ("0" + s) : s;
+		var str = y + "-" + m + "-" + d + " " + h + ":" + M + ":" + s;
+		return str;
+	}
 </script>

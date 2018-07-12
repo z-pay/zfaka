@@ -100,7 +100,6 @@ layui.define(['layer', 'form','base64','laytpl'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				var list = res.data;
 				if(device.weixin==true || device.android==true || device.ios==true){
 					var getTpl = demo.innerHTML
 					,view = document.getElementById('query-ajax-mobile-view');
@@ -110,6 +109,7 @@ layui.define(['layer', 'form','base64','laytpl'], function(exports){
 					
 				}else{
 					var html = "";
+					var list = res.data;
 					for (var i = 0, j = list.length; i < j; i++) {
 						var orderstatus = converStatus(list[i]);
 						html += '<tr><td><span id="orderid">'+list[i].orderid+'</span></td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
