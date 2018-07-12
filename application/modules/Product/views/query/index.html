@@ -109,7 +109,7 @@
 												{{#  if(item.status == '0'){ }}
 												<div class="layui-form-item">
 													<div class="layui-input-block">
-														<a class="layui-btn" id="buy" href="/product/order/pay/?oid={{ $.base64.encode(item.id)}}">去支付</a>  
+														<a class="layui-btn" id="buy" href="/product/order/pay/?oid={{ item.id}}">去支付</a>  
 													</div>
 												</div>
 												{{# }else if(item.status =="2"){ }}
