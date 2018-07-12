@@ -104,7 +104,7 @@
 			aMenu[2].className += ' layui-this';
 		}
 		<?php else:?>
-		if (aName.indexOf('/product/query') == 0) {
+		if (aName.indexOf('/product/query') > -1) {
 			aMenu[1].className += ' layui-this';
 		} else if (aName.indexOf('/product') > -1) {
 			aMenu[0].className += ' layui-this';
