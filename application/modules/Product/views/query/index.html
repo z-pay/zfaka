@@ -62,6 +62,26 @@
 								</tbody>
 							</table>
 						</div>
+						<div id="query-ajax-mobile-view"></div>
+						<script id="query-ajax-mobile-view-tpl" type="text/html">
+							<div class="layui-tab">
+							  <ul class="layui-tab-title">
+								 {{#  layui.each(d.list, function(index, item){ }}
+								<li {{# if(index ==0){ }}class="layui-this"{{# } }}>订单{{ index }}</li>
+								 {{#  }); }}
+							  </ul>
+							  <div class="layui-tab-content">
+								<div class="layui-tab-item layui-show">内容1</div>
+								<div class="layui-tab-item">内容2</div>
+								<div class="layui-tab-item">内容3</div>
+								<div class="layui-tab-item">内容4</div>
+								<div class="layui-tab-item">内容5</div>
+							  </div>
+							</div>
+						  {{#  if(d.list.length === 0){ }}
+							<blockquote class="layui-elem-quote">无数据....</blockquote>
+						  {{#  } }} 
+						</script>
                         <?php else:?>
 						<div class="layui-table-querey layui-hide-xs">
                         <table class="layui-table" id="query-table">
@@ -159,7 +179,6 @@
 										</div>
 									</div>
 									<?php endif;?>
-								
 							</div>
 						</div>
                         <?php endif;?>

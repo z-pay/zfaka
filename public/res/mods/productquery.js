@@ -1,7 +1,8 @@
-layui.define(['layer', 'form','base64'], function(exports){
+layui.define(['layer', 'form','base64','device'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
+	var device = layui.device();	
 	
 	function createTime(v){
 		var date = new Date();
@@ -98,17 +99,23 @@ layui.define(['layer', 'form','base64'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				var html = "";
-				var addon = "";
-				var orderstatus = "";
-				var oid = "";
 				var list = res.data;
-				for (var i = 0, j = list.length; i < j; i++) {
-					orderstatus = converStatus(list[i]);
-					html += '<tr><td><span id="orderid">'+list[i].orderid+'</span></td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
+				if(device.weixin==true || device.android==true || device.ios==true){
+					var getTpl = $('#query-ajax-mobile-view-tpl').innerHTML
+					,view = document.getElementById('query-ajax-mobile-view');
+					laytpl(getTpl).render(res, function(html){
+					  view.innerHTML = html;
+					});
+					
+				}else{
+					var html = "";
+					for (var i = 0, j = list.length; i < j; i++) {
+						var orderstatus = converStatus(list[i]);
+						html += '<tr><td><span id="orderid">'+list[i].orderid+'</span></td><td>'+list[i].productname+'</td><td>'+list[i].number+'</td><td>'+list[i].money+'</td><td>'+createTime(list[i].addtime)+'</td><td>'+orderstatus+'</td></tr>';
+					}
+					$("#query-table tbody").prepend(html);
+					$("#query-table").show();
 				}
-				$("#query-table tbody").prepend(html);
-				$("#query-table").show();
 				$(".view_kami").click(function(){});
 				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
