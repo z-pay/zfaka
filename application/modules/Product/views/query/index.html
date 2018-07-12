@@ -17,7 +17,7 @@
             </blockquote>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
-                    <div class="layui-form-pane">
+                    <div class="layui-form-pane" id="query-table">
                         <?php if($querymethod == 'ajax'):?>
                         <form class="layui-form">
                             <div class="layui-form-item">
@@ -46,8 +46,7 @@
                             </div>
                         </form>
 						<div class="layui-table-zlkb">
-							<table class="layui-table" id="query-table" style="display: none;">
-								</colgroup>
+							<table class="layui-table" style="display: none;">
 								<thead>
 									<tr>
 										<th>订单ID</th>
@@ -65,7 +64,7 @@
 						</div>
                         <?php else:?>
 						<div class="layui-table-querey layui-hide-xs">
-                        <table class="layui-table" id="query-table">
+                        <table class="layui-table">
                             <thead>
                                 <tr>
                                     <th>订单ID</th>
@@ -116,7 +115,7 @@
 						<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
 							<div class="layui-card-header">订单信息-<?php echo $cnstatus[$order['status']];?></div>
 							<div class="layui-card-body" id="prodcut_num">
-								<form class="layui-form" action="">
+								
 									<div class="layui-form-item">
 										<label class="layui-form-label">订单</label>
 										<div class="layui-input-block">
@@ -160,7 +159,7 @@
 										</div>
 									</div>
 									<?php endif;?>
-								</form>
+								
 							</div>
 						</div>
                         <?php endif;?>
