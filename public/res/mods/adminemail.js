@@ -10,7 +10,7 @@ layui.define(['layer', 'form'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/email/ajax',
+			url: '/'+ADMIN_DIR+'/email/ajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,

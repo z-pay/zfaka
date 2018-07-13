@@ -7,7 +7,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	//拖拽上传
 	upload.render({
 		elem: '#import_cards'
-		,url: '/admin/productscard/importajax/'
+		,url: '/'+ADMIN_DIR+'/productscard/importajax/'
 		,auto: false
 		,accept: 'file' //普通文件
 		,exts: 'txt' //只允许txt文件
@@ -23,7 +23,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		var formData = new FormData(document.getElementById("import_table"));
 		$.ajax({
-			url: '/admin/productscard/importajax',
+			url: '/'+ADMIN_DIR+'/productscard/importajax',
 			type: 'POST',
 			dataType: 'json',
 			data:formData,
@@ -66,7 +66,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 
 	table.render({
 		elem: '#table',
-		url: '/admin/productscard/ajax',
+		url: '/'+ADMIN_DIR+'/productscard/ajax',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
@@ -85,7 +85,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/productscard/addajax',
+			url: '/'+ADMIN_DIR+'/productscard/addajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,
@@ -122,7 +122,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/productscard/addajax',
+			url: '/'+ADMIN_DIR+'/productscard/addajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,
@@ -155,7 +155,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	});
     form.on('submit(search)', function(data){
         table.reload('table', {
-            url: '/admin/productscard/ajax',
+            url: '/'+ADMIN_DIR+'/productscard/ajax',
             where: data.field
         });
         return false;

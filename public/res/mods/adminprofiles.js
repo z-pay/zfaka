@@ -31,7 +31,7 @@ layui.define(['layer', 'form'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/profiles/passwordajax',
+			url: '/'+ADMIN_DIR+'/profiles/passwordajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,

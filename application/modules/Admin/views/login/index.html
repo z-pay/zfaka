@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>登录-管理系统</title>
@@ -14,6 +13,7 @@
     <link rel="stylesheet" href="/res/css/admin/login.css">
     <script>
     var TOKEN = "<?php echo $csrf_token;?>";
+	var ADMIN_DIR = "<?php echo ADMIN_DIR;?>";
     if (self != top) {
         top.location = self.location;
     }

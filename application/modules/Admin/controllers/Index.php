@@ -18,7 +18,7 @@ class IndexController extends AdminBasicController
     {
 		if(file_exists(INSTALL_LOCK)){
 			if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-				$this->redirect(ADMIN_DIR."/login");
+				$this->redirect('/'.ADMIN_DIR."/login");
 				return FALSE;
 			}else{
 				$version = @file_get_contents(INSTALL_LOCK);

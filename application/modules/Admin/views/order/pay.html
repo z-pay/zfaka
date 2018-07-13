@@ -4,8 +4,8 @@
     <div class="fly-panel fly-panel-user" pad20>
         <div class="layui-tab layui-tab-brief" lay-filter="email">
             <ul class="layui-tab-title" id="LAY_mine">
-                <li class="" lay-id="info"><a href="/admin/order/">订单管理</a></li>
-                <li lay-id="info"><a href="/admin/order/view/?id=<?php echo $order['id'];?>">查看</a></li>
+                <li class="" lay-id="info"><a href="/<?php echo ADMIN_DIR;?>/order/">订单管理</a></li>
+                <li lay-id="info"><a href="/<?php echo ADMIN_DIR;?>/order/view/?id=<?php echo $order['id'];?>">查看</a></li>
 				<li class="layui-this" lay-id="info">确认付款</li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">

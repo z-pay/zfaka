@@ -18,7 +18,7 @@ class SettingController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 
@@ -70,7 +70,7 @@ class SettingController extends AdminBasicController
     public function editAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$id = $this->get('id');
@@ -80,7 +80,7 @@ class SettingController extends AdminBasicController
 			$data['item'] =$item;
 			$this->getView()->assign($data);
 		}else{
-            $this->redirect("/admin/setting");
+            $this->redirect('/'.ADMIN_DIR."/setting");
             return FALSE;
 		}
     }

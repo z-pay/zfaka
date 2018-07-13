@@ -20,7 +20,7 @@ class LoginController extends AdminBasicController
     {
 		if(file_exists(INSTALL_LOCK)){
 			if ($this->AdminUser) {
-				$this->redirect('/admin');
+				$this->redirect('/'.ADMIN_DIR);
 				return FALSE;
 			}
 			$data = array();

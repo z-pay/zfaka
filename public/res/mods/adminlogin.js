@@ -17,14 +17,14 @@ layui.define(['layer', 'form'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/login/ajax/',
+			url: '/'+ADMIN_DIR+'/login/ajax/',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,
 		})
 		.done(function(res) {
 			if (res.code == '1') {
-				location.pathname = '/admin'
+				location.pathname = '/'+ADMIN_DIR;
 			} else {
 				$('.loadcode').attr('src','/Captcha?t=adminlogin&n=' + Math.random());
 				layer.msg(res.msg,{icon:2,time:5000});

@@ -23,7 +23,7 @@ class ProductsController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 
@@ -73,7 +73,7 @@ class ProductsController extends AdminBasicController
     public function editAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$id = $this->get('id');
@@ -87,7 +87,7 @@ class ProductsController extends AdminBasicController
 			
 			$this->getView()->assign($data);
 		}else{
-            $this->redirect("/admin/products");
+            $this->redirect('/'.ADMIN_DIR."/products");
             return FALSE;
 		}
     }
@@ -95,7 +95,7 @@ class ProductsController extends AdminBasicController
     public function addAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 

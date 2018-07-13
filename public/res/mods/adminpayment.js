@@ -6,7 +6,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 
 	table.render({
 		elem: '#payment',
-		url: '/admin/payment/ajax',
+		url: '/'+ADMIN_DIR+'/payment/ajax',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
@@ -25,7 +25,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/payment/editajax',
+			url: '/'+ADMIN_DIR+'/payment/editajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,

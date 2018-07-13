@@ -11,7 +11,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 		
 	table.render({
 		elem: '#table',
-		url: '/admin/products/ajax',
+		url: '/'+ADMIN_DIR+'/products/ajax',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
@@ -45,7 +45,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/admin/products/updateqtyajax",
+            url: '/'+ADMIN_DIR+'/products/updateqtyajax',
             data: { "csrf_token": TOKEN,'pid':pid},
             success: function(res) {
                 if (res.code == 1) {
@@ -75,7 +75,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 		data.field.description = layedit.getContent(edit_description);
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/admin/products/editajax',
+			url: '/'+ADMIN_DIR+'/products/editajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,
@@ -109,7 +109,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 	
     form.on('submit(search)', function(data){
         table.reload('table', {
-            url: '/admin/products/ajax',
+            url: '/'+ADMIN_DIR+'/products/ajax',
             where: data.field
         });
         return false;

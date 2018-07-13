@@ -20,7 +20,7 @@ class ProductscardController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 
@@ -83,7 +83,7 @@ class ProductscardController extends AdminBasicController
     public function addAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$data = array();
@@ -97,7 +97,7 @@ class ProductscardController extends AdminBasicController
     public function addplusAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$data = array();
@@ -214,7 +214,7 @@ class ProductscardController extends AdminBasicController
     public function importAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$data = array();
@@ -294,7 +294,7 @@ class ProductscardController extends AdminBasicController
     public function downloadAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$data = array();
@@ -308,7 +308,7 @@ class ProductscardController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
 		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		

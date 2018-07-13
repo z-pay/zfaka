@@ -18,7 +18,7 @@ class PaymentController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 
@@ -68,7 +68,7 @@ class PaymentController extends AdminBasicController
     public function editAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$id = $this->get('id');
@@ -78,7 +78,7 @@ class PaymentController extends AdminBasicController
 			$data['item'] =$item;
 			$this->getView()->assign($data);
 		}else{
-            $this->redirect("/admin/payment");
+            $this->redirect('/'.ADMIN_DIR."/payment");
             return FALSE;
 		}
     }

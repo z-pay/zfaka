@@ -22,7 +22,7 @@ class OrderController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$data = array();
@@ -87,7 +87,7 @@ class OrderController extends AdminBasicController
 	public function viewAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$id = $this->get('id');
@@ -98,11 +98,11 @@ class OrderController extends AdminBasicController
 				$data['order'] = $order;
 				$this->getView()->assign($data);
 			}else{
-				$this->redirect("/admin/order");
+				$this->redirect('/'.ADMIN_DIR."/order");
 				return FALSE;
 			}
 		}else{
-            $this->redirect("/admin/order");
+            $this->redirect('/'.ADMIN_DIR."/order");
             return FALSE;
 		}
     }
@@ -138,7 +138,7 @@ class OrderController extends AdminBasicController
 	public function payAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$id = $this->get('id');
@@ -147,18 +147,18 @@ class OrderController extends AdminBasicController
 			$order = $this->m_order->SelectByID('',$id);
 			if(is_array($order) AND !empty($order)){
 				if($order['status']>0){
-					$this->redirect("/admin/order/view/?id=".$order['id']);
+					$this->redirect('/'.ADMIN_DIR."/order/view/?id=".$order['id']);
 					return FALSE;
 				}else{
 					$data['order'] = $order;
 					$this->getView()->assign($data);
 				}
 			}else{
-				$this->redirect("/admin/order");
+				$this->redirect('/'.ADMIN_DIR."/order");
 				return FALSE;
 			}
 		}else{
-            $this->redirect("/admin/order");
+            $this->redirect('/'.ADMIN_DIR."/order");
             return FALSE;
 		}
     }
@@ -199,7 +199,7 @@ class OrderController extends AdminBasicController
 	public function sendAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		$id = $this->get('id');
@@ -211,15 +211,15 @@ class OrderController extends AdminBasicController
 					$data['order'] = $order;
 					$this->getView()->assign($data);
 				}else{
-					$this->redirect("/admin/order/view/?id=".$order['id']);
+					$this->redirect('/'.ADMIN_DIR."/order/view/?id=".$order['id']);
 					return FALSE;
 				}
 			}else{
-				$this->redirect("/admin/order");
+				$this->redirect('/'.ADMIN_DIR."/order");
 				return FALSE;
 			}
 		}else{
-            $this->redirect("/admin/order");
+            $this->redirect('/'.ADMIN_DIR."/order");
             return FALSE;
 		}
     }

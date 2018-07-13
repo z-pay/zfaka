@@ -6,7 +6,7 @@ layui.define(['layer', 'table'], function(exports){
 
 	table.render({
 		elem: '#emailqueue',
-		url: '/admin/emailqueue/ajax',
+		url: '/'+ADMIN_DIR+'/emailqueue/ajax',
 		page: true,
 		cellMinWidth:60,
 		cols: [[

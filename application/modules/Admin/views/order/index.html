@@ -77,9 +77,9 @@
                     <span class="layui-badge layui-bg-black">处理失败</span> {{# } }}
                 </script>
                 <script type="text/html" id="opt">
-					<a class="layui-btn layui-btn-warm layui-btn-xs" href="/admin/order/view/?id={{d.id}}">查看</a> 
+					<a class="layui-btn layui-btn-warm layui-btn-xs" href="/<?php echo ADMIN_DIR;?>/order/view/?id={{d.id}}">查看</a> 
                     {{# if(d.status =='0' || d.status =='2'){ }}
-					<a data-href="/admin/order/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+					<a data-href="/<?php echo ADMIN_DIR;?>/order/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
 					{{# } }}
                 </script>
             </div>

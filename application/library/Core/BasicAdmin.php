@@ -36,7 +36,7 @@ class AdminBasicController extends BasicController
     //消息显示
     public function show_message($code = '', $msg = '', $url = '/')
     {
-        $this->forward("Admin", 'Showmsg', 'index', array('code' => $code, 'msg' => $msg, 'url' => $url));
+        $this->forward(ADMIN_DIR, 'Showmsg', 'index', array('code' => $code, 'msg' => $msg, 'url' => $url));
         return FALSE;
     }
 
@@ -46,7 +46,7 @@ class AdminBasicController extends BasicController
         if ($this->AdminUser['id'] > 0) {
 
         } else {
-            jsRedirect('/admin/login');
+            jsRedirect(ADMIN_DIR.'/login');
         }
     }
 

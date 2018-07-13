@@ -9,7 +9,7 @@ layui.define(['layer', 'form'], function(exports){
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/admin/index/updatecheckajax",
+            url: '/'+ADMIN_DIR+'/index/updatecheckajax',
             timeout: 10000, //ajax请求超时时间10s
             data: {"csrf_token": TOKEN,'method':"updatecheck"}, //post数据
             success: function (res, textStatus) {

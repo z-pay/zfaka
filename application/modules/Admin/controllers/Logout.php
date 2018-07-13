@@ -13,16 +13,12 @@ class LogoutController extends AdminBasicController
     {
         parent::init();
         Yaf\Dispatcher::getInstance()->disableView();
-        if (!$this->AdminUser) {
-            $this->redirect('/admin/login');
-            return FALSE;
-        }
     }
 
     public function indexAction()
     {
         Yaf\Session::getInstance()->__unset('AdminUser');
-        $this->redirect('/admin/login');
+        $this->redirect('/'.ADMIN_DIR.'/login');
         return FALSE;
     }
 
