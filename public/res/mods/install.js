@@ -77,7 +77,7 @@ layui.define(['layer', 'form'], function(exports){
 					,btnAlign: 'c' 
 					,shade: 0 
 					,yes: function(){
-						location.href = '/admin/';
+						location.href = '/'+ADMIN_DIR;
 					}
 				});
 			} else {

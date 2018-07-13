@@ -18,7 +18,7 @@ class UpgradeController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect("/admin/login");
+            $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
 		if(file_exists(INSTALL_LOCK)){
@@ -44,7 +44,7 @@ class UpgradeController extends AdminBasicController
 				$data['version'] = $version;
 				$this->getView()->assign($data);
 			}else{
-				$this->redirect("/admin/");
+				$this->redirect('/'.ADMIN_DIR);
 				return FALSE;
 			}
 		}else{
