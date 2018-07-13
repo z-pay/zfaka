@@ -102,6 +102,9 @@
 ### 2.3 系统配置
 >参考：[系统配置指南](https://github.com/zlkbdotnet/zfaka/wiki/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97)
 
+### 2.4 后台安全
+>参考： [后台地址安全增强处理](https://github.com/zlkbdotnet/zfaka/wiki/%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80%E5%AE%89%E5%85%A8%E5%A2%9E%E5%BC%BA%E5%A4%84%E7%90%86)
+
 # 三、系统升级
 > 升级时，请直接下载最新代码后直接覆盖，登录后台即可按照提示完成升级；
 
