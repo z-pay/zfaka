@@ -19,7 +19,17 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
 	{
 		\Yaf\Loader::import(APP_PATH . '/vendor/autoload.php');
 	}
-    public function _initRoute() {}
+    public function _initRoute() {
+        $router = Yaf\Dispatcher::getInstance()->getRouter();
+        //授权商品
+        $products_detail = new Yaf\Route\Regex(
+            '#product/([0-9]+).html#',
+            array('module' => 'product', 'controller' => 'detail', 'action' => 'index'),
+            array(1 => 'pid')
+        );
+        $router->addRoute('products_detail', $products_detail);			
+		
+	}
 	
     public function _initPlugin(\Yaf\Dispatcher $dispatcher)
 	{
