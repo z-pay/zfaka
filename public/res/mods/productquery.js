@@ -108,7 +108,7 @@ layui.define(['layer', 'form','base64','laytpl'], function(exports){
 					});
 					$("#query-form").hide();
 				}else{
-					$("#query-table tbody").prepend("<tr></tr>");
+					$("#query-table tbody").html("<tr></tr>");
 					var html = "";
 					var list = res.data;
 					for (var i = 0, j = list.length; i < j; i++) {
