@@ -46,6 +46,7 @@
     <a class="layui-btn layui-btn-warm layui-btn-xs" href="/<?php echo ADMIN_DIR;?>/products/edit/?id={{d.id}}">编辑</a>
 	{{# if(d.active == 0){ }}
 	<a data-href="/<?php echo ADMIN_DIR;?>/products/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+	 {{# } else { }}
 	 {{# } }}
 </script>
 <!--引入公共底文件-->
