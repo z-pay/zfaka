@@ -42,6 +42,9 @@ layui.define(['layer', 'form'], function(exports){
         });
     }
 
-	checkUpdate();
+	form.on('submit(check)', function(data){
+		checkUpdate();
+		return false;
+	});
 	exports('adminindex',null)
 });

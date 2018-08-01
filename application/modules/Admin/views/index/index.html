@@ -7,9 +7,41 @@
                 <li class="layui-this" lay-id="info">我的主页</li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
-                <div class="layui-form layui-form-pane layui-tab-item">
-                    <div class="layui-form-item">
-                    </div>
+                <div class="layui-form-pane layui-tab-item layui-show">
+					<div class="layui-card">
+							<div class="layui-card-header">版本信息</div>
+							<div class="layui-card-body layui-text">
+							  <table class="layui-table">
+								<colgroup>
+								  <col width="100">
+								  <col>
+								</colgroup>
+								<tbody>
+								  <tr>
+									<td>当前版本</td>
+									<td><?php echo VERSION;?></td>
+								  </tr>
+								  <tr>
+									<td>基于框架</td>
+									<td>YAF+layui</td>
+								  </tr>
+								  <tr>
+									<td>作者</td>
+									<td>资料空白</td>
+								  </tr>
+								  <tr>
+									<td>获取渠道</td>
+									<td style="padding-bottom: 0;">
+									  <div class="layui-btn-container">
+										<button class="layui-btn layui-btn-danger" lay-submit="" lay-filter="check">检查更新</button>
+										<a href="https://github.com/zlkbdotnet/zfaka/" target="_blank" class="layui-btn">去STAR</a>
+									  </div>
+									</td>
+								  </tr>
+								</tbody>
+							  </table>
+							</div>
+						</div>
                 </div>
             </div>
         </div>
