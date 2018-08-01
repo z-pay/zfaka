@@ -48,10 +48,11 @@ class IndexController extends AdminBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$up_version = $this->_getUpdateVersion();
 				if(version_compare(trim(VERSION), trim($up_version), '<' )){
-					$params = array('url'=>$this->github_url,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
+					$params = array('update'=>1,'url'=>$this->github_url,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
 					$data = array('code' => 1, 'msg' => '有更新','data'=>$params);
 				}else{
-					$data = array('code' => 1002, 'msg' => '没有更新');
+					$params = array('update'=>0,'url'=>$this->github_url);
+					$data = array('code' => 1, 'msg' => '没有更新','data'=>$params);
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
