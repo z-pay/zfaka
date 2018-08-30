@@ -210,7 +210,7 @@ class ProductscardController extends AdminBasicController
 						$where = "id in ({$idss})";
 						$delete = $this->m_products_card->Where($where)->Update(array('isdelete'=>1));
 						if($delete){
-							foreach($ids AS $idd){
+							foreach($ids['ids'] AS $idd){
 								//减少商品数量
 								$cards = $this->m_products_card->SelectByID('pid',$idd);
 								$qty_m = array('qty' => 'qty-1');
