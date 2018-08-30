@@ -189,18 +189,24 @@ class ProductscardController extends AdminBasicController
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
-		print_r($id);
-		if($id AND $id>0 AND $csrf_token){
+		
+		if($csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$delete = $this->m_products_card->UpdateByID(array('isdelete'=>1),$id);
-				if($delete){
-					//减少商品数量
-					$cards = $this->m_products_card->SelectByID('pid',$id);
-					$qty_m = array('qty' => 'qty-1');
-					$this->m_products->Where(array('id'=>$cards['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
-					$data = array('code' => 1, 'msg' => '成功');
+				if($id AND is_numeric($id) AND $id>0){
+					$delete = $this->m_products_card->UpdateByID(array('isdelete'=>1),$id);
+					if($delete){
+						//减少商品数量
+						$cards = $this->m_products_card->SelectByID('pid',$id);
+						$qty_m = array('qty' => 'qty-1');
+						$this->m_products->Where(array('id'=>$cards['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
+						$data = array('code' => 1, 'msg' => '成功');
+					}else{
+						$data = array('code' => 1003, 'msg' => '删除失败');
+					}
 				}else{
-					$data = array('code' => 1003, 'msg' => '删除失败');
+					$ids = json_decode($id);
+					print_r($ids);
+					
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
