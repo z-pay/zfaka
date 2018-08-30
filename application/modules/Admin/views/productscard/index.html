@@ -39,6 +39,9 @@
 								<button lay-submit class="layui-btn" lay-filter="search">查询</button>
 							</div>
 						</div>
+						<div class="layui-inline ms-company-btn">
+							<button class="layui-btn layui-btn-danger" id="deleteALL"><i class="layui-icon">&#xe640;</i>批量删除</button>
+						</div>
                         <table class="layui-table" id="table" lay-filter="table"></table>
                     </div>
                 </div>
@@ -79,11 +82,6 @@
     </div>
 </div>
 </div>
-<script type="text/html" id="toolbarDemo">
-  <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="delCheckData">删除选中项</button>
-  </div>
-</script>
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
