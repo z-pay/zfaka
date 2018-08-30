@@ -204,9 +204,25 @@ class ProductscardController extends AdminBasicController
 						$data = array('code' => 1003, 'msg' => '删除失败');
 					}
 				}else{
-					$ids = json_decode($id);
-					print_r($ids);
-					
+					$ids = json_decode($id,true);
+					if(isset($ids['ids']) AND !empty($ids['ids'])){
+						$idss = implode(",",$ids['ids']);
+						$where = "id in '{$idss}'";
+						$delete = $this->m_products_card->Where($where)->Update(array('isdelete'=>1));
+						if($delete){
+							foreach($ids AS $idd){
+								//减少商品数量
+								$cards = $this->m_products_card->SelectByID('pid',$idd);
+								$qty_m = array('qty' => 'qty-1');
+								$this->m_products->Where(array('id'=>$cards['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
+							}
+							$data = array('code' => 1, 'msg' => '成功');
+						}else{
+							$data = array('code' => 1003, 'msg' => '删除失败');
+						}
+					}else{
+						$data = array('code' => 1000, 'msg' => '请选中需要删除的卡密');
+					}
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');

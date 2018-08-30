@@ -106,7 +106,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 				})
 			})
 		}else{
-			layer.msg('请选中需要删除的人员',{icon: 2});
+			layer.msg('请选中需要删除的卡密',{icon: 2});
 		}
 	});
   
