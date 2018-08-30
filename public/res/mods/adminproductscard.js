@@ -97,7 +97,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 					type: "POST"
 				})
 				.done(function (data) {
-				if (data.code == 0) {
+				if (data.code == 1) {
 					layer.msg(data.msg, {icon: 1});
 					location.reload();
 				} else {
