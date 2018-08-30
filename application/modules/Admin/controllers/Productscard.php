@@ -207,7 +207,7 @@ class ProductscardController extends AdminBasicController
 					$ids = json_decode($id,true);
 					if(isset($ids['ids']) AND !empty($ids['ids'])){
 						$idss = implode(",",$ids['ids']);
-						$where = "id in '{$idss}'";
+						$where = "id in ({$idss})";
 						$delete = $this->m_products_card->Where($where)->Update(array('isdelete'=>1));
 						if($delete){
 							foreach($ids AS $idd){
