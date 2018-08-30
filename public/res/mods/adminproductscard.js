@@ -67,9 +67,11 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	table.render({
 		elem: '#table',
 		url: '/'+ADMIN_DIR+'/productscard/ajax',
+		toolbar: '#toolbarDemo',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
+			{type: 'checkbox', fixed: 'left'},
 			{field: 'id', title: 'ID', width:80},
 			{field: 'name', title: '商品名'},
 			{field: 'card', title: '卡密'},
@@ -79,7 +81,41 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 		]]
 	});
 
-
+	//头工具栏事件
+	table.on('toolbar(table)', function(obj){
+		var checkStatus = table.checkStatus(obj.config.id);
+		switch(obj.event){
+			case 'delCheckData':
+				var data = checkStatus.data;
+				var ids=[];
+				for(var i in data){
+					ids.push(data[i].id);
+				}
+				if(ids.length>0){
+					layer.confirm('确认删除选中卡密吗？', function(index) {
+						var param = {'ids': ids};
+						$.ajax({
+							url: '/'+ADMIN_DIR+'/productscard/delete',//请求的url地址
+							dataType: 'json',//返回的格式为json
+							data: {'id': JSON.stringify(param),'csrf_token':TOKEN},//参数值
+							type: "POST"
+						})
+							.done(function (data) {
+								if (data.code == 0) {
+									layer.msg(data.msg, {icon: 1});
+									location.reload();
+								} else {
+									layer.msg(data.msg, {icon: 2});
+								}
+							})
+					})
+				}else{
+					layer.msg('请选中需要删除的人员',{icon: 2});
+				}
+			break;
+		};
+	});
+  
 	//添加
 	form.on('submit(add)', function(data){
 		data.field.csrf_token = TOKEN;

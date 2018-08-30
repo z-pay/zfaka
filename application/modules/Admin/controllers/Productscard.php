@@ -189,7 +189,7 @@ class ProductscardController extends AdminBasicController
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
-		
+		print_r($id);
 		if($id AND $id>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$delete = $this->m_products_card->UpdateByID(array('isdelete'=>1),$id);
