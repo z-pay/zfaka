@@ -138,7 +138,7 @@ class OrderController extends AdminBasicController
 							$data = array('code' => 1003, 'msg' => '删除失败');
 						}
 					}else{
-						//print_r($ids);
+						print_r($ids);
 						$data = array('code' => 1000, 'msg' => '请选中需要删除的订单');
 					}
 				}	
