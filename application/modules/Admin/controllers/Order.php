@@ -113,7 +113,7 @@ class OrderController extends AdminBasicController
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
-		$id = $this->get('id');
+		$id = $this->get('id',false);
 		$csrf_token = $this->getPost('csrf_token', false);
         if ($csrf_token) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
