@@ -113,7 +113,7 @@ class OrderController extends AdminBasicController
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
-		$id = $this->get('id');
+		$id = $this->getPost('id');
 		$csrf_token = $this->getPost('csrf_token', false);
         if ($csrf_token) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
@@ -138,6 +138,7 @@ class OrderController extends AdminBasicController
 							$data = array('code' => 1003, 'msg' => '删除失败');
 						}
 					}else{
+						//print_r($ids);
 						$data = array('code' => 1000, 'msg' => '请选中需要删除的订单');
 					}
 				}	
