@@ -115,17 +115,32 @@ class OrderController extends AdminBasicController
         }
 		$id = $this->get('id');
 		$csrf_token = $this->getPost('csrf_token', false);
-        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+        if ($csrf_token) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$where1 = array('id'=>$id);
-				$where = '(status=0 or status=2)';//已完成和未支付的才可以删
-				$delete = $this->m_order->Where($where1)->Where($where)->Update(array('isdelete'=>1));
-				if($delete){
-					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				if($id AND is_numeric($id) AND $id>0){
+					$where1 = array('id'=>$id);
+					$where = '(status=0 or status=2)';//已完成和未支付的才可以删
+					$delete = $this->m_order->Where($where1)->Where($where)->Update(array('isdelete'=>1));
+					if($delete){
+						$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+					}else{
+						$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+					}
 				}else{
-					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
-				}
-				
+					$ids = json_decode($id,true);
+					if(isset($ids['ids']) AND !empty($ids['ids'])){
+						$idss = implode(",",$ids['ids']);
+						$where = "(status=0 or status=2) and id in ({$idss})";
+						$delete = $this->m_order->Where($where)->Update(array('isdelete'=>1));
+						if($delete){
+							$data = array('code' => 1, 'msg' => '成功');
+						}else{
+							$data = array('code' => 1003, 'msg' => '删除失败');
+						}
+					}else{
+						$data = array('code' => 1000, 'msg' => '请选中需要删除的订单');
+					}
+				}	
 			} else {
                 $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
             }
