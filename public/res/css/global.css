@@ -51,7 +51,7 @@ input.readonly{
     color: #C9C9C9;
 }
 
-
+.money-item strong {color: red;line-height: 25px;font-size: 15px;font-family: Arial;padding: 0 10px;margin-right: 10px;border-radius: 5px;box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);}
 
 
 
