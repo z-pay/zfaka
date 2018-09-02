@@ -17,6 +17,34 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 			//console.log(res)
 		}
 	});
+	
+	form.on('select(typeid)', function(data){
+		if (data.value == 0) return;
+		$.ajax({
+			url: '/'+ADMIN_DIR+'/product/getproductbytid',
+			type: 'POST',
+			dataType: 'json',
+			data: {'tid': data.value,'csrf_token':TOKEN},
+			beforeSend: function () {
+			},
+			success: function (res) {
+				if (res.code == '1') {
+					var html = "";
+					var list = res.data.products;
+					for (var i = 0, j = list.length; i < j; i++) {
+						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
+					}
+					$('#productlist').html("<option value=\"0\">请选择</option>" + html);
+					form.render('select');
+				} else {
+					form.render('select');
+					layer.msg(res.msg,{icon:2,time:5000});
+				}
+			}
+
+		});
+	});
+	
 	//导入
 	form.on('submit(import)', function(data){
 		data.field.csrf_token = TOKEN;
