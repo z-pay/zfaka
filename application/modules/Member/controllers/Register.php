@@ -37,29 +37,38 @@ class RegisterController extends PcBasicController
 		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password',false);
 		$nickname = $this->getPost('nickname',false);
-		$vercode = $this->getPost('vercode',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		if($email AND $password AND $nickname AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isEmail($email)){
-					if(strtolower($this->getSession('registerCaptcha')) ==strtolower($vercode)){
-						$this->unsetSession('registerCaptcha');
-						//检查邮箱是否已经使用
-						$checkEmailUser = $this->m_user->checkEmail($email);
-						if(empty($checkEmailUser)){
-							$m = array('email'=>$email,'password'=>$password,'nickname'=>$nickname);
-							$newUser = $this->m_user->newRegister($m);
-							if($newUser){
-								$data = array('code' => 1, 'msg' =>'success');
+					if(isset($this->config['yzm_switch']) AND $this->config['yzm_switch']>0){
+						$vercode = $this->getPost('vercode',false);
+						if($vercode){
+							if(strtolower($this->getSession('registerCaptcha')) == strtolower($vercode)){
+								$this->unsetSession('registerCaptcha');
 							}else{
-								$data = array('code' => 1002, 'msg' =>'注册失败');
+								$data=array('code'=>1004,'msg'=>'图形验证码错误');
+								Helper::response($data);
 							}
 						}else{
-							$data=array('code'=>1005,'msg'=>'邮箱已存在');
+							$data = array('code' => 1000, 'msg' => '丢失参数');
+							Helper::response($data);
+						}
+					}
+
+						//检查邮箱是否已经使用
+					$checkEmailUser = $this->m_user->checkEmail($email);
+					if(empty($checkEmailUser)){
+						$m = array('email'=>$email,'password'=>$password,'nickname'=>$nickname);
+						$newUser = $this->m_user->newRegister($m);
+						if($newUser){
+							$data = array('code' => 1, 'msg' =>'success');
+						}else{
+							$data = array('code' => 1002, 'msg' =>'注册失败');
 						}
 					}else{
-						$data=array('code'=>1004,'msg'=>'图形验证码错误');
+						$data=array('code'=>1005,'msg'=>'邮箱已存在');
 					}
 				}else{
 					 $data = array('code' => 1003, 'msg' => '邮箱账户有误!');
