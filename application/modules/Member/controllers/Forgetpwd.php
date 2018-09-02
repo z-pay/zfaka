@@ -108,15 +108,29 @@ class ForgetpwdController extends PcBasicController
 	public function ajaxAction()
 	{
 		$email    = $this->getPost('email',false);
-		$vercode = $this->getPost('vercode',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
 		
-		if($email AND $vercode AND $csrf_token){
+		if($email AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isEmail($email)){
-					if(strtolower($this->getSession('forgetpwdCaptcha')) ==strtolower($vercode)){
+					if(isset($this->config['yzm_switch']) AND $this->config['yzm_switch']>0){
+						$vercode = $this->getPost('vercode',false);
+						if($vercode){
+							if(strtolower($this->getSession('forgetpwdCaptcha')) == strtolower($vercode)){
+								$this->unsetSession('forgetpwdCaptcha');
+							}else{
+								$data=array('code'=>1004,'msg'=>'图形验证码错误');
+								Helper::response($data);
+							}
+						}else{
+							$data = array('code' => 1000, 'msg' => '丢失参数');
+							Helper::response($data);
+						}
+					}	
+					
+
 						$checkEmailUser = $this->m_user->checkEmail($email);
 						if(!empty($checkEmailUser)){
 								//1.查询该用户当天找回密码次数
@@ -178,9 +192,6 @@ class ForgetpwdController extends PcBasicController
 						}else{
 							$data = array('code' => 1002, 'msg' =>'邮箱不存在');
 						}
-					}else{
-						 $data = array('code' => 1003, 'msg' => '验证码错误!');
-					}
 				} else {
 					$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
 				}

@@ -18,6 +18,7 @@
                                     <input type="text" id="L_email" name="email" required lay-verify="required|email" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
+							<?php if(isset($config['yzm_switch']) AND $config['yzm_switch']>0):?>
                             <div class="layui-form-item" style="position: relative;">
                                 <label for="L_vercode" class="layui-form-label">图形验证</label>
                                 <div class="layui-input-inline">
@@ -27,6 +28,7 @@
                                     <span style="color: #c00;"><img src="/Captcha?t=forgetpwd" alt="图片验证码" height="36" class="loadcode"></span>
                                 </div>
                             </div>
+							<?php endif;?>
                             <div class="layui-form-item">
                                 <button class="layui-btn" alert="1" lay-filter="forgetpwd" lay-submit>提交</button>
                             </div>
