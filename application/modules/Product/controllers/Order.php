@@ -67,13 +67,6 @@ class OrderController extends PcBasicController
 						}
 					}
 					
-					//进行同一商品，禁止重复下单的判断
-					$total = $this->m_order->Where(array('email'=>$email,'status'=>0,'pid'=>$pid,'isdelete'=>0))->Where("addtime>={$starttime} and addtime<={$endtime}")->Total();
-					if($total>0){
-						$data = array('code' => 1007, 'msg' => '处理失败,商品限制重复下单,请直接查询订单进行支付');
-						Helper::response($data);
-					}
-					
 					//记录用户uid
 					if($this->login AND $this->userid){
 						$userid = $this->userid;

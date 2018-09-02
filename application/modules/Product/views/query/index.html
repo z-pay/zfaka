@@ -32,6 +32,7 @@
                                     <input type="password" id="L_chapwd" name="chapwd" required lay-verify="required" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
+							<?php if(isset($config['yzm_switch']) AND $config['yzm_switch']>0):?>
                             <div class="layui-form-item" style="position: relative;">
                                 <label for="L_vercode" class="layui-form-label">图形验证</label>
                                 <div class="layui-input-inline">
@@ -41,6 +42,7 @@
                                     <img src="/Captcha?t=productquery" alt="图片验证码" height="36" class="loadcode">
                                 </div>
                             </div>
+							<?php endif;?>
                             <div class="layui-form-item">
                                 <button class="layui-btn" lay-filter="query" lay-submit>查询</button>
                             </div>

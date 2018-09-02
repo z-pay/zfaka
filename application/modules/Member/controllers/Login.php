@@ -35,26 +35,34 @@ class LoginController extends PcBasicController
 	{
 		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password',false);
-		$vercode = $this->getPost('vercode',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
-		if($email AND $password AND $csrf_token AND $vercode){
+		if($email AND $password AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isEmail($email)){
-					if(strtolower($this->getSession('loginCaptcha')) ==strtolower($vercode)){
-						$this->unsetSession('loginCaptcha');
-						$checkUser = $this->m_user->checkLogin($email,$password);
-						if($checkUser){
-							//写入登录日志 
-							$m=array('userid'=>$checkUser['id'],'ip'=>getClientIP(),'addtime'=>time());
-							$this->m_user_login_logs->Insert($m);
-							
-							$data = array('code' => 1, 'msg' =>'success');
+					if(isset($this->config['yzm_switch']) AND $this->config['yzm_switch']>0){
+						$vercode = $this->getPost('vercode',false);
+						if($vercode){
+							if(strtolower($this->getSession('loginCaptcha')) == strtolower($vercode)){
+								$this->unsetSession('loginCaptcha');
+							}else{
+								$data=array('code'=>1004,'msg'=>'图形验证码错误');
+								Helper::response($data);
+							}
 						}else{
-							$data = array('code' => 1002, 'msg' =>'账户密码错误');
+							$data = array('code' => 1000, 'msg' => '丢失参数');
+							Helper::response($data);
 						}
+					}
+
+					$checkUser = $this->m_user->checkLogin($email,$password);
+					if($checkUser){
+						//写入登录日志 
+						$m=array('userid'=>$checkUser['id'],'ip'=>getClientIP(),'addtime'=>time());
+						$this->m_user_login_logs->Insert($m);
+						$data = array('code' => 1, 'msg' =>'success');
 					}else{
-						$data=array('code'=>1004,'msg'=>'图形验证码错误');
+						$data = array('code' => 1002, 'msg' =>'账户密码错误');
 					}
 				}else{
 					 $data = array('code' => 1003, 'msg' => '邮箱账户有误!');
