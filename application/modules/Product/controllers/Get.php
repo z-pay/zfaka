@@ -29,7 +29,7 @@ class GetController extends PcBasicController
 				$data['products'] = $products;
 				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
 			} else {
-                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+                $result = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
 		}else{
 			$result = array('code' => 1000, 'msg' => '参数错误');

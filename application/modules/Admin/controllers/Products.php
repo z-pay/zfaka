@@ -244,7 +244,7 @@ class ProductsController extends AdminBasicController
        Helper::response($data);
     }
 	
-    public function getproductbytidAction()
+    public function getlistbytidAction()
     {
 		$tid = $this->getPost('tid');
 		$csrf_token = $this->getPost('csrf_token', false);
@@ -258,7 +258,7 @@ class ProductsController extends AdminBasicController
 				$data['products'] = $products;
 				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
 			} else {
-                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+                $result = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
 		}else{
 			$result = array('code' => 1000, 'msg' => '参数错误');

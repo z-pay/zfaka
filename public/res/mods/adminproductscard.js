@@ -21,7 +21,7 @@ layui.define(['layer', 'table', 'form','upload'], function(exports){
 	form.on('select(typeid)', function(data){
 		if (data.value == 0) return;
 		$.ajax({
-			url: '/'+ADMIN_DIR+'/product/getproductbytid',
+			url: '/'+ADMIN_DIR+'/products/getlistbytid',
 			type: 'POST',
 			dataType: 'json',
 			data: {'tid': data.value,'csrf_token':TOKEN},
