@@ -49,7 +49,6 @@
 							  });
 							}
 							,yes: function(){
-								layer.closeAll();
 								queryRadio = 0;
 								clearInterval(myTimer);
 							}
