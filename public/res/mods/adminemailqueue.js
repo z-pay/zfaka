@@ -10,6 +10,7 @@ layui.define(['layer', 'table'], function(exports){
 		page: true,
 		cellMinWidth:60,
 		cols: [[
+			{type: 'checkbox', fixed: 'left'},
 			{field: 'id', title: 'ID', width:80},
 			{field: 'email', title: '收件人', minWidth:160},
 			{field: 'subject', title: '主题', minWidth:160},
