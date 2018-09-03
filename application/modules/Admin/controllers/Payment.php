@@ -131,7 +131,7 @@ class PaymentController extends AdminBasicController
 				if(isset($rsa_private_key) AND strlen($rsa_private_key)>0){
 					$m['rsa_private_key']=$rsa_private_key;
 				}
-				if(isset($overtime) AND is_numeric($overtime) AND $overtime>0){
+				if(isset($overtime) AND is_numeric($overtime)){
 					$m['overtime']=$overtime;
 				}
 				if($method == 'edit' AND $id>0){
