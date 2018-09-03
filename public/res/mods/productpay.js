@@ -75,6 +75,7 @@
 							,id: 'layerPayone' //防止重复弹出
 							,content: html
 							,btn: '关闭'
+							,closeBtn: 0
 							,btnAlign: 'c' //按钮居中
 							,shade: 0.8 //不显示遮罩
 							,yes: function(){

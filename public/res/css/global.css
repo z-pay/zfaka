@@ -601,6 +601,7 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .mod-title .text {font-size: 20px;color: #333;font-weight: normal;vertical-align: middle}
 .mod-content{text-align: center;}
 .mod-content img{margin-left: 20px;margin-right: 20px;}
+.time-item {margin-bottom: 10px;}
 .time-item strong {background: #3ec742;color: #fff;line-height: 25px;font-size: 15px;font-family: Arial;padding: 0 10px;margin-right: 10px;border-radius: 5px;box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);}
 .item-title {background: none;line-height: 25px;font-size: 24px;padding: 0 10px;float: left;}
 #prodcut_description {vertical-align: middle;word-break:break-all;overflow:auto;white-space:normal; }
