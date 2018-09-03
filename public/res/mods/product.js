@@ -14,6 +14,11 @@
 				}
 			}
 		}
+		,chapwd: function(value, item){ //value：表单的值、item：表单的DOM对象
+			if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+				return '查询密码不能有特殊字符';
+			}
+		}
 	});	
 	
     function htmlspecialchars_decode(str){
