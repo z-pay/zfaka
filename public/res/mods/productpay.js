@@ -17,36 +17,70 @@
             success: function(res) {
                 if (res.code == 1) {
 					queryRadio = 1;
-					if(res.data.overtime>0){
-						timer(res.data.overtime,paymethod);
-						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
-						html += '<div class="money-item">支付金额：<strong>'+res.data.money+'</strong></div>';
-						html +='<div id="time-item_'+paymethod+'" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>00秒</strong>';
-						html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
-					}else{
-						var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
-						html += '<div class="money-item">支付金额：<strong>'+res.data.money+'</strong></div>';
-						html +='<div id="time-item" class="time-item"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
-					}
-					layer.open({
-						type: 1
-						,title: false
-						,offset: 'auto'
-						,id: 'layerPayone' //防止重复弹出
-						,content: html
-						,btn: '关闭'
-						,btnAlign: 'c' //按钮居中
-						,shade: 0.8 //不显示遮罩
-						,yes: function(){
-							layer.closeAll();
-							queryRadio = 0;
-							clearInterval(myTimer);
+					
+					if(res.data.type>0){
+						if(res.data.overtime>0){
+							timer(res.data.overtime,paymethod);
+							var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="/res/images/pay/load.gif" alt="'+res.data.payname+'" width="230" height="230">';
+							html += '<div class="money-item">支付金额：<strong>'+res.data.money+'</strong></div>';
+							html +='<div id="time-item_'+paymethod+'" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>00秒</strong>';
+							html +='<p>即将跳转至'+res.data.payname+'进行支付</p><p>支付完请手工刷新此页面</p></div></div>';
+						}else{
+							var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="/res/images/pay/load.gif" alt="'+res.data.payname+'" width="230" height="230">';
+							html += '<div class="money-item">支付金额：<strong>'+res.data.money+'</strong></div>';
+							html +='<div id="time-item" class="time-item"><p>即将跳转至'+res.data.payname+'进行支付</p><p>支付完请手工刷新此页面</p></div></div>';
 						}
-						,cancel: function(){ 
-						   queryRadio = 0;
-						   clearInterval(myTimer);
-						} 
-					});
+						layer.open({
+							type: 1
+							,title: false
+							,closeBtn: true
+							,area: '300px;'
+							,shade: 0.8
+							,id: 'LAY_layuipro'
+							,btn: ['点击支付', '放弃支付']
+							,btnAlign: 'c'
+							,moveType: 1 //拖拽模式，0或者1
+							,content: html
+							,success: function(layero){
+							  var btn = layero.find('.layui-layer-btn');
+							  btn.find('.layui-layer-btn0').attr({
+								href: res.data.url
+								,target: '_blank'
+							  });
+							}
+						  });
+					}else{
+						if(res.data.overtime>0){
+							timer(res.data.overtime,paymethod);
+							var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
+							html += '<div class="money-item">支付金额：<strong>'+res.data.money+'</strong></div>';
+							html +='<div id="time-item_'+paymethod+'" class="time-item"><strong id="hour_show_'+paymethod+'"><s id="h"></s>0时</strong><strong id="minute_show_'+paymethod+'"><s></s>05分</strong><strong id="second_show_'+paymethod+'"><s></s>00秒</strong>';
+							html +='<p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
+						}else{
+							var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode" src="'+res.data.qr+'" alt="'+res.data.payname+'" width="230" height="230">';
+							html += '<div class="money-item">支付金额：<strong>'+res.data.money+'</strong></div>';
+							html +='<div id="time-item" class="time-item"><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
+						}
+						layer.open({
+							type: 1
+							,title: false
+							,offset: 'auto'
+							,id: 'layerPayone' //防止重复弹出
+							,content: html
+							,btn: '关闭'
+							,btnAlign: 'c' //按钮居中
+							,shade: 0.8 //不显示遮罩
+							,yes: function(){
+								layer.closeAll();
+								queryRadio = 0;
+								clearInterval(myTimer);
+							}
+							,cancel: function(){ 
+							   queryRadio = 0;
+							   clearInterval(myTimer);
+							} 
+						});
+					}
 					queryPay();
                 } else {
 					layer.msg(res.msg,{icon:2,time:5000});

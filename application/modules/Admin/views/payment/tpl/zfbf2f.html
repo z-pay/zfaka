@@ -22,14 +22,29 @@
                                 <input type="text" id="app_id" name="app_id" required lay-verify="required" autocomplete="off" value="<?php echo $item['app_id'];?>" class="layui-input">
                             </div>
                         </div>
-						
-                        <div class="layui-form-item">
-                            <label for="app_secret" class="layui-form-label">密钥</label>
-                            <div class="layui-input-inline">
-								<input type="text" id="app_secret" name="app_secret" required lay-verify="required" autocomplete="off" value="<?php echo $item['app_secret'];?>" class="layui-input">
+
+                        <div class="layui-form-item layui-form-text">
+                            <label for="ali_public_key" class="layui-form-label">ali_public_key</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="" id="ali_public_key" name="ali_public_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['ali_public_key'];?></textarea>
                             </div>
                         </div>
-
+                        <div class="layui-form-item layui-form-text">
+                            <label for="rsa_private_key" class="layui-form-label">rsa_private_key</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="" id="rsa_private_key" name="rsa_private_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['rsa_private_key'];?></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">签名方式</label>
+                            <div class="layui-input-inline">
+                                <select name="sign_type" lay-filter="required">
+                                    <option value=""></option>
+                                    <option value="RSA">RSA</option>
+                                    <option value="RSA2" selected="">RSA2</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">是否激活</label>
                             <div class="layui-input-inline">
