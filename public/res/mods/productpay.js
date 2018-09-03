@@ -48,6 +48,15 @@
 								,target: '_blank'
 							  });
 							}
+							,yes: function(){
+								layer.closeAll();
+								queryRadio = 0;
+								clearInterval(myTimer);
+							}
+							,cancel: function(){ 
+							   queryRadio = 0;
+							   clearInterval(myTimer);
+							} 
 						  });
 					}else{
 						if(res.data.overtime>0){
