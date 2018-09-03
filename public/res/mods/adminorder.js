@@ -20,7 +20,7 @@ layui.define(['layer', 'table', 'form'], function(exports){
 			{field: 'status', title: '状态', width:80, templet: '#status',align:'center'},
 			{field: 'paymoney', title: '支付金额',width:80},
 			{field: 'number', title: '数量',width:80},
-			{field: 'opt', title: '操作', templet: '#opt',align:'center',fixed: 'right', width: 160,},
+			{field: 'opt', title: '操作', templet: '#opt',align:'center',fixed: 'right', width: 160},
 		]]
 	});
     $('#deleteALL').on('click',function () {
