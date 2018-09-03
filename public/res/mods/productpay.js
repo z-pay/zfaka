@@ -49,7 +49,6 @@
 							  });
 							}
 							,yes: function(){
-								queryRadio = 0;
 								clearInterval(myTimer);
 							}
 							,cancel: function(){ 
