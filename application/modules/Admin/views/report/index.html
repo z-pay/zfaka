@@ -15,9 +15,31 @@
 								<colgroup>
 								  <col width="100">
 								  <col>
+								  <col>
 								</colgroup>
+								<thead>
+								  <tr>
+									<th></th>
+									<th>订单</th>
+									<th>收入</th>
+								  </tr> 
+								</thead>
 								<tbody>
-
+								  <tr>
+									<td>今日</td>
+									<td><?php echo $today_report['total'];?></td>
+									<td><?php echo $today_report['money'];?></td>
+								  </tr>
+								  <tr>
+									<td>本月</td>
+									<td><?php echo $month_report['total'];?></td>
+									<td><?php echo $month_report['money'];?></td>
+								  </tr>
+								  <tr>
+									<td>总计</td>
+									<td><?php echo $total_report['total'];?></td>
+									<td><?php echo $total_report['money'];?></td>
+								  </tr>
 								</tbody>
 							  </table>
 							</div>
