@@ -29,7 +29,7 @@ class ReportController extends AdminBasicController
 		$today_report = array();
 		$starttime = strtotime(date("Y-m-d"));
 		$endtime = strtotime(date("Y-m-d 23:59:59"));
-		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status=1 AND addtime>={$starttime} AND addtime<={$endtime}";
+		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status>0 AND addtime>={$starttime} AND addtime<={$endtime}";
 		$total_result = $this->m_order->Query($sql);
 		if(is_array($total_result) AND !empty($total_result)){
 			$today_report['total'] = $total_result[0]['total'];
@@ -41,9 +41,12 @@ class ReportController extends AdminBasicController
 		$data['today_report'] = $today_report;
 		//当月统计
 		$month_report = array();
-		$firstday = strtotime(date('Y-m-01', strtotime(date("Y-m-d"))));
-		$lastday = strtotime(date('Y-m-d 23:59:59', strtotime("{$firstday} +1 month -1 day")));
-		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status=1 AND addtime>={$firstday} AND addtime<={$lastday}";
+		$firstday = date('Y-m-01', strtotime(date("Y-m-d")));
+		$lastday = date('Y-m-d', strtotime("{$firstday} +1 month -1 day"));
+		$firstday = strtotime($firstday);
+		$lastday = strtotime($lastday);
+		
+		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status>0 AND addtime>={$firstday} AND addtime<={$lastday}";
 		$total_result = $this->m_order->Query($sql);
 		if(is_array($total_result) AND !empty($total_result)){
 			$month_report['total'] = $total_result[0]['total'];
@@ -55,7 +58,7 @@ class ReportController extends AdminBasicController
 		$data['month_report'] = $month_report;
 		//总计
 		$total_report = array();
-		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status=1";
+		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status>0";
 		$total_result = $this->m_order->Query($sql);
 		if(is_array($total_result) AND !empty($total_result)){
 			$total_report['total'] = $total_result[0]['total'];
