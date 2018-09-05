@@ -87,7 +87,7 @@
                         <div class="layui-form-item" id="addonsinput" <?php if($product['auto']=='1' ):?> style="display:none" <?php endif;?>>
                             <label for="addons" class="layui-form-label">附加输入框</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="addons" name="addons" autocomplete="off" value="" class="layui-input">
+                                <input type="text" id="addons" name="addons" autocomplete="off" value="<?php echo $product['addons'];?>" class="layui-input">
                             </div>
 							<div class="layui-form-mid layui-word-aux">自定义输入框，显示在商品订购页; A,B</div>
                         </div>
