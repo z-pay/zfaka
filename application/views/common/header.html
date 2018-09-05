@@ -49,7 +49,7 @@
 			<ul class="layui-nav fly-nav-user">
 				<li class="layui-nav-item layui-hide-lg layui-hide-md layui-hide-sm layadmin-flexible">
 					<a href="javascript:;" title="侧边伸缩">
-					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch"></i>
+					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch" style="font-size: 16px;"></i>
 					</a>
 				</li>
 			 </ul>
@@ -126,10 +126,13 @@
 		<dd><a href="/member/">我的账户</a></dd>
 		<dd><a href="/product">购买商品</a></dd>
 		<dd><a href="/help">帮助中心</a></dd>
+		<dd><a href="/member/logout/">退出</a></dd>
 		<?php else:?>
 		<dd><a href="/product/">购买商品</a></dd>
 		<dd><a href="/product/query">查询订单</a></dd>
-		 <?php endif;?>
+		<dd><a href="/member/login/">登录</a></dd>
+		<?php if(isset($config['is_open_register']) AND $config['is_open_register']>0):?> <dd><a href="/member/register/">注册</a></dd><?php endif;?>
+		<?php endif;?>
     </dl>
   </li>
 </ul>
