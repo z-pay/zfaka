@@ -98,6 +98,7 @@ class PaymentController extends AdminBasicController
 		$app_secret = $this->getPost('app_secret',false);
 		$ali_public_key = $this->getPost('ali_public_key',false);
 		$rsa_private_key = $this->getPost('rsa_private_key',false);
+		$configure3 = $this->getPost('configure3',false);
 		$active = $this->getPost('active',false);
 		$overtime = $this->getPost('overtime',false);
 		$csrf_token = $this->getPost('csrf_token', false);
@@ -130,6 +131,9 @@ class PaymentController extends AdminBasicController
 				}
 				if(isset($rsa_private_key) AND strlen($rsa_private_key)>0){
 					$m['rsa_private_key']=$rsa_private_key;
+				}
+				if(isset($configure3) AND strlen($configure3)>0){
+					$m['configure3']=$configure3;
 				}
 				if(isset($overtime) AND is_numeric($overtime)){
 					$m['overtime']=$overtime;

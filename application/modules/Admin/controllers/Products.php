@@ -115,6 +115,7 @@ class ProductsController extends AdminBasicController
 		$qty = $this->getPost('qty',false);
 		$price = $this->getPost('price',false);
 		$auto = $this->getPost('auto',false);
+		$addons = $this->getPost('addons',false);
 		$active = $this->getPost('active',false);
 		$sort_num = $this->getPost('sort_num',false);
 		$csrf_token = $this->getPost('csrf_token', false);
@@ -137,6 +138,7 @@ class ProductsController extends AdminBasicController
 					'qty'=>$qty,
 					'price'=>$price,
 					'auto'=>$auto,
+					'addons'=>$addons,
 					'active'=>$active,
 					'sort_num'=>$sort_num,
 				);

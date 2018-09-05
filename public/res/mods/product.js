@@ -112,6 +112,13 @@
 					
 					html = str + htmlspecialchars_decode(product.description);
 					$('#prodcut_description').html(html);
+					
+					var addons = '';
+					var list = res.data.addons;
+					for (var i = 0, j = list.length; i < j; i++) {
+						addons += '<div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div>';
+					}
+					$('#prodcut_num').append(addons);
 					autoHeight();
 					form.render();
 				} else {

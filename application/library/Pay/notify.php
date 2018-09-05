@@ -121,6 +121,9 @@ class notify
 							//4.2.2通知管理员,定时任务去执行
 							if(isEmail($web_config['admin_email'])){
 								$content = '用户:' . $order['email'] . ',购买的商品['.$order['productname'].'],属于手工发货类型，请尽快联系他!';
+								if($order['addons']){
+									$content .='订单附加信息：'.$order['addons'];
+								}
 								$m[] = array('email'=>$web_config['admin_email'],'subject'=>'用户购买商品','content'=>$content,'addtime'=>time(),'status'=>0);
 							}
 							if(!empty($m)){

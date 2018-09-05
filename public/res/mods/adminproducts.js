@@ -37,6 +37,15 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 			$("#qty").attr("disabled","true");
 		}
 	});  
+	
+	form.on('radio(auto)', function(data){
+		if(data.value=='1'){
+			$('#addonsinput').hide();
+		}else{
+			$('#addonsinput').show();
+		}
+	});  
+	
 	//更新库存
 	$("#products_form").on("click","#updateQty",function(event){
 		event.preventDefault();

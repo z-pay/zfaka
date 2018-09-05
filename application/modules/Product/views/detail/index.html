@@ -57,6 +57,20 @@
                                 <input type="text" name="chapwd" id="chapwd" class="layui-input" required lay-verify="required" placeholder="将作为自助查询订单重要依据">
                             </div>
                         </div>
+						
+						<?php if(!empty($addons)):?>
+						<?php foreach($addons AS $key=>$addon):?>
+							<?php if($addon):?>
+								<div class="layui-form-item">
+									<label class="layui-form-label"><?php echo $addon;?></label>
+									<div class="layui-input-block">
+										<input type="text" name="addons[]" id="addons<?php echo $key;?>" class="layui-input" required lay-verify="required" placeholder="">
+									</div>
+								</div>
+							<?php endif;?>
+						<?php endforeach;?>
+						<?php endif;?>
+						
                         <div class="layui-form-item">
                             <div class="layui-input-block">
 								<input type="hidden" name="stockcontrol" id="stockcontrol" value="<?php echo $product['stockcontrol'];?>">

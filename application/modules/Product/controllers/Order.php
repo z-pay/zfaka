@@ -29,6 +29,7 @@ class OrderController extends PcBasicController
 		$number = ceil($this->getPost('number'));
 		$email = $this->getPost('email');
 		$chapwd = $this->getPost('chapwd');
+		$addons = $this->getPost('addons');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0 AND $email AND isEmail($email) AND $chapwd AND $csrf_token){
@@ -67,6 +68,22 @@ class OrderController extends PcBasicController
 						}
 					}
 					
+					//对附加输入进行判断
+					if($product['addons']){
+						$p_addons = explode(',',$product['addons']);
+						if(count($p_addons)>count($addons)){
+							$data = array('code' => 1006, 'msg' => '自定义内容不能为空!');
+							Helper::response($data);
+						}
+						$o_addons = '';
+						foreach($addons AS $k=>$addon){
+							$o_addons .= $p_addons[$k].":".$addon.";";
+						}
+					}else{
+						$o_addons = '';
+					}
+					
+					
 					//记录用户uid
 					if($this->login AND $this->userid){
 						$userid = $this->userid;
@@ -95,6 +112,7 @@ class OrderController extends PcBasicController
 						'chapwd'=>$chapwd,
 						'ip'=>$myip,
 						'status'=>0,
+						'addons'=>$o_addons,
 						'addtime'=>time(),
 					);
 					$id=$this->m_order->Insert($m);

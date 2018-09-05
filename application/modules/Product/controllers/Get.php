@@ -45,12 +45,19 @@ class GetController extends PcBasicController
 		if($pid AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$data = array();
-				$field = array('id', 'name', 'price','auto', 'qty', 'stockcontrol', 'description');
+				$field = array('id', 'name', 'price','auto', 'qty', 'stockcontrol', 'description','addons');
 				$product = $this->m_products->Field($field)->Where(array('id'=>$pid))->SelectOne();
 				$data['product'] = $product;
+				
+				if($product['addons']){
+					$addons = explode(',',$product['addons']);
+					$data['addons'] = $addons;
+				}else{
+					$data['addons'] = array();
+				}
 				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
 			} else {
-                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+                $result = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }
 		}else{
 			$result = array('code' => 1000, 'msg' => '参数错误');
