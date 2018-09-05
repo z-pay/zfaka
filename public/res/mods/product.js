@@ -119,8 +119,8 @@
 						addons += '<div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div>';
 					}
 					$('#product_input').append(addons);
-					autoHeight();
 					form.render();
+					autoHeight();
 				} else {
 					layer.msg(res.msg,{icon:2,time:5000});
 				}
