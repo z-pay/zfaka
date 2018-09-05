@@ -25,11 +25,7 @@
         <div class="layui-container">
              <div class="layui-hide-xs"><a class="fly-logo" href="/"><img src="/res/images/logo.png" alt="layui"></a></div>
             <ul class="layui-nav fly-nav" id="webmenu">
-				<li class="layui-nav-item layui-hide-lg layui-hide-md layui-hide-sm layadmin-flexible">
-					<a href="javascript:;" title="侧边伸缩">
-					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch"></i>
-					</a>
-				</li>
+				<li></li>
                 <?php if($login):?>
                 <li class="layui-nav-item layui-hide-xs">
                     <a href="/member">我的账户</a>
@@ -49,7 +45,16 @@
                 </li>
                 <?php endif;?>
             </ul>
-            <ul class="layui-nav fly-nav-user">
+			
+			<ul class="layui-nav fly-nav-user">
+				<li class="layui-nav-item layui-hide-lg layui-hide-md layui-hide-sm layadmin-flexible">
+					<a href="javascript:;" title="侧边伸缩">
+					<i class="layui-icon layui-icon-spread-left" id="main-menu-mobile-switch"></i>
+					</a>
+				</li>
+			 </ul>
+			 
+            <ul class="layui-nav fly-nav-user layui-hide-xs">
                 <?php if($login):?>
                 <li class="layui-nav-item">
                     <a class="fly-nav-avatar" href="javascript:;">
