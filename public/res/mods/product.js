@@ -119,6 +119,7 @@
 						addons += '<div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div>';
 					}
 					$('#product_input').append(addons);
+					$('#prodcut_num').height('auto');
 					form.render();
 					autoHeight();
 				} else {
