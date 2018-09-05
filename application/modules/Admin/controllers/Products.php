@@ -129,6 +129,11 @@ class ProductsController extends AdminBasicController
 		
 		if($method AND $typeid AND $name AND $description AND is_numeric($stockcontrol) AND is_numeric($qty) AND is_numeric($price) AND is_numeric($auto) AND is_numeric($active) AND is_numeric($sort_num) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				if($price<0.01){
+					$data = array('code' => 1000, 'msg' => '价格设置错误');
+					Helper::response($data);
+				}
+				
 				$description = str_replace(array("\r","\n","\t"), "", $description);
 				$m=array(
 					'typeid'=>$typeid,
