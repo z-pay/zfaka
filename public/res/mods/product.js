@@ -65,8 +65,8 @@
 					$('#qty').val('');
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
-					autoHeight();
 					form.render('select');
+					autoHeight();
 				} else {
 					$("#buy").attr("disabled","true");
 					form.render('select');
