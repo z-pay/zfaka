@@ -205,6 +205,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `paymethod` varchar(255) NOT NULL DEFAULT '' COMMENT '支付渠道',
   `paymoney` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '支付总金额',
   `kami` text COMMENT '卡密',
+  `addons` text NOT NULL COMMENT '备注',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -220,11 +221,12 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
   `payname` varchar(55) NOT NULL DEFAULT '' COMMENT '显示名称',
   `payimage` varchar(250) NOT NULL DEFAULT '' COMMENT '图片',
   `alias` varchar(55) NOT NULL DEFAULT '' COMMENT '别名',
-  `sign_type` enum('RSA','RSA2') NOT NULL DEFAULT 'RSA2',
+  `sign_type` enum('RSA','RSA2','MD5') NOT NULL DEFAULT 'RSA2',
   `app_id` varchar(255) NOT NULL DEFAULT '',
   `app_secret` varchar(255) NOT NULL DEFAULT '',
   `ali_public_key` text,
   `rsa_private_key` text,
+  `configure3` text NOT NULL COMMENT '配置3',
   `overtime` int(11) NOT NULL DEFAULT '0' COMMENT '支付超时,0是不限制',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
@@ -233,12 +235,13 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
 -- 转存表中的数据 `t_payment`
 --
 
-INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`,`overtime`, `active`) VALUES
-(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '',0, 0),
-(2, '码支付-支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '', 300, 0),
-(3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '',300, 0),
-(4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '',300, 0),
-(5, '支付宝电脑网站支付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbweb', 'RSA2', '2018********', '', '', '', 0, 0);
+INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `configure3`,`overtime`, `active`) VALUES
+(1, '支付宝当面付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbf2f', 'RSA2', '', '', '', '','',0, 0),
+(2, '码支付-支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '', '',300, 0),
+(3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '','',300, 0),
+(4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '','',300, 0),
+(5, '支付宝电脑网站支付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbweb', 'RSA2', '2018********', '', '', '', '',0, 0);
+(6, '微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'wxf2f', 'MD5', '', '', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -256,6 +259,7 @@ CREATE TABLE IF NOT EXISTS `t_products` (
   `qty` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `auto` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0手动,1自动',
+  `addons` text NOT NULL COMMENT '备注',
   `sort_num` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
