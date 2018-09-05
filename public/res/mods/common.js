@@ -24,6 +24,7 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 	
 	if(device.weixin || device.android || device.ios){
 		$(".layui-form-item").addClass("layui-form-text");
+		$(".layui-input-inline").attr("class", "layui-input-block");
 	}
 	
   layui.focusInsert = function(obj, str){
