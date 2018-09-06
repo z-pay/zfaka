@@ -21,7 +21,12 @@ class QueryController extends PcBasicController
 		$orderid  = $this->get('orderid',false);
 		if($orderid){
 			$data['order'] = $data['cnstatus'] = array();
-			$order_email = $this->getSession('order_email');
+			if (false != $this->login AND $this->userid) {
+				$order_email = $this->uinfo['email'];
+			}else{
+				$order_email = $this->getSession('order_email');
+			}
+			
 			if($order_email){
 				$order = $this->m_order->Where(array('orderid'=>$orderid,'email'=>$order_email))->Where(array('isdelete'=>0))->SelectOne();
 				if(!empty($order)){
