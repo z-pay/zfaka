@@ -240,7 +240,7 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (2, '码支付-支付宝扫码支付', '支付宝', '/res/images/pay/alipay.jpg', 'codepayalipay', 'RSA2', '', '', '', '', '',300, 0),
 (3, '码支付-QQ扫码支付', '手机QQ', '/res/images/pay/qqpay.jpg', 'codepayqq', 'RSA2', '', '', '', '','',300, 0),
 (4, '码支付-微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'codepaywx', 'RSA2', '', '', '', '','',300, 0),
-(5, '支付宝电脑网站支付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbweb', 'RSA2', '2018********', '', '', '', '',0, 0);
+(5, '支付宝电脑网站支付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbweb', 'RSA2', '2018********', '', '', '', '',0, 0),
 (6, '微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'wxf2f', 'MD5', '', '', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
