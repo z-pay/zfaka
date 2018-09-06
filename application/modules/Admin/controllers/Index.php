@@ -68,7 +68,7 @@ class IndexController extends AdminBasicController
 	{
 		$version = VERSION;
 		try{
-			$version_reg = '#<a href="/zlkbdotnet/zfaka/archive/(.*?).zip" rel="nofollow">#';//列表规则 
+			$version_reg = '#<a href="/zlkbdotnet/zfaka/archive/(.*?).zip"#';//列表规则 
 			$version_html= $this->_get_url_contents($this->github_url,array());
 			$version_html=mb_convert_encoding($version_html, 'utf-8', 'gbk');
 			preg_match_all($version_reg , $version_html , $cate_matches); 
