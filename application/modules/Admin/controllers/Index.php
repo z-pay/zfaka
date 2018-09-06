@@ -9,6 +9,7 @@
 class IndexController extends AdminBasicController
 {
 	private $github_url = "https://github.com/zlkbdotnet/zfaka/releases";
+	private $remote_version = '';
     public function init()
     {
         parent::init();
@@ -51,7 +52,7 @@ class IndexController extends AdminBasicController
 					$params = array('update'=>1,'url'=>$this->github_url,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
 					$data = array('code' => 1, 'msg' => '有更新','data'=>$params);
 				}else{
-					$params = array('update'=>0,'url'=>$this->github_url);
+					$params = array('update'=>0,'url'=>$this->github_url,'remote_version'=>$this->remote_version);
 					$data = array('code' => 1, 'msg' => '没有更新','data'=>$params);
 				}
 			} else {
@@ -75,6 +76,7 @@ class IndexController extends AdminBasicController
 				$up_version = trim($cate_matches[1][0]);
 				if(strlen($up_version)==5){
 					$version = $up_version;
+					$this->remote_version = $up_version;
 				}
 			}
 		} catch(\Exception $e) {
