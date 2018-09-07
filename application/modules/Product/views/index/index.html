@@ -59,12 +59,21 @@
 								</div>
 							</div>
 							<?php else:?>
-							<div class="layui-form-item">
-								<label class="layui-form-label">邮箱账户</label>
-								<div class="layui-input-block">
-									<input type="text" name="email" id="email" class="layui-input" required lay-verify="required|email">
+								<?php if(isset($config['order_input_type']) AND $config['order_input_type'] == '2'):?>
+								<div class="layui-form-item">
+									<label class="layui-form-label">QQ</label>
+									<div class="layui-input-block">
+										<input type="text" name="qq" id="qq" class="layui-input" required lay-verify="required|number">
+									</div>
 								</div>
-							</div>
+								<?php else:?>
+								<div class="layui-form-item">
+									<label class="layui-form-label">邮箱账户</label>
+									<div class="layui-input-block">
+										<input type="text" name="email" id="email" class="layui-input" required lay-verify="required|email">
+									</div>
+								</div>
+								<?php endif;?>
 							<?php endif;?>
 							<div class="layui-form-item">
 								<label class="layui-form-label">查询密码</label>

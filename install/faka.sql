@@ -84,7 +84,8 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (7, 1, 'web_description', '本系统由资料空白开发', '当前站点描述', 1, 1453452674),
 (8, 1, 'notice', '本系统商品均可正常购买。开源下载地址：github地址:&lt;a href=&quot;https://github.com/zlkbdotnet/zfaka/&quot; target=&quot;_blank&quot;&gt;https://github.com/zlkbdotnet/zfaka/&lt;/a&gt;', '首页公告', 1, 1453452674),
 (9, 1, 'ad', '&lt;image src=&quot;/res/images/pay/supportme.jpg&quot;&gt;', '购买页默认内容', 1, 1453452674),
-(10, 1, 'yzm_switch', '1', '验证码开关(1开，0关)', 1, 1453452674);
+(10, 1, 'yzm_switch', '1', '验证码开关(1开，0关)', 1, 1453452674),
+(11, 1, 'order_input_type', '2', '订单必填输入框选择: 1邮箱 2QQ', 1, 1453452674);
 
 -- --------------------------------------------------------
 
@@ -191,6 +192,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `orderid` varchar(55) NOT NULL DEFAULT '0' COMMENT '订单号',
   `userid` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱',
+  `qq` varchar(50) NOT NULL COMMENT 'QQ号码',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '产品id',
   `productname` varchar(255) NOT NULL DEFAULT '' COMMENT '订单名称',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '单价',

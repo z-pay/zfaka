@@ -27,13 +27,31 @@ class OrderController extends PcBasicController
 		//下订单
 		$pid = ceil($this->getPost('pid'));
 		$number = ceil($this->getPost('number'));
-		$email = $this->getPost('email');
 		$chapwd = $this->getPost('chapwd');
 		$addons = $this->getPost('addons');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
-		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0 AND $email AND isEmail($email) AND $chapwd AND $csrf_token){
+		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND $chapwd AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				if(isset($this->config['order_input_type']) AND $this->config['order_input_type']=='2'){
+					$qq = $this->getPost('qq');
+					if($qq AND is_numeric($qq)){
+						$email = $qq.'@qq.com';
+					}else{
+						$data = array('code' => 1006, 'msg' => '丢失参数');
+						Helper::response($data);
+					}
+				}else{
+					$email = $this->getPost('email',false);
+					if($email AND isEmail($email)){
+						$qq = '';
+					}else{
+						$data = array('code' => 1006, 'msg' => '丢失参数');
+						Helper::response($data);
+					}
+				}
+				
+				
 				$product = $this->m_products->Where(array('id'=>$pid,'active'=>1,'isdelete'=>0))->SelectOne();
 				if(!empty($product)){
 					$myip = getClientIP();
@@ -104,6 +122,7 @@ class OrderController extends PcBasicController
 						'orderid'=>$orderid,
 						'userid'=>$userid,
 						'email'=>$email,
+						'qq'=>$qq,
 						'pid'=>$pid,
 						'productname'=>$product['name'],
 						'price'=>$product['price'],
