@@ -156,7 +156,8 @@ CREATE TABLE IF NOT EXISTS `t_email_queue` (
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '发送时间',
   `sendtime` int(11) NOT NULL DEFAULT '0' COMMENT '发送时间',
   `sendresult` text COMMENT '发送错误',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0,未发送 ，1已发送，-1,失败'
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0,未发送 ，1已发送，-1,失败',
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
