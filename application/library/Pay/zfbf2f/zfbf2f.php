@@ -52,7 +52,7 @@ class zfbf2f
 		}
 	}
 	
-	public function notify(array $payconfig,array $params)
+	public function notify(array $payconfig)
 	{
 		try {
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
