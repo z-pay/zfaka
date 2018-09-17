@@ -71,8 +71,10 @@ class codepayalipay
 	
 	
 	//处理返回
-	public function notify($payconfig,$params)
+	public function notify($payconfig)
 	{
+		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
+		$params = $_POST;
 		ksort($params); //排序post参数
 		reset($params); //内部指针指向数组中的第一个元素
 		$sign = '';

@@ -63,9 +63,10 @@ class wxf2f
 		}
 	}
 	
-	public function notify(array $payconfig,array $params)
+	public function notify(array $payconfig)
 	{
 		try {
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 			unset($_POST['paymethod']);
 			$callback = new \Pay\wxf2f\callback();
 			return $ret = Notify::run("wx_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查	

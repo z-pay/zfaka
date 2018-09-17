@@ -55,6 +55,7 @@ class zfbf2f
 	public function notify(array $payconfig,array $params)
 	{
 		try {
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 			unset($_POST['paymethod']);
 			$callback = new \Pay\zfbf2f\callback();
 			return $ret = Notify::run("ali_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查	
