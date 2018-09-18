@@ -6,7 +6,7 @@ layui.define(['layer', 'table'], function(exports){
 
 	table.render({
 		elem: '#table',
-		url: '/products/get',
+		url: '/product/get',
 		page: true,
 		cellMinWidth:60,
 		cols: [[
