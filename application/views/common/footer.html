@@ -14,6 +14,9 @@ layui.use('element', function(){
 });
 </script>
 <!--统计代码-->
+<?php if(isset($config['tongji'] AND strlen($config['tongji'])>0)):?>
+<?php echo $config['tongji'];?>
+<?php else:?>
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -23,5 +26,6 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+<?php endif;?>
 </body>
 </html>
