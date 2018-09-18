@@ -86,8 +86,8 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (9, 1, 'ad', '&lt;image src=&quot;/res/images/pay/supportme.jpg&quot;&gt;', '购买页默认内容', 1, 1453452674),
 (10, 1, 'yzm_switch', '1', '验证码开关(1开，0关)', 1, 1453452674),
 (11, 1, 'order_input_type', '2', '订单必填输入框选择: 1邮箱 2QQ', 1, 1453452674),
-(12, 1, 'index_tpl', 'default', '首页显示模式，筛选|列表', 1, 1453452674),
-(13, 1, 'logo', '/res/images/logo.png', 'LOGO地址', 1, 1453452674),
+(12, 1, 'index_tpl', 'default', '首页显示模式，筛选(default)|列表(list)', 1, 1453452674),
+(13, 1, 'logo', '/res/images/logo.png', 'LOGO地址,默认：/res/images/logo.png', 1, 1453452674),
 (14, 1, 'tongji', '/', '统计脚本', 1, 1453452674);
 
 -- --------------------------------------------------------

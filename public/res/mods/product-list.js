@@ -19,12 +19,5 @@ layui.define(['layer', 'table'], function(exports){
 		]]
 	});
 
-    form.on('submit(search)', function(data){
-        table.reload('table', {
-            url: '/products/get',
-            where: data.field
-        });
-        return false;
-    });
 	exports('product-list',null)
 });
