@@ -76,7 +76,7 @@ class PaymentController extends AdminBasicController
 			$data = array();
 			$item=$this->m_payment->SelectByID('',$id);
 			$data['item'] =$item;
-			if($item['alias'] AND file_exists(APP_PATH.'/application/modules/Admin/views/payment/tpl/'.$item['alias'].'.html')){
+			if($item['alias'] AND file_exists(APP_PATH.'/application/modules/'.ADMIN_DIR.'/views/payment/tpl/'.$item['alias'].'.html')){
 				$tpl = 'tpl_'.$item['alias'];
 				$this->display($tpl, $data);
 				return FALSE;
