@@ -23,6 +23,7 @@ class IndexController extends AdminBasicController
 				return FALSE;
 			}else{
 				$version = @file_get_contents(INSTALL_LOCK);
+				$version = str_replace(array("\r","\n","\t"), "", $version);
 				$version = strlen(trim($version))>0?$version:'1.0.0';
 				if(version_compare(trim($version), trim(VERSION), '<' )){
 					$this->redirect("/install/upgrade");
