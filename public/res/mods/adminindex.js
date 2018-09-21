@@ -29,7 +29,7 @@ layui.define(['layer', 'form'], function(exports){
 							,success: function(layero){
 							  var btn = layero.find('.layui-layer-btn');
 							  btn.find('.layui-layer-btn0').attr({
-								href: '/'+ADMIN_DIR+'/admin/upgrade'
+								href: '/'+ADMIN_DIR+'/upgrade'
 								,target: '_blank'
 							  });
 							  btn.find('.layui-layer-btn1').attr({
