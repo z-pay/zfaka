@@ -32,7 +32,7 @@ layui.define(['layer', 'form'], function(exports){
         });
     }
 
-	form.on('submit(check)', function(data){
+	form.on('submit(download)', function(data){
 		download();
 		return false;
 	});
