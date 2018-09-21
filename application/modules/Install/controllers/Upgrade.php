@@ -46,6 +46,7 @@ class UpgradeController extends AdminBasicController
 						}
 						$data['button'] = true;
 					}else{
+						$data['update_version'] = VERSION;
 						$data['button'] = false;
 						$data['upgrade_desc'] = "抱歉,我表示很难理解你为什么能看到这条信息";
 					}
