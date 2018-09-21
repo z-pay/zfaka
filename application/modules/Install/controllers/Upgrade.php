@@ -22,8 +22,10 @@ class UpgradeController extends AdminBasicController
             return FALSE;
         }
 		if(file_exists(INSTALL_LOCK)){
+			//安装版本version,<= 当前待更新版本VERSION <=远程最新版本update_version
 			$version = @file_get_contents(INSTALL_LOCK);
 			$version = strlen(trim($version))>0?$version:'1.0.0';
+
 			if(version_compare(trim($version), trim(VERSION), '<' )){
 				$data = array();
 				$update_version = $this->_getUpdateVersion($version);
@@ -31,14 +33,21 @@ class UpgradeController extends AdminBasicController
 					$data['update_version'] = $update_version!=''?$update_version:'未知的版本';
 					$data['upgrade_desc'] = "抱歉,我表示很难理解你为什么能看到这条信息";
 					$data['upgrade_sql'] = '';
+					$data['button'] = false;
 				}else{
-					$data['update_version'] = $update_version;
-					$desc = @file_get_contents(INSTALL_PATH.'/'.$update_version.'/upgrade.txt');
-					$data['upgrade_desc'] = $desc;
-					if(file_exists(INSTALL_PATH.'/'.$update_version.'/upgrade.sql')){
-						$data['upgrade_sql'] = INSTALL_PATH.'/'.$update_version.'/upgrade.sql';
+					if(version_compare(trim(VERSION), trim($update_version), '<=' )){
+						$data['update_version'] = $update_version;
+						$desc = @file_get_contents(INSTALL_PATH.'/'.$update_version.'/upgrade.txt');
+						$data['upgrade_desc'] = $desc;
+						if(file_exists(INSTALL_PATH.'/'.$update_version.'/upgrade.sql')){
+							$data['upgrade_sql'] = INSTALL_PATH.'/'.$update_version.'/upgrade.sql';
+						}else{
+							$data['upgrade_sql'] = '';
+						}
+						$data['button'] = true;
 					}else{
-						$data['upgrade_sql'] = '';
+						$data['button'] = false;
+						$data['upgrade_desc'] = "抱歉,我表示很难理解你为什么能看到这条信息";
 					}
 				}
 				$data['version'] = $version;
