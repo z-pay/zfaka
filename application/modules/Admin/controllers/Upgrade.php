@@ -67,7 +67,7 @@ class UpgradeController extends AdminBasicController
 					$url = "https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip";
 					$up = $this->_download($url,TEMP_PATH);
 					if($up){
-						$this->_unzip(TEMP_PATH."/{$up_version}.zip");
+						$this->_unzip(TEMP_PATH."/{$up_version}.zip",TEMP_PATH);
 						$this->_recurse_copy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH);
 						$data = array('code' => 1, 'msg' => 'ok');
 					}else{
@@ -178,7 +178,7 @@ class UpgradeController extends AdminBasicController
 		}	
 	}
 
-	private function _unzip($file = '1.1.4.zip')
+	private function _unzip($file = '1.1.4.zip',$folder = "")
 	{
 		$zip = new ZipArchive;
 		if ($zip->open($file) === TRUE) {//中文文件名要使用ANSI编码的文件格式
