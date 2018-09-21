@@ -344,7 +344,9 @@ if ( ! function_exists('xCopy')){
     				}else{
     					copy($source . "/" . $entry, $destination . "/" . $entry);
     				}
-    			}
+    			}else{
+					copy($source . "/" . $entry, $destination . "/" . $entry);
+				}
     		}
     	}
     	return 1;
