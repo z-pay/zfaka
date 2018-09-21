@@ -182,7 +182,7 @@ class UpgradeController extends AdminBasicController
 	{
 		$zip = new ZipArchive;
 		if ($zip->open($file) === TRUE) {//中文文件名要使用ANSI编码的文件格式
-			$zip->extractTo('./');//提取全部文件
+			$zip->extractTo($folder);//提取全部文件
 			$zip->close();
 			return true;
 		} else {
