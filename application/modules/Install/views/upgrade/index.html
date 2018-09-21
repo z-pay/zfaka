@@ -21,7 +21,9 @@
 						<p><?php echo $upgrade_desc;?></p>
 					</blockquote>
 					
+					<?php if(strlen($upgrade_sql)>0):?>
 					<pre class="layui-code layui-box layui-code-view"><?php echo $upgrade_sql;?></pre>
+					<?php endif;?>
 					
 					<?php if($button):?>
 					<form class="layui-form" method="post">

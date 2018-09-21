@@ -122,13 +122,15 @@ class UpgradeController extends AdminBasicController
 	}
 	
 	//获取下一版本号
-	private function _getUpdateVersion($version){
-		$offset=array_search($version,$this->all_version);
-		$k = $offset+1;
-		if(isset($this->all_version[$k])){
-			return $this->all_version[$k];
-		}else{
-			return '';
+	private function _getUpdateVersion($version)
+	{
+		$offset = array_search($version,$this->all_version);
+		if($offset>=0){
+			$k = $offset+1;
+			if(isset($this->all_version[$k])){
+				return $this->all_version[$k];
+			}
 		}
+		return end($this->all_version);
 	}
 }
