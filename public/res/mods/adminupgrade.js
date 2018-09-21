@@ -32,8 +32,9 @@ layui.define(['layer', 'form'], function(exports){
         });
     }
 
-	$("download").click(function(){
+	form.on('submit(check)', function(data){
 		download();
+		return false;
 	});
 	exports('adminupgrade',null)
 });
