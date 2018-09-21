@@ -10,7 +10,7 @@ layui.define(['layer', 'form'], function(exports){
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: '/'+ADMIN_DIR+'/update/getremotefile',
+            url: '/'+ADMIN_DIR+'/upgrade/getremotefile',
             timeout: 10000, //ajax请求超时时间10s
             data: {"csrf_token": TOKEN,'method':"download"}, //post数据
 			beforeSend: function(XMLHttpRequest){
