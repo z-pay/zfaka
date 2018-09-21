@@ -67,7 +67,7 @@ class UpgradeController extends AdminBasicController
 					$up = $this->_download($url,TEMP_PATH);
 					if($up){
 						$this->_unzip(TEMP_PATH."/{$up_version}.zip");
-						$this->_recurse_copy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH)
+						$this->_recurse_copy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH);
 						$data = array('code' => 1, 'msg' => 'ok');
 					}else{
 						$data = array('code' => 1000, 'msg' => '下载失败');
