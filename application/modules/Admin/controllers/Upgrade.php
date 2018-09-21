@@ -67,6 +67,7 @@ class UpgradeController extends AdminBasicController
 					$url = "https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip";
 					$up = $this->_download($url,TEMP_PATH);
 					if($up){
+						\Yaf\Loader::import(FUNC_PATH.'/F_File.php');
 						$this->_unzip(TEMP_PATH."/{$up_version}.zip",TEMP_PATH);
 						xCopy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH, 1);
 						$data = array('code' => 1, 'msg' => 'ok');
