@@ -181,9 +181,8 @@ class UpgradeController extends AdminBasicController
 		}	
 	}
 
-	//download($url,$folder="");
-
-	private function _unzip($file = '1.1.4.zip'){
+	private function _unzip($file = '1.1.4.zip')
+	{
 		$zip = new ZipArchive;
 		if ($zip->open($file) === TRUE) {//中文文件名要使用ANSI编码的文件格式
 			$zip->extractTo('./');//提取全部文件
@@ -193,8 +192,9 @@ class UpgradeController extends AdminBasicController
 			return false;
 		}
 	}
-	private function _recurse_copy($src,$dst) {  // 原目录，复制到的目录
-	 
+	
+	private function _recurse_copy($src,$dst)
+	{
 		$dir = opendir($src);
 		@mkdir($dst);
 		while(false !== ( $file = readdir($dir)) ) {
