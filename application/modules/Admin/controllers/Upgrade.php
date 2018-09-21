@@ -1,15 +1,16 @@
 <?php
 
 /*
- * 功能：后台中心－首页
+ * 功能：后台中心－升级
  * Author:资料空白
- * Date:20180509
+ * Date:20180921
  */
-
-class IndexController extends AdminBasicController
+set_time_limit(0);
+class UpgradeController extends AdminBasicController
 {
 	private $github_url = "https://github.com/zlkbdotnet/zfaka/releases";
 	private $remote_version = '';
+	private $up_version = '';
     public function init()
     {
         parent::init();
@@ -28,8 +29,18 @@ class IndexController extends AdminBasicController
 					$this->redirect("/install/upgrade");
 					return FALSE;
 				}else{
-					$data = array();
-					$this->getView()->assign($data);
+					$up_version = $this->getSession('up_version');
+					if(!$up_version){
+						$up_version = $this->_getUpdateVersion();
+						$this->setSession('up_version',$up_version);
+					}
+					if(version_compare(trim(VERSION), trim($up_version), '<' )){
+						$data = array('url'=>$this->github_url,'up_version'=>$up_version,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
+						$this->getView()->assign($data);
+					}else{
+						$this->redirect('/'.ADMIN_DIR);
+						return FALSE;
+					}
 				}
 			}
 		}else{
@@ -38,14 +49,14 @@ class IndexController extends AdminBasicController
 		}
     }
 
-	public function updatecheckajaxAction()
+	public function getremotefileAction()
 	{
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
 		$method = $this->getPost('method',false);
-		if($method AND $method=='updatecheck'){
+		if($method AND $method=='download'){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$up_version = $this->getSession('up_version');
 				if(!$up_version){
@@ -53,11 +64,17 @@ class IndexController extends AdminBasicController
 					$this->setSession('up_version',$up_version);
 				}
 				if(version_compare(trim(VERSION), trim($up_version), '<' )){
-					$params = array('update'=>1,'url'=>$this->github_url,'zip'=>"https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip");
-					$data = array('code' => 1, 'msg' => '有更新','data'=>$params);
+					$url = "https://github.com/zlkbdotnet/zfaka/archive/{$up_version}.zip";
+					$up = $this->_download($url,TEMP_PATH);
+					if($up){
+						$this->_unzip(TEMP_PATH."/{$up_version}.zip");
+						$this->_recurse_copy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH)
+						$data = array('code' => 1, 'msg' => 'ok');
+					}else{
+						$data = array('code' => 1000, 'msg' => '下载失败');
+					}
 				}else{
-					$params = array('update'=>0,'url'=>$this->github_url,'remote_version'=>$this->remote_version);
-					$data = array('code' => 1, 'msg' => '没有更新','data'=>$params);
+					$data = array('code' => 1000, 'msg' => '有没升级包');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
@@ -67,7 +84,7 @@ class IndexController extends AdminBasicController
 		}
 		Helper::response($data);
 	}
-
+	
 	private function _getUpdateVersion()
 	{
 		$version = VERSION;
@@ -124,5 +141,72 @@ class IndexController extends AdminBasicController
 		$html =  curl_exec($ch);
 		curl_close($ch);
 		return $html;
+	}
+	
+
+	private function _download($url,$folder = "")
+	{
+		if($folder AND !is_dir($folder)){
+			mkdir($folder,0777);
+		}	
+		
+		$file = fopen($url, 'rb');
+		if ($file){
+			// 获取文件大小
+			$filesize = -1;
+			$headers = get_headers($url, 1);
+			if ((!array_key_exists("Content-Length", $headers))){
+				 $filesize = 0; 
+			}
+			$filesize = $headers["Content-Length"];
+			$newfname = $folder . basename($url);
+			//正式下载
+			$newf = fopen ($newfname, "wb");
+			$downlen = 0;
+			if($newf){
+				while(!feof($file))
+				{
+					$data = fread($file, 1024 * 8 );	//默认获取8K
+					$downlen += strlen($data);	// 累计已经下载的字节数
+					fwrite($newf, $data, 1024 * 8 );
+					ob_flush();
+					flush();
+				}
+				fclose($file);
+				fclose($newf);
+				return true;
+			}
+		}else{
+			return false;
+		}	
+	}
+
+	//download($url,$folder="");
+
+	private function _unzip($file = '1.1.4.zip'){
+		$zip = new ZipArchive;
+		if ($zip->open($file) === TRUE) {//中文文件名要使用ANSI编码的文件格式
+			$zip->extractTo('./');//提取全部文件
+			$zip->close();
+			return true;
+		} else {
+			return false;
+		}
+	}
+	private function _recurse_copy($src,$dst) {  // 原目录，复制到的目录
+	 
+		$dir = opendir($src);
+		@mkdir($dst);
+		while(false !== ( $file = readdir($dir)) ) {
+			if (( $file != '.' ) && ( $file != '..' )) {
+				if ( is_dir($src . '/' . $file) ) {
+					recurse_copy($src . '/' . $file,$dst . '/' . $file);
+				}
+				else {
+					copy($src . '/' . $file,$dst . '/' . $file);
+				}
+			}
+		}
+		closedir($dir);
 	}
 }

@@ -1,0 +1,31 @@
+<?php include ADMIN_COMMON_PATH.'/header.html';?>
+<div class="layui-container fly-marginTop fly-user-main">
+    <?php include ADMIN_COMMON_PATH.'/index-nav.html';?>
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="user">
+            <ul class="layui-tab-title" id="LAY_mine">
+                <li class="layui-this" lay-id="info">系统更新</li>
+            </ul>
+            <div class="layui-tab-content" style="padding: 20px 0;">
+                <div class="layui-form-pane layui-tab-item layui-show">
+					<div class="layui-card">
+						<div class="layui-card-header">自动下载</div>
+						<div class="layui-card-body layui-text">
+							自动下载会比较慢，请耐心等待！
+							<button class="layui-btn layui-btn-primary" id="download">开始</button>
+						</div>
+					</div>
+					
+					<div class="layui-progress" lay-showpercent="true">
+					  <div class="layui-progress-bar" lay-percent="20%"></div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--引入公共底文件-->
+<?php include ADMIN_COMMON_PATH.'/footer.html';?>
+<script>
+layui.use('adminupgrade');
+</script>
