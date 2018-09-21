@@ -68,7 +68,7 @@ class UpgradeController extends AdminBasicController
 					$up = $this->_download($url,TEMP_PATH);
 					if($up){
 						$this->_unzip(TEMP_PATH."/{$up_version}.zip",TEMP_PATH);
-						$this->_recurse_copy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH);
+						xCopy(TEMP_PATH.'/zfaka-'.$up_version,APP_PATH, 1);
 						$data = array('code' => 1, 'msg' => 'ok');
 					}else{
 						$data = array('code' => 1000, 'msg' => '下载失败');
@@ -188,22 +188,5 @@ class UpgradeController extends AdminBasicController
 		} else {
 			return false;
 		}
-	}
-	
-	private function _recurse_copy($src,$dst)
-	{
-		$dir = opendir($src);
-		@mkdir($dst);
-		while(false !== ( $file = readdir($dir)) ) {
-			if (( $file != '.' ) && ( $file != '..' )) {
-				if ( is_dir($src . '/' . $file) ) {
-					$this->_recurse_copy($src . '/' . $file,$dst . '/' . $file);
-				}
-				else {
-					copy($src . '/' . $file,$dst . '/' . $file);
-				}
-			}
-		}
-		closedir($dir);
 	}
 }
