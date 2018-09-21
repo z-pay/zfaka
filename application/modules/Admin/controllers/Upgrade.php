@@ -57,7 +57,6 @@ class UpgradeController extends AdminBasicController
         }
 		$method = $this->getPost('method',false);
 		if($method AND $method=='download'){
-			if ($this->VerifyCsrfToken($csrf_token)) {
 				$up_version = $this->getSession('up_version');
 				if(!$up_version){
 					$up_version = $this->_getUpdateVersion();
@@ -76,9 +75,6 @@ class UpgradeController extends AdminBasicController
 				}else{
 					$data = array('code' => 1000, 'msg' => '有没升级包');
 				}
-			} else {
-                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
-            }
 		}else{
 			$data = array('code' => 1000, 'msg' => '丢失参数');
 		}
