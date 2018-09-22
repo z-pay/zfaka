@@ -34,12 +34,17 @@ class OrderController extends PcBasicController
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND $chapwd AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isset($this->config['order_input_type']) AND $this->config['order_input_type']=='2'){
-					$qq = $this->getPost('qq');
-					if($qq AND is_numeric($qq)){
-						$email = $qq.'@qq.com';
+					if($this->login AND $this->userid){
+						$email = $this->uinfo['email'];
+						$qq = '';
 					}else{
-						$data = array('code' => 1006, 'msg' => '丢失参数');
-						Helper::response($data);
+						$qq = $this->getPost('qq');
+						if($qq AND is_numeric($qq)){
+							$email = $qq.'@qq.com';
+						}else{
+							$data = array('code' => 1006, 'msg' => '丢失参数');
+							Helper::response($data);
+						}
 					}
 				}else{
 					$email = $this->getPost('email',false);
