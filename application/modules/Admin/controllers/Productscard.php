@@ -90,7 +90,7 @@ class ProductscardController extends AdminBasicController
         }
 		$data = array();
 		
-		$order = array('sort_num' => 'ASC');
+		$order = array('sort_num' => 'DESC');
 		$products_type = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
 		$data['products_type'] = $products_type;
 		
@@ -105,7 +105,7 @@ class ProductscardController extends AdminBasicController
         }
 		$data = array();
 		
-		$order = array('sort_num' => 'ASC');
+		$order = array('sort_num' => 'DESC');
 		$products_type = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
 		$data['products_type'] = $products_type;
 		
@@ -245,7 +245,7 @@ class ProductscardController extends AdminBasicController
             return FALSE;
         }
 		$data = array();
-		$order = array('sort_num' => 'ASC');
+		$order = array('sort_num' => 'DESC');
 		$products_type = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
 		$data['products_type'] = $products_type;
 		$this->getView()->assign($data);

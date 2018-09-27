@@ -25,7 +25,7 @@ class IndexController extends PcBasicController
 				$this->display($tpl, $data);
 				return FALSE;
 			}else{
-				$order = array('sort_num' => 'ASC');
+				$order = array('sort_num' => 'DESC');
 				$products_type = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
 				$data['products_type'] = $products_type;
 				$data['title'] = "购买商品";
