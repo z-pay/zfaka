@@ -33,7 +33,7 @@ class GetController extends PcBasicController
 			
             $limits = "{$pagenum},{$limit}";
 			
-			$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num asc LIMIT {$limits}";
+			$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC p1.id DESC LIMIT {$limits}";
 			$items = $this->m_products->Query($sql);
             if (empty($items)) {
                 $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
@@ -54,7 +54,7 @@ class GetController extends PcBasicController
 		if($tid AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$data = array();
-				$order = array('sort_num' => 'ASC');
+				$order = array('sort_num' => 'DESC');
 				$field = array('id', 'name');
 				$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1,'isdelete'=>0))->Order($order)->Select();
 				$data['products'] = $products;
