@@ -27,7 +27,7 @@ class ProductscardController extends AdminBasicController
         }
 
 		$data = array();
-		$products=$this->m_products->Where(array('isdelete'=>0))->Order(array('id'=>'DESC'))->Select();
+		$products = $this->m_products->Where(array('isdelete'=>0))->Order(array('sort_num'=>'DESC'))->Select();
 		$data['products'] = $products;
 		$this->getView()->assign($data);
     }

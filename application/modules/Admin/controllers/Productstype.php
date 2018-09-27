@@ -55,7 +55,7 @@ class ProductstypeController extends AdminBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$items=$this->m_products_type->Where(array('isdelete'=>0))->Where($where)->Limit($limits)->Order(array('sort_num'=>'DESC'))->Select();
+			$items=$this->m_products_type->Where(array('isdelete'=>0))->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
                 $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');

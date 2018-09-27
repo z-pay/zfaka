@@ -22,6 +22,7 @@ layui.define(['layer', 'table', 'form','layedit'], function(exports){
 			{field: 'qty', title: '库存', width:80, templet: '#qty',align:'center'},
 			{field: 'auto', title: '发货模式', width:100, templet: '#auto',align:'center'},
 			{field: 'active', title: '是否销售', width:100, templet: '#active',align:'center'},
+			{field: 'sort_num', title: '排序', width:80,align:'center'},
 			{field: 'opt', title: '操作', width:160, templet: '#opt',align:'center'},
 		]]
 	});
