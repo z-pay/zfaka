@@ -81,7 +81,7 @@
 						if(res.data.subjump>0 && (device.android || device.ios)){
 							setTimeout(function(){
 								window.location.href = res.data.subjumpurl;
-							},6e5);	
+							},2000);	
 						}
 						
 						layer.open({
