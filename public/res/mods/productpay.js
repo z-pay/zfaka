@@ -1,6 +1,7 @@
 ﻿layui.define(['layer', 'form'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
+	var device = layui.device();
 	var oid = $("#oid").val();
 	var t = '';
 	var myTimer;
@@ -77,7 +78,7 @@
 							html +='<div id="time-item" class="time-item"><hr><p>请使用手机'+res.data.payname+'扫一扫</p><p>扫描二维码完成支付</p></div></div>';
 						}
 						
-						if(res.data.subjump>0){
+						if(res.data.subjump>0 && (device.android || device.ios)){
 							setTimeout(function(){
 								window.location.href = res.data.subjumpurl;
 							},6e5);	
