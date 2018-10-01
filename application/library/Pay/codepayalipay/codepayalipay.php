@@ -50,14 +50,13 @@ class codepayalipay
 				curl_close($ch);
 			}
 			$codepay_data = json_decode($codepay_json,true);
-			print_r($codepay_data);
 			if(is_array($codepay_data)){
 				if($codepay_data['status']<0){
 					return array('code'=>1002,'msg'=>$codepay_data['msg'],'data'=>'');
 				}else{
 					$qr = $codepay_data ? $codepay_data['qrcode'] : '';
 					$money = isset($codepay_data['money'])?$codepay_data['money']:$params['money'];
-					$result = array('type'=>0,'subjump'=>1,'subjumpurl'=>$qr,'paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$money);
+					$result = array('type'=>0,'subjump'=>0,'subjumpurl'=>'','paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$money);
 					return array('code'=>1,'msg'=>'success','data'=>$result);
 				}
 			}else{
