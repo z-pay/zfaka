@@ -56,7 +56,7 @@ class codepayqq
 				}else{
 					$qr = $codepay_data ? $codepay_data['qrcode'] : '';
 					$money = isset($codepay_data['money'])?$codepay_data['money']:$params['money'];
-					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$money);
+					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$money);
 					return array('code'=>1,'msg'=>'success','data'=>$result);
 				}
 			}else{

@@ -598,7 +598,7 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .ico-codepayalipay,.ico-zfbf2f,.ico-zfbweb{background: url("/res/images/pay/alipay.jpg") no-repeat;}
 .ico-codepayqq {background: url("/res/images/pay/qqpay.jpg") no-repeat;}
 .ico-yzpay {background: url("/res/images/pay/yzpay.jpg") no-repeat;}
-.ico-codepaywx {background: url("/res/images/pay/weixin.jpg") no-repeat;}
+.ico-codepaywx,.ico-zlkbcodepaywx {background: url("/res/images/pay/weixin.jpg") no-repeat;}
 .mod-title .text {font-size: 20px;color: #333;font-weight: normal;vertical-align: middle}
 .mod-content{text-align: center;}
 .mod-content img{margin-left: 20px;margin-right: 20px;}

@@ -51,7 +51,7 @@ class wxf2f
 		try {
 			$qr = Charge::run(Config::WX_CHANNEL_QR, $config, $data);
 			if($qr){
-				$result_params = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
+				$result_params = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".$qr,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result_params);
 			}else{
 				return array('code'=>1002,'msg'=>'当面付生成失败','data'=>'');
