@@ -26,6 +26,7 @@ class zlkbcodepaywx
 			);
 			$config['sign'] = $this->_signParams($config,$payconfig['app_secret']);
 			$result =  $this->_curlPost($url,$params);
+			$result = json_decode($result,true);
 			if(is_array($result)){
 				if($result['code']<1){
 					return array('code'=>1002,'msg'=>$result['msg'],'data'=>'');
