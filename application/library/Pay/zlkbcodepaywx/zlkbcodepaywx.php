@@ -25,13 +25,13 @@ class zlkbcodepaywx
 				'overtime'=>$payconfig['overtime'],
 			);
 			$config['sign'] = $this->_signParams($config,$payconfig['app_secret']);
-			$result =  $this->_curlPost($this->apiHost,$config);
-			$result = json_decode($result,true);
-			if(is_array($result)){
-				if($result['code']<1){
-					return array('code'=>1002,'msg'=>$result['msg'],'data'=>'');
+			$curl_data =  $this->_curlPost($this->apiHost,$config);
+			$curl_data = json_decode($curl_data,true);
+			if(is_array($curl_data)){
+				if($curl_data['code']<1){
+					return array('code'=>1002,'msg'=>$curl_data['msg'],'data'=>'');
 				}else{
-					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".urlencode($result['data']['qr_content']),'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$money);
+					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".urlencode($curl_data['data']['qr_content']),'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$money);
 					return array('code'=>1,'msg'=>'success','data'=>$result);
 				}
 			}else{
