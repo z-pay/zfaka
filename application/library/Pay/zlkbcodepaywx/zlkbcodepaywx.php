@@ -25,7 +25,7 @@ class zlkbcodepaywx
 				'overtime'=>$payconfig['overtime'],
 			);
 			$config['sign'] = $this->_signParams($config,$payconfig['app_secret']);
-			$result =  $this->_curlPost($url,$config);
+			$result =  $this->_curlPost($this->apiHost,$config);
 			$result = json_decode($result,true);
 			if(is_array($result)){
 				if($result['code']<1){
