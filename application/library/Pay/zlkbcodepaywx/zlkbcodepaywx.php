@@ -31,6 +31,7 @@ class zlkbcodepaywx
 				if($curl_data['code']<1){
 					return array('code'=>1002,'msg'=>$curl_data['msg'],'data'=>'');
 				}else{
+					$money = isset($curl_data['data']['money'])?$curl_data['data']['money']:$params['money'];
 					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>"/product/order/showqr/?url=".urlencode($curl_data['data']['qr_content']),'payname'=>$payconfig['name'],'overtime'=>$payconfig['overtime'],'money'=>$money);
 					return array('code'=>1,'msg'=>'success','data'=>$result);
 				}
