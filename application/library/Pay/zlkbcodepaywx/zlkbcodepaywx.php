@@ -50,8 +50,8 @@ class zlkbcodepaywx
 	public function notify($payconfig)
 	{
 		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
-		if($_POST['code']>0){
-			$params = $_POST['data'];
+		if(!empty($_POST)){
+			$params = $_POST;
 			$newsign = $this->_signParams($params,$payconfig['app_secret']);
 			
 			if ($newsign != $params['sign']) { //不合法的数据 KEY密钥为你的密钥
