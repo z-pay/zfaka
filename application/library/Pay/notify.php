@@ -43,7 +43,7 @@ class notify
 					if(!empty($order) AND !empty($product)){
 						if($product['auto']>0){
 							//3.自动处理
-							//查询通过订单中记录的pid，根据购买数量查询卡密
+							//查询通过订单中记录的pid，根据购买数量查询卡密,修复
 							if($product['stockcontrol']>0){
 								$Limit = $order['number'];
 							}else{
