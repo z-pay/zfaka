@@ -79,9 +79,11 @@
 						}
 						
 						if(res.data.subjump>0 && (device.android || device.ios)){
-							setTimeout(function(){
-								window.location.href = res.data.subjumpurl;
-							},2000);	
+							if(!device.weixin){
+								setTimeout(function(){
+									window.location.href = res.data.subjumpurl;
+								},2000);
+							}
 						}
 						
 						layer.open({

@@ -36,7 +36,7 @@ class UpgradeController extends AdminBasicController
 					$data['upgrade_sql'] = '';
 					$data['button'] = false;
 				}else{
-					if(version_compare(trim(VERSION), trim($update_version), '<=' )){
+					if(version_compare(trim($update_version),trim(VERSION),  '<=' )){
 						$data['update_version'] = $update_version;
 						$desc = @file_get_contents(INSTALL_PATH.'/'.$update_version.'/upgrade.txt');
 						$data['upgrade_desc'] = $desc;
