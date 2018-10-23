@@ -120,7 +120,8 @@ class OrderController extends PcBasicController
 					}
 					
 					//生成orderid
-					$orderid = 'zlkb' . date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
+					$prefix = isset($this->config['order_prefix'])?$this->config['order_prefix']:'zlkb';
+					$orderid = $prefix. date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
 					
 					//开始下单，入库
 					$m=array(
@@ -222,7 +223,8 @@ class OrderController extends PcBasicController
 									if(($order['addtime']+$payconfig['overtime'])<time()){
 										//需要重新生成订单再提交
 										//生成orderid
-										$new_orderid = 'zlkb' . date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
+										$prefix = isset($this->config['order_prefix'])?$this->config['order_prefix']:'zlkb';
+										$new_orderid = $prefix. date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
 										$u = $this->m_order->UpdateByID(array('orderid'=>$new_orderid),$oid);
 										if($u){
 											$orderid = $new_orderid;

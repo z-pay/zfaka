@@ -92,7 +92,7 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md6 layui-hide-xs">
+        <div class="layui-col-md6 <?php if(isset($config['m_prodcut_description'])):?><?php if($config['m_prodcut_description']=="0"):?>layui-hide-xs<?php endif;?><?php else:?>layui-hide-xs<?php endif;?>">
             <div class="layui-card">
                 <div class="layui-card-header">商品详情</div>
                 <div class="layui-card-body" id="prodcut_description">
