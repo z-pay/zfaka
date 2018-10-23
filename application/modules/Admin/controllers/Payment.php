@@ -92,7 +92,7 @@ class PaymentController extends AdminBasicController
 	{
 		$method = $this->getPost('method',false);
 		$id = $this->getPost('id',false);
-		$payment = $this->getPost('payment',false);
+		$payname = $this->getPost('payname',false);
 		$sign_type = $this->getPost('sign_type',false);
 		$app_id = $this->getPost('app_id',false);
 		$app_secret = $this->getPost('app_secret',false);
@@ -111,10 +111,10 @@ class PaymentController extends AdminBasicController
         }
 		
 		
-		if($method AND $payment AND is_numeric($active) AND $csrf_token){
+		if($method AND $payname AND is_numeric($active) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
-					'payment'=>$payment,
+					'payname'=>$payname,
 					'app_id'=>$app_id,
 					'active'=>$active,
 				);
