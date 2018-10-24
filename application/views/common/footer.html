@@ -16,16 +16,15 @@ layui.use('element', function(){
 <!--统计代码-->
 <?php if(isset($config['tongji']) AND strlen($config['tongji'])>0):?>
 <?php echo $config['tongji'];?>
-<?php else:?>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?c202ef158781ff9212f465e9152781ec";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<?php endif;?>
+<!--鼠标特效-->
+<?php if(isset($config['mousejqtx']) AND strlen($config['mousejqtx'])>0):?>
+	<?php if($config['mousejqtx']=="mousejqtxstars"):?>
+		<script>
+			layui.use('mousejqtxstars');
+			$('#zlkbbody').jstars({image_path:'images',style:'rand',frequency:18});
+		</script>
+	<?php endif;?>
 <?php endif;?>
 </body>
 </html>
