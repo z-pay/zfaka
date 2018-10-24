@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html<?php if(isset($config['backgroundimage']) AND strlen($config['backgroundimage'])>0):?> style="background-size: cover; background-image: url(<?php echo $config['backgroundimage'];?>);"<?php endif;?>>
 <head>
     <meta charset="utf-8">
     <title><?php echo $title.'_'.$config['web_name'];?></title>
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="fly-header layui-bg-black">
+    <div class="fly-header <?php if(isset($config['headermenucolor']) AND strlen($config['headermenucolor'])>0):?><?php echo $config['headermenucolor'];?><?php else:?>layui-bg-black<?php endif;?>">
         <div class="layui-container">
              <div class=""><a class="fly-logo" href="/"><img src="<?php if(isset($config['logo']) AND strlen($config['logo'])>0):?><?php echo $config['logo'];?><?php else:?>/res/images/logo.png<?php endif;?>" alt="layui"></a></div>
             <ul class="layui-nav fly-nav" id="webmenu">
