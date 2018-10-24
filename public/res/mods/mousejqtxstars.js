@@ -1,5 +1,5 @@
 layui.define(function(exports){
-
+var jQuery = layui.jquery;
 ;(function($){var jstar_call_id=0;$.jstars={};$.fn.jstars=function(settings)
 {var ua=window.navigator.userAgent,msie=ua.indexOf("MSIE ");if(msie>0){if(parseInt(ua.substring(msie+5,ua.indexOf(".",msie)))<9)return;}
 settings=$.extend({},$.fn.jstars.defaults,settings);settings.frequency=20-Math.max(1,Math.min(settings.frequency,19));var jstar_timer=null;var jstar_index=0;var jstar_dindex=0;var jstar_image=null;var jstar_id='jstar_span_'+jstar_call_id++;return this.each(function()
