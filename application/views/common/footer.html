@@ -20,9 +20,9 @@ layui.use('element', function(){
 <!--鼠标特效-->
 <?php if(isset($config['mousejqtx']) AND strlen($config['mousejqtx'])>0):?>
 	<?php if($config['mousejqtx']=="mousejqtxstars"):?>
+		<script>layui.use('jquery');var $ = layui.jquery;</script>
 		<script src="/res/js/mousejqtxstars.js"></script>
 		<script>
-			var $ = layui.jquery;
 			$('#zlkbbody').jstars({image_path:'images',style:'rand',frequency:18});
 		</script>
 	<?php endif;?>
