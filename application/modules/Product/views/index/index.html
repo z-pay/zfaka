@@ -107,5 +107,18 @@
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('product');
+layui.use(['product','layer']);
+	var ad = '<script type="text/javascript">(function() {var s = "_" + Math.random().toString(36).slice(2);document.write(\'<div style="" id="\' + s + \'"></div>\');(window.slotbydup = window.slotbydup || []).push({id: "u3559872",container:  s});})();</script><script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/c.js" async="async" defer="defer" ></script>';
+    layer.open({
+        type: 1
+        ,title: "广告栏"
+        ,closeBtn: false
+        ,area: '300px;'
+        ,shade: 0.8
+        ,id: 'zlkbAD'
+        ,btn: [ '残忍拒绝']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+ad+'</div>'
+    });
 </script>
