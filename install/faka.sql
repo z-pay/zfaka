@@ -91,7 +91,7 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (14, 1, 'tongji', '/', '统计脚本', 1, 1453452674),
 (15, 1, 'm_prodcut_description', '0', '移动端商品详情，隐藏(0)|显示(1)', 1, 1453452674),
 (16, 1, 'order_prefix', 'zlkb', '订单前缀，建议不要超过5个字符串', 1, 1453452674),
-(17, 1, 'backgroundimage', 'http://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/6a600c338744ebf894c9e667dff9d72a6059a72a.jpg', '前台背景图片地址', 1, 1453452674),
+(17, 1, 'backgroundimage', 'https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/6a600c338744ebf894c9e667dff9d72a6059a72a.jpg', '前台背景图片地址', 1, 1453452674),
 (18, 1, 'headermenucolor', 'layui-bg-black', '前台顶部菜单配色方案', 1, 1453452674),
 (19, 1, 'mousejqtx', 'mousejqtxstars', '鼠标特效', 1, 1453452674);
 -- --------------------------------------------------------
