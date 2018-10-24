@@ -31,5 +31,21 @@ layui.define(['layer', 'table'], function(exports){
 			]]
 		});
 	}
+	
+	//首页广告弹窗
+	if(LAYERAD.length>0){
+		layer.open({
+			type: 1
+			,title: false
+			,closeBtn: false
+			,area: '300px;'
+			,shade: 0.8
+			,id: 'zlkbAD'
+			,btn: [ '关闭']
+			,btnAlign: 'c'
+			,moveType: 1 //拖拽模式，0或者1
+			,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+LAYERAD+'</div>'
+		});
+	}
 	exports('product-list',null)
 });

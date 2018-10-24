@@ -199,12 +199,11 @@
 			,area: '300px;'
 			,shade: 0.8
 			,id: 'zlkbAD'
-			,btn: [ '残忍拒绝']
+			,btn: [ '关闭']
 			,btnAlign: 'c'
 			,moveType: 1 //拖拽模式，0或者1
 			,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+LAYERAD+'</div>'
 		});
 	}
-	
 	exports('product',null)
 });
