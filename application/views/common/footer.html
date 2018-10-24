@@ -22,6 +22,7 @@ layui.use('element', function(){
 	<?php if($config['mousejqtx']=="mousejqtxstars"):?>
 		<script>
 			layui.use('mousejqtxstars');
+			var $ = layui.jquery;
 			$('#zlkbbody').jstars({image_path:'images',style:'rand',frequency:18});
 		</script>
 	<?php endif;?>
