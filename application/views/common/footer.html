@@ -20,10 +20,6 @@ layui.use('element', function(){
 <!--鼠标特效-->
 <?php if(isset($config['mousejqtx']) AND strlen($config['mousejqtx'])>0):?>
 	<?php if($config['mousejqtx']=="mousejqtxstars"):?>
-		<!--<script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
-		<script src="/res/js/mousejqtxstars.js"></script>-->
-		
-		
 		<script>
 			layui.use(['jquery', 'mousejqtxstars'], function(){
 				var $ = layui.jquery;
