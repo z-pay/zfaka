@@ -106,20 +106,11 @@
 </div>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
+<!--首页广告-->
 <script>
-layui.use(['product','layer']);
-	var ad = "测试";
-	var layer = layui.layer;
-	layer.open({
-        type: 1
-        ,title: "广告栏"
-        ,closeBtn: false
-        ,area: '300px;'
-        ,shade: 0.8
-        ,id: 'zlkbAD'
-        ,btn: [ '残忍拒绝']
-        ,btnAlign: 'c'
-        ,moveType: 1 //拖拽模式，0或者1
-        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+ad+'</div>'
-    });
+	<?php if(isset($config['layerad']) AND strlen($config['layerad'])>0):?>
+	 var LAYERAD = "<?php echo $config['layerad'];?>";
+	<?php else:?>
+	var LAYERAD = "";
+	<?php endif;?>
 </script>
