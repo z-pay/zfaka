@@ -88,7 +88,9 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (11, 1, 'order_input_type', '2', '订单必填输入框选择: 1邮箱 2QQ', 1, 1453452674),
 (12, 1, 'index_tpl', 'default', '首页显示模式，筛选(default)|列表(list)', 1, 1453452674),
 (13, 1, 'logo', '/res/images/logo.png', 'LOGO地址,默认：/res/images/logo.png', 1, 1453452674),
-(14, 1, 'tongji', '/', '统计脚本', 1, 1453452674);
+(14, 1, 'tongji', '/', '统计脚本', 1, 1453452674),
+(15, 1, 'm_prodcut_description', '0', '移动端商品详情，隐藏(0)|显示(1)', 1, 1453452674),
+(16, 1, 'order_prefix', 'zlkb', '订单前缀，建议不要超过5个字符串', 1, 1453452674);
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,7 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (5, '支付宝电脑网站支付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbweb', 'RSA2', '2018********', '', '', '', '',0, 0),
 (6, '微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'wxf2f', 'MD5', '', '', '', '', '', 0, 0),
 (7, '有赞接口', '有赞', '/res/images/pay/yzpay.jpg', 'yzpay', 'RSA2', '', '', '', '', '', 0, 0),
-(8, '收款辅助(码支付)', '收款辅助', '/res/images/pay/weixin.jpg', 'zlkbcodepaywx', 'RSA2', '', '', '', '', '', 300, 0);
+(8, '收款辅助(码支付)', '微信', '/res/images/pay/weixin.jpg', 'zlkbcodepaywx', 'RSA2', '', '', '', '', '', 300, 0);
 
 
 -- --------------------------------------------------------
