@@ -14,7 +14,6 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
   ,upload = layui.upload
   ,table = layui.table
   ,device = layui.device()
-
   ,DISABLED = 'layui-btn-disabled';
 
 	//阻止IE7以下访问

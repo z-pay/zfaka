@@ -2,7 +2,8 @@
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
-
+	var device = layui.device();
+	
 	//手机适配调整
 	if(device.weixin || device.android || device.ios){
 		$(".layui-form-item").addClass("layui-form-text");
