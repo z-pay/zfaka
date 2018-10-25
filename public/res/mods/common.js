@@ -22,24 +22,19 @@ layui.define(['layer', 'laytpl', 'form', 'element','table'], function(exports){
 		layer.alert('如果您非得使用 IE 浏览器访问本站点，那么请使用 IE8+');
 	}
 	
-	if(device.weixin || device.android || device.ios){
-		$(".layui-form-item").addClass("layui-form-text");
-		$(".layui-input-inline").attr("class", "layui-input-block");
-	}
-	
-  layui.focusInsert = function(obj, str){
-    var result, val = obj.value;
-    obj.focus();
-    if(document.selection){ //ie
-      result = document.selection.createRange();
-      document.selection.empty();
-      result.text = str;
-    } else {
-      result = [val.substring(0, obj.selectionStart), str, val.substr(obj.selectionEnd)];
-      obj.focus();
-      obj.value = result.join('');
-    }
-  };
+	layui.focusInsert = function(obj, str){
+		var result, val = obj.value;
+		obj.focus();
+		if(document.selection){ //ie
+			result = document.selection.createRange();
+			document.selection.empty();
+			result.text = str;
+		} else {
+			result = [val.substring(0, obj.selectionStart), str, val.substr(obj.selectionEnd)];
+			obj.focus();
+			obj.value = result.join('');
+		}
+	};
 
 	console.group("欢迎使用ZFAKA开源开卡程序");
 		console.log("github地址：https://github.com/zlkbdotnet/zfaka/");

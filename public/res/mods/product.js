@@ -3,6 +3,11 @@
 	var layer = layui.layer;
 	var form = layui.form;
 
+	//手机适配调整
+	if(device.weixin || device.android || device.ios){
+		$(".layui-form-item").addClass("layui-form-text");
+		$(".layui-input-inline").attr("class", "layui-input-block");
+	}
 	form.verify({
 		numberCheck: function(value, item){ //value：表单的值、item：表单的DOM对象
 			var qty = $('#qty').val();
