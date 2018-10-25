@@ -8,7 +8,10 @@
 		</blockquote>
 		<?php endif;?>
         <div class="layui-card layui-form-pane">
-            <div class="layui-card-header">购买商品</div>
+		
+            <div class="layui-card-header layui-hide-xs">购买商品</div>
+			<div class="layui-tab-brief layui-hide-md"><ul class="layui-tab-title"><li class="layui-this">购买商品</li><li class=""><a href="/product/query">查询订单</a></li></ul></div>
+			
             <div class="layui-card-body" id="prodcut_num">
 				<table class="layui-table" id="table" lay-filter="table"></table>
 			</div>
