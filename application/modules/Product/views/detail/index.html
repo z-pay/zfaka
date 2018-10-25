@@ -19,18 +19,22 @@
                                 <input type="text" name="name" id="name" readonly disabled class="layui-input" value ="<?php echo $product['name'];?>">
                             </div>
                         </div>
+						<div class="layui-col-md12 layui-col-xs6">
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品单价</label>
                             <div class="layui-input-block">
                                 <input type="text" name="price" id="price" readonly disabled class="layui-input" value ="<?php echo $product['price'];?>">
                             </div>
                         </div>
+						</div>
+						<div class="layui-col-md12 layui-col-xs6">
                         <div class="layui-form-item">
                             <label class="layui-form-label">商品库存</label>
                             <div class="layui-input-block">
                                 <input type="text" name="qty" id="qty" readonly disabled class="layui-input" value ="<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>">
                             </div>
                         </div>
+						</div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">购买数量</label>
                             <div class="layui-input-block">
