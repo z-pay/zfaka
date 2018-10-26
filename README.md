@@ -30,7 +30,7 @@
 
 * 有赞支付(第三方支付平台)---[有赞云－支付API开通教程](https://github.com/zlkbdotnet/zfaka/wiki/%E6%9C%89%E8%B5%9E%E4%BA%91%EF%BC%8D%E6%94%AF%E4%BB%98API%E5%BC%80%E9%80%9A%E6%95%99%E7%A8%8B)
 
-* 强烈推荐，收款宝(第三方辅助工具)---[收款宝](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E5%BE%AE%E4%BF%A1%E6%94%B6%E6%AC%BE%E8%BE%85%E5%8A%A9)
+* 强烈推荐，收款宝(第三方辅助工具)---[收款宝](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
 
 >不要问我可不可以支持，只要你提供测试账户与接口文档，一般1－4周我都会更新上去；
 
