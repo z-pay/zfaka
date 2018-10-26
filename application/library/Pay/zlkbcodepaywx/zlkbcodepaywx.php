@@ -1,7 +1,7 @@
 <?php
 /**
  * File: zlkbcodepaywx.php
- * Functionality: 收款辅助(资料空白)-WX扫码支付
+ * Functionality: 收款宝(资料空白)-WX扫码支付
  * Author: 资料空白
  * Date: 2018-07-02
  */
