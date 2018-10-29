@@ -63,7 +63,7 @@ class zfbweb
 				'app_id' => $payconfig['app_id'],
 				'sign_type' => $payconfig['sign_type'],
 				'ali_public_key' => $payconfig['ali_public_key'],
-				'rsa_private_key' => $payconfig['ali_public_key'],
+				'rsa_private_key' => $payconfig['rsa_private_key'],
 				'return_raw' => true
 			];
 			
