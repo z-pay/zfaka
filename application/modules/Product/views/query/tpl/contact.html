@@ -11,13 +11,14 @@
 
 						<div class="layui-tab layui-tab-brief" lay-filter="">
 							<ul class="layui-tab-title">
+								<li><a href="/product/query/?method=cookie">浏览器缓存</a></li>
+								<li><a href="/product/query/?method=orderid">订单号</a></li>
 								<li class="layui-this">联系方式</li>
-								<li>浏览器缓存</li>
 							</ul>
 							<div class="layui-tab-content">
 								<div class="layui-tab-item layui-show">
 									<div class="layui-form-pane" id="query-pane">
-									<?php if($querymethod == 'ajax'):?>
+
 									<form class="layui-form" id="query-form">
 										<?php if(isset($config['orderinputtype']) AND $config['orderinputtype'] == '2'):?>
 										<div class="layui-form-item">
@@ -133,99 +134,6 @@
 										<blockquote class="layui-elem-quote">无数据....</blockquote>
 									  {{#  } }} 
 									</script>
-									<?php else:?>
-									<div class="layui-table-querey layui-hide-xs">
-									<table class="layui-table" id="query-table">
-										<thead>
-											<tr>
-												<th>订单ID</th>
-												<th>订单名称</th>
-												<th>数量</th>
-												<th>金额</th>
-												<th>下单时间</th>
-												<th>状态</th>
-												<th>操作</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php if(isset($order) AND !empty($order)):?>
-											<tr>
-												<td><span id="orderid"><?php echo $order['orderid'];?></span></td>
-												<td>
-													<?php echo $order['productname'];?>
-												</td>
-												<td>
-													<?php echo $order['number'];?>
-												</td>
-												<td>
-													<?php echo $order['money'];?>
-												</td>
-												<td>
-													<?php echo date('Y-m-d H:i:s',$order['addtime']);?>
-												</td>
-												<td>
-													<?php echo $cnstatus[$order['status']];?>
-												</td>
-												<td>
-													<?php if($order['status']=='0'):?>
-													<button class="layui-btn layui-btn-disabled" >未支付订单</button>
-													<?php elseif($order['status']=='2'):?>
-													<button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
-													<?php endif;?>
-												</td>
-											</tr>
-											<?php else:?>
-											<tr>
-												<td colspan="6" style="text-align:center">无数据</td>
-											</tr>
-											<?php endif;?>
-										</tbody>
-									</table>
-									</div>
-									
-									<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
-										<div class="layui-card-header">
-											订单信息-<?php echo $cnstatus[$order['status']];?>
-											<?php if($order['status']=='0'):?>
-											<button class="layui-btn layui-btn-disabled layui-btn-xs" >未支付订单</button>
-											<?php elseif($order['status']=='2'):?>
-											<button class="layui-btn view_kami layui-btn-xs" id="buy" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
-											<?php endif;?>
-										</div>
-										<div class="layui-card-body" id="prodcut_num">
-											
-												<div class="layui-form-item">
-													<label class="layui-form-label">订单</label>
-													<div class="layui-input-block">
-														<input type="text" value="<?php echo $order['orderid'];?>" readonly disabled class="layui-input">
-													</div>
-												</div>
-												<div class="layui-form-item">
-													<label class="layui-form-label">商品</label>
-													<div class="layui-input-block">
-														<input type="text" value="<?php echo $order['productname'];?>" readonly disabled class="layui-input">
-													</div>
-												</div>
-												<div class="layui-form-item">
-													<label class="layui-form-label">数量</label>
-													<div class="layui-input-block">
-														<input type="text" value="<?php echo $order['number'];?>" readonly disabled class="layui-input">
-													</div>
-												</div>
-												<div class="layui-form-item">
-													<label class="layui-form-label">金额</label>
-													<div class="layui-input-block">
-														<input type="text" value="<?php echo $order['money'];?>" readonly disabled class="layui-input">
-													</div>
-												</div>
-												<div class="layui-form-item">
-													<label class="layui-form-label">时间</label>
-													<div class="layui-input-block">
-														<input type="text" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" readonly disabled class="layui-input" >
-													</div>
-												</div>
-									</div>
-									<?php endif;?>
 								</div>
 								</div>
 							</div>

@@ -9,15 +9,23 @@
 class QueryController extends PcBasicController
 {
 	private $m_order;
+	private $method_array = array();
     public function init()
     {
         parent::init();
 		$this->m_order = $this->load('order');
+		$this->method_array = array('orderid','cookie','contact','auto');
     }
 
     public function indexAction()
     {
 		$data = array();
+		$method = $this->get("method");
+		if(!in_array($method,$this->method_array)){
+			$method = 'contact';
+		}
+		
+		//如果有订单号过来，就是直接去自动查询页面
 		$orderid  = $this->get('orderid',false);
 		if($orderid){
 			$data['order'] = $data['cnstatus'] = array();
@@ -34,13 +42,16 @@ class QueryController extends PcBasicController
 					$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
 				}
 			}
-			$data['querymethod'] = 'get';
-		}else{
-			$data['order'] =array();
-			$data['querymethod'] = 'ajax';
+			$method = 'auto';
 		}
 		$data['title'] = "订单查询";
-        $this->getView()->assign($data);
+		if(file_exists(APP_PATH.'/application/modules/Product/views/query/tpl/'.$method.'.html')){
+			$tpl = 'tpl_'.$method;
+			$this->display($tpl, $data);
+			return FALSE;
+		}else{
+			$this->getView()->assign($data);
+		}
     }
 	
 	public function ajaxAction()
