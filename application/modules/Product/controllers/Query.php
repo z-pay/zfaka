@@ -145,7 +145,7 @@ class QueryController extends PcBasicController
 					}
 				}elseif($method == 'cookie'){
 					//从浏览器中cookie中读取
-					$orderid = $this->getCookie('orderid');
+					$orderid = $this->getCookie('oid');
 					if($orderid){
 						if ($this->VerifyCsrfToken($csrf_token)) {
 							$starttime = strtotime("-1 month");
@@ -208,8 +208,8 @@ class QueryController extends PcBasicController
 						$data = array('code' => 1003, 'msg' => '未支付');
 					}else{
 						$this->setSession('order_email',$order['email']);
-						$this->clearCookie('orderid');
-						$this->setCookie('orderid',$order['orderid']);
+						$this->clearCookie('oid');
+						$this->setCookie('oid',$order['orderid']);
 						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
 					}
 				}
