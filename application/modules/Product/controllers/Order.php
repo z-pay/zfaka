@@ -219,7 +219,7 @@ class OrderController extends PcBasicController
 						}else{
 							try{
 								//这里对有订单超时处理的支付渠道进行特别处理
-								if($payconfig['overtime']>0){
+								/*if($payconfig['overtime']>0){
 									if(($order['addtime']+$payconfig['overtime'])<time()){
 										//需要重新生成订单再提交
 										//生成orderid
@@ -237,7 +237,8 @@ class OrderController extends PcBasicController
 									}
 								}else{
 									$orderid = $order['orderid'];
-								}
+								}*/
+								$orderid = $order['orderid'];
 								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 								$PAY = new $payclass();
 								$params =array('orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'weburl'=>$this->config['weburl']);
