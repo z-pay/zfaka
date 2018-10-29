@@ -158,7 +158,7 @@ class QueryController extends PcBasicController
 							$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
 						}
 					}else{
-						$data = array('code' => 1000, 'msg' => '丢失参数');
+						$data = array('code' => 1000, 'msg' => '没有订单记录');
 					}
 				}
 			}else{
