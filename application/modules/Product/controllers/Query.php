@@ -82,8 +82,8 @@ class QueryController extends PcBasicController
 						Helper::response($data);
 					}
 				}
-					
-				$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where(array('isdelete'=>0))->Order(array('id'=>'desc'))->Select();
+				$starttime = strtotime("-1 month");
+				$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 				if(empty($order)){
 					$data=array('code'=>1005,'msg'=>'订单不存在');
 				}else{

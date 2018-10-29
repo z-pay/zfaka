@@ -4,19 +4,9 @@
 		<div class="layui-card-header layui-hide-xs">查询订单</div>
 		<div class="layui-tab-brief layui-hide-md"><ul class="layui-tab-title"><li class=""><a href="/product/">购买商品</a></li><li class="layui-this">查询订单</li></ul></div>
         <div class="layui-card-body layui-tab layui-tab-brief" lay-filter="user">
-            <!--<blockquote class="layui-elem-quote">
-                <ul class="layui-form">
-                    <li class="layui-form-li" style="line-height: 26px;">
-                        <div>
-                            <p>友情提示:</p>
-                            <p><span class="layui-badge layui-bg-gray">待付款</span>表示已下单，正在付款中</p>
-                            <p><span class="layui-badge layui-bg-blue">待处理</span> 表示订单正在排队处理中</p>
-                            <p><span class="layui-badge layui-bg-green">已完成</span> 表示订单已经完成</p>
-                            <p><span class="layui-badge layui-bg-black">处理失败</span> 表示订单异常，请联系管理员处理</p>
-                        </div>
-                    </li>
-                </ul>
-            </blockquote>-->
+			<blockquote class="layui-elem-quote">
+				友情提示:订单查询仅能查询最近30天的数据。
+			</blockquote>
             <div class="layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
 
 						<div class="layui-tab layui-tab-brief" lay-filter="">
@@ -97,7 +87,7 @@
 													<div class="layui-card-header">
 													订单信息-{{ converStatus(item.status)}}
 													{{#  if(item.status == '0'){ }}
-														<a class="layui-btn layui-btn-xs" id="buy" href="/product/order/pay/?ooid={{item.id}}">去支付</a>  
+														<button class="layui-btn layui-btn-disabled layui-btn-xs" >未支付订单</button>
 													{{# }else if(item.status =="2"){ }}
 														<button class="layui-btn layui-btn-xs view_kami" id="buy" data-orderid="{{ item.orderid}}">提取卡密</button>
 													{{#  } }} 
@@ -178,7 +168,7 @@
 												</td>
 												<td>
 													<?php if($order['status']=='0'):?>
-													<a style="color:red" href="/product/order/pay/?oid=<?php echo base64_encode($order['id']);?>">去支付</a>
+													<button class="layui-btn layui-btn-disabled" >未支付订单</button>
 													<?php elseif($order['status']=='2'):?>
 													<button class="view_kami layui-btn layui-btn-warm layui-btn-xs" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
 													<?php endif;?>
@@ -194,7 +184,14 @@
 									</div>
 									
 									<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
-										<div class="layui-card-header">订单信息-<?php echo $cnstatus[$order['status']];?></div>
+										<div class="layui-card-header">
+											订单信息-<?php echo $cnstatus[$order['status']];?>
+											<?php if($order['status']=='0'):?>
+											<button class="layui-btn layui-btn-disabled layui-btn-xs" >未支付订单</button>
+											<?php elseif($order['status']=='2'):?>
+											<button class="layui-btn view_kami layui-btn-xs" id="buy" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
+											<?php endif;?>
+										</div>
 										<div class="layui-card-body" id="prodcut_num">
 											
 												<div class="layui-form-item">
@@ -227,20 +224,6 @@
 														<input type="text" value="<?php echo date('Y-m-d H:i:s',$order['addtime']);?>" readonly disabled class="layui-input" >
 													</div>
 												</div>
-												<?php if($order['status']=='0'):?>
-												<div class="layui-form-item">
-													<div class="layui-input-block">
-														<a class="layui-btn" id="buy" href="/product/order/pay/?oid=<?php echo base64_encode($order['id']);?>">去支付</a>
-													</div>
-												</div>
-												<?php elseif($order['status']=='2'):?>
-												<div class="layui-form-item">
-													<div class="layui-input-block">
-														<button class="layui-btn view_kami" id="buy" data-orderid="<?php echo $order['orderid'];?>">提取卡密</button>
-													</div>
-												</div>
-												<?php endif;?>
-										</div>
 									</div>
 									<?php endif;?>
 								</div>
