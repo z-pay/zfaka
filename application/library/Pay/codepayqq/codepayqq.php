@@ -56,7 +56,9 @@ class codepayqq
 				}else{
 					$qr = $codepay_data ? $codepay_data['qrcode'] : '';
 					$money = isset($codepay_data['money'])?$codepay_data['money']:$params['money'];
-					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$money);
+					//计算关闭时间
+					$closetime = (int)($codepay_data['endTime']-$codepay_data['serverTime']-3);
+					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$qr,'payname'=>$payconfig['payname'],'overtime'=>$closetime,'money'=>$money);
 					return array('code'=>1,'msg'=>'success','data'=>$result);
 				}
 			}else{
