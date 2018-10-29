@@ -21,7 +21,7 @@ class QueryController extends PcBasicController
     {
 		$data = array();
 		$zlkbmethod = $this->get("zlkbmethod");
-		if(!in_array($method,$this->method_array)){
+		if(!in_array($zlkbmethod,$this->method_array)){
 			$zlkbmethod = "contact";
 		}
 		
