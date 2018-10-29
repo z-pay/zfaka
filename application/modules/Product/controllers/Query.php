@@ -21,37 +21,35 @@ class QueryController extends PcBasicController
     {
 		$data = array();
 		$method = $this->get("method");
-		if(in_array($method,$this->method_array)){
-			//如果有订单号过来，就是直接去自动查询页面
-			$orderid  = $this->get('orderid',false);
-			if($orderid){
-				$data['order'] = $data['cnstatus'] = array();
-				if (false != $this->login AND $this->userid) {
-					$order_email = $this->uinfo['email'];
-				}else{
-					$order_email = $this->getSession('order_email');
-				}
-				
-				if($order_email){
-					$order = $this->m_order->Where(array('orderid'=>$orderid,'email'=>$order_email))->Where(array('isdelete'=>0))->SelectOne();
-					if(!empty($order)){
-						$data['order'] = $order;
-						$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
-					}
-				}
-				$method = 'auto';
-			}
-			$data['title'] = "订单查询";
-			if(file_exists(APP_PATH.'/application/modules/Product/views/query/tpl/'.$method.'.html')){
-				$tpl = 'tpl_'.$method;
-				$this->display($tpl, $data);
-				return FALSE;
+		if(!in_array($method,$this->method_array)){
+			$method = "contact";
+		}
+		//如果有订单号过来，就是直接去自动查询页面
+		$orderid  = $this->get('orderid',false);
+		if($orderid){
+			$data['order'] = $data['cnstatus'] = array();
+			if (false != $this->login AND $this->userid) {
+				$order_email = $this->uinfo['email'];
 			}else{
-				$this->getView()->assign($data);
+				$order_email = $this->getSession('order_email');
 			}
-		}else{
-			$this->redirect("/product");
+				
+			if($order_email){
+				$order = $this->m_order->Where(array('orderid'=>$orderid,'email'=>$order_email))->Where(array('isdelete'=>0))->SelectOne();
+				if(!empty($order)){
+					$data['order'] = $order;
+					$data['cnstatus'] = array(0=>'<span class="layui-badge layui-bg-gray">待付款</span>',1=>'<span class="layui-badge layui-bg-blue">待处理</span>',2=>'<span class="layui-badge layui-bg-green">已完成</span>',3=>'<span class="layui-badge layui-bg-black">处理失败</span>');
+				}
+			}
+			$method = 'auto';
+		}
+		$data['title'] = "订单查询";
+		if(file_exists(APP_PATH.'/application/modules/Product/views/query/tpl/'.$method.'.html')){
+			$tpl = 'tpl_'.$method;
+			$this->display($tpl, $data);
 			return FALSE;
+		}else{
+			$this->getView()->assign($data);
 		}
     }
 	
