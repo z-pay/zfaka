@@ -36,7 +36,7 @@
 							<?php endif;?>
                             <div class="layui-form-item">
                                 <button class="layui-btn" lay-filter="login" lay-submit>立即登录</button>
-                                <span style="padding-left:20px;"><a href="/member/forgetpwd">忘记密码？</a></span>
+                                <?php if(isset($config['forgetpwdswitch']) AND $config['forgetpwdswitch']>0):?><span style="padding-left:20px;"><a href="/member/forgetpwd">忘记密码？</a></span><?php endif;?>
                             </div>
                         </div>
                     </form>
