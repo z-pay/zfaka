@@ -142,6 +142,24 @@ class QueryController extends PcBasicController
 					}else{
 						$data = array('code' => 1000, 'msg' => '丢失参数');
 					}
+				}elseif($method == 'cookie'){
+					//从浏览器中cookie中读取
+					$orderid = $this->getCookie('orderid');
+					if($orderid){
+						if ($this->VerifyCsrfToken($csrf_token)) {
+							$starttime = strtotime("-1 month");
+							$order = $this->m_order->Where(array('orderid'=>$orderid))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
+							if(empty($order)){
+								$data=array('code'=>1005,'msg'=>'订单不存在');
+							}else{
+								$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>count($order));
+							}
+						} else {
+							$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+						}
+					}else{
+						$data = array('code' => 1000, 'msg' => '丢失参数');
+					}
 				}
 			}else{
 				$data = array('code' => 1001, 'msg' => '参数错误');
@@ -189,6 +207,8 @@ class QueryController extends PcBasicController
 						$data = array('code' => 1003, 'msg' => '未支付');
 					}else{
 						$this->setSession('order_email',$order['email']);
+						$this->clearCookie('orderid');
+						$this->setCookie('orderid',$order['orderid']);
 						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
 					}
 				}
