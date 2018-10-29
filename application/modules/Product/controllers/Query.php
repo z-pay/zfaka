@@ -60,7 +60,7 @@ class QueryController extends PcBasicController
 		$method = $this->getPost('method',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($method AND $csrf_token){
-			if(!in_array($method,$this->method_array)){
+			if(in_array($method,$this->method_array)){
 				if($method == 'contact'){
 					$chapwd    = $this->getPost('chapwd',false);
 					if($chapwd){
