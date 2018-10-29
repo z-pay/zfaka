@@ -25,8 +25,8 @@ class codepaywx
 			"act" => 0,//此参数即将弃用
 			"outTime" => $payconfig['overtime'],//二维码超时设置
 			"page" => 4,//订单创建返回JS 或者JSON
-			"return_url" => $params['web_url'] . '/product/query/?paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
-			"notify_url" => $params['web_url'] . '/product/notify/?paymethod='.$this->paymethod,
+			"return_url" => $params['weburl'] . '/product/query/?paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
+			"notify_url" => $params['weburl'] . '/product/notify/?paymethod='.$this->paymethod,
 			"style" =>1,//付款页面风格
 			"pay_type" => 1,//支付宝使用官方接口
 			"user_ip" => getClientIP(),//付款人IP

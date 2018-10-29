@@ -50,7 +50,7 @@ class QueryController extends PcBasicController
 		
 		if($chapwd AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				if(isset($this->config['order_input_type']) AND $this->config['order_input_type']=='2'){
+				if(isset($this->config['orderinputtype']) AND $this->config['orderinputtype']=='2'){
 					$qq = $this->getPost('qq');
 					if($qq AND is_numeric($qq)){
 						$email = $qq.'@qq.com';
@@ -68,7 +68,7 @@ class QueryController extends PcBasicController
 					}
 				}
 				
-				if(isset($this->config['yzm_switch']) AND $this->config['yzm_switch']>0){
+				if(isset($this->config['yzmswitch']) AND $this->config['yzmswitch']>0){
 					$vercode = $this->getPost('vercode',false);
 					if($vercode){
 						if(strtolower($this->getSession('productqueryCaptcha')) == strtolower($vercode)){
@@ -83,11 +83,11 @@ class QueryController extends PcBasicController
 					}
 				}
 					
-				$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where(array('isdelete'=>0))->Select();
+				$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where(array('isdelete'=>0))->Order(array('id'=>'desc'))->Select();
 				if(empty($order)){
 					$data=array('code'=>1005,'msg'=>'订单不存在');
 				}else{
-					$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>1);
+					$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>count($order));
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');

@@ -24,7 +24,7 @@
                     <div class="layui-form-pane" id="query-pane">
                         <?php if($querymethod == 'ajax'):?>
                         <form class="layui-form" id="query-form">
-							<?php if(isset($config['order_input_type']) AND $config['order_input_type'] == '2'):?>
+							<?php if(isset($config['orderinputtype']) AND $config['orderinputtype'] == '2'):?>
                             <div class="layui-form-item">
                                 <label for="qq" class="layui-form-label">QQ</label>
                                 <div class="layui-input-inline">
@@ -45,7 +45,7 @@
                                     <input type="password" id="L_chapwd" name="chapwd" required lay-verify="required" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
-							<?php if(isset($config['yzm_switch']) AND $config['yzm_switch']>0):?>
+							<?php if(isset($config['yzmswitch']) AND $config['yzmswitch']>0):?>
                             <div class="layui-form-item" style="position: relative;">
                                 <label for="L_vercode" class="layui-form-label">图形验证</label>
                                 <div class="layui-input-inline">
@@ -88,9 +88,16 @@
 							  <div class="layui-tab-content">
 								{{#  layui.each(d.data, function(index, item){ }}
 								<div class="layui-tab-item {{# if(index ==0){ }}layui-show{{# } }}">
-									<div class="layui-card layui-hide-lg layui-hide-md layui-hide-sm">
-										<div class="layui-card-header">订单信息-{{ converStatus(item.status)}}</div>
-										<div class="layui-card-body" id="prodcut_num">
+									<div class="layui-hide-lg layui-hide-md layui-hide-sm">
+										<div class="layui-card-header">
+										订单信息-{{ converStatus(item.status)}}
+										{{#  if(item.status == '0'){ }}
+											<a class="layui-btn layui-btn-xs" id="buy" href="/product/order/pay/?ooid={{item.id}}">去支付</a>  
+										{{# }else if(item.status =="2"){ }}
+											<button class="layui-btn layui-btn-xs view_kami" id="buy" data-orderid="{{ item.orderid}}">提取卡密</button>
+										{{#  } }} 
+										</div>
+										<div class="" id="prodcut_num">
 												<div class="layui-form-item">
 													<label class="layui-form-label">订单</label>
 													<div class="layui-input-block">
@@ -121,19 +128,6 @@
 														<input type="text" value="{{ createTime(item.addtime)}}" readonly disabled class="layui-input" >
 													</div>
 												</div>
-												{{#  if(item.status == '0'){ }}
-												<div class="layui-form-item">
-													<div class="layui-input-block">
-														<a class="layui-btn" id="buy" href="/product/order/pay/?ooid={{item.id}}">去支付</a>  
-													</div>
-												</div>
-												{{# }else if(item.status =="2"){ }}
-												<div class="layui-form-item">
-													<div class="layui-input-block">
-														<button class="layui-btn view_kami" id="buy" data-orderid="{{ item.orderid}}">提取卡密</button>
-													</div>
-												</div>
-												{{#  } }} 
 										</div>
 									</div>
 								</div>
