@@ -57,6 +57,11 @@
 							   clearInterval(myTimer);
 							} 
 						  });
+						  //3秒后自动跳转
+							setTimeout(function(){
+								location.href = res.data.url;
+							},3000);
+						  
 					}else{
 						if(res.data.overtime>0){
 							timer(res.data.overtime,paymethod);
