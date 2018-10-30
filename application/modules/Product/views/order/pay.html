@@ -16,11 +16,9 @@
 <?php else:?>
 		<?php if(isset($order) AND !empty($order)):?>
 		<div class="fly-panel fly-panel-user layui-hide-xs" pad20>
-			<div class="layui-card-header ">查询订单</div>
+			<div class="layui-card-header">查询订单</div>
             <div class="layui-tab-item layui-show">
-				<div class="layui-form-pane">
-					
-						<div class="layui-table-zlkb">
+				<div class="layui-table-zlkb">
 							<table class="layui-table" id="query-table">
 								<colgroup>
 									<col width="150">
@@ -60,7 +58,6 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -68,7 +65,7 @@
 				
 			<div class="fly-panel fly-panel-user layui-hide-lg layui-hide-md layui-hide-sm">	
 				<div class="layui-card layui-form-pane">
-					<div class="layui-card-header">订单信息</div>
+					<div class="layui-card-header">查询订单</div>
 					<div class="layui-card-body" id="prodcut_num">
 						<form class="layui-form" action="">
 							<div class="layui-form-item">
@@ -112,7 +109,7 @@
 					<p style="margin-bottom: 0;text-align:center"><button class="layui-btn layui-btn-warm">已支付</button></p>
 				<?php else:?>
 					<?php if(!empty($payments)):?>
-						<div class="layui-tab-content" style="padding: 20px 0;">
+						<div class="layui-tab-content">
 							<div class="layui-tab-item layui-show">
 								<div class="layui-form-pane">
 									<div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
