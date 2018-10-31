@@ -50,7 +50,7 @@
 		return true;
 	}
 	
-	function getproudctlist(){
+	function getproudctlist(data){
 		//远程请求验证
 		$.ajax({
 			url: '/product/get/proudctlist',
