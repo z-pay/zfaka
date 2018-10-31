@@ -98,7 +98,12 @@
 									form.render('select');
 									autoHeight();
 								} else {
+									$('#productlist').html("");
+									$('#price').val('');
+									$('#qty').val('');
+									$('#prodcut_description').html('');
 									$("#buy").attr("disabled","true");
+									$("#addons").remove();
 									form.render('select');
 									layer.msg(res.msg,{icon:2,time:5000});
 								}
@@ -111,11 +116,21 @@
 					}
 				}	
 				,btn2: function(index, layero){
+					$('#productlist').html("");
+					$('#price').val('');
+					$('#qty').val('');
+					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
+					$("#addons").remove();
 					form.render('select');
 				}
 				,cancel: function(){ 
+					$('#productlist').html("");
+					$('#price').val('');
+					$('#qty').val('');
+					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
+					$("#addons").remove();
 					form.render('select');
 				}
 			});
@@ -149,7 +164,12 @@
 						form.render('select');
 						autoHeight();
 					} else {
+						$('#productlist').html("");
+						$('#price').val('');
+						$('#qty').val('');
+						$('#prodcut_description').html('');
 						$("#buy").attr("disabled","true");
+						$("#addons").remove();
 						form.render('select');
 						layer.msg(res.msg,{icon:2,time:5000});
 					}
@@ -232,14 +252,28 @@
 						layer.closeAll();
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
+						$('#price').val('');
+						$('#qty').val('');
+						$('#prodcut_description').html('');
+						$("#buy").attr("disabled","true");
+						$("#addons").remove();
+						form.render('select');
 					}
 				}	
 				,btn2: function(index, layero){
+					$('#price').val('');
+					$('#qty').val('');
+					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
+					$("#addons").remove();
 					form.render('select');
 				}
 				,cancel: function(){ 
+					$('#price').val('');
+					$('#qty').val('');
+					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
+					$("#addons").remove();
 					form.render('select');
 				}
 			});
