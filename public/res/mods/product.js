@@ -183,7 +183,7 @@
 							url: '/product/get/proudctinfo',
 							type: 'POST',
 							dataType: 'json',
-							data: {'pid': data.value,'csrf_token':TOKEN},
+							data: {'pid': data.value,'password':productpassword,'csrf_token':TOKEN},
 							beforeSend: function () {
 							},
 							success: function (res) {
