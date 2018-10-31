@@ -27,7 +27,7 @@ class QueryController extends PcBasicController
 		if($zlkbmethod == "auto"){
 			$data['order'] = $data['cnstatus'] = array();
 			//如果有订单号过来，就是直接去自动查询页面
-			$orderid  = $this->get('orderid',false);
+			$orderid  = $this->get('orderid');
 			if($orderid){
 				if (false != $this->login AND $this->userid) {
 					$order_email = $this->uinfo['email'];
@@ -57,12 +57,12 @@ class QueryController extends PcBasicController
 	
 	public function ajaxAction()
 	{
-		$zlkbmethod = $this->getPost('zlkbmethod',false);
+		$zlkbmethod = $this->getPost('zlkbmethod');
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($zlkbmethod AND $csrf_token){
 			if(in_array($zlkbmethod,$this->method_array)){
 				if($zlkbmethod == 'contact'){
-					$chapwd    = $this->getPost('chapwd',false);
+					$chapwd    = $this->getPost('chapwd');
 					if($chapwd){
 						if ($this->VerifyCsrfToken($csrf_token)) {
 							if(isset($this->config['orderinputtype']) AND $this->config['orderinputtype']=='2'){
@@ -84,7 +84,7 @@ class QueryController extends PcBasicController
 							}
 							
 							if(isset($this->config['yzmswitch']) AND $this->config['yzmswitch']>0){
-								$vercode = $this->getPost('vercode',false);
+								$vercode = $this->getPost('vercode');
 								if($vercode){
 									if(strtolower($this->getSession('productqueryCaptcha')) == strtolower($vercode)){
 										$this->unsetSession('productqueryCaptcha');
@@ -112,11 +112,11 @@ class QueryController extends PcBasicController
 					}
 				//订单号查询	
 				}elseif($zlkbmethod == 'orderid'){
-					$orderid    = $this->getPost('orderid',false);
+					$orderid    = $this->getPost('orderid');
 					if($orderid){
 						if ($this->VerifyCsrfToken($csrf_token)) {
 							if(isset($this->config['yzmswitch']) AND $this->config['yzmswitch']>0){
-								$vercode = $this->getPost('vercode',false);
+								$vercode = $this->getPost('vercode');
 								if($vercode){
 									if(strtolower($this->getSession('productqueryCaptcha')) == strtolower($vercode)){
 										$this->unsetSession('productqueryCaptcha');
@@ -176,7 +176,7 @@ class QueryController extends PcBasicController
 	
 	public function kamiAction()
 	{
-		$orderid    = $this->getPost('orderid',false);
+		$orderid    = $this->getPost('orderid');
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($orderid AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
@@ -199,7 +199,7 @@ class QueryController extends PcBasicController
 	
 	public function payAction()
 	{
-		$oid    = $this->getPost('oid',false);
+		$oid    = $this->getPost('oid');
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($oid AND is_numeric($oid) AND $oid>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
