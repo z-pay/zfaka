@@ -52,7 +52,7 @@
 	
 	form.on('select(typeid)', function(data){
 		if (data.value == 0) return;
-		var ispassword = $(this).attr("data-type");
+		var ispassword = data.elem.attr("data-type");
 		if(ispassword>0){
 			//示范一个公告层
 			  layer.open({
