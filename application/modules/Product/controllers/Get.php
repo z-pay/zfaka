@@ -72,7 +72,7 @@ class GetController extends PcBasicController
 					
 					$data = array();
 					$order = array('sort_num' => 'DESC');
-					$field = array('id', 'name');
+					$field = array('id', 'name','password');
 					$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1,'isdelete'=>0))->Order($order)->Select();
 					$data['products'] = $products;
 					$result = array('code' => 1, 'msg' => 'success','data'=>$data);
@@ -92,20 +92,35 @@ class GetController extends PcBasicController
 	{
 		$pid = $this->getPost('pid');
 		$csrf_token = $this->getPost('csrf_token', false);
-		if($pid AND $csrf_token){
+		if($pid AND is_numeric($pid) AND $pid>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$data = array();
-				$field = array('id', 'name', 'price','auto', 'qty', 'stockcontrol', 'description','addons');
+				$field = array('id', 'name', 'price','auto', 'qty', 'stockcontrol', 'description','addons','password');
 				$product = $this->m_products->Field($field)->Where(array('id'=>$pid))->SelectOne();
-				$data['product'] = $product;
-				
-				if($product['addons']){
-					$addons = explode(',',$product['addons']);
-					$data['addons'] = $addons;
+				if(!empty($product)){
+					if(strlen($product['password'])>0){
+						$password = $this->getPost('password');
+						if(!$password){
+							$result = array('code' => 1000, 'msg' => '参数错误');
+							Helper::response($result);
+						}
+						if($product['password']!=$password){
+							$result = array('code' => 1002, 'msg' => '密码错误');
+							Helper::response($result);
+						}
+					}
+					$data['product'] = $product;	
+					if($product['addons']){
+						$addons = explode(',',$product['addons']);
+						$data['addons'] = $addons;
+					}else{
+						$data['addons'] = array();
+					}
+					$result = array('code' => 1, 'msg' => 'success','data'=>$data);
+					
 				}else{
-					$data['addons'] = array();
+					$result = array('code' => 1002, 'msg' => '商品不存在');
 				}
-				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
 			} else {
                 $result = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
             }

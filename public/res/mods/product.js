@@ -82,7 +82,12 @@
 									var html = "";
 									var list = res.data.products;
 									for (var i = 0, j = list.length; i < j; i++) {
-										html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
+										var mypassword = list[i].password;
+										var type = 0;
+										if(mypassword.length>0){
+											type = 1;
+										}
+										html += '<option value='+list[i].id+' data-type="'+type+'">'+list[i].name+'</option>';
 									}
 									$('#productlist').html("<option value=\"0\">请选择</option>" + html);
 									$('#price').val('');
@@ -151,57 +156,140 @@
 
 	form.on('select(productlist)', function(data){
 		if (data.value == 0) return;
-		$.ajax({
-			url: '/product/get/proudctinfo',
-			type: 'POST',
-			dataType: 'json',
-			data: {'pid': data.value,'csrf_token':TOKEN},
-			beforeSend: function () {
-			},
-			success: function (res) {
-				if (res.code == '1') {
-					var product = res.data.product;
-					var html =""
-					$('#price').val(product.price);
-					if(product.stockcontrol>0){
-						if(product.qty>0){
-							$('#qty').val(product.qty);
-							$("#buy").removeAttr("disabled");
-						}else{
-							$('#qty').val("库存不足");
-							$("#buy").attr("disabled","true");
-						}
+		var ispassword = $(data.elem).find('option:selected').data('type');
+		if(ispassword>0){
+			var html = '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div class="layui-input-inline"><input type="password" id="productpassword" name="productpassword" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"> </div></div>';
+			layer.open({
+				type: 1
+				,title: false //不显示标题栏
+				,closeBtn: true
+				,area: '300px;'
+				,shade: 0.8
+				,id: 'product_password' //设定一个id，防止重复弹出
+				,btn: ['提交','放弃']
+				,btnAlign: 'c'
+				,moveType: 1 //拖拽模式，0或者1
+				,content: html
+				,yes: function(layero){
+					var productpassword = $("#productpassword").val(); 
+					if(productpassword.length>0){
+						//远程请求验证
+						$.ajax({
+							url: '/product/get/proudctinfo',
+							type: 'POST',
+							dataType: 'json',
+							data: {'pid': data.value,'csrf_token':TOKEN},
+							beforeSend: function () {
+							},
+							success: function (res) {
+								if (res.code == '1') {
+									var product = res.data.product;
+									var html =""
+									$('#price').val(product.price);
+									if(product.stockcontrol>0){
+										if(product.qty>0){
+											$('#qty').val(product.qty);
+											$("#buy").removeAttr("disabled");
+										}else{
+											$('#qty').val("库存不足");
+											$("#buy").attr("disabled","true");
+										}
+									}else{
+										$('#qty').val("不限量");
+										$("#buy").removeAttr("disabled");
+									}
+									$('#stockcontrol').val(product.stockcontrol);
+									if(product.auto>0){
+										var str = '<p><span class="layui-badge layui-bg-green">自动发货</span></p>';
+									}else{
+										var str = '<p><span class="layui-badge layui-bg-black">手工发货</span></p>';
+									}
+									
+									html = str + htmlspecialchars_decode(product.description);
+									$('#prodcut_description').html(html);
+									
+									$("#addons").remove();
+									var addons = '';
+									var list = res.data.addons;
+									for (var i = 0, j = list.length; i < j; i++) {
+										addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
+									}
+									$('#product_input').append(addons);
+									$('#prodcut_num').height('auto');
+									
+									form.render();
+									autoHeight();
+								} else {
+									layer.msg(res.msg,{icon:2,time:5000});
+								}
+							}
+						});
+						layer.closeAll();
 					}else{
-						$('#qty').val("不限量");
-						$("#buy").removeAttr("disabled");
+						layer.msg("请输入密码",{icon:2,time:5000});
 					}
-					$('#stockcontrol').val(product.stockcontrol);
-					if(product.auto>0){
-						var str = '<p><span class="layui-badge layui-bg-green">自动发货</span></p>';
-					}else{
-						var str = '<p><span class="layui-badge layui-bg-black">手工发货</span></p>';
-					}
-					
-					html = str + htmlspecialchars_decode(product.description);
-					$('#prodcut_description').html(html);
-					
-					$("#addons").remove();
-					var addons = '';
-					var list = res.data.addons;
-					for (var i = 0, j = list.length; i < j; i++) {
-						addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
-					}
-					$('#product_input').append(addons);
-					$('#prodcut_num').height('auto');
-					
-					form.render();
-					autoHeight();
-				} else {
-					layer.msg(res.msg,{icon:2,time:5000});
+				}	
+				,btn2: function(index, layero){
+					$("#buy").attr("disabled","true");
+					form.render('select');
 				}
-			}
-		});
-
+				,cancel: function(){ 
+					$("#buy").attr("disabled","true");
+					form.render('select');
+				}
+			});
+		}else{
+			$.ajax({
+				url: '/product/get/proudctinfo',
+				type: 'POST',
+				dataType: 'json',
+				data: {'pid': data.value,'csrf_token':TOKEN},
+				beforeSend: function () {
+				},
+				success: function (res) {
+					if (res.code == '1') {
+						var product = res.data.product;
+						var html =""
+						$('#price').val(product.price);
+						if(product.stockcontrol>0){
+							if(product.qty>0){
+								$('#qty').val(product.qty);
+								$("#buy").removeAttr("disabled");
+							}else{
+								$('#qty').val("库存不足");
+								$("#buy").attr("disabled","true");
+							}
+						}else{
+							$('#qty').val("不限量");
+							$("#buy").removeAttr("disabled");
+						}
+						$('#stockcontrol').val(product.stockcontrol);
+						if(product.auto>0){
+							var str = '<p><span class="layui-badge layui-bg-green">自动发货</span></p>';
+						}else{
+							var str = '<p><span class="layui-badge layui-bg-black">手工发货</span></p>';
+						}
+						
+						html = str + htmlspecialchars_decode(product.description);
+						$('#prodcut_description').html(html);
+						
+						$("#addons").remove();
+						var addons = '';
+						var list = res.data.addons;
+						for (var i = 0, j = list.length; i < j; i++) {
+							addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
+						}
+						$('#product_input').append(addons);
+						$('#prodcut_num').height('auto');
+						
+						form.render();
+						autoHeight();
+					} else {
+						layer.msg(res.msg,{icon:2,time:5000});
+					}
+				}
+			});
+		}
 	});
 
 	form.on('submit(buy)', function(data){
