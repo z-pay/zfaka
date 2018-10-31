@@ -133,7 +133,12 @@
 						var html = "";
 						var list = res.data.products;
 						for (var i = 0, j = list.length; i < j; i++) {
-							html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
+							var mypassword = list[i].password;
+							var type = 0;
+							if(mypassword.length>0){
+								type = 1;
+							}
+							html += '<option value='+list[i].id+' data-type="'+type+'">'+list[i].name+'</option>';
 						}
 						$('#productlist').html("<option value=\"0\">请选择</option>" + html);
 						$('#price').val('');
