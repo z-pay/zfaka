@@ -50,11 +50,45 @@
 		return true;
 	}
 	
+	function getproudctlist(){
+		//远程请求验证
+		$.ajax({
+			url: '/product/get/proudctlist',
+			type: 'POST',
+			dataType: 'json',
+			data: {'tid': data.value,'password':grouppassword,'csrf_token':TOKEN},
+			beforeSend: function () {
+			},
+			success: function (res) {
+				if (res.code == '1') {
+					var html = "";
+					var list = res.data.products;
+					for (var i = 0, j = list.length; i < j; i++) {
+						html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
+					}
+					$('#productlist').html("<option value=\"0\">请选择</option>" + html);
+					$('#price').val('');
+					$('#qty').val('');
+					$('#prodcut_description').html('');
+					$("#buy").attr("disabled","true");
+					$("#addons").remove();
+					form.render('select');
+					autoHeight();
+				} else {
+					$("#buy").attr("disabled","true");
+					form.render('select');
+					layer.msg(res.msg,{icon:2,time:5000});
+				}
+			},
+
+		});
+	}
+	
 	form.on('select(typeid)', function(data){
 		if (data.value == 0) return;
 		var ispassword = $(data.elem).find('option:selected').data('type');
 		if(ispassword>0){
-			var html = '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div class="layui-input-inline"><input type="password" id="grouppassword" name="grouppassword" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"> </div></div>';
+			var html = '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div class="layui-input-inline"><input type="password" id="grouppassword" name="grouppassword" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"> </div></div>';
 			layer.open({
 				type: 1
 				,title: false //不显示标题栏
@@ -69,40 +103,10 @@
 				,yes: function(layero){
 					var grouppassword = $("#grouppassword").val(); 
 					if(grouppassword.length>0){
-						//远程请求验证
-						$.ajax({
-							url: '/product/get/proudctlistbypassword',
-							type: 'POST',
-							dataType: 'json',
-							data: {'tid': data.value,'password':grouppassword,'csrf_token':TOKEN},
-							beforeSend: function () {
-							},
-							success: function (res) {
-								if (res.code == '1') {
-									var html = "";
-									var list = res.data.products;
-									for (var i = 0, j = list.length; i < j; i++) {
-										html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
-									}
-									$('#productlist').html("<option value=\"0\">请选择</option>" + html);
-									$('#price').val('');
-									$('#qty').val('');
-									$('#prodcut_description').html('');
-									$("#buy").attr("disabled","true");
-									$("#addons").remove();
-									form.render('select');
-									autoHeight();
-								} else {
-									$("#buy").attr("disabled","true");
-									form.render('select');
-									layer.msg(res.msg,{icon:2,time:5000});
-								}
-							},
-
-						});
+						getproudctlist();
+						layer.closeAll();
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
-						layer.closeAll();
 					}
 				}	
 				,btn2: function(index, layero){
@@ -115,36 +119,7 @@
 				}
 			});
 		}else{
-			$.ajax({
-				url: '/product/get/proudctlist',
-				type: 'POST',
-				dataType: 'json',
-				data: {'tid': data.value,'csrf_token':TOKEN},
-				beforeSend: function () {
-				},
-				success: function (res) {
-					if (res.code == '1') {
-						var html = "";
-						var list = res.data.products;
-						for (var i = 0, j = list.length; i < j; i++) {
-							html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
-						}
-						$('#productlist').html("<option value=\"0\">请选择</option>" + html);
-						$('#price').val('');
-						$('#qty').val('');
-						$('#prodcut_description').html('');
-						$("#buy").attr("disabled","true");
-						$("#addons").remove();
-						form.render('select');
-						autoHeight();
-					} else {
-						$("#buy").attr("disabled","true");
-						form.render('select');
-						layer.msg(res.msg,{icon:2,time:5000});
-					}
-				}
-
-			});
+			getproudctlist();
 		}
 	});
 

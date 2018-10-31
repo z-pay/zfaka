@@ -55,42 +55,27 @@ class GetController extends PcBasicController
 		
 		if($tid AND is_numeric($tid) AND $tid>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				$data = array();
-				$order = array('sort_num' => 'DESC');
-				$field = array('id', 'name');
-				$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1,'isdelete'=>0))->Order($order)->Select();
-				$data['products'] = $products;
-				$result = array('code' => 1, 'msg' => 'success','data'=>$data);
-			} else {
-                $result = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
-            }
-		}else{
-			$result = array('code' => 1000, 'msg' => '参数错误');
-		}
-        Helper::response($result);
-    }
-	
-    public function proudctlistbypasswordAction()
-    {
-		$tid = $this->getPost('tid');
-		$password = $this->getPost('password');
-		$csrf_token = $this->getPost('csrf_token', false);
-		
-		if($tid AND is_numeric($tid) AND $tid>0 AND $password AND $csrf_token){
-			if ($this->VerifyCsrfToken($csrf_token)) {
-				//1.先校验密码
+				//1.先查询是否为密码分类
 				$products_type = $this->m_products_type->Where(array('id'=>$tid,'active'=>1,'isdelete'=>0))->SelectOne();
 				if(!empty($products_type)){
-					if($products_type['password']==$password){
-						$data = array();
-						$order = array('sort_num' => 'DESC');
-						$field = array('id', 'name');
-						$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1,'isdelete'=>0))->Order($order)->Select();
-						$data['products'] = $products;
-						$result = array('code' => 1, 'msg' => 'success','data'=>$data);
-					}else{
-						$result = array('code' => 1002, 'msg' => '密码错误');
+					if(strlen($products_type['password'])>0){
+						$password = $this->getPost('password');
+						if(!$password){
+							$result = array('code' => 1000, 'msg' => '参数错误');
+							Helper::response($result);
+						}
+						if($products_type['password']!=$password){
+							$result = array('code' => 1002, 'msg' => '密码错误');
+							Helper::response($result);
+						}
 					}
+					
+					$data = array();
+					$order = array('sort_num' => 'DESC');
+					$field = array('id', 'name');
+					$products = $this->m_products->Field($field)->Where(array('typeid'=>$tid,'active'=>1,'isdelete'=>0))->Order($order)->Select();
+					$data['products'] = $products;
+					$result = array('code' => 1, 'msg' => 'success','data'=>$data);
 				}else{
 					$result = array('code' => 1002, 'msg' => '分类不存在');
 				}
@@ -101,7 +86,7 @@ class GetController extends PcBasicController
 			$result = array('code' => 1000, 'msg' => '参数错误');
 		}
         Helper::response($result);
-    }	
+    }
 	
 	public function proudctinfoAction()
 	{
