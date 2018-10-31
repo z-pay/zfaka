@@ -52,10 +52,10 @@
 	
 	form.on('select(typeid)', function(data){
 		if (data.value == 0) return;
-		  console.log(data.elem); //得到select原始DOM对象
-		  console.log(data.value); //得到被选中的值
-		  console.log(data.othis); //得到美化后的DOM对象
-		var ispassword = $(this).attr("data-type");
+		//console.log(data.elem); //得到select原始DOM对象
+		//console.log(data.value); //得到被选中的值
+		//console.log(data.othis); //得到美化后的DOM对象
+		var ispassword = $(data.elem).find('option:selected').data('type');
 		if(ispassword>0){
 			//示范一个公告层
 			  layer.open({
