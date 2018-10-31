@@ -52,24 +52,61 @@
 	
 	form.on('select(typeid)', function(data){
 		if (data.value == 0) return;
-		//console.log(data.elem); //得到select原始DOM对象
-		//console.log(data.value); //得到被选中的值
-		//console.log(data.othis); //得到美化后的DOM对象
 		var ispassword = $(data.elem).find('option:selected').data('type');
 		if(ispassword>0){
-			//示范一个公告层
-			  layer.open({
+			var html = '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div class="layui-input-inline"><input type="password" id="grouppassword" name="grouppassword" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input"> </div></div>';
+			layer.open({
 				type: 1
 				,title: false //不显示标题栏
-				,closeBtn: false
+				,closeBtn: true
 				,area: '300px;'
 				,shade: 0.8
-				,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-				,btn: ['放弃']
+				,id: 'group_password' //设定一个id，防止重复弹出
+				,btn: ['提交','放弃']
 				,btnAlign: 'c'
 				,moveType: 1 //拖拽模式，0或者1
-				,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">请输入密码</div>'
-			  });
+				,content: html
+			   ,success: function(layero){
+					var btn = layero.find('.layui-layer-btn');
+					var grouppassword = $("#grouppassword").val(); 
+					if(grouppassword.length>0){
+						//远程请求验证
+						$.ajax({
+							url: '/product/get/proudctlistbypassword',
+							type: 'POST',
+							dataType: 'json',
+							data: {'tid': data.value,'password':grouppassword,'csrf_token':TOKEN},
+							beforeSend: function () {
+							},
+							success: function (res) {
+								if (res.code == '1') {
+									var html = "";
+									var list = res.data.products;
+									for (var i = 0, j = list.length; i < j; i++) {
+										html += '<option value='+list[i].id+'>'+list[i].name+'</option>';
+									}
+									$('#productlist').html("<option value=\"0\">请选择</option>" + html);
+									$('#price').val('');
+									$('#qty').val('');
+									$('#prodcut_description').html('');
+									$("#buy").attr("disabled","true");
+									$("#addons").remove();
+									form.render('select');
+									autoHeight();
+								} else {
+									$("#buy").attr("disabled","true");
+									form.render('select');
+									layer.msg(res.msg,{icon:2,time:5000});
+								}
+							}
+
+						});
+					}else{
+						layer.msg("请输入密码",{icon:2,time:5000});
+						layer.close(i);
+					}
+				}
+			});
 		}else{
 			$.ajax({
 				url: '/product/get/proudctlist',
