@@ -103,7 +103,7 @@
 								$("#buy").attr("disabled","true");
 								form.render('select');
 							},
-							,cancel: function(){ 
+							cancel: function(){ 
 								$("#buy").attr("disabled","true");
 								form.render('select');
 							}
