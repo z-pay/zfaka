@@ -109,7 +109,7 @@
 				,btn2: function(index, layero){
 					$("#buy").attr("disabled","true");
 					form.render('select');
-				},
+				}
 				,cancel: function(){ 
 					$("#buy").attr("disabled","true");
 					form.render('select');
