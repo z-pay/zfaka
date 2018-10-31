@@ -78,7 +78,7 @@
 							data: {'tid': data.value,'password':grouppassword,'csrf_token':TOKEN},
 							beforeSend: function () {
 							},
-							success: function (res) {
+							yes: function (res) {
 								if (res.code == '1') {
 									var html = "";
 									var list = res.data.products;
@@ -98,8 +98,15 @@
 									form.render('select');
 									layer.msg(res.msg,{icon:2,time:5000});
 								}
+							},
+							btn2: function(index, layero){
+								$("#buy").attr("disabled","true");
+								form.render('select');
+							},
+							,cancel: function(){ 
+								$("#buy").attr("disabled","true");
+								form.render('select');
 							}
-
 						});
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
