@@ -22,7 +22,11 @@
 										<option value="">请选择</option>
 										<?php if(!empty($products_type)):?>
 										<?php foreach($products_type AS $type):?>
-										<option value="<?php echo $type['id'];?>"><?php echo $type['name'];?></option>
+											<?php if(isset($type['password'])):?>
+											<option value="<?php echo $type['id'];?>" data-type="<?php if(strlen($type['password'])>0):?>1<?php else:?>0<?php endif;?>"><?php echo $type['name'];?></option>
+											<?php else:?>
+											<option value="<?php echo $type['id'];?>" data-type="0"><?php echo $type['name'];?></option>
+											<?php endif;?>
 										<?php endforeach;?>
 										<?php endif;?>
 									</select>
