@@ -66,7 +66,7 @@
 				,btnAlign: 'c'
 				,moveType: 1 //拖拽模式，0或者1
 				,content: html
-			   ,success: function(layero){
+				,yes: function(layero){
 					var btn = layero.find('.layui-layer-btn');
 					var grouppassword = $("#grouppassword").val(); 
 					if(grouppassword.length>0){
@@ -78,7 +78,7 @@
 							data: {'tid': data.value,'password':grouppassword,'csrf_token':TOKEN},
 							beforeSend: function () {
 							},
-							yes: function (res) {
+							success: function (res) {
 								if (res.code == '1') {
 									var html = "";
 									var list = res.data.products;
@@ -99,19 +99,20 @@
 									layer.msg(res.msg,{icon:2,time:5000});
 								}
 							},
-							btn2: function(index, layero){
-								$("#buy").attr("disabled","true");
-								form.render('select');
-							},
-							cancel: function(){ 
-								$("#buy").attr("disabled","true");
-								form.render('select');
-							}
+
 						});
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
-						layer.close(i);
+						layer.closeAll();
 					}
+				}	
+				,btn2: function(index, layero){
+					$("#buy").attr("disabled","true");
+					form.render('select');
+				},
+				,cancel: function(){ 
+					$("#buy").attr("disabled","true");
+					form.render('select');
 				}
 			});
 		}else{
