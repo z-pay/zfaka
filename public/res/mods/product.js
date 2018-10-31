@@ -98,6 +98,7 @@
 									form.render('select');
 									autoHeight();
 								} else {
+									layer.msg(res.msg,{icon:2,time:5000});
 									$('#productlist').html("");
 									$('#price').val('');
 									$('#qty').val('');
@@ -105,7 +106,6 @@
 									$("#buy").attr("disabled","true");
 									$("#addons").remove();
 									form.render('select');
-									layer.msg(res.msg,{icon:2,time:5000});
 								}
 							},
 
@@ -164,6 +164,7 @@
 						form.render('select');
 						autoHeight();
 					} else {
+						layer.msg(res.msg,{icon:2,time:5000});
 						$('#productlist').html("");
 						$('#price').val('');
 						$('#qty').val('');
@@ -171,7 +172,6 @@
 						$("#buy").attr("disabled","true");
 						$("#addons").remove();
 						form.render('select');
-						layer.msg(res.msg,{icon:2,time:5000});
 					}
 				},
 
