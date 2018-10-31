@@ -67,7 +67,6 @@
 				,moveType: 1 //拖拽模式，0或者1
 				,content: html
 				,yes: function(layero){
-					var btn = layero.find('.layui-layer-btn');
 					var grouppassword = $("#grouppassword").val(); 
 					if(grouppassword.length>0){
 						//远程请求验证
