@@ -246,6 +246,12 @@
 									autoHeight();
 								} else {
 									layer.msg(res.msg,{icon:2,time:5000});
+									$('#price').val('');
+									$('#qty').val('');
+									$('#prodcut_description').html('');
+									$("#buy").attr("disabled","true");
+									$("#addons").remove();
+									form.render('select');
 								}
 							}
 						});
@@ -325,6 +331,12 @@
 						autoHeight();
 					} else {
 						layer.msg(res.msg,{icon:2,time:5000});
+						$('#price').val('');
+						$('#qty').val('');
+						$('#prodcut_description').html('');
+						$("#buy").attr("disabled","true");
+						$("#addons").remove();
+						form.render('select');
 					}
 				}
 			});
