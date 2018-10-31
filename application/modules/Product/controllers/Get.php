@@ -9,10 +9,12 @@
 class GetController extends PcBasicController
 {
 	private $m_products;
+	private $m_products_type;
     public function init()
     {
         parent::init();
 		$this->m_products = $this->load('products');
+		$this->m_products_type = $this->load('products_type');
     }
 	
     public function indexAction()
