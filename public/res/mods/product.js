@@ -120,7 +120,7 @@
 				url: '/product/get/proudctlist',
 				type: 'POST',
 				dataType: 'json',
-				data: {'tid': data.value,'password':grouppassword,'csrf_token':TOKEN},
+				data: {'tid': data.value,'csrf_token':TOKEN},
 				beforeSend: function () {
 				},
 				success: function (res) {
