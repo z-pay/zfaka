@@ -199,7 +199,7 @@ class QueryController extends PcBasicController
 	{
 		$oid    = $this->getPost('oid',false);
 		$csrf_token = $this->getPost('csrf_token', false);
-		if($oid AND $csrf_token){
+		if($oid AND is_numeric($oid) AND $oid>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
 				if(empty($order)){
