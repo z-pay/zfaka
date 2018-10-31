@@ -103,7 +103,7 @@
 				,yes: function(layero){
 					var grouppassword = $("#grouppassword").val(); 
 					if(grouppassword.length>0){
-						getproudctlist();
+						getproudctlist(data);
 						layer.closeAll();
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
@@ -119,7 +119,7 @@
 				}
 			});
 		}else{
-			getproudctlist();
+			getproudctlist(data);
 		}
 	});
 
