@@ -55,7 +55,7 @@
 		  console.log(data.elem); //得到select原始DOM对象
 		  console.log(data.value); //得到被选中的值
 		  console.log(data.othis); //得到美化后的DOM对象
-		var ispassword = data.elem.attr("data-type");
+		var ispassword = $(this).("data-type");
 		if(ispassword>0){
 			//示范一个公告层
 			  layer.open({
