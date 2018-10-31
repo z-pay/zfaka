@@ -147,8 +147,10 @@ class QueryController extends PcBasicController
 					$orderid = $this->getCookie('oid');
 					if($orderid){
 						if ($this->VerifyCsrfToken($csrf_token)) {
+							$l_encryption = new Encryption();
+							$cookie_oid = $l_encryption->decrypt($orderid);
 							$starttime = strtotime("-1 month");
-							$order = $this->m_order->Where(array('orderid'=>$orderid))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
+							$order = $this->m_order->Where(array('orderid'=>$cookie_oid))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 							if(empty($order)){
 								$data=array('code'=>1005,'msg'=>'订单不存在');
 							}else{
@@ -210,7 +212,9 @@ class QueryController extends PcBasicController
 					}else{
 						$this->setSession('order_email',$order['email']);
 						$this->clearCookie('oid');
-						$this->setCookie('oid',$order['orderid']);
+						$l_encryption = new Encryption();
+						$cookie_oid = $l_encryption->encrypt($order['orderid']);
+						$this->setCookie('oid',$cookie_oid);
 						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
 					}
 				}
