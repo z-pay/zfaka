@@ -18,7 +18,7 @@ class DetailController extends PcBasicController
     public function indexAction()
     {
 		$pid = $this->get('pid');
-		if(is_numeric($pid) AND $pid>0){
+		if($pid AND is_numeric($pid) AND $pid>0){
 			$product = $this->m_products->Where(array('id'=>$pid,'active'=>1,'isdelete'=>0))->SelectOne();
 			if(!empty($product)){
 				$data['product'] = $product;
