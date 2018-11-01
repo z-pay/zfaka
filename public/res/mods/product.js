@@ -124,6 +124,7 @@
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
 					form.render('select');
+					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
 				,cancel: function(){ 
 				$(data.elem).find("option").eq(0).val("0");
@@ -135,6 +136,7 @@
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
 					form.render('select');
+					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
 			});
 		}else{
