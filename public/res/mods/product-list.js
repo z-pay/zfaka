@@ -4,10 +4,17 @@ layui.define(['layer', 'table'], function(exports){
 	var table = layui.table;
 	var device = layui.device();
 	
+	//分类id
+	var tid = 0;
+	if(typeof(TID)!="undefined"){
+		tid = TID;
+	}
+	
 	if(device.weixin || device.android || device.ios){
 		table.render({
 			elem: '#table',
 			url: '/product/get',
+			where: {"tid": tid},
 			page: true,
 			cellMinWidth:60,
 			cols: [[
@@ -20,6 +27,7 @@ layui.define(['layer', 'table'], function(exports){
 		table.render({
 			elem: '#table',
 			url: '/product/get',
+			where: {"tid": tid},
 			page: true,
 			cellMinWidth:60,
 			cols: [[

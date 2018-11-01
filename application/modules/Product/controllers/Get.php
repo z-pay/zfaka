@@ -19,8 +19,14 @@ class GetController extends PcBasicController
 	
     public function indexAction()
     {
+		$where2 = "1"; 
+		$tid = $this->get('tid');
+		if($tid AND is_numeric($tid) AND $tid>0){
+			$where2 .= " and typeid = {$tid}"; 
+		}
+		
 		$where = array('active'=>1,'isdelete'=>0);
-		$total=$this->m_products->Where($where)->Total();
+		$total=$this->m_products->Where($where)->Where($where2)->Total();
         if ($total > 0) {
 			$page = $this->get('page');
 			$page = is_numeric($page) ? $page : 1;
@@ -35,7 +41,7 @@ class GetController extends PcBasicController
 			
             $limits = "{$pagenum},{$limit}";
 			
-			$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
+			$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 and {$where2} order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
 			$items = $this->m_products->Query($sql);
             if (empty($items)) {
                 $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
