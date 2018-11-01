@@ -2,7 +2,7 @@ layui.define(['layer', 'table'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var table = layui.table;
-	
+	var device = layui.device();
 
 	table.render({
 		elem: '#table',

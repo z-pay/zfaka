@@ -18,20 +18,6 @@
 		</div>
     </div>
 </div>
-<script type="text/html" id="auto">
-    {{# if(d.auto >0){ }}
-    <span class="layui-badge layui-bg-green">自动发货</span>
-    {{# } else { }}
-    <span class="layui-badge layui-bg-gray">手工发货</span>
-    {{# } }}
-</script>
-<script type="text/html" id="qty">
-    {{# if(d.stockcontrol >0){ }}
-        {{d.qty}}
-    {{# } else { }}
-        <span class="layui-badge layui-bg-gray">不限量</span>
-    {{# } }}
-</script>
 <script type="text/html" id="opt">
     <a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/{{d.id}}.html">购买</a>
 </script>
