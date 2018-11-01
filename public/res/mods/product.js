@@ -97,25 +97,25 @@
 									$("#addons").remove();
 									form.render('select');
 									autoHeight();
+									layer.closeAll();
 								} else {
 									layer.msg(res.msg,{icon:2,time:5000});
-									$('#productlist').html("");
+									/*$('#productlist').html("");
 									$('#price').val('');
 									$('#qty').val('');
 									$('#prodcut_description').html('');
 									$("#buy").attr("disabled","true");
 									$("#addons").remove();
-									form.render('select');
+									form.render('select');*/
 								}
 							},
-
 						});
-						layer.closeAll();
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
 					}
 				}	
 				,btn2: function(index, layero){
+					$(data.elem).find("option[index='0']").attr("selected",true);
 					$('#productlist').html("");
 					$('#price').val('');
 					$('#qty').val('');
@@ -125,6 +125,7 @@
 					form.render('select');
 				}
 				,cancel: function(){ 
+					$(data.elem).find("option[index='0']").attr("selected",true);
 					$('#productlist').html("");
 					$('#price').val('');
 					$('#qty').val('');
