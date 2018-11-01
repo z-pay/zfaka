@@ -418,7 +418,7 @@
 	
 	//密码商品
 	if(typeof(PASSWORD_PRODUCT)!="undefined"){
-		if(PASSWORD_PRODUCT.length>0){
+		if(PASSWORD_PRODUCT >0){
 			var html = '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;"><div class="layui-input-inline"><input type="password" id="productpassword" name="productpassword" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input"> </div></div>';
 			layer.open({
 				type: 1
