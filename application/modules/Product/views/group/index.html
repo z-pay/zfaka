@@ -40,9 +40,4 @@
 <script>
 layui.use('product-list');
 var TID = "<?php echo $products_type['id'];?>";
-<?php if(isset($config['layerad']) AND strlen($config['layerad'])>0):?>
-var LAYERAD = "<?php echo $config['layerad'];?>";
-<?php else:?>
-var LAYERAD = "";
-<?php endif;?>
 </script>
