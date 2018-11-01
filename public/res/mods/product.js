@@ -100,13 +100,6 @@
 									layer.closeAll();
 								} else {
 									layer.msg(res.msg,{icon:2,time:5000});
-									/*$('#productlist').html("");
-									$('#price').val('');
-									$('#qty').val('');
-									$('#prodcut_description').html('');
-									$("#buy").attr("disabled","true");
-									$("#addons").remove();
-									form.render('select');*/
 								}
 							},
 						});
@@ -127,7 +120,7 @@
 					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
 				,cancel: function(){ 
-				$(data.elem).find("option").eq(0).val("0");
+					$(data.elem).find("option").eq(0).val("0");
 					$(data.elem).find("option").eq(0).attr("selected",true);
 					$('#productlist').html("");
 					$('#price').val('');
@@ -170,6 +163,8 @@
 						autoHeight();
 					} else {
 						layer.msg(res.msg,{icon:2,time:5000});
+						$(data.elem).find("option").eq(0).val("0");
+						$(data.elem).find("option").eq(0).attr("selected",true);
 						$('#productlist').html("");
 						$('#price').val('');
 						$('#qty').val('');
@@ -177,6 +172,7 @@
 						$("#buy").attr("disabled","true");
 						$("#addons").remove();
 						form.render('select');
+						$(data.elem).find("option").eq(0).attr("selected",false);
 					}
 				},
 
@@ -246,46 +242,40 @@
 									}
 									$('#product_input').append(addons);
 									$('#prodcut_num').height('auto');
-									
 									form.render();
 									autoHeight();
+									layer.closeAll();
 								} else {
 									layer.msg(res.msg,{icon:2,time:5000});
-									$('#price').val('');
-									$('#qty').val('');
-									$('#prodcut_description').html('');
-									$("#buy").attr("disabled","true");
-									$("#addons").remove();
-									form.render('select');
 								}
 							}
 						});
-						layer.closeAll();
+						
 					}else{
 						layer.msg("请输入密码",{icon:2,time:5000});
-						$('#price').val('');
-						$('#qty').val('');
-						$('#prodcut_description').html('');
-						$("#buy").attr("disabled","true");
-						$("#addons").remove();
-						form.render('select');
 					}
 				}	
 				,btn2: function(index, layero){
+					$(data.elem).find("option").eq(0).val("0");
+					$(data.elem).find("option").eq(0).attr("selected",true);
 					$('#price').val('');
 					$('#qty').val('');
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
 					form.render('select');
+					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
 				,cancel: function(){ 
+					$(data.elem).find("option").eq(0).val("0");
+					$(data.elem).find("option").eq(0).attr("selected",true);
 					$('#price').val('');
 					$('#qty').val('');
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
 					form.render('select');
+					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
 			});
 		}else{
@@ -336,12 +326,15 @@
 						autoHeight();
 					} else {
 						layer.msg(res.msg,{icon:2,time:5000});
+						$(data.elem).find("option").eq(0).val("0");
+						$(data.elem).find("option").eq(0).attr("selected",true);
 						$('#price').val('');
 						$('#qty').val('');
 						$('#prodcut_description').html('');
 						$("#buy").attr("disabled","true");
 						$("#addons").remove();
 						form.render('select');
+						$(data.elem).find("option").eq(0).attr("selected",false);
 					}
 				}
 			});
