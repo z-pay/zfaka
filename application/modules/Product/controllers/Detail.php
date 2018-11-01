@@ -24,10 +24,10 @@ class DetailController extends PcBasicController
 				$data = array();
 				//如果是密码商品
 				if(strlen($product['password'])>0){
-					$tpl = "t_password";
+					$tpl = "password";
 					if(file_exists(APP_PATH.'/application/modules/Product/views/detail/tpl/'.$tpl.'.html')){
 						$data['title'] = $product['name']."_购买商品";
-						$this->display($tpl, $data);
+						$this->display("tpl_".$tpl, $data);
 						return FALSE;
 					}else{
 						$this->redirect("/product/");
