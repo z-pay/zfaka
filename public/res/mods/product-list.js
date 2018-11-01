@@ -41,9 +41,11 @@ layui.define(['layer', 'table'], function(exports){
 									{field: 'opt', title: '操作', width:80, templet: '#opt',align:'center',fixed: 'right'},
 								]],
 								done: function(res, curr, count){
-									console.log(res);
-									console.log(curr); 
-									console.log(count);
+									if(res.code>1){
+										layer.msg(res.msg,{icon:2,time:5000});
+									}else{
+										layer.closeAll();
+									}
 								 }
 							});
 						}else{
@@ -61,9 +63,11 @@ layui.define(['layer', 'table'], function(exports){
 									{field: 'opt', title: '操作', width:120, templet: '#opt',align:'center',fixed: 'right'},
 								]],
 								done: function(res, curr, count){
-									console.log(res);
-									console.log(curr); 
-									console.log(count);
+									if(res.code>1){
+										layer.msg(res.msg,{icon:2,time:5000});
+									}else{
+										layer.closeAll();
+									}
 								 }
 							});
 						}
