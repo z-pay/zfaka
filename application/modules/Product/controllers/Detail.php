@@ -26,6 +26,7 @@ class DetailController extends PcBasicController
 				if(strlen($product['password'])>0){
 					$tpl = "password";
 					if(file_exists(APP_PATH.'/application/modules/Product/views/detail/tpl/'.$tpl.'.html')){
+						$data['product'] = $product;
 						$data['title'] = $product['name']."_购买商品";
 						$this->display("tpl_".$tpl, $data);
 						return FALSE;
