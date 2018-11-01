@@ -25,7 +25,7 @@ class GetController extends PcBasicController
 			$products_type = $this->m_products_type->Where(array('id'=>$tid,'active'=>1,'isdelete'=>0))->SelectOne();
 			if(!empty($products_type)){
 				if(strlen($products_type['password'])>0){
-					$password = $this->getPost('password');
+					$password = $this->get('password');
 					if(!$password){
 						$data = array('code'=>1000,'count'=>0,'data'=>array(),'msg'=>'参数错误');
 						Helper::response($result);
