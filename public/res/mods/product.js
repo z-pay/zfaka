@@ -492,20 +492,10 @@
 					}
 				}	
 				,btn2: function(index, layero){
-					$('#price').val('');
-					$('#qty').val('');
-					$('#prodcut_description').html('');
-					$("#buy").attr("disabled","true");
-					$("#addons").remove();
-					form.render('select');
+					location.href = '/product/';
 				}
 				,cancel: function(){ 
-					$('#price').val('');
-					$('#qty').val('');
-					$('#prodcut_description').html('');
-					$("#buy").attr("disabled","true");
-					$("#addons").remove();
-					form.render('select');
+					location.href = '/product/';
 				}
 			});
 		}
