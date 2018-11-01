@@ -19,39 +19,82 @@ class GetController extends PcBasicController
 	
     public function indexAction()
     {
-		$where2 = "1"; 
 		$tid = $this->get('tid');
 		if($tid AND is_numeric($tid) AND $tid>0){
-			$where2 .= " and typeid = {$tid}"; 
+			//1.先查询是否为密码分类
+			$products_type = $this->m_products_type->Where(array('id'=>$tid,'active'=>1,'isdelete'=>0))->SelectOne();
+			if(!empty($products_type)){
+				if(strlen($products_type['password'])>0){
+					$password = $this->getPost('password');
+					if(!$password){
+						$data = array('code'=>1000,'count'=>0,'data'=>array(),'msg'=>'参数错误');
+						Helper::response($result);
+					}
+					if($products_type['password']!=$password){
+						$data = array('code'=>1000,'count'=>0,'data'=>array(),'msg'=>'密码错误');
+						Helper::response($data);
+					}
+				}
+					
+				$where = array('active'=>1,'isdelete'=>0,'typeid'=>$tid);
+				$total=$this->m_products->Where($where)->Total();
+				if ($total > 0) {
+					$page = $this->get('page');
+					$page = is_numeric($page) ? $page : 1;
+					
+					$limit = $this->get('limit');
+					$limit = is_numeric($limit) ? $limit : 10;
+					if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
+						$pagenum = ($page - 1) * $limit;
+					} else {
+						$pagenum = 0;
+					}
+					
+					$limits = "{$pagenum},{$limit}";
+					
+					$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
+					$items = $this->m_products->Query($sql);
+					if (empty($items)) {
+						$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+					} else {
+						$data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+					}
+				} else {
+					$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+				}
+			}else{
+				$data = array('code'=>1000,'count'=>0,'data'=>array(),'msg'=>'分类不存在');
+			}
+			Helper::response($data);
+		}else{
+			$where = array('active'=>1,'isdelete'=>0);
+			$total=$this->m_products->Where($where)->Total();
+			if ($total > 0) {
+				$page = $this->get('page');
+				$page = is_numeric($page) ? $page : 1;
+				
+				$limit = $this->get('limit');
+				$limit = is_numeric($limit) ? $limit : 10;
+				if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
+					$pagenum = ($page - 1) * $limit;
+				} else {
+					$pagenum = 0;
+				}
+				
+				$limits = "{$pagenum},{$limit}";
+				
+				$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
+				$items = $this->m_products->Query($sql);
+				if (empty($items)) {
+					$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+				} else {
+					$data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+				}
+			} else {
+				$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+			}
+			Helper::response($data);
 		}
-		
-		$where = array('active'=>1,'isdelete'=>0);
-		$total=$this->m_products->Where($where)->Where($where2)->Total();
-        if ($total > 0) {
-			$page = $this->get('page');
-			$page = is_numeric($page) ? $page : 1;
-			
-			$limit = $this->get('limit');
-			$limit = is_numeric($limit) ? $limit : 10;
-            if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
-                $pagenum = ($page - 1) * $limit;
-            } else {
-                $pagenum = 0;
-            }
-			
-            $limits = "{$pagenum},{$limit}";
-			
-			$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 and {$where2} order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
-			$items = $this->m_products->Query($sql);
-            if (empty($items)) {
-                $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
-            } else {
-                $data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
-            }
-        } else {
-            $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
-        }
-		Helper::response($data);
     }
 	
     public function grouplistAction()
