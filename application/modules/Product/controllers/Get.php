@@ -48,6 +48,32 @@ class GetController extends PcBasicController
 		Helper::response($data);
     }
 	
+    public function grouplistAction()
+    {
+		$csrf_token = $this->getPost('csrf_token', false);
+		if($csrf_token){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$total=$this->m_products_type->Where($where)->Total();
+				if ($total > 0) {
+					$order = array('sort_num' => 'DESC');
+					$items = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
+					if(!empty($items)){
+						 $data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+					}else{
+						$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+					}
+				}else{
+					 $result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+				}
+			} else {
+				$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'参数错误');
+		}
+        Helper::response($result);
+    }	
+	
     public function proudctlistAction()
     {
 		$tid = $this->getPost('tid');
