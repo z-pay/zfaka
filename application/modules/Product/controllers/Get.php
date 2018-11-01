@@ -50,26 +50,30 @@ class GetController extends PcBasicController
 	
     public function grouplistAction()
     {
-		$csrf_token = $this->getPost('csrf_token', false);
-		if($csrf_token){
-			if ($this->VerifyCsrfToken($csrf_token)) {
-				$total=$this->m_products_type->Where($where)->Total();
-				if ($total > 0) {
-					$order = array('sort_num' => 'DESC');
-					$items = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
-					if(!empty($items)){
-						 $data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
-					}else{
-						$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
-					}
-				}else{
-					 $result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
-				}
-			} else {
-				$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'页面超时，请刷新页面后重试!');
+		$where = array('active'=>1,'isdelete'=>0);
+		$total=$this->m_products_type->Where($where)->Total();
+		if ($total > 0) {
+			$page = $this->get('page');
+			$page = is_numeric($page) ? $page : 1;
+			
+			$limit = $this->get('limit');
+			$limit = is_numeric($limit) ? $limit : 10;
+            if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
+                $pagenum = ($page - 1) * $limit;
+            } else {
+                $pagenum = 0;
             }
+			
+            $limits = "{$pagenum},{$limit}";
+			$order = array('sort_num' => 'DESC');
+			$items = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Limit($limits)->Select();
+			if(!empty($items)){
+				$result = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+			}else{
+				$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+			}
 		}else{
-			$result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'参数错误');
+			 $result = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
 		}
         Helper::response($result);
     }	
