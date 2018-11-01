@@ -115,6 +115,7 @@
 					}
 				}	
 				,btn2: function(index, layero){
+					$(data.elem).find("option").eq(0).val("0");
 					$(data.elem).find("option").eq(0).attr("selected",true);
 					$('#productlist').html("");
 					$('#price').val('');
@@ -125,6 +126,7 @@
 					form.render('select');
 				}
 				,cancel: function(){ 
+				$(data.elem).find("option").eq(0).val("0");
 					$(data.elem).find("option").eq(0).attr("selected",true);
 					$('#productlist').html("");
 					$('#price').val('');
