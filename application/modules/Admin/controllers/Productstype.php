@@ -97,9 +97,10 @@ class ProductstypeController extends AdminBasicController
     }
 	public function editajaxAction()
 	{
-		$method = $this->getPost('method',false);
-		$id = $this->getPost('id',false);
-		$name = $this->getPost('name',false);
+		$method = $this->getPost('method');
+		$id = $this->getPost('id');
+		$name = $this->getPost('name');
+		$description = $this->getPost('description',false);
 		$password = $this->getPost('password',false);
 		$sort_num = $this->getPost('sort_num',false);
 		$active = $this->getPost('active',false);
@@ -117,6 +118,7 @@ class ProductstypeController extends AdminBasicController
 				$m=array(
 					'name'=>$name,
 					'sort_num'=>$sort_num,
+					'description'=>$description,
 					'password'=>$password,
 					'active'=>$active,
 				);
