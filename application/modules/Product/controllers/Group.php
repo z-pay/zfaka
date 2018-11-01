@@ -26,7 +26,7 @@ class GroupController extends PcBasicController
 					$tpl = "password";
 					if(file_exists(APP_PATH.'/application/modules/Product/views/group/tpl/'.$tpl.'.html')){
 						$data['products_type'] = $products_type;
-						$data['title'] = $products_type['name']."_购买商品";
+						$data['title'] = $products_type['name']."_分类下的商品列表";
 						$this->display("tpl_".$tpl, $data);
 						return FALSE;
 					}else{
@@ -36,7 +36,7 @@ class GroupController extends PcBasicController
 				}else{
 				//否则
 					$data['products_type'] = $products_type;
-					$data['title'] = $products_type['name']."_购买商品";
+					$data['title'] = $products_type['name']."_分类下的商品列表";
 					$this->getView()->assign($data);
 				}
 			}else{
