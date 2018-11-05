@@ -100,10 +100,8 @@
 ### 2.2.4 直接访问安装
 
 ### 2.2.5 安装计划任务crontab模块,配置定时计划,用于定时发送邮件
-* 常规计划任务crontab的部署,/alidata/wwwroot/faka.zlkb.net/路径请替换成自己的
-<pre>
-*/2 * * * * php -q /alidata/wwwroot/faka.zlkb.net/public/cli.php request_uri="/crontab/sendemail/index"
-</pre> 	
+* lnmp环境计划任务crontab的部署
+>参考：[lnmp环境中如何部署计划任务](https://github.com/zlkbdotnet/zfaka/wiki/lnmp%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1)
 
 * 宝塔环境计划任务crontab的部署
 >参考：[宝塔环境中如何部署计划任务](https://github.com/zlkbdotnet/zfaka/wiki/%E5%AE%9D%E5%A1%94%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%A6%82%E4%BD%95%E9%83%A8%E7%BD%B2%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1).
