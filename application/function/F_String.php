@@ -36,6 +36,13 @@ if ( ! function_exists('getRandom')){
         return $output;
     }
 }
+if ( ! function_exists('getRawText')){
+    function getRawText($str=''){
+        $str = strip_tags($str);
+        $search = array(" ","　","\n","\r","\t");
+        return str_replace($search, "", $str);
+    }
+}
 /**************************************************************
 *
 *  将数组转换为JSON字符串（兼容中文）
