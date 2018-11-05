@@ -36,6 +36,7 @@
 
 
 # 二、系统部署
+>**友情提示：很多人安装失败都是因为没有仔细看所有的wiki，所以请仔细看完所有的wiki再操作**
 
 ## 2.1 环境安装
 
@@ -114,7 +115,7 @@
 >参考： [后台地址安全增强处理](https://github.com/zlkbdotnet/zfaka/wiki/%E5%90%8E%E5%8F%B0%E5%9C%B0%E5%9D%80%E5%AE%89%E5%85%A8%E5%A2%9E%E5%BC%BA%E5%A4%84%E7%90%86)
 
 # 三、系统升级
-> 升级时，请直接下载最新代码后直接覆盖，登录后台即可按照提示完成升级；
+> 参考：[系统如何升级？](https://github.com/zlkbdotnet/zfaka/wiki/%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%EF%BC%9F)
 
 # 四、BUG与问题反馈
 * 相关问题QQ交流群：701035212
@@ -122,6 +123,7 @@
 # 五、推广时间
 * 全国IDC行业精英群:572511758   
 * DirectAdmin用户交流群:337686498
+* 收款宝: [https://codepay.zlkb.net/](https://codepay.zlkb.net/)
 * 短视频去水印：　[https://dsp.zlkb.net/](https://dsp.zlkb.net/)
 * 新的开源项目预告：[https://github.com/zlkbdotnet/zspay](https://github.com/zlkbdotnet/zspay)
 
