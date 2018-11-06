@@ -1,7 +1,9 @@
-layui.define(['layer', 'form'], function(exports){
+layui.define(['layer', 'form','code'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
+	
+	layui.code();
 	
 	var len = $('.checkerror').length;
 	if(len>0){
