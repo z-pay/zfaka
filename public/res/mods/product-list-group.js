@@ -12,10 +12,9 @@ layui.define(['layer', 'table'], function(exports){
 			cellMinWidth:60,
 			cols: [[
 				{field: 'name', title: '分类',minWidth:120},
-				{field: 'description', title: '描述'},
 				{field: 'opt', title: '操作', width:80, templet: '#opt',align:'center',fixed: 'right'},
 			]]
-		});
+		});	
 	}else{
 		table.render({
 			elem: '#table',
@@ -24,9 +23,10 @@ layui.define(['layer', 'table'], function(exports){
 			cellMinWidth:60,
 			cols: [[
 				{field: 'name', title: '分类',minWidth:120},
+				{field: 'description', title: '描述'},
 				{field: 'opt', title: '操作', width:80, templet: '#opt',align:'center',fixed: 'right'},
 			]]
-		});	
+		});
 	}
 	//首页广告弹窗
 	if(typeof(LAYERAD)!="undefined"){
