@@ -11,7 +11,7 @@ layui.define(['layer', 'table'], function(exports){
 			page: true,
 			cellMinWidth:60,
 			cols: [[
-				{field: 'name', title: '分类',minWidth:120},
+				{field: 'name', title: '分类',templet: '#name',minWidth:120},
 				{field: 'opt', title: '操作', width:80, templet: '#opt',align:'center',fixed: 'right'},
 			]]
 		});	
@@ -22,7 +22,7 @@ layui.define(['layer', 'table'], function(exports){
 			page: true,
 			cellMinWidth:60,
 			cols: [[
-				{field: 'name', title: '分类',minWidth:120},
+				{field: 'name', title: '分类',templet: '#name',width:120},
 				{field: 'description', title: '描述'},
 				{field: 'opt', title: '操作', width:80, templet: '#opt',align:'center',fixed: 'right'},
 			]]
