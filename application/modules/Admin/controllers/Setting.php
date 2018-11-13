@@ -53,9 +53,7 @@ class SettingController extends AdminBasicController
 			
             $limits = "{$pagenum},{$limit}";
 			$field = array('id','name','updatetime','tag');
-			//$field = array();
 			$items=$this->m_config->Field($field)->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
-			
             if (empty($items)) {
                 $data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
             } else {
@@ -108,9 +106,9 @@ class SettingController extends AdminBasicController
 		
 		if($method AND $name AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				$value = getRawText($value);
+				$tag = getRawText($tag);
 				if($value OR is_numeric($value)){
-					$value = str_replace(array("\r","\n","\t"), "", $value);
-					$tag = str_replace(array("\r","\n","\t"), "", $tag);
 					$m=array(
 						'name'=>$name,
 						'value'=>htmlspecialchars($value),
