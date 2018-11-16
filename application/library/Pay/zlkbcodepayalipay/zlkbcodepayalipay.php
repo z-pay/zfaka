@@ -1,24 +1,24 @@
 <?php
 /**
- * File: zlkbcodepaywx.php
- * Functionality: 收款宝(资料空白)-WX扫码支付
+ * File: zlkbcodepayalipay.php
+ * Functionality: 收款宝(资料空白)-支付宝扫码支付
  * Author: 资料空白
  * Date: 2018-07-02
  */
-namespace Pay\zlkbcodepaywx;
+namespace Pay\zlkbcodepayalipay;
 use \Pay\notify;
 
-class zlkbcodepaywx
+class zlkbcodepayalipay
 {
 	private $apiHost="https://codepay.zlkb.net/api/order";
-	private $paymethod ="zlkbcodepaywx";
+	private $paymethod ="zlkbcodepayalipay";
 	
 	//处理请求
 	public function pay($payconfig,$params)
 	{
 		try{
 			$config =array(
-				'paymethod'=>1,
+				'paymethod'=>2,
 				'appid'=>$payconfig['app_id'],
 				'ordersn'=>$params['orderid'],
 				'subject'=>$params['productname'],

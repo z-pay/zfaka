@@ -97,7 +97,8 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (20, 1, 'layerad', '', '弹窗广告', 1, 1453452674),
 (21, 1, 'loginswitch', '1', '登录开关', 1, 1453452674),
 (22, 1, 'forgetpwdswitch', '0', '找回密码开关', 1, 1453452674),
-(23, 1, 'adminyzmswitch', '1', '后台登录验证码开关', 1, 1453452674);
+(23, 1, 'adminyzmswitch', '1', '后台登录验证码开关', 1, 1453452674),
+(24, 1, 'shortcuticon', '1', 'ICO图标,格式必须是png或者ico或者gif', 1, 1453452674);
 -- --------------------------------------------------------
 
 --
@@ -257,8 +258,8 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (5, '支付宝电脑网站支付', '支付宝', '/res/images/pay/alipay.jpg', 'zfbweb', 'RSA2', '2018********', '', '', '', '',0, 0),
 (6, '微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'wxf2f', 'MD5', '', '', '', '', '', 0, 0),
 (7, '有赞接口', '微信', '/res/images/pay/yzpay.jpg', 'yzpay', 'RSA2', '', '', '', '', '', 0, 0),
-(8, '收款宝', '微信', '/res/images/pay/weixin.jpg', 'zlkbcodepaywx', 'RSA2', '', '', '', '', '', 300, 0);
-
+(8, '收款宝(微信)', '微信', '/res/images/pay/weixin.jpg', 'zlkbcodepaywx', 'RSA2', '', '', '', '', '', 300, 0),
+(9, '收款宝(支付宝)', '支付宝', '/res/images/pay/alipay.jpg', 'zlkbcodepayalipay', 'RSA2', '', '', '', '', '', 300, 0);
 
 -- --------------------------------------------------------
 

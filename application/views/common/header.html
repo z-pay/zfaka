@@ -12,6 +12,11 @@
     <meta name="description" content="<?php echo $config['webdescription'];?>">
     <link rel="stylesheet" href="/res/layui/css/layui.css">
     <link rel="stylesheet" href="/res/css/global.css">
+	<?php if(isset($config['shortcuticon']) AND strlen($config['shortcuticon'])>0):?>
+	<link rel="shortcut icon" href="<?php echo $config['backgroundimage'];?>" /> 
+	<?php else:?>
+	<link rel="shortcut icon" href="favicon.ico" /> 
+	<?php endif;?>
     <script>
     var TOKEN = "<?php echo $csrf_token;?>";
     if (self != top) {

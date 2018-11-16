@@ -34,13 +34,20 @@ class notify
 			if(!empty($order)){
 				if($order['status']>0){
 					$data =array('code'=>1,'msg'=>'订单已处理,请勿重复推送');
+					return $data;
 				}else{
+					if($paymoney != $order['money']){
+						$data =array('code'=>1005,'msg'=>'支付金额与订单金额不一致');
+						return $data;
+					}
+					
 					//2.先更新支付总金额
 					$update = array('status'=>1,'paytime'=>time(),'tradeid'=>$tradeid,'paymethod'=>$paymethod,'paymoney'=>$paymoney);
 					$u = $m_order->Where(array('orderid'=>$orderid,'status'=>0))->Update($update);
 					if(!$u){
 						$data =array('code'=>1004,'msg'=>'更新失败');
-					}else{
+						return $data;
+					}else{ 
 						//3.开始进行订单处理
 						$product = $m_products->SelectByID('auto,stockcontrol,qty',$order['pid']);
 						if(!empty($product)){
