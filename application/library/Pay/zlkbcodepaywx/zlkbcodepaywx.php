@@ -24,6 +24,8 @@ class zlkbcodepaywx
 				'subject'=>$params['productname'],
 				'money'=>(float)$params['money'],
 				'overtime'=>$payconfig['overtime'],
+				'return_url' => $params['weburl']. '/product/query/?zlkbmethod=auto&paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
+				'notify_url' => $params['weburl'] . '/product/notify/?paymethod='.$this->paymethod,
 			);
 			$config['sign'] = $this->_signParams($config,$payconfig['app_secret']);
 			$curl_data =  $this->_curlPost($this->apiHost,$config);
