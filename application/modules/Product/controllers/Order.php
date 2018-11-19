@@ -142,6 +142,8 @@ class OrderController extends PcBasicController
 					$id=$this->m_order->Insert($m);
 					if($id>0){
 						$oid = base64_encode($id);
+						//设置orderidSESSION
+						$this->setSession('order_id',$id);
 						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));	
 					}else{
 						$data = array('code' => 1003, 'msg' => '订单异常');
@@ -176,21 +178,27 @@ class OrderController extends PcBasicController
 				}
 			}
 			
-			if(is_numeric($oid) AND $id>0){
-				$order = $this->m_order->Where(array('id'=>$id,'isdelete'=>0))->SelectOne();
-				if(!empty($order)){
-					//获取支付方式
-					$payments = $this->m_payment->getConfig();
-					$data['order']=$order;
-					$data['payments']=$payments;
-					$data['code']=1;
+			$order_id = $this->getSession('order_id');
+			if($order_id AND is_numeric($order_id) AND $order_id>0 AND $order_id ==$id ){
+				if(is_numeric($id) AND $id>0){
+					$order = $this->m_order->Where(array('id'=>$id,'isdelete'=>0))->SelectOne();
+					if(!empty($order)){
+						//获取支付方式
+						$payments = $this->m_payment->getConfig();
+						$data['order']=$order;
+						$data['payments']=$payments;
+						$data['code']=1;
+					}else{
+						$data['code']=1002;
+						$data['msg']='订单不存在';
+					}
 				}else{
-					$data['code']=1002;
+					$data['code']=1001;
 					$data['msg']='订单不存在';
 				}
 			}else{
-				$data['code']=1001;
-				$data['msg']='订单不存在';
+				$data['code']=1003;
+				$data['msg']='拒绝查询';
 			}
 		}else{
 			$data['code']=1001;
