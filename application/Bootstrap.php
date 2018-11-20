@@ -34,7 +34,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
         );
         $router->addRoute('products_group', $products_group);
         $order_query = new Yaf\Route\Regex(
-            '#product/query/index/([A-Za-z]+)/([0-9A-Za-z]+).html#',
+            '#query/([A-Za-z]+)/([0-9A-Za-z]+).html#',
             array('module' => 'product', 'controller' => 'query', 'action' => 'index'),
             array(1 => 'zlkbmethod',2 => 'orderid')
         );
