@@ -6,7 +6,7 @@
 	
 	//手机适配调整
 	if(device.weixin || device.android || device.ios){
-		$(".layui-form-item").addClass("layui-form-text");
+		$(".productname").addClass("layui-form-text");
 		$(".layui-input-inline").attr("class", "layui-input-block");
 	}
 	form.verify({
