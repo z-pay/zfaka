@@ -45,7 +45,15 @@
 								<div class="layui-form-item">
 									<label class="layui-form-label">商品单价</label>
 									<div class="layui-input-block">
-										<input type="text" name="price" id="price" readonly disabled class="layui-input">
+										<input type="text" name="price" id="price" readonly disabled class="layui-input" style="color: red;">
+									</div>
+								</div>
+							</div>
+							<div class="layui-col-md12 layui-col-xs6">
+								<div class="layui-form-item">
+									<label class="layui-form-label">订单金额</label>
+									<div class="layui-input-block">
+										<input type="text" name="money" id="money" readonly disabled class="layui-input" value ="0.00" style="color: red;">
 									</div>
 								</div>
 							</div>
@@ -57,10 +65,12 @@
 									</div>
 								</div>
 							</div>
-							<div class="layui-form-item">
-								<label class="layui-form-label">购买数量</label>
-								<div class="layui-input-block">
-									<input type="number" name="number" maxlength=10 id="number" value="1" class="layui-input" lay-verify="required|numberCheck">
+							<div class="layui-col-md12 layui-col-xs6">
+								<div class="layui-form-item">
+									<label class="layui-form-label">购买数量</label>
+									<div class="layui-input-block">
+										<input type="number" name="number" maxlength=10 id="number" value="1" class="layui-input" lay-verify="required|numberCheck">
+									</div>
 								</div>
 							</div>
 							<?php if($login):?>
