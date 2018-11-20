@@ -12,10 +12,18 @@
 	
 	//订单金额
     $("#number").on('input',function(e){
-		var money = 0;
+		var stockcontrol = Number($('#stockcontrol').val());
+		var number = Number($('#number').val());
+		var qty = Number($('#qty').val());
+		if(stockcontrol>0){
+			if(number>qty){
+				$('#number').val(qty);
+				number = qty;
+			}
+		}	
+		var money = $('#money').val();
 		var price = parseFloat($('#price').val());
-		var qty = Number($('#number').val());
-		money = changeTwoDecimal_f(price*qty);
+		money = changeTwoDecimal_f(price*number);
 		$('#money').val(money);
     });
 	
