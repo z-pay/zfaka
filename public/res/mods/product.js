@@ -240,6 +240,7 @@
 									var product = res.data.product;
 									var html =""
 									$('#price').val(product.price);
+									$('#money').val(product.price);
 									if(product.stockcontrol>0){
 										if(product.qty>0){
 											$('#qty').val(product.qty);
@@ -319,6 +320,7 @@
 						var product = res.data.product;
 						var html =""
 						$('#price').val(product.price);
+						$('#money').val(product.price);
 						if(product.stockcontrol>0){
 							if(product.qty>0){
 								$('#qty').val(product.qty);
@@ -476,6 +478,7 @@
 									var product = res.data.product;
 									var html =""
 									$('#price').val(product.price);
+									$('#money').val(product.price);
 									if(product.stockcontrol>0){
 										if(product.qty>0){
 											$('#qty').val(product.qty);
