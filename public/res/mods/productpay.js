@@ -34,7 +34,9 @@
 			complete: function () {
 				layer.close(lodding);
 			},
-			
+			error: function (data) {
+				ayer.close(lodding);
+			}
             success: function(res) {
                 if (res.code == 1) {
 					queryRadio = 1;
