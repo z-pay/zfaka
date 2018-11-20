@@ -4,6 +4,7 @@ layui.define(['layer', 'form','jquery','base64','laytpl'], function(exports){
 	var form = layui.form;
 	var device = layui.device();
 	var laytpl = layui.laytpl;
+	var lodding;
 	
 	function createTime(v){
 		var date = new Date();
