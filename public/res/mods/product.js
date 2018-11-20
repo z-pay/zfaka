@@ -9,6 +9,16 @@
 		$(".productname").addClass("layui-form-text");
 		$(".layui-input-inline").attr("class", "layui-input-block");
 	}
+	
+	//订单金额
+    $("#number").on('input',function(e){
+		var money = 0;
+		var price = parseFloat($('#price').val());
+		var qty = Number($('#number').val());
+		money = price*qty;
+		$('#money').val(money);
+    });
+	
 	form.verify({
 		numberCheck: function(value, item){ //value：表单的值、item：表单的DOM对象
 			var qty = $('#qty').val();
