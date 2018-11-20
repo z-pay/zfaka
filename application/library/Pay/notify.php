@@ -36,8 +36,10 @@ class notify
 					$data =array('code'=>1,'msg'=>'订单已处理,请勿重复推送');
 					return $data;
 				}else{
-					if($paymoney != $order['money']){
-						$data =array('code'=>1005,'msg'=>'支付金额与订单金额不一致');
+					if($paymoney < $order['money']){
+						//原本检测支付金额是否与订单金额一致,但由于码支付这样的收款模式导致支付金额有时会与订单不一样,所以这里进行小于判断;
+						//所以,在这里如果存在类似码支付这样的第三方支付辅助工具时,有变动金额时,一定要做递增不能递减
+						$data =array('code'=>1005,'msg'=>'支付金额小于订单金额');
 						return $data;
 					}
 					
