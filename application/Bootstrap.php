@@ -38,7 +38,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
             array('module' => 'product', 'controller' => 'query', 'action' => 'index'),
             array(1 => 'zlkbmethod',2 => 'orderid')
         );
-        $router->addRoute('products_group', $products_group);	
+        $router->addRoute('order_query', $order_query);	
 		
 	}
 	
