@@ -32,10 +32,14 @@
 			var qty = $('#qty').val();
 			var number = $('#number').val();
 			var stockcontrol = $('#stockcontrol').val();
+			var limitorderqty = $('#limitorderqty').val();
 			if(stockcontrol>0){
 				if(parseInt(number) > parseInt(qty)){
-					return '下单数量超限';
+					return '下单数量超出库存';
 				}
+			}
+			if(parseInt(number)>limitorderqty){
+				return '下单数量超限';
 			}
 		}
 		,chapwd: function(value, item){ //value：表单的值、item：表单的DOM对象

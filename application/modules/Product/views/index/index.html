@@ -106,6 +106,7 @@
 						</div>	
                         <div class="layui-form-item">
                             <div class="layui-input-block">
+								<input type="hidden" name="limitorderqty" id="limitorderqty" value="<?php echo $config['limitorderqty'];?>">
 								<input type="hidden" name="stockcontrol" id="stockcontrol" value="0">
                                 <button class="layui-btn" id="buy" disabled="disabled" lay-submit lay-filter="buy">立即提交</button>
                                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>

@@ -98,7 +98,8 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (21, 1, 'loginswitch', '1', '登录开关', 1, 1453452674),
 (22, 1, 'forgetpwdswitch', '0', '找回密码开关', 1, 1453452674),
 (23, 1, 'adminyzmswitch', '1', '后台登录验证码开关', 1, 1453452674),
-(24, 1, 'shortcuticon', '', 'ICO图标,格式必须是png或者ico或者gif', 1, 1453452674);
+(24, 1, 'shortcuticon', '', 'ICO图标,格式必须是png或者ico或者gif', 1, 1453452674),
+(25, 1, 'limitorderqty', '5', '单笔订单数量限制', 1, 1453452674);
 -- --------------------------------------------------------
 
 --

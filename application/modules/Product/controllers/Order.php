@@ -69,6 +69,11 @@ class OrderController extends PcBasicController
 						$data = array('code' => 1004, 'msg' => '库存不足');
 						Helper::response($data);
 					}
+					if(isset($this->config['limitorderqty']) AND $this->config['limitorderqty']<$number){
+						$data = array('code' => 1005, 'msg' => '下单数量超限');
+						Helper::response($data);
+					}
+					
 					
 					$starttime = strtotime(date("Y-m-d"));
 					$endtime = strtotime(date("Y-m-d 23:59:59"));
