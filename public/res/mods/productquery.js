@@ -55,6 +55,15 @@ layui.define(['layer', 'form','jquery','base64','laytpl'], function(exports){
             dataType: "json",
             url: "/product/query/kami",
             data: { "csrf_token": TOKEN,'orderid':orderid},
+			beforeSend: function () {
+				lodding = layer.load();
+			},
+			complete: function () {
+				layer.close(lodding);
+			},
+			error: function (data) {
+				ayer.close(lodding);
+			},
             success: function(res) {
                 if (res.code == 1) {
 					var html = "";

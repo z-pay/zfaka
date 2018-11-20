@@ -17,19 +17,7 @@
             url: "/product/order/payajax",
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
 			beforeSend: function () {
-				// 禁用按钮防止重复提交
-				lodding =layer.open({
-					type: 1
-					,title: false //不显示标题栏
-					,closeBtn: false
-					,area: '300px;'
-					,shade: 0.8
-					,id: 'lodding' //设定一个id，防止重复弹出
-					,btn: false
-					,btnAlign: 'c'
-					,moveType: 1 //拖拽模式，0或者1
-					,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">正在请求</div>'
-				});
+				lodding = layer.load();
 			},
 			complete: function () {
 				layer.close(lodding);
@@ -213,6 +201,15 @@
             dataType: "json",
             url: "/product/query/kami",
             data: { "csrf_token": TOKEN,'orderid':orderid},
+			beforeSend: function () {
+				lodding = layer.load();
+			},
+			complete: function () {
+				layer.close(lodding);
+			},
+			error: function (data) {
+				ayer.close(lodding);
+			},
             success: function(res) {
                 if (res.code == 1) {
 					var html = "";
