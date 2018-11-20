@@ -21,7 +21,6 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
 	}
     public function _initRoute() {
         $router = Yaf\Dispatcher::getInstance()->getRouter();
-        //授权商品
         $products_detail = new Yaf\Route\Regex(
             '#product/([0-9]+).html#',
             array('module' => 'product', 'controller' => 'detail', 'action' => 'index'),
@@ -32,6 +31,12 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
             '#group/([0-9]+).html#',
             array('module' => 'product', 'controller' => 'group', 'action' => 'index'),
             array(1 => 'tid')
+        );
+        $router->addRoute('products_group', $products_group);
+        $order_query = new Yaf\Route\Regex(
+            '#product/query/([A-Za-z]+)/([0-9A-Za-z]+).html#',
+            array('module' => 'product', 'controller' => 'query', 'action' => 'index'),
+            array(1 => 'zlkbmethod',2 => 'orderid')
         );
         $router->addRoute('products_group', $products_group);	
 		
