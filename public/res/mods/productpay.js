@@ -6,6 +6,7 @@
 	var t = '';
 	var myTimer;
 	var queryRadio = 1;
+	var lodding;
 	console.log("注意：本页js用的比较多，请小心谨慎!");
 	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
@@ -15,6 +16,25 @@
             dataType: "json",
             url: "/product/order/payajax",
             data: { "csrf_token": TOKEN,'paymethod':paymethod,'oid':oid },
+			beforeSend: function () {
+				// 禁用按钮防止重复提交
+				lodding =layer.open({
+					type: 1
+					,title: false //不显示标题栏
+					,closeBtn: false
+					,area: '300px;'
+					,shade: 0.8
+					,id: 'lodding' //设定一个id，防止重复弹出
+					,btn: false
+					,btnAlign: 'c'
+					,moveType: 1 //拖拽模式，0或者1
+					,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">正在请求</div>'
+				});
+			},
+			complete: function () {
+				layer.close(lodding);
+			},
+			
             success: function(res) {
                 if (res.code == 1) {
 					queryRadio = 1;
