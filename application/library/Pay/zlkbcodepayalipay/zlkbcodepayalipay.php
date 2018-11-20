@@ -43,8 +43,6 @@ class zlkbcodepayalipay
 			}else{
 				return array('code'=>1001,'msg'=>"支付接口请求失败",'data'=>'');
 			}
-		} catch (PayException $e) {
-			return array('code'=>1000,'msg'=>$e->errorMessage(),'data'=>'');
 		} catch (\Exception $e) {
 			return array('code'=>1000,'msg'=>$e->getMessage(),'data'=>'');
 		}
@@ -73,7 +71,7 @@ class zlkbcodepayalipay
 				}
 			}
 		}else{
-			return 'error|Notify: '.$data['msg'];
+			return 'error|Notify: empty';
 		}
 	}
 	
