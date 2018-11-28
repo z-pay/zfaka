@@ -30,6 +30,10 @@ class OrderController extends PcBasicController
 		$addons = $this->getPost('addons');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
+		$chapwd_string = new \Safe\MyString($chapwd);
+		$chapwd = $chapwd_string->trimall()->qufuhao2()->getValue();
+		
+		
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND $chapwd AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isset($this->config['orderinputtype']) AND $this->config['orderinputtype']=='2'){
