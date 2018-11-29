@@ -34,7 +34,10 @@ class QueryController extends PcBasicController
 				}else{
 					$order_email = $this->getSession('order_email');
 				}
-					
+				
+				$orderid_string = new \Safe\MyString($orderid);
+				$orderid = $orderid_string->trimall()->qufuhao2()->getValue();
+				
 				if($order_email AND isEmail($order_email)){
 					$order = $this->m_order->Where(array('orderid'=>$orderid,'email'=>$order_email))->Where(array('isdelete'=>0))->SelectOne();
 					if(!empty($order)){
