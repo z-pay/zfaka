@@ -11,6 +11,7 @@ class OrderController extends PcBasicController
 	private $m_order;
 	private $m_user;
 	private $m_payment;
+	private $m_products_pifa;
 	
     public function init()
     {
@@ -19,6 +20,7 @@ class OrderController extends PcBasicController
 		$this->m_order = $this->load('order');
 		$this->m_user = $this->load('user');
 		$this->m_payment = $this->load('payment');
+		$this->m_products_pifa = $this->load('products_pifa');
     }
 
     public function buyAction()
@@ -131,6 +133,17 @@ class OrderController extends PcBasicController
 					$prefix = isset($this->config['orderprefix'])?$this->config['orderprefix']:'zlkb';
 					$orderid = $prefix. date('Y') . date('m') . date('d') . date('H') . date('i') . date('s') . mt_rand(10000, 99999);
 					
+					//先拿折扣再算订单价格
+					$money = $product['price']*$number;
+					$pifa = $this->m_products_pifa->getPifa($pid);
+					if(!empty($pifa)){
+						foreach($pifa AS $pf){
+							if($number>=$pf['qty']){
+								$money = $money*$pf['discount'];
+							}
+						}
+					}
+					
 					//开始下单，入库
 					$m=array(
 						'orderid'=>$orderid,
@@ -141,7 +154,7 @@ class OrderController extends PcBasicController
 						'productname'=>$product['name'],
 						'price'=>$product['price'],
 						'number'=>$number,
-						'money'=>$product['price']*$number,
+						'money'=>$money,
 						'chapwd'=>$chapwd,
 						'ip'=>$myip,
 						'status'=>0,
