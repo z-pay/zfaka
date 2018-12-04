@@ -141,6 +141,7 @@
 									$('#productlist').html("<option value=\"0\">请选择</option>" + html);
 									$('#price').val('');
 									$('#qty').val('');
+									$('#number').val('1');
 									$('#prodcut_description').html('');
 									$("#buy").attr("disabled","true");
 									$("#addons").remove();
@@ -162,6 +163,7 @@
 					$('#productlist').html("");
 					$('#price').val('');
 					$('#qty').val('');
+					$('#number').val('1');
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
@@ -174,6 +176,7 @@
 					$('#productlist').html("");
 					$('#price').val('');
 					$('#qty').val('');
+					$('#number').val('1');
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
@@ -205,6 +208,7 @@
 						$('#productlist').html("<option value=\"0\">请选择</option>" + html);
 						$('#price').val('');
 						$('#qty').val('');
+						$('#number').val('1');
 						$('#prodcut_description').html('');
 						$("#buy").attr("disabled","true");
 						$("#addons").remove();
@@ -216,6 +220,7 @@
 						$(data.elem).find("option").eq(0).attr("selected",true);
 						$('#productlist').html("");
 						$('#price').val('');
+						$('#number').val('1');
 						$('#qty').val('');
 						$('#prodcut_description').html('');
 						$("#buy").attr("disabled","true");
@@ -291,6 +296,7 @@
 									for (var i = 0, j = list.length; i < j; i++) {
 										addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
 									}
+									$('#number').val('1');
 									$('#product_input').append(addons);
 									$('#prodcut_num').height('auto');
 									form.render();
@@ -314,6 +320,7 @@
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
+					$('#number').val('1');
 					form.render('select');
 					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
@@ -325,6 +332,7 @@
 					$('#prodcut_description').html('');
 					$("#buy").attr("disabled","true");
 					$("#addons").remove();
+					$('#number').val('1');
 					form.render('select');
 					$(data.elem).find("option").eq(0).attr("selected",false);
 				}
@@ -373,7 +381,7 @@
 						}
 						$('#product_input').append(addons);
 						$('#prodcut_num').height('auto');
-						
+						$('#number').val('1');
 						form.render();
 						autoHeight();
 					} else {
@@ -382,6 +390,7 @@
 						$(data.elem).find("option").eq(0).attr("selected",true);
 						$('#price').val('');
 						$('#qty').val('');
+						$('#number').val('1');
 						$('#prodcut_description').html('');
 						$("#buy").attr("disabled","true");
 						$("#addons").remove();
