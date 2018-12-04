@@ -14,4 +14,17 @@ class M_Products_pifa extends Model
 		$this->table = TB_PREFIX.'products_pifa';
 		parent::__construct();
 	}
+	
+	public function getPifa($pid)
+	{
+		$result = array();
+		$data = $this->Field(array('qty','money'))->Where(array('pid'=>$pid))->Select();
+		if(!empty($data)){
+			foreach($data AS $i){
+				$k = $i['qty'];
+				$result[$k] = $i['money'];
+			}
+		}
+		return $result;
+	}  
 }
