@@ -108,7 +108,7 @@ class ProductspifaController extends AdminBasicController
 		$pid = $this->get('pid');
 		if($pid AND is_numeric($pid) AND $pid>0){
 			$data = array();
-			$product = $this->m_products->SelectByID('',$id);
+			$product = $this->m_products->SelectByID('',$pid);
 			if(!empty($product)){
 				$this->getView()->assign($data);
 			}else{
