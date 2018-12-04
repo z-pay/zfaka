@@ -27,7 +27,7 @@
 		if(PIFA!=""){
 			for (var i = 0, j = PIFA.length; i < j; i++) {
 				var myqty = PIFA[i].qty;
-				if(qty>myqty){
+				if(number>myqty){
 					money = PIFA[i].money;
 				}
 			}
