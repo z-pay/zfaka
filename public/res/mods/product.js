@@ -284,6 +284,7 @@
 									html = str + htmlspecialchars_decode(product.description);
 									$('#prodcut_description').html(html);
 									
+									PIFA = res.data.pifa;
 									$("#addons").remove();
 									var addons = '';
 									var list = res.data.addons;
@@ -363,7 +364,7 @@
 						
 						html = str + htmlspecialchars_decode(product.description);
 						$('#prodcut_description').html(html);
-						
+						PIFA = res.data.pifa;
 						$("#addons").remove();
 						var addons = '';
 						var list = res.data.addons;
