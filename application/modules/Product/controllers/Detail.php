@@ -25,7 +25,7 @@ class DetailController extends PcBasicController
 			if(!empty($product)){
 				$data = array();
 				//先拿折扣
-				$pifa = $this->m_products_pifa->Where(array('pid'=>$pid))->Select();
+				$pifa = $this->m_products_pifa->Filed(array('qty','money'))->Where(array('pid'=>$pid))->Select();
 				if(!empty($pifa)){
 					$data['pifa'] = json_encode($pifa);
 				}else{
