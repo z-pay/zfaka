@@ -5,7 +5,6 @@
         <div class="layui-tab layui-tab-brief" lay-filter="email">
             <ul class="layui-tab-title" id="LAY_mine">
                 <li lay-id="info"><a href="/<?php echo ADMIN_DIR;?>/products/">商品管理</a></li>
-				<li lay-id="edit"><a href="/<?php echo ADMIN_DIR;?>/products/edit/?id=<?php echo $product['id'];?>">编辑</a></li>
                 <li class="layui-this" lay-id="pifa">批发</li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
@@ -24,6 +23,9 @@
                             </div>
                         </div>
 					</form>
+					<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
+						<a class="layui-btn layui-btn-primary" href="/<?php echo ADMIN_DIR;?>/productspifa/add/?pid=<?php echo $product['id'];?>">添加</a>
+					</div>
 					<input type="hidden" name="pid" id ="pid" value="<?php echo $product['id'];?>">
 					<table class="layui-table" id="table" lay-filter="table"></table>
                 </div>

@@ -9,16 +9,12 @@
 class ProductspifaController extends AdminBasicController
 {
 	private $m_products;
-	private $m_products_type;
-	private $m_products_card;
 	private $m_products_pifa;
 	
     public function init()
     {
         parent::init();
 		$this->m_products = $this->load('products');
-		$this->m_products_type = $this->load('products_type');
-		$this->m_products_card = $this->load('products_card');
 		$this->m_products_pifa = $this->load('products_pifa');
     }
 
@@ -57,7 +53,7 @@ class ProductspifaController extends AdminBasicController
 		$pid = $this->get('pid');
 		
 		if($pid AND is_numeric($pid) AND $pid>0){
-			$where = array('pid'=>$pid);
+			$where = array('pid'=>$pid,'isdelete'=>0);
 			$total=$this->m_products_pifa->Where($where)->Total();
 			
 			if ($total > 0) {
@@ -91,14 +87,10 @@ class ProductspifaController extends AdminBasicController
             return FALSE;
         }
 		$id = $this->get('id');
-		if($id AND $id>0){
+		if($id AND is_numeric($id) AND $id>0){
 			$data = array();
-			$product=$this->m_products->SelectByID('',$id);
-			$data['product'] = $product;
-			
-			$productstype=$this->m_products_type->Where(array('isdelete'=>0))->Order(array('sort_num'=>'DESC'))->Select();
-			$data['productstype'] = $productstype;
-			
+			$pifa = $this->m_products_pifa->SelectByID('',$id);
+			$data['pifa'] = $pifa;
 			$this->getView()->assign($data);
 		}else{
             $this->redirect('/'.ADMIN_DIR."/products");
@@ -113,28 +105,31 @@ class ProductspifaController extends AdminBasicController
             $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
-
-		$data = array();
-		$productstype=$this->m_products_type->Where(array('isdelete'=>0))->Order(array('sort_num'=>'DESC'))->Select();
-		$data['productstype'] = $productstype;
-		$this->getView()->assign($data);
+		$pid = $this->get('pid');
+		if($pid AND is_numeric($pid) AND $pid>0){
+			$data = array();
+			$product = $this->m_products->SelectByID('',$id);
+			if(!empty($product)){
+				$this->getView()->assign($data);
+			}else{
+				$this->redirect('/'.ADMIN_DIR."/products");
+				return FALSE;
+			}
+		}else{
+            $this->redirect('/'.ADMIN_DIR."/products");
+            return FALSE;
+		}
     }
+	
 	public function editajaxAction()
 	{
 		$method = $this->getPost('method',false);
-		$id = $this->getPost('id',false);
-		$typeid = $this->getPost('typeid',false);
-		$name = $this->getPost('name',false);
-		$password = $this->getPost('password',false);
-		$description = $this->getPost('description',false);
-		$stockcontrol = $this->getPost('stockcontrol',false);
-		$qty = $this->getPost('qty',false);
-		$price = $this->getPost('price',false);
-		$auto = $this->getPost('auto',false);
-		$addons = $this->getPost('addons',false);
-		$active = $this->getPost('active',false);
-		$sort_num = $this->getPost('sort_num',false);
-		$csrf_token = $this->getPost('csrf_token', false);
+		$qty = $this->getPost('qty');
+		$discount = $this->getPost('discount');
+		$id = $this->getPost('id');
+		$pid = $this->getPost('pid');
+		$tag = $this->getPost('tag');
+		$csrf_token = $this->getPost('csrf_token');
 		
 		$data = array();
 		
@@ -143,50 +138,40 @@ class ProductspifaController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $typeid AND $name AND $description AND is_numeric($stockcontrol) AND is_numeric($qty) AND is_numeric($price) AND is_numeric($auto) AND is_numeric($active) AND is_numeric($sort_num) AND $csrf_token){
+		if($method AND $qty AND $discount AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				if($price<0.01){
-					$data = array('code' => 1000, 'msg' => '价格设置错误');
+				if($qty<0){
+					$data = array('code' => 1001, 'msg' => '数量有误');
 					Helper::response($data);
 				}
 				
-				$description = str_replace(array("\r","\n","\t"), "", $description);
-				$m=array(
-					'typeid'=>$typeid,
-					'name'=>$name,
-					'password'=>$password,
-					'description'=>htmlspecialchars($description),
-					'stockcontrol'=>$stockcontrol,
+				if($discount<0 OR $discount>1){
+					$data = array('code' => 1002, 'msg' => '折扣有误');
+					Helper::response($data);	
+				}
+				
+				$tag = getRawText($tag);
+				
+				$m = array(
 					'qty'=>$qty,
-					'price'=>$price,
-					'auto'=>$auto,
-					'addons'=>$addons,
-					'active'=>$active,
-					'sort_num'=>$sort_num,
+					'discount'=>$discount,
+					'tag'=>$tag,
 				);
 				if($method == 'edit' AND $id>0){
-					//修正库存问题,如果不控制库存，库存默认为０
-					if($stockcontrol<1){
-						$m['qty'] = 0;
-					}else{
-						//修正库存问题,在更新商品时,如果是自动发货商品,库存不能修改
-						if($auto>0){
-							unset($m['qty']);
-						}
-					}
-					$u = $this->m_products->UpdateByID($m,$id);
+					$u = $this->m_products_pifa->UpdateByID($m,$id);
 					if($u){
 						$data = array('code' => 1, 'msg' => '更新成功');
 					}else{
 						$data = array('code' => 1003, 'msg' => '更新失败');
 					}
 				}elseif($method == 'add'){
-					//修正库存问题,在添加新商品时,如果是自动发货商品,库存默认为0
-					if($auto>0 OR $stockcontrol<1){
-						$m['qty'] = 0;
+					if($pid<0){
+						$data = array('code' => 1001, 'msg' => '商品ID错误');
+						Helper::response($data);
 					}
 					$m['addtime'] = time();
-					$u = $this->m_products->Insert($m);
+					$m['pid'] = $pid;
+					$u = $this->m_products_pifa->Insert($m);
 					if($u){
 						$data = array('code' => 1, 'msg' => '新增成功');
 					}else{
@@ -204,8 +189,6 @@ class ProductspifaController extends AdminBasicController
 		Helper::response($data);
 	}
 	
-
-	
     public function deleteAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
@@ -216,18 +199,11 @@ class ProductspifaController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
         if (FALSE != $id AND is_numeric($id) AND $id > 0) {
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				//检查是否存在可用的卡密
-				$qty = $this->m_products_card->Where(array('pid'=>$id,'active'=>0,'isdelete'=>0))->Total();
-				if($qty>0){
-					$data = array('code' => 1004, 'msg' => '存在可用卡密，请导出', 'data' => '');
+				$delete = $this->m_products_pifa->UpdateByID(array('isdelete'=>1),$id);
+				if($delete){
+					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
 				}else{
-					$where = 'active=0';//只有未激活的才可以删除
-					$delete = $this->m_products->Where($where)->UpdateByID(array('isdelete'=>1),$id);
-					if($delete){
-						$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
-					}else{
-						$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
-					}
+					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
 				}
 			} else {
                 $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
