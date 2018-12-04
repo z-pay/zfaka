@@ -20,10 +20,19 @@
 				$('#number').val(qty);
 				number = qty;
 			}
-		}	
+		}
 		var money = $('#money').val();
 		var price = parseFloat($('#price').val());
-		money = changeTwoDecimal_f(price*number);
+		money = price*number;
+		if(PIFA!=""){
+			for (var i = 0, j = PIFA.length; i < j; i++) {
+				var myqty = list[i].qty;
+				if(qty>myqty){
+					money = list[i].money;
+				}
+			}
+		}
+		money = changeTwoDecimal_f(money);
 		$('#money').val(money);
     });
 	
