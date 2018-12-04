@@ -110,6 +110,7 @@ class ProductspifaController extends AdminBasicController
 			$data = array();
 			$product = $this->m_products->SelectByID('',$pid);
 			if(!empty($product)){
+				$data['pid'] = $pid;
 				$this->getView()->assign($data);
 			}else{
 				$this->redirect('/'.ADMIN_DIR."/products");
