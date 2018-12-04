@@ -32,6 +32,8 @@
 						  </tr>
 						</tbody>
 					  </table>
+					  <input type="hidden" name="pid" id ="pid" value="<?php echo $product['id'];?>">
+					  <table class="layui-table" id="table" lay-filter="table"></table>
                 </div>
             </div>
         </div>
@@ -40,5 +42,5 @@
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('adminproducts');
+layui.use('adminproductspifa');
 </script>

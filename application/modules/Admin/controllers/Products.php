@@ -11,6 +11,7 @@ class ProductsController extends AdminBasicController
 	private $m_products;
 	private $m_products_type;
 	private $m_products_card;
+	private $m_products_pifa;
 	
     public function init()
     {
@@ -18,6 +19,7 @@ class ProductsController extends AdminBasicController
 		$this->m_products = $this->load('products');
 		$this->m_products_type = $this->load('products_type');
 		$this->m_products_card = $this->load('products_card');
+		$this->m_products_pifa = $this->load('products_pifa');
     }
 
     public function indexAction()
@@ -109,6 +111,49 @@ class ProductsController extends AdminBasicController
             return FALSE;
 		}
     }
+	//ajax
+	public function ajaxpifaAction()
+	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		
+		$page = $this->get('page');
+		$page = is_numeric($page) ? $page : 1;
+		
+		$limit = $this->get('limit');
+		$limit = is_numeric($limit) ? $limit : 10;
+		
+		$pid = $this->get('pid');
+		
+		if($pid AND is_numeric($pid) AND $pid>0){
+			$where = array('pid'=>$pid);
+			$total=$this->m_products_pifa->Where($where)->Total();
+			
+			if ($total > 0) {
+				if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
+					$pagenum = ($page - 1) * $limit;
+				} else {
+					$pagenum = 0;
+				}
+				
+				$limits = "{$pagenum},{$limit}";
+				
+				$items=$this->m_products_pifa->Where($where)->Limit($limits)->Order(array('qty'=>'ASC'))->Select();
+				if (empty($items)) {
+					$data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
+				} else {
+					$data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+				}
+			} else {
+				$data = array('code'=>1001,'count'=>0,'data'=>array(),'msg'=>'无数据');
+			}
+		}else{
+			$data = array('code'=>1001,'count'=>0,'data'=>array(),'msg'=>'参数错误');
+		}
+		Helper::response($data);
+	}	
 	
     public function addAction()
     {
