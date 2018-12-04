@@ -31,7 +31,7 @@ class ProductspifaController extends AdminBasicController
 			$data['product'] = $product;
 			$this->getView()->assign($data);
 		}else{
-            $this->redirect('/'.ADMIN_DIR."/productspifa");
+            $this->redirect('/'.ADMIN_DIR."/products");
             return FALSE;
 		}
     }
