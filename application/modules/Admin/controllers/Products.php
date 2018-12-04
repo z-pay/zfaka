@@ -92,6 +92,28 @@ class ProductsController extends AdminBasicController
 		}
     }
 	
+    public function pifaAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect('/'.ADMIN_DIR."/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$product=$this->m_products->SelectByID('',$id);
+			$data['product'] = $product;
+			
+			$productstype=$this->m_products_type->Where(array('isdelete'=>0))->Order(array('sort_num'=>'DESC'))->Select();
+			$data['productstype'] = $productstype;
+			
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect('/'.ADMIN_DIR."/products");
+            return FALSE;
+		}
+    }
+	
     public function addAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
