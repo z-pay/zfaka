@@ -159,7 +159,7 @@ class ProductspifaController extends AdminBasicController
 					Helper::response($data);
 				}
 				
-				if($discount<0 OR $discount>1){
+				if($discount<=0.00 OR $discount>=1.00){
 					$data = array('code' => 1002, 'msg' => '折扣有误');
 					Helper::response($data);	
 				}
