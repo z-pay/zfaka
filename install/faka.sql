@@ -430,19 +430,20 @@ CREATE TABLE IF NOT EXISTS `t_user_login_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE IF NOT EXISTS `t_products_price` (
+CREATE TABLE IF NOT EXISTS `t_products_pifa` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '商品d',
   `qty` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
   `money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '优惠价格',
   `tag` varchar(255) NOT NULL COMMENT '简单说明',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间'
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
-ALTER TABLE `t_products_price`
+ALTER TABLE `t_products_pifa`
   ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `t_admin_login_log`
@@ -645,7 +646,7 @@ ALTER TABLE `t_user_group`
 -- AUTO_INCREMENT for table `t_user_login_logs`
 --
 
-ALTER TABLE `t_products_price`
+ALTER TABLE `t_products_pifa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
   
 ALTER TABLE `t_user_login_logs`
