@@ -18,7 +18,7 @@ class M_Products_pifa extends Model
 	public function getPifa($pid)
 	{
 		$result = array();
-		$result = $this->Field(array('qty','money'))->Where(array('pid'=>$pid))->Order(array('qty'=>'DESC'))->Select();
+		$result = $this->Field(array('qty','discount'))->Where(array('pid'=>$pid))->Order(array('qty'=>'DESC'))->Select();
 		return $result;
 	}  
 }
