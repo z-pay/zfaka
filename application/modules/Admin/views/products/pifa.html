@@ -13,15 +13,25 @@
                         <p> 注意事项： </p>
                         <p> 批发价格设置中心</p>
                     </blockquote>
-                    <form class="layui-form layui-show" method="post" id="products_form">
-
-						
-                        <div class="layui-form-item">
-                            <input type="hidden" name="method" value="pifa">
-                            <input type="hidden" name="id" id="pid" value="<?php echo $product['id'];?>">
-                            <button class="layui-btn" key="set-mine" lay-filter="edit" lay-submit>确认修改</button>
-                        </div>
-                    </form>
+					
+					  <table class="layui-table">
+						<colgroup>
+						  <col width="50%">
+						  <col width="50%">
+						</colgroup>
+						<thead>
+						  <tr>
+							<th>商品名称</th>
+							<th>单价</th>
+						  </tr> 
+						</thead>
+						<tbody>
+						  <tr>
+							<td><?php echo $product['name'];?></td>
+							<td><?php echo $product['price'];?></td>
+						  </tr>
+						</tbody>
+					  </table>
                 </div>
             </div>
         </div>

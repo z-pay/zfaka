@@ -103,10 +103,6 @@ class ProductsController extends AdminBasicController
 			$data = array();
 			$product=$this->m_products->SelectByID('',$id);
 			$data['product'] = $product;
-			
-			$productstype=$this->m_products_type->Where(array('isdelete'=>0))->Order(array('sort_num'=>'DESC'))->Select();
-			$data['productstype'] = $productstype;
-			
 			$this->getView()->assign($data);
 		}else{
             $this->redirect('/'.ADMIN_DIR."/products");
