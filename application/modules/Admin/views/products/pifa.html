@@ -5,35 +5,27 @@
         <div class="layui-tab layui-tab-brief" lay-filter="email">
             <ul class="layui-tab-title" id="LAY_mine">
                 <li lay-id="info"><a href="/<?php echo ADMIN_DIR;?>/products/">商品管理</a></li>
-                <li class="layui-this" lay-id="info">批发</a></li>
+				<li lay-id="edit"><a href="/<?php echo ADMIN_DIR;?>/products/edit/?id=<?php echo $product['id'];?>">编辑</a></li>
+                <li class="layui-this" lay-id="pifa">批发</li>
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
-                    <blockquote class="layui-elem-quote">
-                        <p> 注意事项： </p>
-                        <p> 批发价格设置中心</p>
-                    </blockquote>
-					
-					  <table class="layui-table">
-						<colgroup>
-						  <col width="50%">
-						  <col width="50%">
-						</colgroup>
-						<thead>
-						  <tr>
-							<th>商品名称</th>
-							<th>单价</th>
-						  </tr> 
-						</thead>
-						<tbody>
-						  <tr>
-							<td><?php echo $product['name'];?></td>
-							<td><?php echo $product['price'];?></td>
-						  </tr>
-						</tbody>
-					  </table>
-					  <input type="hidden" name="pid" id ="pid" value="<?php echo $product['id'];?>">
-					  <table class="layui-table" id="table" lay-filter="table"></table>
+                    <form class="layui-form layui-show">
+                        <div class="layui-form-item">
+                            <label for="name" class="layui-form-label">商品名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="name" name="name" disabled readonly autocomplete="off" value="<?php echo $product['name'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="price" class="layui-form-label">单价</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="price" name="price" disabled readonly autocomplete="off" value="<?php echo $product['price'];?>" class="layui-input">
+                            </div>
+                        </div>
+					</form>
+					<input type="hidden" name="pid" id ="pid" value="<?php echo $product['id'];?>">
+					<table class="layui-table" id="table" lay-filter="table"></table>
                 </div>
             </div>
         </div>
