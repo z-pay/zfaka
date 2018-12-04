@@ -125,5 +125,9 @@
 layui.use('product');
 var LAYERAD = "";
 var PASSWORD_PRODUCT = 0;
+<?php if(strlen($pifa)>0):?>
 var PIFA = <?php echo $pifa;?>;
+<?php else:?>
+var PIFA = "";
+<?php endif;?>
 </script>
