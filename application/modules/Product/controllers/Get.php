@@ -193,7 +193,7 @@ class GetController extends PcBasicController
 					//先拿折扣
 					$pifa = $this->m_products_pifa->getPifa($pid);
 					if(!empty($pifa)){
-						$data['pifa'] = json_encode($pifa);
+						$data['pifa'] = $pifa;
 					}else{
 						$data['pifa'] = "";
 					}
