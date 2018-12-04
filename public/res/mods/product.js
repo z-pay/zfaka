@@ -29,6 +29,7 @@
 				var myqty = PIFA[i].qty;
 				if(number>=myqty){
 					money = money*PIFA[i].discount;
+					break;
 				}
 			}
 		}
