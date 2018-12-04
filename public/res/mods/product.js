@@ -26,9 +26,9 @@
 		money = price*number;
 		if(PIFA!=""){
 			for (var i = 0, j = PIFA.length; i < j; i++) {
-				var myqty = list[i].qty;
+				var myqty = PIFA[i].qty;
 				if(qty>myqty){
-					money = list[i].money;
+					money = PIFA[i].money;
 				}
 			}
 		}
