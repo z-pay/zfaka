@@ -28,7 +28,7 @@
 			for (var i = 0, j = PIFA.length; i < j; i++) {
 				var myqty = PIFA[i].qty;
 				if(number>=myqty){
-					money = PIFA[i].money;
+					money = money*PIFA[i].discount;
 				}
 			}
 		}
