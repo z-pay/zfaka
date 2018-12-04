@@ -24,7 +24,7 @@
                         </div>
 					</form>
 					<div class="layui-inline layui-col-xs12 layui-col-sm4 layui-col-md3 layui-col-lg2">
-						<a class="layui-btn layui-btn-primary" href="/<?php echo ADMIN_DIR;?>/productspifa/add/?pid=<?php echo $product['id'];?>">添加</a>
+						<a class="layui-btn" href="/<?php echo ADMIN_DIR;?>/productspifa/add/?pid=<?php echo $product['id'];?>">添加</a>
 					</div>
 					<input type="hidden" name="pid" id ="pid" value="<?php echo $product['id'];?>">
 					<table class="layui-table" id="table" lay-filter="table"></table>
@@ -35,10 +35,7 @@
 </div>
 <script type="text/html" id="opt">
     <a class="layui-btn layui-btn-warm layui-btn-xs" href="/<?php echo ADMIN_DIR;?>/productspifa/edit/?id={{d.id}}">编辑</a>
-	{{# if(d.active == 0){ }}
 	<a data-href="/<?php echo ADMIN_DIR;?>/productspifa/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
-	 {{# } else { }}
-	 {{# } }}
 </script>
 <!--引入公共底文件-->
 <?php include ADMIN_COMMON_PATH.'/footer.html';?>
