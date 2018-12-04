@@ -17,6 +17,18 @@
                     </blockquote>
                     <form class="layui-form layui-show" method="post" id="products_form">
                         <div class="layui-form-item">
+                            <label for="name" class="layui-form-label">商品名称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="name" name="name" disabled readonly autocomplete="off" value="<?php echo $product['name'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="price" class="layui-form-label">单价</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="price" name="price" disabled readonly autocomplete="off" value="<?php echo $product['price'];?>" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
                             <label for="qty" class="layui-form-label">数量</label>
                             <div class="layui-input-inline">
                                 <input type="number" id="qty" name="qty" lay-verify="required" autocomplete="off" value="" class="layui-input">

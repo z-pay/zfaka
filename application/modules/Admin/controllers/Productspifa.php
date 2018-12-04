@@ -90,8 +90,20 @@ class ProductspifaController extends AdminBasicController
 		if($id AND is_numeric($id) AND $id>0){
 			$data = array();
 			$pifa = $this->m_products_pifa->SelectByID('',$id);
-			$data['pifa'] = $pifa;
-			$this->getView()->assign($data);
+			if(!empty($pifa)){
+				$product = $this->m_products->SelectByID('',$pifa['pid']);
+				if(!empty($product)){
+					$data['pifa'] = $pifa;
+					$data['product'] = $product;
+					$this->getView()->assign($data);
+				}else{
+					$this->redirect('/'.ADMIN_DIR."/products");
+					return FALSE;
+				}
+			}else{
+				$this->redirect('/'.ADMIN_DIR."/products");
+				return FALSE;
+			}
 		}else{
             $this->redirect('/'.ADMIN_DIR."/products");
             return FALSE;
@@ -110,6 +122,7 @@ class ProductspifaController extends AdminBasicController
 			$data = array();
 			$product = $this->m_products->SelectByID('',$pid);
 			if(!empty($product)){
+				$data['product'] = $product;
 				$data['pid'] = $pid;
 				$this->getView()->assign($data);
 			}else{
