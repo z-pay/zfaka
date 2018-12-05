@@ -156,7 +156,7 @@
 						layer.msg(res.msg,{icon:2,time:5000});
 					}
 				}else{
-					var html = htmlspecialchars_decode(res);
+					var html = res;
 					layer.open({
 						type: 1
 						,title: false
