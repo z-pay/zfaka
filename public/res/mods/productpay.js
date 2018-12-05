@@ -8,6 +8,19 @@
 	var queryRadio = 1;
 	var lodding;
 	console.log("注意：本页js用的比较多，请小心谨慎!");
+	
+    function htmlspecialchars_decode(str){
+		if(str.length>0){
+			str = str.replace(/&amp;/g, '&');
+			str = str.replace(/&lt;/g, '<');
+			str = str.replace(/&gt;/g, '>');
+			str = str.replace(/&quot;/g, '"');
+			str = str.replace(/&#039;/g, "'");
+		}
+        return str;  
+    }	
+	
+	
 	$('.orderpaymethod').on('click', function(event) {
 		event.preventDefault();
 		var paymethod = $(this).attr("data-type");
@@ -29,7 +42,22 @@
                 if (res.code == 1) {
 					queryRadio = 1;
 					
-					if(res.data.type>0){
+					if(res.data.type>1){
+						var html = htmlspecialchars_decode(res.data.content);
+						
+						layer.open({
+							type: 1
+							,title: false
+							,closeBtn: true
+							,area: '300px;'
+							,shade: 0.8
+							,id: 'LAY_layuipro'
+							,btnAlign: 'c'
+							,moveType: 1 //拖拽模式，0或者1
+							,content: html
+						  });
+						
+					}else if(res.data.type>0){
 						if(res.data.overtime>0){
 							timer(res.data.overtime,paymethod);
 							var html = '<h1 class="mod-title"><span class="ico_log ico-'+paymethod+'"></span></h1><div class="mod-content" style="text-align: center;"><img id="pay_qrcode_'+paymethod+'" src="/res/images/pay/load.gif" alt="'+res.data.payname+'" width="230" height="230">';
