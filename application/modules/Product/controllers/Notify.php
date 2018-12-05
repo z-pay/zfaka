@@ -34,4 +34,5 @@ class NotifyController extends PcBasicController
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-Paymethod is null'.PHP_EOL, FILE_APPEND);
 			echo 'error|Paymethod is null';exit();
 		}
+	}
 }
