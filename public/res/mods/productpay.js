@@ -158,14 +158,7 @@
 				}else{
 					var html = res;
 					layer.open({
-						type: 1
-						,title: false
-						,closeBtn: true
-						,area: '300px;'
-						,shade: 0.8
-						,id: 'LAY_layuipro'
-						,btnAlign: 'c'
-						,moveType: 1 //拖拽模式，0或者1
+						 type: 1
 						,content: html
 					 });
 				}
