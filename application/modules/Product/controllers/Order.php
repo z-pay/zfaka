@@ -322,20 +322,19 @@ class OrderController extends PcBasicController
 	public function payjumpAction()
 	{
 		$paymethod = $this->get('paymethod');
-		$oid = $this->get('oid');
-		if($paymethod AND $oid AND is_numeric($oid) AND $oid>0){
+		$orderid = $this->get('orderid');
+		if($paymethod AND $orderid AND strlen($orderid)>0){
 			$payments = $this->m_payment->getConfig();
 			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
 				$payconfig = $payments[$paymethod];
 				if($payconfig['active']>0){
 					//获取订单信息
-					$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
+					$order = $this->m_order->Where(array('orderid'=>$orderid,'isdelete'=>0))->SelectOne();
 					if(is_array($order) AND !empty($order)){
 						if($order['status']>0){
 							$msg = '订单已支付成功';
 						}else{
 							try{
-								$orderid = $order['orderid'];
 								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 								$PAY = new $payclass();
 								$params =array('orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'weburl'=>$this->config['weburl']);
