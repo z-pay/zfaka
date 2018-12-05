@@ -23,7 +23,7 @@
 				layer.close(lodding);
 			},
 			error: function (data) {
-				ayer.close(lodding);
+				layer.close(lodding);
 			},
             success: function(res) {
                 if (res.code == 1) {
