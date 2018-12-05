@@ -16,7 +16,7 @@ layui.define(['layer', 'table','base64'], function(exports){
 			{field: 'money', title: '金额',width:100},
 			{field: 'addtime', title: '下单时间', width:200, templet: '#addtime',align:'center'},
 			{field: 'status', title: '状态',templet: '#status',width:100},
-			{field: 'opt', title: '操作',templet: '#opt',width:200},
+			{field: 'opt', title: '操作',templet: '#opt',width:120},
 		]]
 	});
 
