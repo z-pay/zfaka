@@ -20,5 +20,5 @@ layui.define(['layer', 'table','base64'], function(exports){
 		]]
 	});
 
-	exports('log',null)
+	exports('memberproduct',null)
 });
