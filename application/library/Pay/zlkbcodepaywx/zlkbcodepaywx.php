@@ -18,6 +18,7 @@ class zlkbcodepaywx
 	{
 		try{
 			$config =array(
+				'version'=>1,
 				'paymethod'=>1,
 				'appid'=>$payconfig['app_id'],
 				'ordersn'=>$params['orderid'],
@@ -99,7 +100,6 @@ class zlkbcodepaywx
 			foreach ($params AS $key => $val) {
 				if ($val == ''||$key == 'sign') continue;
 				if ($signstr != '') {
-					$signstr .= "&";
 					$signstr .= "&";
 				}
 				$signstr .= "$key=$val";
