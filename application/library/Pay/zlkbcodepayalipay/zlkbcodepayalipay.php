@@ -25,7 +25,7 @@ class zlkbcodepayalipay
 				'subject'=>$params['productname'],
 				'money'=>(float)$params['money'],
 				'overtime'=>$payconfig['overtime'],
-				'return_url' => $params['weburl']. '/product/query/?zlkbmethod=auto&paymethod='.$this->paymethod.'&orderid='.$params['orderid'],
+				'return_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
 				'notify_url' => $params['weburl'] . '/product/notify/?paymethod='.$this->paymethod,
 			);
 			$config['sign'] = $this->_signParams($config,$payconfig['app_secret']);
