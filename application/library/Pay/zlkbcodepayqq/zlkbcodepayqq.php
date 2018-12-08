@@ -98,7 +98,7 @@ class zlkbcodepayqq
 			reset($params);
 			
 			foreach ($params AS $key => $val) {
-				if ($val == ''||$key == 'sign') continue;
+				if ($key == 'sign') continue;
 				if ($signstr != '') {
 					$signstr .= "&";
 				}
