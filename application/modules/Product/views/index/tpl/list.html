@@ -47,7 +47,7 @@
 <script>
 layui.use('product-list');
 <?php if(isset($config['layerad']) AND strlen($config['layerad'])>0):?>
-var LAYERAD = "<?php echo $config['layerad'];?>";
+var LAYERAD = "<?php echo htmlspecialchars($config['layerad']);?>";
 <?php else:?>
 var LAYERAD = "";
 <?php endif;?>
