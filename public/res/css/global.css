@@ -615,8 +615,8 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .orderpaymethod img{width: 100%;max-width: 150px;border: 1px solid #EAEAEA;cursor: pointer;}
 .mod-title {height: 60px;line-height: 60px;text-align: center;border-bottom: 1px solid #ddd;background: #fff}
 .ico_log {display: inline-block;width: 130px;height: 38px;vertical-align: middle;margin-right: 7px}
-.ico-codepayalipay,.ico-zfbf2f,.ico-zfbweb{background: url("/res/images/pay/alipay.jpg") no-repeat;}
-.ico-codepayqq {background: url("/res/images/pay/qqpay.jpg") no-repeat;}
+.ico-codepayalipay,.ico-zfbf2f,.ico-zfbweb,.ico-zlkbcodepayalipay{background: url("/res/images/pay/alipay.jpg") no-repeat;}
+.ico-codepayqq ,.ico-zlkbcodepayqq{background: url("/res/images/pay/qqpay.jpg") no-repeat;}
 .ico-yzpay {background: url("/res/images/pay/yzpay.jpg") no-repeat;}
 .ico-codepaywx,.ico-zlkbcodepaywx {background: url("/res/images/pay/weixin.jpg") no-repeat;}
 .mod-title .text {font-size: 20px;color: #333;font-weight: normal;vertical-align: middle}
