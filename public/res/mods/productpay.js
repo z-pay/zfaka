@@ -182,7 +182,7 @@
 			$('#minute_show_'+paymethod).html('<s></s>' + minute + '分');
 			$('#second_show_'+paymethod).html('<s></s>' + second + '秒');
 			if (hour <= 0 && minute <= 0 && second <= 0) {
-				$('#pay_qrcode_'+paymethod).attr("src", '/res/images/pay/overtime.jpg');
+				$('#pay_qrcode_'+paymethod).attr("src", '/res/images/pay/overtime.png');
 				$('#pay_qrcode_'+paymethod).attr("alt", '二维码失效');
 				$('#time-item_'+paymethod).html("");
 				clearInterval(myTimer);
