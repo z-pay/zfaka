@@ -303,8 +303,8 @@ class OrderController extends PcBasicController
 				$web_url = parse_url($this->config['weburl']);
 				if($referer_url['host']!=$web_url['host']){
 					$img = APP_PATH.'/public/res/images/pay/weburl-error.png';
-					$base64_img = base64EncodeImage($img);
-					echo '<img src="' . $base64_img . '" />';
+					@header("Content-Type:image/png");
+					echo file_get_contents($img);
 					exit();
 				}
 			}
