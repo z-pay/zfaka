@@ -269,9 +269,14 @@ class OrderController extends PcBasicController
 									$orderid = $order['orderid'];
 								}*/
 								$orderid = $order['orderid'];
+								if($this->config['paysubjectswitch']>0){
+									$productname = $order['orderid'];
+								}else{
+									$productname = $order['productname'];
+								}
 								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 								$PAY = new $payclass();
-								$params =array('pid'=>$order['pid'],'orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'weburl'=>$this->config['weburl']);
+								$params =array('pid'=>$order['pid'],'orderid'=>$orderid,'money'=>$order['money'],'productname'=>$productname,'weburl'=>$this->config['weburl'],'qrserver'=>$this->config['qrserver']);
 								$data = $PAY->pay($payconfig,$params);
 							} catch (\Exception $e) {
 								$data = array('code' => 1005, 'msg' => $e->getMessage());

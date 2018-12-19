@@ -100,7 +100,9 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (23, 1, 'adminyzmswitch', '1', '后台登录验证码开关', 1, 1453452674),
 (24, 1, 'shortcuticon', '', 'ICO图标,格式必须是png或者ico或者gif', 1, 1453452674),
 (25, 1, 'limitorderqty', '5', '单笔订单数量限制', 1, 1453452674),
-(26, 1, 'discountswitch', '0', '折扣开关', 1, 1453452674);
+(26, 1, 'discountswitch', '0', '折扣开关', 1, 1453452674),
+(27, 1, 'qrserver', '/product/order/showqr/?url=', '生成二维码的服务地址', 1, 1453452674),
+(28, 1, 'paysubjectswitch', '0', '订单说明显示:0商品名,1订单号', 1, 1453452674);
 -- --------------------------------------------------------
 
 --
