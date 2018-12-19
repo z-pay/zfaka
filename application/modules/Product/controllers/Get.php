@@ -191,13 +191,13 @@ class GetController extends PcBasicController
 						}
 					}
 					//先拿折扣
-					$pifa = $this->m_products_pifa->getPifa($pid);
-					if(!empty($pifa)){
-						$data['pifa'] = $pifa;
-					}else{
-						$data['pifa'] = "";
+					$data['pifa'] = "";
+					if($this->config['discountswitch']){
+						$pifa = $this->m_products_pifa->getPifa($pid);
+						if(!empty($pifa)){
+							$data['pifa'] = $pifa;
+						}
 					}
-					
 					
 					$data['product'] = $product;	
 					if($product['addons']){

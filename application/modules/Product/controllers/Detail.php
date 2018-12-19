@@ -25,11 +25,12 @@ class DetailController extends PcBasicController
 			if(!empty($product)){
 				$data = array();
 				//先拿折扣
-				$pifa = $this->m_products_pifa->getPifa($pid);
-				if(!empty($pifa)){
-					$data['pifa'] = json_encode($pifa);
-				}else{
-					$data['pifa'] = "";
+				$data['pifa'] = "";
+				if($this->config['discountswitch']){
+					$pifa = $this->m_products_pifa->getPifa($pid);
+					if(!empty($pifa)){
+						$data['pifa'] = json_encode($pifa);
+					}
 				}
 				
 				//如果是密码商品

@@ -135,11 +135,13 @@ class OrderController extends PcBasicController
 					
 					//先拿折扣再算订单价格
 					$money = $product['price']*$number;
-					$pifa = $this->m_products_pifa->getPifa($pid);
-					if(!empty($pifa)){
-						foreach($pifa AS $pf){
-							if($number>=$pf['qty']){
-								$money = $money*$pf['discount'];
+					if($this->config['discountswitch']){
+						$pifa = $this->m_products_pifa->getPifa($pid);
+						if(!empty($pifa)){
+							foreach($pifa AS $pf){
+								if($number>=$pf['qty']){
+									$money = $money*$pf['discount'];
+								}
 							}
 						}
 					}
