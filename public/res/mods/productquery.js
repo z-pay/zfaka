@@ -116,6 +116,7 @@ layui.define(['layer', 'form','jquery','base64','laytpl','element'], function(ex
 					laytpl(getTpl).render(res, function(html){
 					  view.innerHTML = html;
 					});
+					element.render('query-m-result');
 					$("#query-form").hide();
 				}else{
 					$("#query-table tbody").html("<tr></tr>");

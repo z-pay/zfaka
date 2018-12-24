@@ -81,7 +81,7 @@
 	<blockquote class="layui-elem-quote">无数据....</blockquote>
 {{# }else{ }}
 	<div class="layui-hide-lg layui-hide-md layui-hide-sm">
-		<div class="layui-collapse" lay-accordion="">
+		<div class="layui-collapse" lay-accordion="" lay-filter="query-m-result">
 		{{# layui.each(d.data, function(index, item){ }}
 			<div class="layui-colla-item">
 				<h2 class="layui-colla-title">订单{{ item.orderid}}</h2>
