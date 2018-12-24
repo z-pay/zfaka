@@ -28,7 +28,7 @@ class SendemailController extends BasicController
         file_put_contents(CRONTAB_FILE, CUR_DATETIME . '-' . 'start' . PHP_EOL, FILE_APPEND);
         $results = array();
         //1.先查询
-        $queue = $this->m_email_queue->Where(array('status' => 0))->Limit(10)->Select();
+        $queue = $this->m_email_queue->Where(array('status' => 0,'isdelete'=>0))->Limit(10)->Select();
         if (is_array($queue) AND !empty($queue)) {
 			$emainConfig = $this->m_email->getConfig();
 			$config=array();
