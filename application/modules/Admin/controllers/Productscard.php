@@ -129,7 +129,7 @@ class ProductscardController extends AdminBasicController
 		if($method AND $pid AND $card AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if($method == 'add'){
-					$card = getRawText($card);
+					$card = getRawText($card,false);
 					$m=array(
 						'pid'=>$pid,
 						'card'=>$card,
@@ -153,7 +153,7 @@ class ProductscardController extends AdminBasicController
 					$newTxtFileData_array = explode($replace,$newTxtFileData);
 					foreach($newTxtFileData_array AS $line){
 						if(strlen($line)>0){
-							$line = getRawText($line);
+							$line = getRawText($line,false);
 							$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
 						}
 					}
@@ -313,7 +313,7 @@ class ProductscardController extends AdminBasicController
 						$newTxtFileData_array = explode($replace,$newTxtFileData);
 						foreach($newTxtFileData_array AS $line){
 							if(strlen($line)>0){
-								$line = getRawText($line);
+								$line = getRawText($line,false);
 								if(strlen($line)>0){
 									$m[]=array('pid'=>$pid,'card'=>$line,'addtime'=>time());
 								}

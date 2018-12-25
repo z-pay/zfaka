@@ -37,9 +37,13 @@ if ( ! function_exists('getRandom')){
     }
 }
 if ( ! function_exists('getRawText')){
-    function getRawText($str=''){
-        $str = strip_tags($str);
-        $search = array(" ","　","\n","\r","\t");
+    function getRawText($str='',$clearblank = true){
+        $str = strip_tags(trim($str));
+		if($clearblank){
+			$search = array(" ","　","\n","\r","\t");
+		}else{
+			$search = array("\n","\r","\t");
+		}
         return str_replace($search, "", $str);
     }
 }

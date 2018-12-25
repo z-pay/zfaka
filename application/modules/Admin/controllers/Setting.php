@@ -106,8 +106,7 @@ class SettingController extends AdminBasicController
 		
 		if($method AND $name AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				//$value = getRawText($value);
-				$tag = getRawText($tag);
+				$tag = getRawText($tag,false);
 				if($value OR is_numeric($value)){
 					$m=array(
 						'name'=>$name,
@@ -163,7 +162,7 @@ class SettingController extends AdminBasicController
 					$data = array('code' => 1004, 'msg' => '无数据，不需要修复');
 				} else {
 					foreach($items AS $item){
-						$tag = getRawText($item['tag']);
+						$tag = getRawText($item['tag'],false);
 						$m = array('tag'=>htmlspecialchars($tag));
 						$this->m_config->UpdateByID($m,$item['id']);
 						unset($tag,$m);
