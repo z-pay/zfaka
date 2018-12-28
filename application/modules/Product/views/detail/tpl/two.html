@@ -21,17 +21,13 @@
                     <div class="layui-col-xs12 layui-col-md8">
                         <div class="layui-field-box">
                            <input type="hidden" value="900" name="goodid">
-                           <p><span class="trade-goodname"><?php echo $product['name'];?></span></p><hr>
+                           <p><span class="trade-goodname"><?php if(isset($product['auto']) AND ($product['auto']>0) ):?><p><span class="layui-badge layui-bg-green">自动发货</span></p><?php else:?><p><span class="layui-badge layui-bg-black">手工发货</span></p><?php endif;?><?php echo $product['name'];?></span></p><hr>
                            <p class="trade-goodinfo">
                                <span style="color:#6c6c6c">价格：</span>
                                <span class="trade-price"><?php echo $product['price'];?></span>
-                               <span style="float:right;display: none;">
-                                     <span style="color: #6C6C6C;">累积销量：</span>
-                                     <span style="color:#6c6c6c;font-size:18px;">446</span>
-                               </span>
                             </p>                 
 							<p style="float:left"><input type="text" class="trade-input" value="1" id="count" name="count" style="height:27px;margin-right:5px"></p>
-							<p style="line-height:40px;color:#6c6c6c"> 库存:554件</p><input type="hidden" value="554" id="kucun" name="kucun">
+							<p style="line-height:40px;color:#6c6c6c"> 库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?></p><input type="hidden" value="554" id="kucun" name="kucun">
                             <button type="submit" class="layui-btn layui-btn-normal layui-btn-big" style="float:left;margin-top: 5px;" id="paysubmit">立即购买</button>
                         </div>
 					</div>
@@ -43,7 +39,6 @@
 				</ul>
 				<div class="layui-tab-content" style="">
 					<div class="layui-tab-item layui-show">
-						<?php if(isset($product['auto']) AND ($product['auto']>0) ):?><p><span class="layui-badge layui-bg-green">自动发货</span></p><?php else:?><p><span class="layui-badge layui-bg-black">手工发货</span></p><?php endif;?>
 						<?php if(isset($product['description'])):?><?php echo htmlspecialchars_decode(htmlspecialchars_decode($product['description']));?><?php endif;?>
 					</div>	  
 				</div>
