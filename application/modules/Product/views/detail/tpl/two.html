@@ -115,7 +115,9 @@
 </div>
 <?php if(strlen($pifa)>0):?>
 <script id="youhui_tpl" type="text/html">
-<?php $mypifa = json_decode($pifa,true);?>
+{{#  if(d.length === 0){ }}
+	<blockquote class="layui-elem-quote">无数据....</blockquote>
+{{# }else{ }}
 	<div class="layui-form">
 	  <table class="layui-table">
 		<colgroup>
@@ -131,15 +133,16 @@
 		  </tr> 
 		</thead>
 		<tbody>
-			<?php foreach($mypifa AS $p):?>
 			<tr>
-				<td><?php echo $p['qty'];?></td>
-				<td><?php echo $p['discount'];?></td>
+				{{# layui.each(d, function(index, item){ }}
+				<td>{{ item.qty}}</td>
+				<td>{{ item.discount}}</td>
+				{{#  }); }}
 			</tr>
-			<?php endforeach;?>
 		 </tbody>
 		</table>
 	</div>
+{{#  } }} 
 </script>
 <?php endif;?>
 <!--引入公共底文件-->

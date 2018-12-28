@@ -575,7 +575,7 @@
 	$('#view-youhui').on('click', function(event) {
 		var getTpl = youhui_tpl.innerHTML;
 		var youhui_html = "";
-		laytpl(getTpl).render(null, function(html){
+		laytpl(getTpl).render(PIFA, function(html){
 			 youhui_html = html;
 		});
 		element.render('query-m-result');
