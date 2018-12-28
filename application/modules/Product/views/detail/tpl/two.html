@@ -20,21 +20,70 @@
                     <div class="layui-col-xs12 layui-col-md8">
                         <div class="layui-field-box">
 							<form class="layui-form layui-form-pane" method="post">
-								<input type="hidden" value="900" name="goodid">
 								<p><?php if(isset($product['auto']) AND ($product['auto']>0) ):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-black">手工发货</span><?php endif;?>&nbsp;&nbsp;<span class="trade-goodname"><?php echo $product['name'];?></span></p><hr>
 								<p class="trade-goodinfo">
 									<span style="color:#6c6c6c">价格：</span>
 									<span class="trade-price"><?php echo $product['price'];?></span>
 								</p>  
 								<div class="layui-form-item">
-									<label class="layui-form-label" style="margin-left: -26px;color: #6c6c6c;">数量：</label>
+									<label class="layui-form-label" style="color: #6c6c6c;">数量：</label>
 									<div class="layui-input-inline">
-										<input type="number" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+										<input type="number" name="number" id="number" lay-verify="required|numberCheck" placeholder="1" autocomplete="off" class="layui-input">
 									</div>
 									<div class="layui-form-mid layui-word-aux">件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>)</div>
 								</div>							
-
-								<button type="submit" class="layui-btn layui-btn-normal layui-btn-big" style="float:left;margin-top: 5px;" id="paysubmit">立即购买</button>
+								<?php if($login):?>
+								<div class="layui-form-item">
+									<label class="layui-form-label">邮箱账户</label>
+									<div class="layui-input-block">
+										<input type="text" name="email" id="email" value="<?php echo $uinfo['email'];?>" readonly class="layui-input">
+									</div>
+								</div>
+								<?php else:?>
+										<?php if(isset($config['orderinputtype']) AND $config['orderinputtype'] == '2'):?>
+										<div class="layui-form-item">
+											<label class="layui-form-label">QQ</label>
+											<div class="layui-input-block">
+												<input type="number" name="qq" id="qq" class="layui-input" required lay-verify="required|number">
+											</div>
+										</div>
+										<?php else:?>
+										<div class="layui-form-item">
+											<label class="layui-form-label">邮箱账户</label>
+											<div class="layui-input-block">
+												<input type="text" name="email" id="email" class="layui-input" required lay-verify="required|email">
+											</div>
+										</div>
+										<?php endif;?>
+								<?php endif;?>
+								<div class="layui-form-item">
+									<label class="layui-form-label">查询密码</label>
+									<div class="layui-input-block">
+										<input type="text" name="chapwd" id="chapwd" class="layui-input" required lay-verify="required" placeholder="将作为自助查询订单重要依据">
+									</div>
+								</div>
+								<?php if(!empty($addons)):?>
+								<?php foreach($addons AS $key=>$addon):?>
+									<?php if($addon):?>
+										<div class="layui-form-item">
+											<label class="layui-form-label"><?php echo $addon;?></label>
+											<div class="layui-input-block">
+												<input type="text" name="addons[]" id="addons<?php echo $key;?>" class="layui-input" required lay-verify="required" placeholder="">
+											</div>
+										</div>
+									<?php endif;?>
+								<?php endforeach;?>
+								<?php endif;?>
+								
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<input type="hidden" name="stockcontrol" id="stockcontrol" value="<?php echo $product['stockcontrol'];?>">
+										<input type="hidden" name="limitorderqty" id="limitorderqty" value="<?php echo $config['limitorderqty'];?>">
+										<input type="hidden" name="pid" id="pid" value="<?php echo $product['id'];?>">
+										<button class="layui-btn" id="buy" lay-submit lay-filter="buy" <?php if($product['stockcontrol']>0 AND $product['qty']<1):?>disabled="disabled"<?php endif;?>>立即提交</button>
+										<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+									</div>
+								</div>
 							</form>
                         </div>
 					</div>
