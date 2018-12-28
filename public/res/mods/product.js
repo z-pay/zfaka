@@ -582,10 +582,11 @@
 		
 		layer.open({
 			type: 1
+			,title:"折扣信息"
 			,offset: "auto"
 			,id: 'layerYouhuiAuto' //防止重复弹出
 			,content: youhui_html
-			,btn: '关闭全部'
+			,btn: '我知道了'
 			,btnAlign: 'c' //按钮居中
 			,shade: 0 //不显示遮罩
 			,yes: function(){

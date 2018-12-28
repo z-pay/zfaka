@@ -133,12 +133,12 @@
 		  </tr> 
 		</thead>
 		<tbody>
+		{{# layui.each(d, function(index, item){ }}
 			<tr>
-				{{# layui.each(d, function(index, item){ }}
 				<td>{{ item.qty}}</td>
 				<td>{{ item.discount}}</td>
-				{{#  }); }}
 			</tr>
+		{{#  }); }}
 		 </tbody>
 		</table>
 	</div>
