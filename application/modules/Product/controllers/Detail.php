@@ -33,6 +33,13 @@ class DetailController extends PcBasicController
 						$data['pifa'] = json_encode($pifa);
 					}
 				}
+				//再拿附加
+				if($product['addons']){
+					$addons = explode(',',$product['addons']);
+					$data['addons'] = $addons;
+				}else{
+					$data['addons'] = array();
+				}
 				
 				//如果是密码商品
 				if(strlen($product['password'])>0){
@@ -54,12 +61,6 @@ class DetailController extends PcBasicController
 				}else{
 				//否则
 					$data['product'] = $product;
-					if($product['addons']){
-						$addons = explode(',',$product['addons']);
-						$data['addons'] = $addons;
-					}else{
-						$data['addons'] = array();
-					}
 					$data['title'] = $product['name']."_购买商品";
 					if($mytpl){
 						$this->display("tpl_".$mytpl, $data);
