@@ -15,8 +15,9 @@
 		var stockcontrol = Number($('#stockcontrol').val());
 		var number = Number($('#number').val());
 		var qty = Number($('#qty').val());
-		if(number<0){
+		if(number<1){
 			number =1;
+			$('#number').val(qty);
 		}
 		if(stockcontrol>0){
 			if(number>qty){
