@@ -15,12 +15,16 @@
 		var stockcontrol = Number($('#stockcontrol').val());
 		var number = Number($('#number').val());
 		var qty = Number($('#qty').val());
+		if(number<0){
+			number =1;
+		}
 		if(stockcontrol>0){
 			if(number>qty){
 				$('#number').val(qty);
 				number = qty;
 			}
 		}
+		
 		var money = $('#money').val();
 		var price = parseFloat($('#price').val());
 		money = price*number;
