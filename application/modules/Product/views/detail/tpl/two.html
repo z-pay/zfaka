@@ -118,29 +118,34 @@
 {{#  if(d.length === 0){ }}
 	<blockquote class="layui-elem-quote">无数据....</blockquote>
 {{# }else{ }}
-	<div class="layui-form">
-	  <table class="layui-table">
-		<colgroup>
-		  <col width="150">
-		  <col width="150">
-		  <col width="200">
-		  <col>
-		</colgroup>
-		<thead>
-		  <tr>
-			<th>数量</th>
-			<th>折扣</th>
-		  </tr> 
-		</thead>
-		<tbody>
-		{{# layui.each(d, function(index, item){ }}
-			<tr>
-				<td>{{ item.qty}}</td>
-				<td>{{ item.discount}}</td>
-			</tr>
-		{{#  }); }}
-		 </tbody>
-		</table>
+	<div class="layui-card">
+		<div class="layui-card-header">折扣信息</div>
+		<div class="layui-card-body">
+			<div class="layui-form">
+			  <table class="layui-table">
+				<colgroup>
+				  <col width="150">
+				  <col width="150">
+				  <col width="200">
+				  <col>
+				</colgroup>
+				<thead>
+				  <tr>
+					<th>数量</th>
+					<th>折扣</th>
+				  </tr> 
+				</thead>
+				<tbody>
+				{{# layui.each(d, function(index, item){ }}
+					<tr>
+						<td>{{ item.qty}}</td>
+						<td>{{ item.discount}}</td>
+					</tr>
+				{{#  }); }}
+				 </tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 {{#  } }} 
 </script>
