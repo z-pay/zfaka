@@ -35,7 +35,7 @@
 								<?php if($login):?>
 								<div class="layui-form-item">
 									<label class="layui-form-label">邮箱账户</label>
-									<div class="layui-input-block">
+									<div class="layui-input-inline">
 										<input type="text" name="email" id="email" value="<?php echo $uinfo['email'];?>" readonly class="layui-input">
 									</div>
 								</div>
@@ -43,14 +43,14 @@
 										<?php if(isset($config['orderinputtype']) AND $config['orderinputtype'] == '2'):?>
 										<div class="layui-form-item">
 											<label class="layui-form-label">QQ</label>
-											<div class="layui-input-block">
+											<div class="layui-input-inline">
 												<input type="number" name="qq" id="qq" class="layui-input" required lay-verify="required|number">
 											</div>
 										</div>
 										<?php else:?>
 										<div class="layui-form-item">
 											<label class="layui-form-label">邮箱账户</label>
-											<div class="layui-input-block">
+											<div class="layui-input-inline">
 												<input type="text" name="email" id="email" class="layui-input" required lay-verify="required|email">
 											</div>
 										</div>
@@ -58,7 +58,7 @@
 								<?php endif;?>
 								<div class="layui-form-item">
 									<label class="layui-form-label">查询密码</label>
-									<div class="layui-input-block">
+									<div class="layui-input-inline">
 										<input type="text" name="chapwd" id="chapwd" class="layui-input" required lay-verify="required" placeholder="将作为自助查询订单重要依据">
 									</div>
 								</div>
@@ -67,7 +67,7 @@
 									<?php if($addon):?>
 										<div class="layui-form-item">
 											<label class="layui-form-label"><?php echo $addon;?></label>
-											<div class="layui-input-block">
+											<div class="layui-input-inline">
 												<input type="text" name="addons[]" id="addons<?php echo $key;?>" class="layui-input" required lay-verify="required" placeholder="">
 											</div>
 										</div>
