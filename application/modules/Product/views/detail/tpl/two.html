@@ -15,16 +15,16 @@
                 <div class="layui-row">
                     <div class="layui-col-xs12 layui-col-md4">
                         <div class="layui-field-box">
-                            <p><img src="/public/static/images/noimg.jpg" alt="" height="300px" width="100%"></p>
+                            <p><img src="/res/images/noimg.jpg" alt="" height="300px" width="100%"></p>
 						</div>
                     </div>
                     <div class="layui-col-xs12 layui-col-md8">
                         <div class="layui-field-box">
                            <input type="hidden" value="900" name="goodid">
-                           <p><span class="trade-goodname">9位双太阳号32级以上-Q龄5-9年----DNF正常（已过防沉迷）--秒绑--购买后首页下载客户机--服务器选择----(线路一)---绑定手机（即提即绑定手机，不囤货）</span></p><hr>
+                           <p><span class="trade-goodname"><?php echo $product['name'];?></span></p><hr>
                            <p class="trade-goodinfo">
                                <span style="color:#6c6c6c">价格：</span>
-                               <span class="trade-price">¥13.80</span>
+                               <span class="trade-price"><?php echo $product['price'];?></span>
                                <span style="float:right;display: none;">
                                      <span style="color: #6C6C6C;">累积销量：</span>
                                      <span style="color:#6c6c6c;font-size:18px;">446</span>
@@ -47,7 +47,7 @@
 <script>
 layui.use('product');
 var LAYERAD = "";
-var PASSWORD_PRODUCT = 1;
+var PASSWORD_PRODUCT = 0;
 <?php if(strlen($pifa)>0):?>
 var PIFA = <?php echo $pifa;?>;
 <?php else:?>
