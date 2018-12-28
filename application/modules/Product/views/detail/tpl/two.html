@@ -24,7 +24,15 @@
 								<p class="trade-goodinfo">
 									<span style="color:#6c6c6c">价格：</span>
 									<span class="trade-price"><?php echo $product['price'];?></span>
-								</p>  
+								</p> 
+								
+								<?php if(strlen($pifa)>0):?>
+								<p class="trade-youhui">
+									<span style="color:#6c6c6c">优惠：</span>								
+									<span id = "view-youhui" style="padding-top: -10px;height: 100%;cursor: pointer;margin-left: 5px;">查看批发优惠</span>
+								</p>
+								<?php endif;?>
+								
 								<div class="layui-form-item">
 									<label class="layui-form-label" style="color: #6c6c6c;">数量：</label>
 									<div class="layui-input-inline">
@@ -42,7 +50,7 @@
 								<?php else:?>
 										<?php if(isset($config['orderinputtype']) AND $config['orderinputtype'] == '2'):?>
 										<div class="layui-form-item">
-											<label class="layui-form-label">QQ</label>
+											<label class="layui-form-label">QQ：</label>
 											<div class="layui-input-inline">
 												<input type="number" name="qq" id="qq" class="layui-input" required lay-verify="required|number">
 											</div>
@@ -105,6 +113,35 @@
      </div>
 
 </div>
+<?php if(strlen($pifa)>0):?>
+<script id="youhui_tpl" type="text/html">
+<?php $mypifa = json_decode($pifa,true);?>
+	<div class="layui-form">
+	  <table class="layui-table">
+		<colgroup>
+		  <col width="150">
+		  <col width="150">
+		  <col width="200">
+		  <col>
+		</colgroup>
+		<thead>
+		  <tr>
+			<th>数量</th>
+			<th>折扣</th>
+		  </tr> 
+		</thead>
+		<tbody>
+			<?php foreach($mypifa AS $p):?>
+			<tr>
+				<td><?php echo $p['qty'];?></td>
+				<td><?php echo $p['discount'];?></td>
+			</tr>
+			<?php endforeach;?>
+		 </tbody>
+		</table>
+	</div>
+</script>
+<?php endif;?>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
 <!--首页广告-->

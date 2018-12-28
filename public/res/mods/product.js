@@ -1,6 +1,8 @@
-﻿layui.define(['layer', 'form'], function(exports){
+﻿layui.define(['layer', 'form','laytpl','element'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
+	var laytpl = layui.laytpl;
+	var element = layui.element;
 	var form = layui.form;
 	var device = layui.device();
 	
@@ -568,5 +570,28 @@
 			});
 		}
 	}	
+	
+	//查询批发优惠
+	$('#view-youhui').on('click', function(event) {
+		var getTpl = youhui_tpl.innerHTML;
+		var youhui_html = "";
+		laytpl(getTpl).render(res, function(html){
+			 youhui_html = html;
+		});
+		element.render('query-m-result');
+		
+		layer.open({
+			type: 1
+			,offset: "auto"
+			,id: 'layerYouhuiAuto' //防止重复弹出
+			,content: youhui_html
+			,btn: '关闭全部'
+			,btnAlign: 'c' //按钮居中
+			,shade: 0 //不显示遮罩
+			,yes: function(){
+			  layer.closeAll();
+			}
+		});
+	});
 	exports('product',null)
 });
