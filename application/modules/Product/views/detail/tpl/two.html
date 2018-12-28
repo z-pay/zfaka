@@ -8,7 +8,6 @@
 	<?php endif;?>
 	
 	<div class="layui-card">
-        <div class="layui-card-header">卡片面板</div>
         <div class="layui-card-body">
 			<fieldset class="layui-elem-field">
 				<legend>商品信息</legend>
@@ -21,13 +20,16 @@
                     <div class="layui-col-xs12 layui-col-md8">
                         <div class="layui-field-box">
                            <input type="hidden" value="900" name="goodid">
-                           <p><?php if(isset($product['auto']) AND ($product['auto']>0) ):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-black">手工发货</span><?php endif;?><span class="trade-goodname"><?php echo $product['name'];?></span></p><hr>
+                           <p><?php if(isset($product['auto']) AND ($product['auto']>0) ):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-black">手工发货</span><?php endif;?>&nbsp;&nbsp;<span class="trade-goodname"><?php echo $product['name'];?></span></p><hr>
                            <p class="trade-goodinfo">
                                <span style="color:#6c6c6c">价格：</span>
                                <span class="trade-price"><?php echo $product['price'];?></span>
                             </p>                 
-							<p style="float:left"><input type="text" class="trade-input" value="1" id="count" name="count" style="height:27px;margin-right:5px"></p>
-							<p style="line-height:40px;color:#6c6c6c"> 库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?></p><input type="hidden" value="554" id="kucun" name="kucun">
+							<p style="float:left">
+								<span style="color:#6c6c6c">数量：</span>
+								<input type="text" class="trade-input" value="1" id="count" name="count" style="height:27px;margin-right:5px">
+							</p>
+							<p style="line-height:40px;color:#6c6c6c"> 件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>)</p>
                             <button type="submit" class="layui-btn layui-btn-normal layui-btn-big" style="float:left;margin-top: 5px;" id="paysubmit">立即购买</button>
                         </div>
 					</div>
