@@ -1,0 +1,56 @@
+<?php include COMMON_PATH.'/header.html';?>
+<div class="layui-container fly-marginTop fly-user-main">
+	<!-- 公告-->
+	<?php if(isset($config['notice']) AND $config['notice']):?>
+	<blockquote class="layui-elem-quote layui-text" style="background-color: #ffffff;">
+		<i class="layui-icon layui-icon-speaker"></i><?php echo $config['notice'];?>
+	</blockquote>
+	<?php endif;?>
+	
+	<div class="layui-card">
+        <div class="layui-card-header">卡片面板</div>
+        <div class="layui-card-body">
+			<fieldset class="layui-elem-field">
+				<legend>商品信息</legend>
+                <div class="layui-row">
+                    <div class="layui-col-xs12 layui-col-md4">
+                        <div class="layui-field-box">
+                            <p><img src="/public/static/images/noimg.jpg" alt="" height="300px" width="100%"></p>
+						</div>
+                    </div>
+                    <div class="layui-col-xs12 layui-col-md8">
+                        <div class="layui-field-box">
+                           <input type="hidden" value="900" name="goodid">
+                           <p><span class="trade-goodname">9位双太阳号32级以上-Q龄5-9年----DNF正常（已过防沉迷）--秒绑--购买后首页下载客户机--服务器选择----(线路一)---绑定手机（即提即绑定手机，不囤货）</span></p><hr>
+                           <p class="trade-goodinfo">
+                               <span style="color:#6c6c6c">价格：</span>
+                               <span class="trade-price">¥13.80</span>
+                               <span style="float:right;display: none;">
+                                     <span style="color: #6C6C6C;">累积销量：</span>
+                                     <span style="color:#6c6c6c;font-size:18px;">446</span>
+                               </span>
+                            </p>                 
+							<p style="float:left"><input type="text" class="trade-input" value="1" id="count" name="count" style="height:27px;margin-right:5px"></p>
+							<p style="line-height:40px;color:#6c6c6c"> 库存:554件</p><input type="hidden" value="554" id="kucun" name="kucun">
+                            <button type="submit" class="layui-btn layui-btn-normal layui-btn-big" style="float:left;margin-top: 5px;" id="paysubmit">立即购买</button>
+                        </div>
+					</div>
+				</div>
+			</fieldset>
+        </div>
+     </div>
+
+</div>
+<!--引入公共底文件-->
+<?php include COMMON_PATH.'/footer.html';?>
+<!--首页广告-->
+<script>
+layui.use('product');
+var LAYERAD = "";
+var PASSWORD_PRODUCT = 1;
+<?php if(strlen($pifa)>0):?>
+var PIFA = <?php echo $pifa;?>;
+<?php else:?>
+var PIFA = "";
+<?php endif;?>
+</script>
