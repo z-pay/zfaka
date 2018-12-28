@@ -118,6 +118,7 @@
 {{#  if(d.length === 0){ }}
 	<blockquote class="layui-elem-quote">无数据....</blockquote>
 {{# }else{ }}
+	{{# var price = <?php echo $product['price'];?>  }}
 	<div class="layui-card">
 		<div class="layui-card-header">折扣信息</div>
 		<div class="layui-card-body">
@@ -133,6 +134,8 @@
 				  <tr>
 					<th>数量</th>
 					<th>折扣</th>
+					<th>原单价</th>
+					<th>折扣价</th>
 				  </tr> 
 				</thead>
 				<tbody>
@@ -140,6 +143,8 @@
 					<tr>
 						<td>{{ item.qty}}</td>
 						<td>{{ item.discount}}</td>
+						<td>{{ price}}</td>
+						<td>{{ price*item.discount }}</td>
 					</tr>
 				{{#  }); }}
 				 </tbody>
