@@ -37,6 +37,17 @@
 					</div>
 				</div>
 			</fieldset>
+			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+				<ul class="layui-tab-title">
+					<li class="layui-this">商品描述</li>
+				</ul>
+				<div class="layui-tab-content" style="">
+					<div class="layui-tab-item layui-show">
+						<?php if(isset($product['auto']) AND ($product['auto']>0) ):?><p><span class="layui-badge layui-bg-green">自动发货</span></p><?php else:?><p><span class="layui-badge layui-bg-black">手工发货</span></p><?php endif;?>
+						<?php if(isset($product['description'])):?><?php echo htmlspecialchars_decode(htmlspecialchars_decode($product['description']));?><?php endif;?>
+					</div>	  
+				</div>
+			</div>
         </div>
      </div>
 

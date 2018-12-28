@@ -627,3 +627,8 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .item-title {background: none;line-height: 25px;font-size: 24px;padding: 0 10px;float: left;}
 #prodcut_description {vertical-align: middle;word-break:break-all;overflow:auto;white-space:normal; }
 #prodcut_description img{ width: 100%;height: auto;}
+
+/*20181228 新商品详情页*/
+.trade-goodname {font-size: 20px;color: #3C3C3C;}
+.good-trade p {font-size: 15px;line-height: 30px;}
+.trade-goodinfo {background-color: #FFF2E8;padding: 10px; margin-bottom: 5px;}
