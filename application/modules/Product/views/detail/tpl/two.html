@@ -154,7 +154,6 @@
 				<thead>
 				  <tr>
 					<th>数量</th>
-					<th>折扣</th>
 					<th>原单价</th>
 					<th>折扣价</th>
 				  </tr> 
@@ -163,9 +162,8 @@
 				{{# layui.each(d, function(index, item){ }}
 					<tr>
 						<td>{{ item.qty}}</td>
-						<td>{{ item.discount}}</td>
-						<td>{{ price}}</td>
-						<td>{{ changeTwoDecimal_html(price*item.discount) }}</td>
+						<td>{{ changeTwoDecimal_html(price)}}元</td>
+						<td>{{ changeTwoDecimal_html(price*item.discount)}}元</td>
 					</tr>
 				{{#  }); }}
 				 </tbody>
