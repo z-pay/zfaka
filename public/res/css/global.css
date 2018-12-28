@@ -631,4 +631,5 @@ body .fly-user-main{position: relative; min-height: 600px;}
 /*20181228 新商品详情页*/
 .trade-goodname {font-size: 20px;color: #3C3C3C;}
 .good-trade p {font-size: 15px;line-height: 30px;}
+.trade-price {color: #F40;font-size: 26px;font-weight: 700;}
 .trade-goodinfo {background-color: #FFF2E8;padding: 10px; margin-bottom: 5px;}
