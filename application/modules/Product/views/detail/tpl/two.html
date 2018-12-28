@@ -24,12 +24,15 @@
                            <p class="trade-goodinfo">
                                <span style="color:#6c6c6c">价格：</span>
                                <span class="trade-price"><?php echo $product['price'];?></span>
-                            </p>                 
-							<p style="float:left">
-								<span style="color:#6c6c6c">数量：</span>
-								<input type="text" class="trade-input" value="1" id="count" name="count" style="height:27px;margin-right:5px">
-							</p>
-							<p style="line-height:40px;color:#6c6c6c"> 件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>)</p>
+                            </p>  
+							<div class="layui-form-item">
+								<label class="layui-form-label" style="margin-left: -26px;color: #6c6c6c;">数量：</label>
+								<div class="layui-input-inline">
+									<input type="number" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+								</div>
+								<div class="layui-form-mid layui-word-aux">件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>)</div>
+							</div>							
+
                             <button type="submit" class="layui-btn layui-btn-normal layui-btn-big" style="float:left;margin-top: 5px;" id="paysubmit">立即购买</button>
                         </div>
 					</div>
