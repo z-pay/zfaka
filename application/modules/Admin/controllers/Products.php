@@ -92,6 +92,25 @@ class ProductsController extends AdminBasicController
 		}
     }
 	
+	//图片管理
+    public function imgurlAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $this->redirect('/'.ADMIN_DIR."/login");
+            return FALSE;
+        }
+		$id = $this->get('id');
+		if($id AND $id>0){
+			$data = array();
+			$product=$this->m_products->SelectByID('',$id);
+			$data['product'] = $product;
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect('/'.ADMIN_DIR."/products");
+            return FALSE;
+		}
+    }
+	
     public function addAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
