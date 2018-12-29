@@ -234,7 +234,7 @@ class ProductsController extends AdminBasicController
 				//检查是否存在可用的卡密
 				$qty = $this->m_products_card->Where(array('pid'=>$id,'active'=>0,'isdelete'=>0))->Total();
 				if($qty>0){
-					$data = array('code' => 1004, 'msg' => '存在可用卡密，请导出', 'data' => '');
+					$data = array('code' => 1004, 'msg' => '存在可用卡密，请先导出并删除卡密', 'data' => '');
 				}else{
 					$where = 'active=0';//只有未激活的才可以删除
 					$delete = $this->m_products->Where($where)->UpdateByID(array('isdelete'=>1),$id);

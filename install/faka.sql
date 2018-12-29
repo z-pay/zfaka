@@ -102,7 +102,8 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (25, 1, 'limitorderqty', '5', '单笔订单数量限制', 1, 1453452674),
 (26, 1, 'discountswitch', '0', '折扣开关', 1, 1453452674),
 (27, 1, 'qrserver', '/product/order/showqr/?url=', '生成二维码的服务地址,默认请填写:/product/order/showqr/?url=', 1, 1453452674),
-(28, 1, 'paysubjectswitch', '0', '订单说明显示:0商品名,1订单号', 1, 1453452674);
+(28, 1, 'paysubjectswitch', '0', '订单说明显示:0商品名,1订单号', 1, 1453452674),
+(29, 1, 'tplproduct', 'default', '商品详情页模版', '1', 1546063186);
 -- --------------------------------------------------------
 
 --
@@ -286,7 +287,8 @@ CREATE TABLE IF NOT EXISTS `t_products` (
   `addons` text NOT NULL COMMENT '备注',
   `sort_num` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
+  `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除',
+  `imgurl` text NOT NULL COMMENT '产品图片'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
