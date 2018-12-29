@@ -46,9 +46,4 @@
 <?php include COMMON_PATH.'/footer.html';?>
 <script>
 layui.use('product-list');
-<?php if(isset($config['layerad']) AND strlen($config['layerad'])>0):?>
-var LAYERAD = "<?php echo $config['layerad'];?>";
-<?php else:?>
-var LAYERAD = "";
-<?php endif;?>
 </script>
