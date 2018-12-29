@@ -116,7 +116,7 @@ layui.define(['layer', 'table'], function(exports){
 	}
 	
 	//首页广告弹窗
-	var layerad = $("layerad").html(); 
+	var layerad = $("#layerad").html(); 
 	if(layerad.length>0){
 		layer.open({
 			type: 1
