@@ -122,9 +122,7 @@ class ProductsController extends AdminBasicController
 				Helper::response($data); 
 			}else{
 				$pid = $this->getPost('pid');
-				$csrf_token = $this->getPost('csrf_token', false);
 				if(is_numeric($pid) AND $pid>0){
-					if ($csrf_token AND $this->VerifyCsrfToken($csrf_token)) {
 						try{
 							$ext = pathinfo($_FILES['file']['name']);
 							$ext = strtolower($ext['extension']);
@@ -153,9 +151,6 @@ class ProductsController extends AdminBasicController
 						}catch(\Exception $e) {
 							$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
 						}
-					}else{
-						$data = array('code' => 1005, 'msg' => '页面超时，请刷新页面后重试!','data'=>array());
-					}
 				}else{
 					$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
 				}
