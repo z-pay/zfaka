@@ -50,6 +50,6 @@ layui.define(['layer','jquery','laytpl','element'], function(exports){
 			,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+layerad+'</div>'
 		});
 	}
-
+	getProduct();
 	exports('product-list-two',null)
 });
