@@ -12,59 +12,50 @@
             <div class="layui-card-header layui-hide-xs">商品列表</div>
 			<div class="layui-tab-brief layui-hide-md"><ul class="layui-tab-title"><li class="layui-this">商品列表</li><li class=""><a href="/product/query">查询订单</a></li></ul></div>
 			
-            <div class="layui-card-body" id="prodcut_num">
-				
-				<div class="layui-row">
+            <div class="layui-card-body">
+				<div class="layui-row" id ="product-list-two-view">
+
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+
+<script id="product_list_two_tpl" type="text/html">
+{{#  if(d.data.length === 0){ }}
+	<blockquote class="layui-elem-quote">无数据....</blockquote>
+{{# }else{ }}
+
+		{{# layui.each(d.data, function(index, item){ }}
 					<div class="layui-col-md2 layui-col-sm4 goodsdetail">
 						<div class="goodsdetail-container">
 							<a href="javascript:;">
+								{{#  if(item.imgurl.length === 0){ }}
 								<img src="/res/images/noimg.jpg"> 
+								{{# }else{ }}
+								<img src="{{ item.imgurl}}"> 
+								{{#  } }} 
 							</a>
 							<a href="javascript:;">
 							  <div class="goodsdetail-text">
-								<p class="info">2018春夏季新款港味短款白色T恤+网纱中长款chic半身裙套装两件套</p>
+								<p class="info">{{ item.name}}</p>
 								<div class="price">
-									<b>￥79</b>
+									<b>￥{{ item.price}}</b>
 									<span class="flow">
-										<button class="layui-btn layui-btn-sm">购买</button>
+										<a class="layui-btn layui-btn-sm" href="/product/{{item.id}}.html">购买</a>
 									</span>
 								</div>
 							  </div>
 							</a>
 						</div>
 					</div>
-				</div>
-				
-			</div>
-		</div>
-    </div>
-</div>
-<script type="text/html" id="name">
-    <a href="/product/{{d.id}}.html">{{d.name}}</a>
-</script>
-<script type="text/html" id="auto">
-    {{# if(d.auto >0){ }}
-    <span class="layui-badge layui-bg-green">自动发货</span>
-    {{# } else { }}
-    <span class="layui-badge layui-bg-gray">手工发货</span>
-    {{# } }}
-</script>
-<script type="text/html" id="qty">
-    {{# if(d.stockcontrol >0){ }}
-        {{d.qty}}
-    {{# } else { }}
-        <span class="layui-badge layui-bg-gray">不限量</span>
-    {{# } }}
-</script>
-<script type="text/html" id="opt">
-	{{# if(d.stockcontrol >0 && d.qty=="0"){ }}
-	<a class="layui-btn layui-btn-xs layui-btn-disabled" href="javascript:;">购买</a>
-	{{# } else { }}
-    <a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/{{d.id}}.html">购买</a>
-	{{# } }}
+		{{#  }); }}
+		
+{{#  } }} 
 </script>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
 <script>
-layui.use('product-list');
+layui.use('product-list-two');
 </script>
