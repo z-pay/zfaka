@@ -21,8 +21,8 @@
 {{#  if(d.data.length === 0){ }}
 	<blockquote class="layui-elem-quote">无数据....</blockquote>
 {{# }else{ }}
-		{{# layui.each(d.data, function(index, item){ }}
-					<div class="layui-col-md2 layui-col-sm4 goodsdetail">
+	{{# layui.each(d.data, function(index, item){ }}
+		<div class="layui-col-md3 layui-col-sm4 goodsdetail">
 						<div class="goodsdetail-container">
 							<a href="javascript:;">
 								{{#  if(item.imgurl.length === 0){ }}
@@ -43,8 +43,8 @@
 							  </div>
 							</a>
 						</div>
-					</div>
-		{{#  }); }}
+		</div>
+	{{#  }); }}
 {{#  } }} 
 </script>
 
