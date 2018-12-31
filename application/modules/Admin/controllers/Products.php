@@ -111,6 +111,62 @@ class ProductsController extends AdminBasicController
 		}
     }
 	
+	public function imgurlajaxAction(){
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		if(is_array($_FILES) AND !empty($_FILES) AND isset($_FILES['file'])){
+			if(isset($_FILES["file"]["error"]) AND $_FILES["file"]["error"]){
+				$data = array('code' => 1000, 'msg' =>$_FILES["file"]["error"]);
+				Helper::response($data); 
+			}else{
+				$pid = $this->getPost('pid');
+				$csrf_token = $this->getPost('csrf_token', false);
+				if(is_numeric($pid) AND $pid>0){
+					if ($csrf_token AND $this->VerifyCsrfToken($csrf_token)) {
+						try{
+							$ext = pathinfo($_FILES['file']['name']);
+							$ext = strtolower($ext['extension']);
+							$tempFile = $_FILES['file']['tmp_name'];
+							$targetPath  = UPLOAD_PATH.'/'.CUR_DATE;
+							if( !is_dir($targetPath) ){
+								mkdir($targetPath,0777,true);
+							}
+							$filename=date("His");
+							$new_file_name = $filename.'.'.$ext;
+							$targetFile = $targetPath .'/'. $new_file_name;
+							move_uploaded_file($tempFile,$targetFile);
+							if( !file_exists( $targetFile ) ){
+								$data = array('code' => 1000, 'msg' => '上传失败');
+							} elseif( !$imginfo=getimagesize($targetFile) ) {
+								$data = array('code' => 1000, 'msg' => '上传失败,文件不存在 ');
+							} else {
+								$img = '/res/upload/'.CUR_DATE.'/'.$new_file_name;
+								$data['code'] = 1;
+								$data['img'] =$img ;
+								//保存到数据库
+								$m=array('imgurl'=>$img);
+								$this->m_products->UpdateByID($m,$pid);
+								$data = array('code' => 1, 'msg' => 'success');
+							}
+						}catch(\Exception $e) {
+							$data = array('code' => 1002, 'msg' => $e->getMessage(),'data'=>array());
+						}
+					}else{
+						$data = array('code' => 1005, 'msg' => '页面超时，请刷新页面后重试!','data'=>array());
+					}
+				}else{
+					$data = array('code' => 1001, 'msg' => '请选择商品','data'=>array());
+				}
+			}
+		}else{
+			$data = array('code' => 1000, 'msg' => '上传内容为空,请重新上传','data'=>array());
+		}
+		Helper::response($data);
+	}
+	
+	
     public function addAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {

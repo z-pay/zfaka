@@ -30,7 +30,6 @@ layui.define(['layer', 'table', 'form','layedit','upload'], function(exports){
 
 	form.on('radio(stockcontrol)', function(data){
 		if(data.value=='1'){
-			//$('#qty').val('0');
 			var qty = $("#qty").attr("oldqty");
 			$('#qty').val(qty);
 			$("#qty").removeAttr("disabled");
@@ -127,34 +126,59 @@ layui.define(['layer', 'table', 'form','layedit','upload'], function(exports){
     });
 	
 	
-	
-	//图片上传
 	//普通图片上传
 	var uploadInst = upload.render({
 		elem: '#upload'
-		,url: '/upload/'
+		,auto:false
 		,before: function(obj){
-		//预读本地文件示例，不支持ie8
-		obj.preview(function(index, file, result){
-			$('#demo1').attr('src', result); //图片链接（base64）
-		});
+			//预读本地文件示例，不支持ie8
+			obj.preview(function(index, file, result){
+				$('#preview').attr('src', result); //图片链接（base64）
+			});
 		}
-		,done: function(res){
-		  //如果上传失败
-		  if(res.code > 0){
-			return layer.msg('上传失败');
-		  }
-		  //上传成功
-		}
-		,error: function(){
-		  //演示失败状态，并实现重传
-		  var uploadText = $('#uploadText');
-		  uploadText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-		  uploadText.find('.demo-reload').on('click', function(){
-			uploadInst.upload();
-		  });
+		,choose: function(obj){
+			//预读本地文件示例，不支持ie8
+			obj.preview(function(index, file, result){
+				$('#preview').attr('src', result); //图片链接（base64）
+			});
 		}
 	});	
+	//上传
+	form.on('submit(upload)', function(data){
+		data.field.csrf_token = TOKEN;
+		var i = layer.load(2,{shade: [0.5,'#fff']});
+		$.ajax({
+			url: '/'+ADMIN_DIR+'/products/imgurlajax',
+			type: 'POST',
+			dataType: 'json',
+			data: data.field,
+		})
+		.done(function(res) {
+			if (res.code == '1') {
+				layer.open({
+					title: '提示',
+					content: '上传成功',
+					btn: ['确定'],
+					yes: function(index, layero){
+					    location.reload();
+					},
+					cancel: function(){ 
+					    location.reload();
+					}
+				});
+			} else {
+				layer.msg(res.msg,{icon:2,time:5000});
+			}
+		})
+		.fail(function() {
+			layer.msg('服务器连接失败，请联系管理员',{icon:2,time:5000});
+		})
+		.always(function() {
+			layer.close(i);
+		});
+
+		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+	});
 	
 	exports('adminproducts',null)
 });
