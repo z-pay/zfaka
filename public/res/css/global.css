@@ -643,6 +643,3 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .goodsdetail-text .price {color: red;font-size: 14px;}
 .goodsdetail-text .price b {margin-right: 20px;}
 .goodsdetail-text .price p {display: inline-block;}
-.goodsdetail-text .flow {text-align: right;float: right;}
-.layui-col-space30 {margin: -15px;}
-.layui-col-space30>* {padding: 15px;}
