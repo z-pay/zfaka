@@ -140,9 +140,16 @@ class ProductsController extends AdminBasicController
 							} elseif( !$imginfo=getimagesize($targetFile) ) {
 								$data = array('code' => 1000, 'msg' => '上传失败,文件不存在 ');
 							} else {
-								//裁减图片
-								\Yaf\Loader::import(FUNC_PATH.'/F_Img.php');
-								image_center_crop($targetFile, 400, 400, $targetFile);
+								if($imginfo[0]!=$imginfo[1]){
+									//裁减图片
+									if($imginfo[0]>$imginfo[1]){
+										$w = $imginfo[1];
+									}else{
+										$w = $imginfo[0];
+									}
+									\Yaf\Loader::import(FUNC_PATH.'/F_Img.php');
+									image_center_crop($targetFile, $w, $w, $targetFile);
+								}
 								
 								$img = '/res/upload/'.CUR_DATE.'/'.$new_file_name;
 								$data['code'] = 1;
