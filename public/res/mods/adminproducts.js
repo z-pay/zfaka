@@ -133,7 +133,8 @@ layui.define(['layer', 'table', 'form','layedit','upload'], function(exports){
 		,before: function(obj){
 			//预读本地文件示例，不支持ie8
 			obj.preview(function(index, file, result){
-				$('#btnbox').show();
+				//$('#btnbox').show();
+				$("#btnbox").removeClass("layui-btn-disabled");
 				$('#upload').hide();
 				$('#preview').attr('src', result); //图片链接（base64）
 			});
@@ -141,7 +142,8 @@ layui.define(['layer', 'table', 'form','layedit','upload'], function(exports){
 		,choose: function(obj){
 			//预读本地文件示例，不支持ie8
 			obj.preview(function(index, file, result){
-				$('#btnbox').show();
+				//$('#btnbox').show();
+				$("#btnbox").removeClass("layui-btn-disabled");
 				$('#upload').hide();
 				$('#preview').attr('src', result); //图片链接（base64）
 			});
