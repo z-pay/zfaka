@@ -141,6 +141,7 @@ class OrderController extends PcBasicController
 							foreach($pifa AS $pf){
 								if($number>=$pf['qty']){
 									$money = $money*$pf['discount'];
+									break;
 								}
 							}
 						}
