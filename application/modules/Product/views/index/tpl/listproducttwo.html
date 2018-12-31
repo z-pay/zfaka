@@ -17,37 +17,37 @@
     </div>
 </div>
 
-
 <script id="product_list_two_tpl" type="text/html">
 {{#  if(d.data.length === 0){ }}
 	<blockquote class="layui-elem-quote">无数据....</blockquote>
 {{# }else{ }}
-	{{# layui.each(d.data, function(index, item){ }}
-		<div class="layui-col-md3 layui-col-sm4 goodsdetail">
-			<div class="goodsdetail-container">
-				<a href="javascript:;">
-					{{#  if(item.imgurl.length === 0){ }}
-					<img src="/res/images/noimg.jpg"> 
-					{{# }else{ }}
-					<img src="{{ item.imgurl}}"> 
-					{#  } }} 
-				</a>
-				<a href="javascript:;">
-					<div class="goodsdetail-text">
-						<p class="info">{{ item.name}}</p>
-						<div class="price">
-							<b>￥{{ item.price}}</b>
-							<span class="flow">
-								<a class="layui-btn layui-btn-xs" href="/product/{{item.id}}.html">购买</a>
-							</span>
+		{{# layui.each(d.data, function(index, item){ }}
+					<div class="layui-col-md2 layui-col-sm4 goodsdetail">
+						<div class="goodsdetail-container">
+							<a href="javascript:;">
+								{{#  if(item.imgurl.length === 0){ }}
+								<img src="/res/images/noimg.jpg"> 
+								{{# }else{ }}
+								<img src="{{ item.imgurl}}"> 
+								{{#  } }} 
+							</a>
+							<a href="javascript:;">
+							  <div class="goodsdetail-text">
+								<p class="info">{{ item.name}}</p>
+								<div class="price">
+									<b>￥{{ item.price}}</b>
+									<span class="flow">
+										<a class="layui-btn layui-btn-sm" href="/product/{{item.id}}.html">购买</a>
+									</span>
+								</div>
+							  </div>
+							</a>
 						</div>
 					</div>
-				</a>
-			</div>
-		</div>
-	{{#  }); }}
+		{{#  }); }}
 {{#  } }} 
 </script>
+
 <div id="layerad" style="display: none;"><?php echo $config['layerad'];?></div>
 <!--引入公共底文件-->
 <?php include COMMON_PATH.'/footer.html';?>
