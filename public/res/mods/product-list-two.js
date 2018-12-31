@@ -21,7 +21,6 @@ layui.define(['layer','jquery','laytpl','element'], function(exports){
 					view.innerHTML = html;
 				});
 				element.render('product-list-two-view');
-				layer.msg(res.msg,{icon:1,time:5000});
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
