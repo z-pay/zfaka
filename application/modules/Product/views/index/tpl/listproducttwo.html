@@ -24,19 +24,19 @@
 	{{# layui.each(d.data, function(index, item){ }}
 		<div class="layui-col-md3 layui-col-sm4 goodsdetail">
 			<div class="goodsdetail-container">
-				<a href="javascript:;">
+				<a href="/product/{{item.id}}.html">
 					{{#  if(item.imgurl.length === 0){ }}
 						<img src="/res/images/noimg.jpg"> 
 						{{# }else{ }}
 						<img src="{{ item.imgurl}}"> 
 					{{#  } }} 
 				</a>
-				<a href="javascript:;">
+				<a href="/product/{{item.id}}.html">
 					<div class="goodsdetail-text">
 						<p class="info">{{ item.name}}</p>
 						<div class="price">
 							<b>￥{{ item.price}}</b>
-							<span class="flow">
+							<span class="flow" style ="float:right">
 								<a class="layui-btn layui-btn-xs" href="/product/{{item.id}}.html">购买</a>
 							</span>
 						</div>
