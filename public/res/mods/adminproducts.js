@@ -147,11 +147,14 @@ layui.define(['layer', 'table', 'form','layedit','upload'], function(exports){
 	form.on('submit(upload)', function(data){
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
+		var formData = new FormData(document.getElementById("products_imgurl_form"));
 		$.ajax({
 			url: '/'+ADMIN_DIR+'/products/imgurlajax',
 			type: 'POST',
 			dataType: 'json',
-			data: data.field,
+			data:formData,
+			processData: false,
+            contentType: false,
 		})
 		.done(function(res) {
 			if (res.code == '1') {
