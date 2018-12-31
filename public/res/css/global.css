@@ -635,8 +635,8 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .trade-goodinfo {background-color: #FFF2E8;padding: 10px; margin-bottom: 5px;padding-left: 35px;}
 .trade-youhui {background-color: #fff2e9;padding: 10px; margin-bottom: 5px;padding-left: 35px;}
 /*20181231 新增首页列表*/
-.goodsdetail{border: 1px dashed #d2d2d2;}
-.goodsdetail-container {background: #fff;border: 1px solid transparent;}
+.goodsdetail{}
+.goodsdetail-container {background: #fff;border: 1px dashed #d2d2d2;}
 .goodsdetail-container img {width: 100%;}
 .goodsdetail-text {padding: 20px;}
 .goodsdetail-text .info {height: 40px;font-size: 14px;line-height: 20px;width: 100%;overflow: hidden;color: #666; margin-bottom: 10px;}
