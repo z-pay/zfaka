@@ -31,17 +31,17 @@
 						<img src="{{ item.imgurl}}"> 
 					{{#  } }} 
 				</a>
-				<a href="/product/{{item.id}}.html">
-					<div class="goodsdetail-text">
-						<p class="info">{{ item.name}}</p>
-						<div class="price">
-							<b>￥{{ item.price}}</b>
-							<span class="flow" style ="float:right">
-								<a class="layui-btn layui-btn-xs" href="/product/{{item.id}}.html">购买</a>
-							</span>
-						</div>
+				
+				<div class="goodsdetail-text">
+					<p class="info">{{ item.name}}</p>
+					<div class="price">
+						<b>￥{{ item.price}}</b>
+						<span class="flow" style ="float:right">
+							<a class="layui-btn layui-btn-xs" href="/product/{{item.id}}.html">购买</a>
+						</span>
 					</div>
-				</a>
+				</div>
+				
 			</div>
 		</div>
 	{{#  }); }}
