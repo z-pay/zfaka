@@ -129,6 +129,9 @@ layui.define(['layer', 'table', 'form','layedit','upload'], function(exports){
 	//普通图片上传
 	var uploadInst = upload.render({
 		elem: '#upload'
+		,accept:'images'
+		,acceptMime: 'image/*'
+		,size:5120
 		,auto:false
 		,before: function(obj){
 			//预读本地文件示例，不支持ie8
