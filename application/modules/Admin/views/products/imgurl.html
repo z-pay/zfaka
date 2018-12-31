@@ -21,7 +21,7 @@
 									<div class="btnbox_top"><button type="button" class="layui-btn" id="upload">上传图片</button></div>
 									<?php endif;?>
 									<div class="layui-upload-list">
-										<img class="layui-upload-img" width="210" id="preview" <?php if($product['imgurl']):?> src="<?php echo $product['imgurl'];?>" <?php endif;?>>
+										<img class="layui-upload-img" width="210" id="preview" <?php if($product['imgurl']):?> src="<?php echo $product['imgurl'];?>" <?php else:?>src="/res/images/noimg.jpg"<?php endif;?>>
 									</div>
 								</div>
 								<div id="imgblock"></div>
