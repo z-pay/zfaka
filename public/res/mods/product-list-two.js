@@ -14,7 +14,7 @@ layui.define(['layer','jquery','laytpl','element'], function(exports){
 			data: {"tid": 0},
 		})
 		.done(function(res) {
-			if (res.code == '1') {
+			if (res.code == '0') {
 				var getTpl = product_list_two_tpl.innerHTML
 				,view = document.getElementById('product-list-two-view');
 				laytpl(getTpl).render(res, function(html){
