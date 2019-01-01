@@ -639,7 +639,7 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .goodsdetail-container {background: #fff;border: 1px dashed #d2d2d2;}
 .goodsdetail-container img {width: 100%;}
 .goodsdetail-text {padding: 10px;}
-.goodsdetail-text .info {font-size: 14px;line-height: 20px;width: 100%;overflow: hidden;color: #666;}
+.goodsdetail-text .info {text-overflow: ellipsis;white-space: nowrap;font-size: 14px;line-height: 20px;width: 100%;overflow: hidden;color: #666;}
 .goodsdetail-text .price {color: red;font-size: 14px;}
 .goodsdetail-text .price b {margin-right: 20px;}
 .goodsdetail-text .price p {display: inline-block;}
