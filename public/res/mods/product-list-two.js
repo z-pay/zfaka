@@ -4,10 +4,10 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	var laytpl = layui.laytpl;
 	var element = layui.element;
 	var flow = layui.flow;
+	var total_page = 1;
 	
 	function getProduct(p)
 	{
-		var total = 1;
 		var limit = 4;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
@@ -23,7 +23,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 					$("#product-list-two-view").prepend(html);
 				});
 				element.render('product-list-two-view');
-				total = Math.ceil(res.count/limit);
+				total_page = Math.ceil(res.count/limit);
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
@@ -34,7 +34,6 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		.always(function() {
 			layer.close(i);
 		});
-		return total;
 	};
 	
 	//首页广告弹窗
@@ -58,9 +57,8 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	flow.load({
 		elem: '#product-list-two-view'
 		,done: function(page, next){
-			var total = 1;
-			total = getProduct(page);
-			next('', page < total);  
+			getProduct(page);
+			next('', page < total_page);  
 		}
 	});
 	
