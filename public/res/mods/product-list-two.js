@@ -21,6 +21,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 				var getTpl = product_list_two_tpl.innerHTML;
 				laytpl(getTpl).render(res, function(html){
 					$("#product-list-two-view").append(html);
+					
 				});
 				element.render('product-list-two-view');
 				total_page = Math.ceil(parseInt(res.count)/limit);
@@ -55,7 +56,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	
 	//流媒体
 	flow.load({
-		elem: '#product-list-two-view'
+		elem: '#more'
 		,done: function(page, next){
 			getProduct(page);
 			next('', page < total_page);  
