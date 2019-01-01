@@ -16,10 +16,11 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '0') {
-				var getTpl = product_list_two_tpl.innerHTML
-				,view = document.getElementById('product-list-two-view');
+				var getTpl = product_list_two_tpl.innerHTML;
+				//var view = document.getElementById('product-list-two-view');
 				laytpl(getTpl).render(res, function(html){
-					view.append = html;
+					$("#product-list-two-view").append(html);
+					//view.append = html;
 				});
 				element.render('product-list-two-view');
 			} else {
