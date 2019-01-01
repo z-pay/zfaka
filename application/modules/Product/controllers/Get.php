@@ -76,7 +76,7 @@ class GetController extends PcBasicController
 				$page = is_numeric($page) ? $page : 1;
 				
 				$limit = $this->get('limit');
-				$limit = is_numeric($limit) ? $limit : 4;
+				$limit = is_numeric($limit) ? $limit : 10;
 				if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
 					$pagenum = ($page - 1) * $limit;
 					$limits = "{$pagenum},{$limit}";

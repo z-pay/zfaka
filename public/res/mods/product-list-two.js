@@ -6,10 +6,12 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	var flow = layui.flow;
 	
 	function getProduct(p)
-	{ 
+	{
+		var total = 1;
+		var limit = 4;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/product/get/?page='+p,
+			url: '/product/get/?limit='+limit+'&page='+p,
 			type: 'POST',
 			dataType: 'json',
 			data: {"tid": 0},
@@ -17,12 +19,11 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		.done(function(res) {
 			if (res.code == '0') {
 				var getTpl = product_list_two_tpl.innerHTML;
-				//var view = document.getElementById('product-list-two-view');
 				laytpl(getTpl).render(res, function(html){
-					$("#product-list-two-view").append(html);
-					//view.append = html;
+					$("#product-list-two-view").prepend(html);
 				});
 				element.render('product-list-two-view');
+				total = Math.ceil(res.count/limit);
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
@@ -33,6 +34,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		.always(function() {
 			layer.close(i);
 		});
+		return total;
 	};
 	
 	//首页广告弹窗
@@ -52,14 +54,13 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		});
 	}
 	
-	//getProduct(1);
-	
 	//流媒体
 	flow.load({
 		elem: '#product-list-two-view'
 		,done: function(page, next){
-			getProduct(page);
-			next('', page < 6);  
+			var total = 1;
+			total = getProduct(page);
+			next('', page < total);  
 		}
 	});
 	
