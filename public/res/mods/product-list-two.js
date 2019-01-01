@@ -19,7 +19,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 				var getTpl = product_list_two_tpl.innerHTML
 				,view = document.getElementById('product-list-two-view');
 				laytpl(getTpl).render(res, function(html){
-					view.innerHTML = html;
+					view.append = html;
 				});
 				element.render('product-list-two-view');
 			} else {
@@ -58,14 +58,6 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		elem: '#product-list-two-view'
 		,done: function(page, next){
 			getProduct(page);
-			/*var lis = [];
-			$.get('/product/get/?page='+page, function(res){
-				var getTpl = product_list_two_tpl.innerHTML;
-				laytpl(getTpl).render(res, function(html){
-					lis.push(html);
-				});
-				next(lis.join(''), page < res.count);    
-			});*/
 			next('', page < 6);  
 		}
 	});
