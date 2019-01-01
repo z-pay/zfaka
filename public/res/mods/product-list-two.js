@@ -20,7 +20,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 			if (res.code == '0') {
 				var getTpl = product_list_two_tpl.innerHTML;
 				laytpl(getTpl).render(res, function(html){
-					$("#product-list-two-view").prepend(html);
+					$("#product-list-two-view").after(html);
 				});
 				element.render('product-list-two-view');
 				total_page = Math.ceil(parseInt(res.count)/limit);
