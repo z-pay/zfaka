@@ -57,14 +57,16 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	flow.load({
 		elem: '#product-list-two-view'
 		,done: function(page, next){
-			var lis = [];
+			getProduct(page);
+			/*var lis = [];
 			$.get('/product/get/?page='+page, function(res){
 				var getTpl = product_list_two_tpl.innerHTML;
 				laytpl(getTpl).render(res, function(html){
 					lis.push(html);
 				});
 				next(lis.join(''), page < res.count);    
-			});
+			});*/
+			next(lis.join(''), page < 6);  
 		}
 	});
 	
