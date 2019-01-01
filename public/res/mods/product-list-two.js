@@ -51,7 +51,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		});
 	}
 	
-	getProduct(1);
+	//getProduct(1);
 	
 	//流媒体
 	flow.load({
