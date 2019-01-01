@@ -4,7 +4,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	var laytpl = layui.laytpl;
 	var element = layui.element;
 	var flow = layui.flow;
-	var total_page = 1;
+	var total_page = 2;
 	
 	function getProduct(p)
 	{
