@@ -636,6 +636,7 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .trade-youhui {background-color: #fff2e9;padding: 10px; margin-bottom: 5px;padding-left: 35px;}
 /*20181231 新增首页列表*/
 .goodsdetail{}
+.goodsdetail-img{padding: 10px 15px;}
 .goodsdetail-container {background: #fff;border: 1px dashed #d2d2d2;}
 .goodsdetail-container img {width: 100%;}
 .goodsdetail-text {padding: 10px;}
