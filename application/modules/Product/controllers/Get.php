@@ -79,18 +79,17 @@ class GetController extends PcBasicController
 				$limit = is_numeric($limit) ? $limit : 4;
 				if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
 					$pagenum = ($page - 1) * $limit;
+					$limits = "{$pagenum},{$limit}";
+					$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
+					$items = $this->m_products->Query($sql);
+					if (empty($items)) {
+						$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
+					} else {
+						$data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+					}
 				} else {
-					$pagenum = 0;
-				}
-				
-				$limits = "{$pagenum},{$limit}";
-				
-				$sql = "SELECT p1.* FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC LIMIT {$limits}";
-				$items = $this->m_products->Query($sql);
-				if (empty($items)) {
 					$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
-				} else {
-					$data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
+					Helper::response($data);
 				}
 			} else {
 				$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
