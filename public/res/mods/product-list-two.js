@@ -23,7 +23,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 					$("#product-list-two-view").prepend(html);
 				});
 				element.render('product-list-two-view');
-				total_page = Math.ceil(res.count/limit);
+				total_page = Math.ceil(parseInt(res.count)/limit);
 			} else {
 				layer.msg(res.msg,{icon:2,time:5000});
 			}
