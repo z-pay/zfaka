@@ -66,7 +66,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 				});
 				next(lis.join(''), page < res.count);    
 			});*/
-			next(lis.join(''), page < 6);  
+			next('', page < 6);  
 		}
 	});
 	
