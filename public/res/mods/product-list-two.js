@@ -8,7 +8,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	
 	function getProduct(p)
 	{
-		var limit = 4;
+		var limit = 8;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
 			url: '/product/get/?limit='+limit+'&page='+p,
