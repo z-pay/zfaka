@@ -24,14 +24,15 @@
 	{{# layui.each(d.data, function(index, item){ }}
 		<div class="layui-col-md3 layui-col-sm4 goodsdetail">
 			<div class="goodsdetail-container">
-				<a href="/product/{{item.id}}.html">
-					{{#  if(item.imgurl.length === 0){ }}
-						<img src="/res/images/noimg.jpg"> 
-						{{# }else{ }}
-						<img src="{{ item.imgurl}}"> 
-					{{#  } }} 
-				</a>
-				
+				<div class="goodsdetail-img">
+					<a href="/product/{{item.id}}.html">
+						{{#  if(item.imgurl.length === 0){ }}
+							<img src="/res/images/noimg.jpg"> 
+							{{# }else{ }}
+							<img src="{{ item.imgurl}}"> 
+						{{#  } }} 
+					</a>
+				</div>
 				<div class="goodsdetail-text">
 					<p class="info">{{ item.name}}</p>
 					<div class="price">
@@ -41,7 +42,6 @@
 						</span>
 					</div>
 				</div>
-				
 			</div>
 		</div>
 	{{#  }); }}
