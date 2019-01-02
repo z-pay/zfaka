@@ -649,5 +649,6 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .goodsdetail-mobile-img{position: relative;margin-right: 10px;}
 .goodsdetail-mobile-img img{width: 50px;display: block;}
 .goodsdetail-mobile-text{-webkit-box-flex: 1;-webkit-flex: 1;flex: 1;}
+.goodsdetail-mobile-text .info{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .goodsdetail-mobile-text .price{color: red;font-size: 13px;}
 .goodsdetail-mobile-btn {}
