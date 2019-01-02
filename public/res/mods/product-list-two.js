@@ -5,6 +5,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 	var element = layui.element;
 	var flow = layui.flow;
 	var total_page = 2;
+	var device = layui.device();
 	
 	function getProduct(p)
 	{
@@ -18,10 +19,14 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 		})
 		.done(function(res) {
 			if (res.code == '0') {
-				var getTpl = product_list_two_tpl.innerHTML;
+				var getTpl = null;
+				if(device.weixin || device.android || device.ios){
+					getTpl = product_list_two_mobile_tpl.innerHTML;
+				}else{
+					getTpl = product_list_two_tpl.innerHTML;
+				}
 				laytpl(getTpl).render(res, function(html){
 					$("#product-list-two-view").append(html);
-					
 				});
 				element.render('product-list-two-view');
 				total_page = Math.ceil(parseInt(res.count)/limit);
