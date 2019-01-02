@@ -645,7 +645,7 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .goodsdetail-text .price b {margin-right: 20px;}
 .goodsdetail-text .price p {display: inline-block;}
 /*20190102 新增移动端*/
-.goodsdetail-mobile{background: #fff;border: 1px dashed #d2d2d2;padding: 10px 15px;position: relative;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;}
+.goodsdetail-mobile{background: #fff;border: 1px dashed #d2d2d2;padding: 10px;position: relative;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;}
 .goodsdetail-mobile-img{position: relative;margin-right: 10px;}
 .goodsdetail-mobile-img img{width: 50px;display: block;}
 .goodsdetail-mobile-text{-webkit-box-flex: 1;-webkit-flex: 1;flex: 1;overflow: hidden;}
