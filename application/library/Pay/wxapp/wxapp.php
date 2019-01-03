@@ -1,22 +1,22 @@
 <?php
 /**
- * File: wxf2f.php
- * Functionality: 微信扫码支付
+ * File: wxapp.php
+ * Functionality: 微信APP支付
  * Author: 资料空白
  * Date: 2018-09-05
  */
-namespace Pay\wxf2f;
+namespace Pay\wxapp;
 
 use \Payment\Client\Charge;
 use \Payment\Common\PayException;
 use \Payment\Client\Notify;
 use \Payment\Config;
 
-use \Pay\wxf2f\callback;
+use \Pay\wxapp\callback;
 
-class wxf2f
+class wxapp
 {
-	private $paymethod ="wxf2f";
+	private $paymethod ="wxapp";
 	//处理请求
 	public function pay($payconfig,$params)
 	{
@@ -44,7 +44,7 @@ class wxf2f
 			'client_ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',// 客户地址
 		];
 		try {
-			$qr = Charge::run(Config::WX_CHANNEL_QR, $config, $data);
+			$qr = Charge::run(Config::WX_CHANNEL_APP, $config, $data);
 			if($qr){
 				$result_params = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$params['qrserver'].$qr,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result_params);
@@ -63,7 +63,7 @@ class wxf2f
 		try {
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 			unset($_POST['paymethod']);
-			$callback = new \Pay\wxf2f\callback();
+			$callback = new \Pay\wxapp\callback();
 			return $ret = Notify::run("wx_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查	
 		} catch (\Exception $e) {
 			return 'error|Exception:'.$e->getMessage();
