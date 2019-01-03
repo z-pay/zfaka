@@ -42,6 +42,7 @@ class wxf2f
 			'amount'    => $params['money'],
 			'return_param' => '',
 			'client_ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',// 客户地址
+			'product_id' =>$params['pid'],
 		];
 		try {
 			$qr = Charge::run(Config::WX_CHANNEL_QR, $config, $data);
