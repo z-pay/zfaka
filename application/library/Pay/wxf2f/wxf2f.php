@@ -42,14 +42,9 @@ class wxf2f
 			'amount'    => $params['money'],
 			'return_param' => '',
 			'client_ip' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1',// 客户地址
-			'scene_info' => [
-				'type' => 'Wap',// IOS  Android  Wap  腾讯建议 IOS  ANDROID 采用app支付
-				'wap_url' =>  $params['weburl'],//自己的 wap 地址
-				'wap_name' => 'WAP',
-			],
 		];
 		try {
-			$qr = Charge::run(Config::WX_CHANNEL_WAP, $config, $data);
+			$qr = Charge::run(Config::WX_CHANNEL_APP, $config, $data);
 			if($qr){
 				$result_params = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$params['qrserver'].$qr,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result_params);
