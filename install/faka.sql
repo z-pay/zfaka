@@ -241,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
   `payname` varchar(55) NOT NULL DEFAULT '' COMMENT '显示名称',
   `payimage` varchar(250) NOT NULL DEFAULT '' COMMENT '图片',
   `alias` varchar(55) NOT NULL DEFAULT '' COMMENT '别名',
-  `sign_type` enum('RSA','RSA2','MD5') NOT NULL DEFAULT 'RSA2',
+  `sign_type` enum('RSA','RSA2','MD5','HMAC-SHA256') NOT NULL DEFAULT 'RSA2',
   `app_id` varchar(255) NOT NULL DEFAULT '',
   `app_secret` varchar(255) NOT NULL DEFAULT '',
   `ali_public_key` text,
