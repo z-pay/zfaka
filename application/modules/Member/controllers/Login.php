@@ -40,7 +40,7 @@ class LoginController extends PcBasicController
 			$data = array('code' => 1000, 'msg' => '本系统关闭登录功能');
 			Helper::response($data);
 		}
-		$email    = $this->getPost('email');
+		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password');
 		
 		$password_string = new \Safe\MyString($password);

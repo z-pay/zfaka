@@ -39,7 +39,7 @@ class RegisterController extends PcBasicController
 			$data = array('code' => 1000, 'msg' => '本系统关闭注册功能');
 			Helper::response($data);
 		}
-		$email    = $this->getPost('email');
+		$email    = $this->getPost('email',false);
 		$password = $this->getPost('password');
 		$nickname = $this->getPost('nickname');
 		$csrf_token = $this->getPost('csrf_token', false);
