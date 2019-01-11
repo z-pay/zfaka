@@ -4,7 +4,7 @@
 
 >演示地址：https://faka.zlkb.net/
 
->永久免费、绝对开源、没有商业版，不支持特殊定制，欢迎提供各种需求和意见与建议。
+>永久免费、绝对开源，不支持特殊定制，欢迎提供各种需求和意见与建议。
 
 
 # 一、系统介绍
@@ -28,7 +28,7 @@
 
 * 码支付(第三方辅助工具)
 
-* 有赞支付(第三方支付平台)---[有赞云－支付API开通教程](https://github.com/zlkbdotnet/zfaka/wiki/%E6%9C%89%E8%B5%9E%E4%BA%91%EF%BC%8D%E6%94%AF%E4%BB%98API%E5%BC%80%E9%80%9A%E6%95%99%E7%A8%8B)
+* 有赞支付(第三方支付平台)---[有赞云(听说新注册账户已经不支持申请API接口了)－支付API开通教程](https://github.com/zlkbdotnet/zfaka/wiki/%E6%9C%89%E8%B5%9E%E4%BA%91%EF%BC%8D%E6%94%AF%E4%BB%98API%E5%BC%80%E9%80%9A%E6%95%99%E7%A8%8B)
 
 * 强烈推荐，收款宝(第三方辅助工具)---[收款宝](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
 
@@ -113,7 +113,7 @@
 > 参考：[系统如何升级？](https://github.com/zlkbdotnet/zfaka/wiki/%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%EF%BC%9F)
 
 # 四、BUG与问题反馈
-* 相关问题QQ交流群：701035212
+* 相关问题QQ交流群：701035212 [收费群]
    
 # 五、推广时间
 * 全国IDC行业精英群:572511758   
