@@ -43,7 +43,7 @@ class zfbweb
 				$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result);
 			}else{
-				return array('code'=>1002,'msg'=>'生成失败','data'=>'');
+				return array('code'=>1002,'msg'=>'支付接口请求失败','data'=>'');
 			}
 		} catch (PayException $e) {
 			return array('code'=>1001,'msg'=>$e->errorMessage(),'data'=>'');

@@ -49,7 +49,7 @@ class wxapp
 				$result_params = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$params['qrserver'].$qr,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result_params);
 			}else{
-				return array('code'=>1002,'msg'=>'当面付生成失败','data'=>'');
+				return array('code'=>1002,'msg'=>'支付接口请求失败','data'=>'');
 			}
 		} catch (PayException $e) {
 			return array('code'=>1001,'msg'=>$e->errorMessage(),'data'=>'');
