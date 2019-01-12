@@ -34,7 +34,7 @@ class IndexController extends AdminBasicController
 				}else{
 					//这里要查询待处理的订单
 					$data = array();
-					$field = array('id','orderid','email','productname','addtime','status','paymoney','number');.
+					$field = array('id','orderid','email','productname','addtime','status','paymoney','number');
 					$where = array('isdelete'=>0,'status'=>3);
 					$order = $this->m_order->Field($field)->Where($where)->Order(array('id'=>'DESC'))->Select();
 					$data['order'] = $order;
