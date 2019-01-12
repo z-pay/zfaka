@@ -130,7 +130,7 @@ layui.define(['layer', 'form','jquery','base64','laytpl','element'], function(ex
 					$("#query-table").show();
 				}
 				$(".view_kami").click(function(){});
-				layer.msg(res.msg,{icon:1,time:5000});
+				layer.msg(res.msg,{icon:1,time:2000});
 			} else {
 				$('.loadcode').attr('src','/Captcha?t=productquery&n=' + Math.random());
 				layer.msg(res.msg,{icon:2,time:5000});

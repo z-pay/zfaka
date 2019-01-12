@@ -49,19 +49,15 @@
 							<div class="layui-form">
 							<table class="layui-table">
 								<colgroup>
-								  <col width="150">
 								  <col>
 								  <col width="200">
-								  <col width="100">
 								  <col width="100">
 								  <col width="100">
 								</colgroup>
 								<thead>
 									<tr>
-										<th><div class="layui-table-cell laytable-cell-1-email"><span>邮箱</span></div></th>
 										<th><div class="layui-table-cell laytable-cell-1-productname"><span>商品</span></div></th>
 										<th><div class="layui-table-cell laytable-cell-1-addtime"><span>时间</span></div></th>
-										<th><div class="layui-table-cell laytable-cell-1-status" align="center"><span>状态</span></div></th>
 										<th><div class="layui-table-cell laytable-cell-1-paymoney"><span>支付金额</span></div></th>
 										<th><div class="layui-table-cell laytable-cell-1-opt" align="center"><span>操作</span></div></th>
 									</tr>
@@ -69,16 +65,8 @@
 								<tbody>
 									<?php foreach($order AS $item):?>
 									<tr>
-										<td><?php echo $item['email'];?></td>
 										<td><?php echo $item['productname'];?></td>
 										<td><?php echo date('Y-m-d H:i:s',$item['addtime']);?></td>
-										<td>
-										<?php if($item['status'] =="1"):?>
-										 <span class="layui-badge layui-bg-blue">待处理</span>
-										<?php elseif($item['status'] =="3"):?>
-										<span class="layui-badge layui-bg-black">处理失败</span>
-										<?php endif;?>
-										</td>
 										<td><?php echo $item['paymoney'];?></td>
 										<td><a class="layui-btn layui-btn-warm layui-btn-xs" href="/<?php echo ADMIN_DIR;?>/order/view/?id=<?php echo $item['id'];?>">查看</a></td>
 									</tr>
