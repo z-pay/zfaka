@@ -27,6 +27,13 @@ layui.define(['layer', 'table', 'form'], function(exports){
         return false;
     });
 	
+	table.on('tool(table)', function(obj){
+		var data = obj.data;
+		if(obj.event === 'detail'){
+			layer.msg('失败原因:'+ data.sendresult );
+		}
+	});
+  
     $('#deleteALL').on('click',function () {
         var checkStatus = table.checkStatus('table');
         var data=checkStatus.data;
