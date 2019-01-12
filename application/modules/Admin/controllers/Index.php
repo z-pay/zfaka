@@ -10,9 +10,12 @@ class IndexController extends AdminBasicController
 {
 	private $github_url = "https://github.com/zlkbdotnet/zfaka/releases";
 	private $remote_version = '';
+	private $m_order;
+	
     public function init()
     {
         parent::init();
+		$this->m_order = $this->load('order');
     }
 
     public function indexAction()
@@ -29,7 +32,12 @@ class IndexController extends AdminBasicController
 					$this->redirect("/install/upgrade");
 					return FALSE;
 				}else{
+					//这里要查询待处理的订单
 					$data = array();
+					$field = array('id','orderid','email','productname','addtime','status','paymoney','number');.
+					$where = array('isdelete'=>0,'status'=>3);
+					$order = $this->m_order->Field($field)->Where($where)->Order(array('id'=>'DESC'))->Select();
+					$data['order'] = $order;
 					$this->getView()->assign($data);
 				}
 			}

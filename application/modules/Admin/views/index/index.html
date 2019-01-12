@@ -9,9 +9,9 @@
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
 					<div class="layui-card">
-							<div class="layui-card-header">版本信息</div>
-							<div class="layui-card-body layui-text">
-							  <table class="layui-table">
+						<div class="layui-card-header">版本信息</div>
+						<div class="layui-card-body layui-text">
+							 <table class="layui-table">
 								<colgroup>
 								  <col width="100">
 								  <col>
@@ -40,8 +40,37 @@
 								  </tr>
 								</tbody>
 							  </table>
-							</div>
 						</div>
+					</div>
+					<?php if(!empty($order)):?>
+					<div class="layui-card">
+						<div class="layui-card-header">待处理订单</div>
+						<div class="layui-card-body layui-text">
+							<table class="layui-table">
+								<colgroup>
+								  <col width="100">
+								  <col>
+								</colgroup>
+								<thead><tr><th data-field="id"><div class="layui-table-cell laytable-cell-1-id"><span>ID</span></div></th><th data-field="orderid" data-minwidth="100"><div class="layui-table-cell laytable-cell-1-orderid"><span>订单号</span></div></th><th data-field="email" data-minwidth="120"><div class="layui-table-cell laytable-cell-1-email"><span>邮箱</span></div></th><th data-field="productname" data-minwidth="100"><div class="layui-table-cell laytable-cell-1-productname"><span>商品</span></div></th><th data-field="addtime" data-minwidth="120"><div class="layui-table-cell laytable-cell-1-addtime"><span>时间</span></div></th><th data-field="status"><div class="layui-table-cell laytable-cell-1-status" align="center"><span>状态</span></div></th><th data-field="paymoney"><div class="layui-table-cell laytable-cell-1-paymoney"><span>支付金额</span></div></th><th data-field="number"><div class="layui-table-cell laytable-cell-1-number"><span>数量</span></div></th><th data-field="opt"><div class="layui-table-cell laytable-cell-1-opt" align="center"><span>操作</span></div></th></tr></thead>
+								<tbody>
+									<?php foreach($order AS $item):?>
+									<tr>
+										<td><?php echo $item['id'];?></td>
+										<td><?php echo $item['orderid'];?></td>
+										<td><?php echo $item['email'];?></td>
+										<td><?php echo $item['productname'];?></td>
+										<td><?php echo $item['addtime'];?></td>
+										<td><?php echo $item['status'];?></td>
+										<td><?php echo $item['paymoney'];?></td>
+										<td><?php echo $item['number'];?></td>
+										<td><a class="layui-btn layui-btn-warm layui-btn-xs" href="/<?php echo ADMIN_DIR;?>/order/view/?id=<?php echo $item['id'];?>">查看</a></td>
+									</tr>
+								  <?php endforeach;?>
+								</tbody>
+							 </table>
+						</div>
+					</div>
+					<?php endif;?>
                 </div>
             </div>
         </div>
