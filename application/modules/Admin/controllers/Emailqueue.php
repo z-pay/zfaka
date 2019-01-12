@@ -37,7 +37,7 @@ class EmailqueueController extends AdminBasicController
 		$where1 = "1";
 		$status = $this->get('status');
 		if(is_numeric($status) AND $status>-1){
-			$where1 .= "status = {$status}"; 
+			$where1 .= " AND status = {$status}"; 
 		}
 		
 		$where = array('isdelete'=>0);
