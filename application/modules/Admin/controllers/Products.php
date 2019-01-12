@@ -217,7 +217,7 @@ class ProductsController extends AdminBasicController
 				}
 				
 				$description = str_replace(array("\r","\n","\t"), "", $description);
-				$m=array(
+				$m = array(
 					'typeid'=>$typeid,
 					'name'=>$name,
 					'password'=>$password,
@@ -252,6 +252,7 @@ class ProductsController extends AdminBasicController
 						$m['qty'] = 0;
 					}
 					$m['addtime'] = time();
+					$m['imgurl'] = "";
 					$u = $this->m_products->Insert($m);
 					if($u){
 						$data = array('code' => 1, 'msg' => '新增成功');
