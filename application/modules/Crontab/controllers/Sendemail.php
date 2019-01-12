@@ -73,7 +73,7 @@ class SendemailController extends BasicController
 		}
 		//2.记录发送结果
 		if($data['code']>1){
-			$this->m_email_queue->UpdateByID(array('status'=>-1,'sendresult'=>$data['msg']),$params['id']);
+			$this->m_email_queue->UpdateByID(array('status'=>2,'sendresult'=>$data['msg']),$params['id']);
 		}else{
 			$this->m_email_queue->UpdateByID(array('sendtime'=>time(),'status'=>1,'sendresult'=>$data['msg']),$params['id']);
 		}
