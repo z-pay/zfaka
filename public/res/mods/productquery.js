@@ -51,7 +51,7 @@ layui.define(['layer', 'form','jquery','base64','laytpl','element'], function(ex
 	$("#query-pane").on("click",".view_kami",function(event){
 		event.preventDefault();
 		var orderid = $(this).attr("data-orderid");
-		$(this).attr({"disabled":"disabled"});
+		//$(this).attr({"disabled":"disabled"});
         $.ajax({
             type: "POST",
             dataType: "json",
