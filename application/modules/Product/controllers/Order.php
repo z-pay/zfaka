@@ -198,7 +198,7 @@ class OrderController extends PcBasicController
 					//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
 					$starttime = strtotime("-1 day");
 					$where = "addtime>{$starttime}";
-					$order = $this->m_order->Where($where)->Where(array('id'=>$id,'isdelete'=>0))->SelectOne();
+					$order = $this->m_order->Where($where)->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
 					if(!empty($order)){
 						if($order['status']>0){
 							$data['code']=1003;
