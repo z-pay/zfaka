@@ -101,7 +101,7 @@ class PcBasicController extends BasicController
                 } else {
                     return false;
                 }
-			}else{
+			}catch(\Exception $e){
 				return false;
 			}
 		}else{
