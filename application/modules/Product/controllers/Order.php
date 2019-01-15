@@ -170,7 +170,7 @@ class OrderController extends PcBasicController
 						//设置orderidSESSION
 						$this->setSession('order_id',$orderid);
 						$this->setSession('order_email',$email);
-						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$orderid));	
+						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));	
 					}else{
 						$data = array('code' => 1003, 'msg' => '订单异常');
 					}
