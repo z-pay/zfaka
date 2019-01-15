@@ -191,10 +191,12 @@ class OrderController extends PcBasicController
 		$data = array();
 		$oid = $this->get('oid',false);
 		if($oid AND strlen($oid)>0){
-			$oid = (int)base64_decode($oid);
-			if(is_numeric($oid) AND $oid>0){
+			$oid = base64_decode($oid);
+			if($oid AND strlen($oid)>0){
 				$order_id = $this->getSession('order_id');
-				if($order_id AND is_numeric($order_id) AND $order_id>0 AND $order_id ==$oid ){
+				if($order_id AND strlen($order_id)>0 AND $order_id ==$oid ){
+					$orderid_string = new \Safe\MyString($oid);
+					$oid = $orderid_string->trimall()->qufuhao2()->getValue();
 					//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
 					$starttime = strtotime("-1 day");
 					$where = "addtime>{$starttime}";
@@ -236,8 +238,11 @@ class OrderController extends PcBasicController
 		$oid = $this->getPost('oid');
 		$csrf_token = $this->getPost('csrf_token');
 		if($paymethod AND $oid AND strlen($oid)>0 AND $csrf_token){
-			$oid = (int)base64_decode($oid);
-			if(is_numeric($oid) AND $oid>0){
+			$oid = base64_decode($oid);
+			if($oid AND strlen($oid)>0){
+				$orderid_string = new \Safe\MyString($oid);
+				$oid = $orderid_string->trimall()->qufuhao2()->getValue();
+				
 				$payments = $this->m_payment->getConfig();
 				if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
 					$payconfig = $payments[$paymethod];
@@ -319,6 +324,8 @@ class OrderController extends PcBasicController
 		$paymethod = $this->get('paymethod');
 		$orderid = $this->get('orderid');
 		if($paymethod AND $orderid AND strlen($orderid)>0){
+			$orderid_string = new \Safe\MyString($orderid);
+			$orderid = $orderid_string->trimall()->qufuhao2()->getValue();
 			$payments = $this->m_payment->getConfig();
 			if(isset($payments[$paymethod]) AND !empty($payments[$paymethod])){
 				$payconfig = $payments[$paymethod];

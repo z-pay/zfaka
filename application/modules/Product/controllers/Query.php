@@ -223,9 +223,11 @@ class QueryController extends PcBasicController
 		$oid    = $this->getPost('oid');
 		$csrf_token = $this->getPost('csrf_token', false);
 		if($oid AND strlen($oid)>0 AND $csrf_token){
-			$oid = (int)base64_decode($oid);
-			if(is_numeric($oid) AND $oid>0){
+			$oid = base64_decode($oid);
+			if($oid AND strlen($oid)>0){
 				if ($this->VerifyCsrfToken($csrf_token)) {
+					$orderid_string = new \Safe\MyString($oid);
+					$oid = $orderid_string->trimall()->qufuhao2()->getValue();
 					$starttime = strtotime("-1 day");
 					$order = $this->m_order->Where(array('orderid'=>$oid,'isdelete'=>0))->Where("addtime>={$starttime}")->SelectOne();
 					if(empty($order)){
