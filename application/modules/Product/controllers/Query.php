@@ -201,8 +201,11 @@ class QueryController extends PcBasicController
 				if(empty($order)){
 					$data=array('code'=>1005,'msg'=>'没有订单');
 				}else{
+					$cards = "";
 					$card_mi_str = $order['kami'];
-					$cards = explode(',',$card_mi_str);
+					if(strlen($card_mi_str)>0){
+						$cards = explode(',',$card_mi_str);
+					}
 					$data=array('code'=>1,'msg'=>'查询成功','data'=>$cards);
 				}
 			} else {
@@ -218,25 +221,30 @@ class QueryController extends PcBasicController
 	{
 		$oid    = $this->getPost('oid');
 		$csrf_token = $this->getPost('csrf_token', false);
-		if($oid AND is_numeric($oid) AND $oid>0 AND $csrf_token){
-			if ($this->VerifyCsrfToken($csrf_token)) {
-				$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
-				if(empty($order)){
-					$data=array('code'=>1002,'msg'=>'没有订单');
-				}else{
-					if($order['status']<1){
-						$data = array('code' => 1003, 'msg' => '未支付');
+		if($oid AND strlen($oid)>0 AND $csrf_token){
+			$oid = (int)base64_decode($oid);
+			if(is_numeric($oid) AND $oid>0){
+				if ($this->VerifyCsrfToken($csrf_token)) {
+					$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
+					if(empty($order)){
+						$data=array('code'=>1002,'msg'=>'没有订单');
 					}else{
-						$this->setSession('order_email',$order['email']);
-						$this->clearCookie('oid');
-						$l_encryption = new Encryption();
-						$cookie_oid = $l_encryption->encrypt($order['orderid']);
-						$this->setCookie('oid',$cookie_oid);
-						$data = array('code' => 1, 'msg' => 'success','data'=>$order);
+						if($order['status']<1){
+							$data = array('code' => 1003, 'msg' => '未支付');
+						}else{
+							$this->setSession('order_email',$order['email']);
+							$this->clearCookie('oid');
+							$l_encryption = new Encryption();
+							$cookie_oid = $l_encryption->encrypt($order['orderid']);
+							$this->setCookie('oid',$cookie_oid);
+							$data = array('code' => 1, 'msg' => 'success','data'=>array('orderid'=>$order['orderid']));
+						}
 					}
+				}else{
+					$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
 				}
 			} else {
-				$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+				$data = array('code' => 1000, 'msg' => '丢失参数');
             }
 		}else{
 			$data = array('code' => 1000, 'msg' => '丢失参数');

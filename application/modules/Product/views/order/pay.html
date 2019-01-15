@@ -113,7 +113,7 @@
 							<div class="layui-tab-item layui-show">
 								<div class="layui-form-pane">
 									<div class="layerPay" id="layerPay" style="margin-bottom: 0;text-align:center">
-										<input type="hidden" id="oid" value="<?php echo $order['id'];?>">
+										<input type="hidden" id="oid" value="<?php echo base64_encode($order['id']);?>">
 										<?php foreach($payments AS $payment):?>
 											<?php if($payment['active']>0):?><a class="orderpaymethod" data-type="<?php echo $payment['alias'];?>"><img src="<?php echo $payment['payimage'];?>"></a><?php endif;?>
 										<?php endforeach;?>
