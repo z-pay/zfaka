@@ -195,16 +195,24 @@ class OrderController extends PcBasicController
 			if(is_numeric($oid) AND $oid>0){
 				$order_id = $this->getSession('order_id');
 				if($order_id AND is_numeric($order_id) AND $order_id>0 AND $order_id ==$oid ){
-					$order = $this->m_order->Where(array('id'=>$id,'isdelete'=>0))->SelectOne();
+					//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
+					$starttime = strtotime("-1 day");
+					$where = "addtime>{$starttime}";
+					$order = $this->m_order->Where($where)->Where(array('id'=>$id,'isdelete'=>0))->SelectOne();
 					if(!empty($order)){
-						//获取支付方式
-						$payments = $this->m_payment->getConfig();
-						$data['order'] = $order;
-						$data['payments']=$payments;
-						$data['code']=1;
+						if($order['status']>0){
+							$data['code']=1003;
+							$data['msg']='订单已支付';
+						}else{
+							//获取支付方式
+							$payments = $this->m_payment->getConfig();
+							$data['order'] = $order;
+							$data['payments'] = $payments;
+							$data['code']=1;
+						}
 					}else{
 						$data['code']=1002;
-						$data['msg']='订单不存在';
+						$data['msg']='订单不存在(最近1天)';
 					}
 				}else{
 					$data['code']=1003;
@@ -235,7 +243,10 @@ class OrderController extends PcBasicController
 					$payconfig = $payments[$paymethod];
 					if($payconfig['active']>0){
 						//获取订单信息
-						$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
+						//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
+						$starttime = strtotime("-1 day");
+						$where = "addtime>{$starttime}";
+						$order = $this->m_order->Where($where)->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
 						if(is_array($order) AND !empty($order)){
 							if($order['status']>0){
 								$data = array('code' => 1004, 'msg' => '订单已支付成功');
@@ -256,7 +267,7 @@ class OrderController extends PcBasicController
 								}
 							}
 						}else{
-							$data = array('code' => 1003, 'msg' => '订单不存在');
+							$data = array('code' => 1003, 'msg' => '订单不存在(最近1天)');
 						}
 					}else{
 						$data = array('code' => 1002, 'msg' => '支付渠道已关闭');
@@ -313,7 +324,10 @@ class OrderController extends PcBasicController
 				$payconfig = $payments[$paymethod];
 				if($payconfig['active']>0){
 					//获取订单信息
-					$order = $this->m_order->Where(array('orderid'=>$orderid,'isdelete'=>0))->SelectOne();
+					//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
+					$starttime = strtotime("-1 day");
+					$where = "addtime>{$starttime}";
+					$order = $this->m_order->Where($where)->Where(array('orderid'=>$orderid,'isdelete'=>0))->SelectOne();
 					if(is_array($order) AND !empty($order)){
 						if($order['status']>0){
 							$msg = '订单已支付成功';
@@ -328,7 +342,7 @@ class OrderController extends PcBasicController
 							}
 						}
 					}else{
-						$msg = '订单不存在';
+						$msg = '订单不存在(最近1天)';
 					}
 				}else{
 					$msg = '支付渠道已关闭';

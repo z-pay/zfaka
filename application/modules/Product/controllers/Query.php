@@ -107,7 +107,7 @@ class QueryController extends PcBasicController
 							$starttime = strtotime("-1 month");
 							$order = $this->m_order->Where(array('email'=>$email,'chapwd'=>$chapwd))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 							if(empty($order)){
-								$data=array('code'=>1005,'msg'=>'订单不存在');
+								$data=array('code'=>1005,'msg'=>'订单不存在(最近1个月)');
 							}else{
 								$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>count($order));
 							}
@@ -143,7 +143,7 @@ class QueryController extends PcBasicController
 							$starttime = strtotime("-1 month");
 							$order = $this->m_order->Where(array('orderid'=>$orderid))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 							if(empty($order)){
-								$data=array('code'=>1005,'msg'=>'订单不存在');
+								$data=array('code'=>1005,'msg'=>'订单不存在(最近1个月)');
 							}else{
 								$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>count($order));
 							}
@@ -167,7 +167,7 @@ class QueryController extends PcBasicController
 							$starttime = strtotime("-1 month");
 							$order = $this->m_order->Where(array('orderid'=>$cookie_oid))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 							if(empty($order)){
-								$data=array('code'=>1005,'msg'=>'订单不存在');
+								$data=array('code'=>1005,'msg'=>'订单不存在(最近1个月)');
 							}else{
 								$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>count($order));
 							}
@@ -197,9 +197,10 @@ class QueryController extends PcBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$orderid_string = new \Safe\MyString($orderid);
 				$orderid = $orderid_string->trimall()->qufuhao2()->getValue();
-				$order = $this->m_order->Where(array('orderid'=>$orderid,'status'=>2))->SelectOne();
+				$starttime = strtotime("-1 month");
+				$order = $this->m_order->Where(array('orderid'=>$orderid,'status'=>2))->Where("addtime>={$starttime}")->SelectOne();
 				if(empty($order)){
-					$data=array('code'=>1005,'msg'=>'没有订单');
+					$data=array('code'=>1005,'msg'=>'订单不存在(最近1个月)');
 				}else{
 					$cards = "";
 					$card_mi_str = $order['kami'];
@@ -225,9 +226,10 @@ class QueryController extends PcBasicController
 			$oid = (int)base64_decode($oid);
 			if(is_numeric($oid) AND $oid>0){
 				if ($this->VerifyCsrfToken($csrf_token)) {
-					$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
+					$starttime = strtotime("-1 day");
+					$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->Where("addtime>={$starttime}")->SelectOne();
 					if(empty($order)){
-						$data=array('code'=>1002,'msg'=>'没有订单');
+						$data=array('code'=>1002,'msg'=>'订单不存在(最近1天)');
 					}else{
 						if($order['status']<1){
 							$data = array('code' => 1003, 'msg' => '未支付');
