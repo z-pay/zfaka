@@ -227,7 +227,7 @@ class QueryController extends PcBasicController
 			if(is_numeric($oid) AND $oid>0){
 				if ($this->VerifyCsrfToken($csrf_token)) {
 					$starttime = strtotime("-1 day");
-					$order = $this->m_order->Where(array('id'=>$oid,'isdelete'=>0))->Where("addtime>={$starttime}")->SelectOne();
+					$order = $this->m_order->Where(array('orderid'=>$oid,'isdelete'=>0))->Where("addtime>={$starttime}")->SelectOne();
 					if(empty($order)){
 						$data=array('code'=>1002,'msg'=>'订单不存在(最近1天)');
 					}else{

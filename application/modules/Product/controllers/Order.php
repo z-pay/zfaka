@@ -164,13 +164,13 @@ class OrderController extends PcBasicController
 						'addons'=>$o_addons,
 						'addtime'=>time(),
 					);
-					$id=$this->m_order->Insert($m);
+					$id = $this->m_order->Insert($m);
 					if($id>0){
-						$oid = base64_encode($id);
+						$oid = base64_encode($orderid);
 						//设置orderidSESSION
-						$this->setSession('order_id',$id);
+						$this->setSession('order_id',$orderid);
 						$this->setSession('order_email',$email);
-						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$oid));	
+						$data = array('code' => 1, 'msg' => '下单成功','data'=>array('oid'=>$orderid));	
 					}else{
 						$data = array('code' => 1003, 'msg' => '订单异常');
 					}
@@ -198,7 +198,7 @@ class OrderController extends PcBasicController
 					//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
 					$starttime = strtotime("-1 day");
 					$where = "addtime>{$starttime}";
-					$order = $this->m_order->Where($where)->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
+					$order = $this->m_order->Where($where)->Where(array('orderid'=>$oid,'isdelete'=>0))->SelectOne();
 					if(!empty($order)){
 						if($order['status']>0){
 							$data['code']=1003;
@@ -246,7 +246,7 @@ class OrderController extends PcBasicController
 						//20190115 针对需要支付的订单,进行时间查询限制,最多1天前
 						$starttime = strtotime("-1 day");
 						$where = "addtime>{$starttime}";
-						$order = $this->m_order->Where($where)->Where(array('id'=>$oid,'isdelete'=>0))->SelectOne();
+						$order = $this->m_order->Where($where)->Where(array('orderid'=>$oid,'isdelete'=>0))->SelectOne();
 						if(is_array($order) AND !empty($order)){
 							if($order['status']>0){
 								$data = array('code' => 1004, 'msg' => '订单已支付成功');
