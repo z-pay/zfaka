@@ -78,8 +78,26 @@ class PcBasicController extends BasicController
 	
 	//生成csrftoken　防csrf攻击
     private function createCsrfToken(){
-    	$csrf_token=$this->getSession('csrf_token');
-    	if(!$csrf_token){
+    	$csrf_token = $this->getSession('csrf_token');
+		$isCreate = false;
+		if($csrf_token){
+			try {
+				$decoded = JWT::decode($csrf_token, self::readRSAKey($this->serverPublicKey), array('RS256'));
+                $tokenKey = (array)$decoded;
+                if (is_array($tokenKey) AND !empty($tokenKey)) {
+					
+	
+                } else {
+                    $isCreate = true;
+                }
+			}catch(\Exception $e){
+				$isCreate = true;
+			}
+		}else{
+			$isCreate = true;
+		}
+		
+    	if($isCreate == true){
     		$csrf_token=$this->createToken(); 
 			$this->setSession('csrf_token',$csrf_token);
     	}
