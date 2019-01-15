@@ -82,14 +82,16 @@ class PcBasicController extends BasicController
 		$isCreate = false;
 		if($csrf_token){
 			try {
-				$decoded = JWT::decode($csrf_token, self::readRSAKey($this->serverPublicKey), array('RS256'));
-                $tokenKey = (array)$decoded;
-                if (is_array($tokenKey) AND !empty($tokenKey)) {
-					
-	
-                } else {
-                    $isCreate = true;
-                }
+				if(!isAjax()){
+					$decoded = JWT::decode($csrf_token, self::readRSAKey($this->serverPublicKey), array('RS256'));
+					$tokenKey = (array)$decoded;
+					if (is_array($tokenKey) AND !empty($tokenKey)) {
+						
+		
+					} else {
+						$isCreate = true;
+					}
+				}
 			}catch(\Exception $e){
 				$isCreate = true;
 			}
