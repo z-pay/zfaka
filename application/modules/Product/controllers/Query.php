@@ -141,7 +141,9 @@ class QueryController extends PcBasicController
 							$orderid = $orderid_string->trimall()->qufuhao2()->getValue();
 							
 							$starttime = strtotime("-1 month");
-							$order = $this->m_order->Where(array('orderid'=>$orderid))->Where(array('isdelete'=>0))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
+							//20190115,通过订单查询增加IP条件
+							$ip = getClientIP();
+							$order = $this->m_order->Where(array('orderid'=>$orderid,'isdelete'=>0,'ip'=>$ip))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 							if(empty($order)){
 								$data=array('code'=>1005,'msg'=>'订单不存在(最近1个月)');
 							}else{
