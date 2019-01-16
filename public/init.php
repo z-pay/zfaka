@@ -1,7 +1,6 @@
 <?php
 if(defined('APP_PATH')) {
 	//增加环境判断,争取在安装过程中给小白们更多提示
-	if(!file_exists(INSTALL_LOCK)){
 		//1.判断application.ini.new是否修改为application.ini
 		if(!file_exists(APP_PATH.'/conf/application.ini')){
 			echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请按照安装要求将application.ini.new修改为 application.ini</div>";
@@ -21,8 +20,7 @@ if(defined('APP_PATH')) {
 		
 		
 		
-		//最后
+		//如果上面都没出错，那么就出杀手锏
 		echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请检查安装锁定文件install.lock是否存在</div>";
 		exit();	
-	}
 }
