@@ -17,5 +17,12 @@ if(defined('APP_PATH')) {
 			echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请按照安装要求配置yaf.use_namespace=1</div>";
 			exit();	
 		}
-	}	
+		
+		
+		
+		
+		//最后
+		echo "<div style=\"border: 1px dashed #cc0000;font-family:Tahoma;background-color:#FBEEEB;width:100%;padding:10px;color:#cc0000;\"><strong>警告：</strong><br>请检查安装锁定文件install.lock是否存在</div>";
+		exit();	
+	}
 }
