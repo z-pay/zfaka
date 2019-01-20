@@ -53,7 +53,7 @@ class PcBasicController extends BasicController
         $tokenKey = array(
             "iss" => "http://zlkb.net",  //jwt签发者
             "aud" => 'RPC',                     //接收jwt的一方
-            "exp" => time() + 60,               //过期时间
+            "exp" => time() + 600,               //过期时间
         );
         return JWT::encode($tokenKey, self::readRSAKey($this->serverPrivateKey), 'RS256');
     }
