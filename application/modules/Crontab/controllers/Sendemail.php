@@ -31,8 +31,12 @@ class SendemailController extends BasicController
         $queue = $this->m_email_queue->Where(array('status' => 0,'isdelete'=>0))->Limit(10)->Select();
         if (is_array($queue) AND !empty($queue)) {
 			$emainConfig = $this->m_email->getConfig();
-			$config=array();
-			$config['smtp_host'] = 'ssl://' . $emainConfig['host'];
+			$config = array();
+			if($emainConfig['isssl']>0){
+				$config['smtp_host'] = 'ssl://' . $emainConfig['host'];
+			}else{
+				$config['smtp_host'] = $emainConfig['host'];
+			}
 			$config['smtp_user'] = $emainConfig['mailaddress'];
 			$config['smtp_pass'] = $emainConfig['mailpassword'];
 			$config['smtp_port'] = $emainConfig['port'];

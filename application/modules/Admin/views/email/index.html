@@ -11,22 +11,25 @@
                     <form class="layui-form layui-show" method="post">
 						<?php if(is_array($email) AND !empty($email)):?>
                         <div class="layui-form-item">
-                            <label for="mailaddress" class="layui-form-label">邮箱地址</label>
+                            <label for="mailaddress" class="layui-form-label">邮箱账号</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="mailaddress" name="mailaddress" lay-verify="required|email" autocomplete="off" value="<?php echo $email['mailaddress'];?>" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">这个是邮箱账号</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="mailpassword" class="layui-form-label">邮箱密码</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="mailpassword" name="mailpassword" required lay-verify="required" autocomplete="off" value="<?php echo $email['mailpassword'];?>" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">这个是邮箱密码，也可能是授权码</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="sendmail" class="layui-form-label">发件人邮箱</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="sendmail" name="sendmail" autocomplete="off" lay-verify="required|email" value="<?php echo $email['sendmail'];?>" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">这个是用来显示发件人邮箱地址的</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="sendname" class="layui-form-label">发件人昵称</label>
@@ -40,6 +43,15 @@
                                 <input type="text" id="host" name="host" autocomplete="off" lay-verify="required" value="<?php echo $email['host'];?>" class="layui-input">
                             </div>
                         </div>
+						<div class="layui-form-item">
+							<label for="isssl" class="layui-form-label">使用安全连接 (SSL)</label>
+							<div class="layui-input-inline">
+								 <select name="isssl">
+									<option value="0" <?php if($email['isssl']=="0"):?>selected=""<?php endif;?>>不使用</option>
+									<option value="1" <?php if($email['isssl']=="1"):?>selected=""<?php endif;?>>使用</option>
+								  </select>
+							</div>
+						</div> 
                         <div class="layui-form-item">
                             <label for="port" class="layui-form-label">端口号</label>
                             <div class="layui-input-inline">
@@ -57,18 +69,21 @@
                             <div class="layui-input-inline">
                                 <input type="text" id="mailaddress" name="mailaddress" lay-verify="required|email" autocomplete="off" value="" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">这个是邮箱账号</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="mailpassword" class="layui-form-label">邮箱密码</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="mailpassword" name="mailpassword" required lay-verify="required" autocomplete="off" value="" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">这个是邮箱密码，也可能是授权码</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="sendmail" class="layui-form-label">发件人邮箱</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="sendmail" name="sendmail" autocomplete="off" lay-verify="required|email" value="" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">这个是用来显示发件人邮箱地址的</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="sendname" class="layui-form-label">发件人昵称</label>
@@ -81,7 +96,17 @@
                             <div class="layui-input-inline">
                                 <input type="text" id="host" name="host" autocomplete="off" lay-verify="required" value="smtp.exmail.qq.com" class="layui-input">
                             </div>
+							<div class="layui-form-mid layui-word-aux">smtp.exmail.qq.com是QQ企业邮箱smtp地址</div>
                         </div>
+						<div class="layui-form-item">
+							<label for="isssl" class="layui-form-label">使用安全连接 (SSL)</label>
+							<div class="layui-input-inline">
+								 <select name="isssl">
+									<option value="0" selected="">不使用</option>
+									<option value="1" >使用</option>
+								  </select>
+							</div>
+						</div> 
                         <div class="layui-form-item">
                             <label for="port" class="layui-form-label">端口号</label>
                             <div class="layui-input-inline">

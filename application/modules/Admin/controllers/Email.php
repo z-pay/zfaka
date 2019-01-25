@@ -38,6 +38,7 @@ class EmailController extends AdminBasicController
 		$sendname = $this->getPost('sendname',false);
 		$host = $this->getPost('host',false);
 		$port = $this->getPost('port',false);
+		$isssl = $this->getPost('isssl');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
@@ -47,7 +48,7 @@ class EmailController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $mailaddress AND $mailpassword AND $sendmail AND $sendname AND $host AND $port AND $csrf_token){
+		if($method AND $mailaddress AND $mailpassword AND $sendmail AND $sendname AND $host AND $port AND is_numeric($isssl) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$m=array(
 					'mailaddress'=>$mailaddress,
@@ -56,6 +57,7 @@ class EmailController extends AdminBasicController
 					'sendname'=>$sendname,
 					'host'=>$host,
 					'port'=>$port,
+					'isssl'=>$isssl,
 				);
 				if($method == 'edit' AND $id>0){
 					$u = $this->m_email->UpdateByID($m,$id);
