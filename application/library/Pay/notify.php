@@ -100,7 +100,8 @@ class notify
 									if(!empty($m)){
 										$m_email_queue->MultiInsert($m);
 										if($web_config['emailsendtypeswitch']>0){
-											$send_email = new \Sendemail($m);
+											$send_email = new \Sendemail();
+											$send_email->send($m);
 										}
 									}
 									$data =array('code'=>1,'msg'=>'自动发卡');
@@ -126,7 +127,8 @@ class notify
 									if(!empty($m)){
 										$m_email_queue->MultiInsert($m);
 										if($web_config['emailsendtypeswitch']>0){
-											$send_email = new \Sendemail($m);
+											$send_email = new \Sendemail();
+											$send_email->send($m);
 										}
 									}
 									$data =array('code'=>1,'msg'=>'库存不足,无法处理');
@@ -158,7 +160,8 @@ class notify
 								if(!empty($m)){
 									$m_email_queue->MultiInsert($m);
 									if($web_config['emailsendtypeswitch']>0){
-										$send_email = new \Sendemail($m);
+										$send_email = new \Sendemail();
+										$send_email->send($m);
 									}
 								}
 								$data =array('code'=>1,'msg'=>'手工订单');
