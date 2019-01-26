@@ -119,7 +119,6 @@
 * 全国IDC行业精英群:572511758   
 * DirectAdmin用户交流群:337686498
 * 收款宝: [https://codepay.zlkb.net/](https://codepay.zlkb.net/)
-* 短视频去水印：　[https://dsp.zlkb.net/](https://dsp.zlkb.net/)
 * 新的开源项目预告：[https://github.com/zlkbdotnet/zspay](https://github.com/zlkbdotnet/zspay)
 
 # 六、捐赠&打赏
