@@ -104,7 +104,8 @@ INSERT INTO `t_config` (`id`, `catid`, `name`, `value`, `tag`, `lock`, `updateti
 (27, 1, 'qrserver', '/product/order/showqr/?url=', '生成二维码的服务地址,默认请填写:/product/order/showqr/?url=', 1, 1453452674),
 (28, 1, 'paysubjectswitch', '0', '订单说明显示:0商品名,1订单号', 1, 1453452674),
 (29, 1, 'tplproduct', 'default', '商品详情页模版', '1', 1546063186),
-(30, 1, 'emailswitch', '1', '发送用户邮件开关', '1', 1546063186);
+(30, 1, 'emailswitch', '1', '发送用户邮件开关', '1', 1546063186),
+(31, 1, 'emailsendtypeswitch', '1', '发送用户邮件方式筛选开关', '1', '1546063186');
 -- --------------------------------------------------------
 
 --
@@ -138,7 +139,8 @@ CREATE TABLE IF NOT EXISTS `t_email` (
   `sendmail` varchar(255) NOT NULL DEFAULT '' COMMENT '	发件人email',
   `sendname` varchar(255) NOT NULL DEFAULT '' COMMENT '发送人昵称',
   `port` varchar(55) NOT NULL DEFAULT '' COMMENT '端口号',
-  `host` varchar(255) NOT NULL DEFAULT '' COMMENT '发送邮件服务端'
+  `host` varchar(255) NOT NULL DEFAULT '' COMMENT '发送邮件服务端',
+  `isssl` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0关，1开'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
