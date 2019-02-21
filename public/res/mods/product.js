@@ -298,14 +298,18 @@
 									$('#prodcut_description').html(html);
 									
 									PIFA = res.data.pifa;
+									
 									$("#addons").remove();
-									var addons = '';
 									var list = res.data.addons;
-									for (var i = 0, j = list.length; i < j; i++) {
-										addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
+									if(list.length>0){
+										var addons = '<div id="addons">';
+										for (var i = 0, j = list.length; i < j; i++) {
+											addons += '<div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div>';
+										}
+										addons += "</div>";
+										$('#product_input').append(addons);
 									}
 									$('#number').val('1');
-									$('#product_input').append(addons);
 									$('#prodcut_num').height('auto');
 									form.render();
 									autoHeight();
@@ -382,12 +386,15 @@
 						$('#prodcut_description').html(html);
 						PIFA = res.data.pifa;
 						$("#addons").remove();
-						var addons = '';
 						var list = res.data.addons;
-						for (var i = 0, j = list.length; i < j; i++) {
-							addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
+						if(list.length>0){
+							var addons = '<div id="addons">';
+							for (var i = 0, j = list.length; i < j; i++) {
+								addons += '<div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div>';
+							}
+							addons += "</div>";
+							$('#product_input').append(addons);
 						}
-						$('#product_input').append(addons);
 						$('#prodcut_num').height('auto');
 						$('#number').val('1');
 						form.render();
@@ -542,12 +549,15 @@
 									$('#prodcut_description').html(html);
 									
 									$("#addons").remove();
-									var addons = '';
 									var list = res.data.addons;
-									for (var i = 0, j = list.length; i < j; i++) {
-										addons += '<div id="addons"><div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div></div>';
+									if(list.length>0){
+										var addons = '<div id="addons">';
+										for (var i = 0, j = list.length; i < j; i++) {
+											addons += '<div class="layui-form-item"><label class="layui-form-label">'+list[i]+'</label><div class="layui-input-block"><input type="text" name="addons[]" id="addons'+i+'" class="layui-input" required lay-verify="required" placeholder=""></div></div>';
+										}
+										addons += "</div>";
+										$('#product_input').append(addons);
 									}
-									$('#product_input').append(addons);
 									$('#prodcut_num').height('auto');
 									form.render();
 									autoHeight();
