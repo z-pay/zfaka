@@ -84,7 +84,8 @@ class SetptwoController extends BasicController
 				$pdo->query("CREATE DATABASE IF NOT EXISTS `{$dbname}` CHARACTER SET utf8 COLLATE utf8_general_ci;");
 				$pdo->query("USE `{$dbname}`");
 				$pdo->exec($sql);
-					
+				//20190319，这里添加一个延时，避免sql操作时间过长导致异常
+				sleep(3);	
 				$ini = new WriteiniFile($this->install_config);
 				$ini->update([
 					'product : common' => ['READ_HOST' => $host,'WRITE_HOST' => $host,'READ_PORT' => $port,'WRITE_PORT' => $port,'READ_USER' => $user,'WRITE_USER' => $user,'READ_PSWD' => $password,'WRITE_PSWD' => $password,'Default' => $dbname]
