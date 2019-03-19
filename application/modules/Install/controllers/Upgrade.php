@@ -114,6 +114,8 @@ class UpgradeController extends AdminBasicController
 				if (!$result){
 					$data = array('code' => 1004, 'msg' =>"无法写入安装锁定到".INSTALL_LOCK."文件，请检查是否有写权限");
 				}
+				//20190319，这里添加一个延时，避免sql操作时间过长导致异常
+				sleep(10);
 				//更新配置缓存 
 				$m_config->getConfig(1);
 				$data = array('code' => 1, 'msg' =>"SUCCESS");

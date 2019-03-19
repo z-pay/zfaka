@@ -2,7 +2,7 @@ ALTER TABLE `t_config` CHANGE `value` `value` TEXT  CHARACTER SET utf8mb4 COLLAT
 ALTER TABLE `t_config` CHANGE `tag` `tag` TEXT  CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '备注';
 ALTER TABLE `t_config` CHANGE `name` `name` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '配置名';
 ALTER TABLE `t_config_cat` CHANGE `catname` `catname` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '配置分类名';
-ALTER TABLE `t_config_cat` CHANGE `key` `key` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '配置分类KEY';
+ALTER TABLE `t_config_cat` CHANGE `catkey` `catkey` VARCHAR(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '配置分类KEY';
 ALTER TABLE `t_email` CHANGE `mailaddress` `mailaddress` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱地址';
 ALTER TABLE `t_email` CHANGE `sendmail` `sendmail` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT ' 发件人emal ';
 ALTER TABLE `t_email` CHANGE `sendname` `sendname` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '发送人昵称';
