@@ -36,7 +36,7 @@ class OrderController extends PcBasicController
 		$chapwd = $chapwd_string->trimall()->qufuhao2()->getValue();
 		
 		
-		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND $chapwd AND $csrf_token){
+		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND strlen($chapwd)>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if(isset($this->config['orderinputtype']) AND $this->config['orderinputtype']=='2'){
 					if($this->login AND $this->userid){
