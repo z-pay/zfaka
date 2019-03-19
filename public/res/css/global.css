@@ -190,6 +190,7 @@ pre{padding: 10px 15px; margin: 10px 0; font-size: 12px; border-left: 6px solid 
 /* 头部 */
 .fly-header{position: fixed; left: 0; top: 0; z-index: 10000; width: 100%; height: 60px; border-bottom: 1px solid #404553; border-right: 1px solid #404553; border-radius: 0;}
 .fly-logo{position: absolute;top: 11px;}
+.fly-logo image{height:40px;}
 .fly-nav{margin-left: 150px;}
 @media screen and (max-width: 450px){
 	.fly-nav{margin-left: 0;}
