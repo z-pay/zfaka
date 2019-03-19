@@ -28,17 +28,26 @@ class zlkbcodepayqq
 				'return_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
 				'notify_url' => $params['weburl'] . '/product/notify/?paymethod='.$this->paymethod,
 			);
+			if(isset($payconfig['configure3']) AND strlen($payconfig['configure3'])>0){
+				$url = $payconfig['configure3'];
+			}else{
+				$url = $this->apiHost;
+			}
 			$config['sign'] = $this->_signParams($config,$payconfig['app_secret']);
-			$curl_data =  $this->_curlPost($this->apiHost,$config);
+			$curl_data =  $this->_curlPost($url,$config);
 			$curl_data = json_decode($curl_data,true);
 			if(is_array($curl_data)){
 				if($curl_data['code']<1){
 					return array('code'=>1002,'msg'=>$curl_data['msg'],'data'=>'');
 				}else{
 					$money = isset($curl_data['data']['money'])?$curl_data['data']['money']:$params['money'];
-					//计算关闭时间
-					$closetime = (int)($curl_data['data']['closetime']-$curl_data['data']['servertime']-3);
-					$result = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$params['qrserver'].urlencode($curl_data['data']['qr_content']),'payname'=>$payconfig['payname'],'overtime'=>$closetime,'money'=>$money);
+					if(isset($payconfig['configure4']) AND strlen($payconfig['configure4'])>0 AND $payconfig['configure4']>0){
+						$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$curl_data['data']['payurl'],'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$money);
+					}else{
+						//计算关闭时间
+						$closetime = (int)($curl_data['data']['closetime']-$curl_data['data']['servertime']-3);
+						$result = array('type'=>0,'subjump'=>1,'subjumpurl'=>$curl_data['data']['qr_content'],'paymethod'=>$this->paymethod,'qr'=>$params['qrserver'].urlencode($curl_data['data']['qr_content']),'payname'=>$payconfig['payname'],'overtime'=>$closetime,'money'=>$money);
+					}
 					return array('code'=>1,'msg'=>'success','data'=>$result);
 				}
 			}else{
