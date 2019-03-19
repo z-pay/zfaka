@@ -38,7 +38,11 @@
 					<div class="price">
 						<b>￥{{ item.price}}</b>
 						<span class="flow" style ="float:right">
+							{{#  if(item.stockcontrol=="1" && item.qty=="0"){ }}
+							<a class="layui-btn layui-btn-xs layui-btn-disabled" href="javascript:;">购买</a>
+							{{# }else{ }}
 							<a class="layui-btn layui-btn-xs" href="/product/{{item.id}}.html">购买</a>
+							{{#  } }} 
 						</span>
 					</div>
 				</div>
