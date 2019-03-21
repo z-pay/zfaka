@@ -8,6 +8,12 @@
             </ul>
             <div class="layui-tab-content" style="padding: 20px 0;">
                 <div class="layui-form-pane layui-tab-item layui-show">
+						<blockquote class="layui-elem-quote">
+							<p> 注意事项： </p>
+							<p> 1.邮件发送模式只支持SMTP</p>
+							<p> 2.注意看清楚是否使用SSL</p>
+							<p> 3.端口号参考：SSL协议下一般为465/994,非SSL协议下一般为25;当然最好根据邮件服务商的说明来进行配置</p>
+						</blockquote>
                     <form class="layui-form layui-show" method="post">
 						<?php if(is_array($email) AND !empty($email)):?>
                         <div class="layui-form-item">
