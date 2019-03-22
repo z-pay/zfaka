@@ -39,7 +39,12 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
             array(1 => 'zlkbmethod',2 => 'orderid')
         );
         $router->addRoute('order_query', $order_query);	
-		
+        $order_notify = new Yaf\Route\Regex(
+            '#notify/([0-9A-Za-z]+).html#',
+            array('module' => 'product', 'controller' => 'notify', 'action' => 'index'),
+            array(1 => 'paymethod')
+        );
+        $router->addRoute('order_notify', $order_notify);			
 	}
 	
     public function _initPlugin(\Yaf\Dispatcher $dispatcher)

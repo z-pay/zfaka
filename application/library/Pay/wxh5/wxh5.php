@@ -30,7 +30,7 @@ class wxh5
 			'app_key_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_key.pem',
 			'fee_type'  => 'CNY',
 			'redirect_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
-			'notify_url' => $params['weburl'] . '/product/notify/?paymethod='.$this->paymethod,
+			'notify_url' => $params['weburl'] . "/notify/{$this->paymethod}.html",
 			'return_raw' => false
 		];
 
