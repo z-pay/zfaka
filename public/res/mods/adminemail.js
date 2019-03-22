@@ -22,11 +22,10 @@ layui.define(['layer', 'form', 'table'], function(exports){
 
 	//修改资料
 	form.on('submit(email)', function(data){
-
 		data.field.csrf_token = TOKEN;
 		var i = layer.load(2,{shade: [0.5,'#fff']});
 		$.ajax({
-			url: '/'+ADMIN_DIR+'/email/ajax',
+			url: '/'+ADMIN_DIR+'/email/editajax',
 			type: 'POST',
 			dataType: 'json',
 			data: data.field,
@@ -35,7 +34,7 @@ layui.define(['layer', 'form', 'table'], function(exports){
 			if (res.code == '1') {
 				layer.open({
 					title: '提示',
-					content: '邮箱修改成功',
+					content: '提交成功',
 					btn: ['确定'],
 					yes: function(index, layero){
 					    location.reload();
