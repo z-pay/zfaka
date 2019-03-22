@@ -35,7 +35,7 @@ class EmailController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		$where = array();
+		$where = array('isdelete'=>0);
 		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
@@ -126,6 +126,8 @@ class EmailController extends AdminBasicController
 					'isssl'=>$isssl
 				);
 				if($method == 'edit' AND $id>0){
+					$isactive = $this->getPost('isactive');
+					$m['isactive'] = $isactive;
 					$u = $this->m_email->UpdateByID($m,$id);
 					if($u){
 						//更新缓存 
@@ -135,6 +137,8 @@ class EmailController extends AdminBasicController
 						$data = array('code' => 1003, 'msg' => '更新失败');
 					}
 				}else{
+					$m['isactive'] = 1;
+					$m['isdelete'] = 0;
 					$id = $this->m_email->Insert($m);
 					if($id>0){
 						//更新缓存 
@@ -153,4 +157,28 @@ class EmailController extends AdminBasicController
 		Helper::response($data);
 	}
 
+    public function deleteAction()
+    {
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$id = $this->get('id');
+		$csrf_token = $this->getPost('csrf_token', false);
+        if (FALSE != $id AND is_numeric($id) AND $id > 0) {
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				$delete = $this->m_email->UpdateByID(array('isdelete'=>1),$id);
+				if($delete){
+					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
+				}else{
+					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');
+				}
+			} else {
+                $data = array('code' => 1002, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+        } else {
+            $data = array('code' => 1001, 'msg' => '缺少字段', 'data' => '');
+        }
+       Helper::response($data);
+    }	
 }

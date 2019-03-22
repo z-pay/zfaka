@@ -23,3 +23,4 @@ UPDATE `t_payment` SET `configure3` = 'https://codepay.zlkb.net/api/order',`conf
 UPDATE `t_payment` SET `configure3` = 'https://codepay.zlkb.net/api/order',`configure4` = '0' WHERE `t_payment`.`id` = 9;
 UPDATE `t_payment` SET `configure3` = 'https://codepay.zlkb.net/api/order',`configure4` = '0' WHERE `t_payment`.`id` = 10;
 UPDATE `t_payment` SET `payment` = '支付宝电脑网站支付(WEB)' WHERE `t_payment`.`id` = 5;
+ALTER TABLE `t_email` ADD `isactive` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未激活 1激活' AFTER `isssl`, ADD `isdelete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除' AFTER `isactive`;
