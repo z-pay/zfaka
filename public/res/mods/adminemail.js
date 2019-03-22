@@ -1,8 +1,23 @@
-layui.define(['layer', 'form'], function(exports){
+layui.define(['layer', 'form', 'table'], function(exports){
 	var $ = layui.jquery;
 	var layer = layui.layer;
 	var form = layui.form;
+	var table = layui.table;
 
+	table.render({
+		elem: '#table',
+		url: '/'+ADMIN_DIR+'/email/ajax',
+		page: true,
+		cellMinWidth:60,
+		cols: [[
+			{field: 'id', title: 'ID', width:80},
+			{field: 'mailaddress', title: '邮箱账号', minWidth:200},
+			{field: 'sendname', title: '发件人', minWidth:200},
+			{field: 'isssl', title: '使用SSL', width:100, templet: '#isssl',align:'center'},
+			{field: 'port', title: '端口', width:100, align:'center'}
+			{field: 'opt', title: '操作', width:200, templet: '#opt',align:'center'}
+		]]
+	});
 
 	//修改资料
 	form.on('submit(email)', function(data){
