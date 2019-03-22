@@ -75,8 +75,8 @@ class EmailController extends AdminBasicController
 		$id = $this->get('id');
 		if($id AND $id>0){
 			$data = array();
-			$items = $this->m_email->SelectByID('',$id);
-			$data['items'] = $items;
+			$email = $this->m_email->SelectByID('',$id);
+			$data['email'] = $email;
 			$this->getView()->assign($data);
 		}else{
             $this->redirect('/'.ADMIN_DIR."/email");
