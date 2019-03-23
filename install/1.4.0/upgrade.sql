@@ -18,7 +18,6 @@ ALTER TABLE `t_products` CHANGE `name` `name` VARCHAR(255) CHARACTER SET utf8mb4
 ALTER TABLE `t_user` CHANGE `nickname` `nickname` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户名';
 ALTER TABLE `t_user` CHANGE `email` `email` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '邮箱';
 ALTER TABLE `t_user` CHANGE `password` `password` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码';
-ALTER TABLE `t_payment` ADD `configure4` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '配置4' AFTER `configure3`;
 UPDATE `t_payment` SET `configure3` = 'https://codepay.zlkb.net/api/order',`configure4` = '0' WHERE `t_payment`.`id` = 8;
 UPDATE `t_payment` SET `configure3` = 'https://codepay.zlkb.net/api/order',`configure4` = '0' WHERE `t_payment`.`id` = 9;
 UPDATE `t_payment` SET `configure3` = 'https://codepay.zlkb.net/api/order',`configure4` = '0' WHERE `t_payment`.`id` = 10;
