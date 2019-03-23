@@ -81,6 +81,7 @@ class wxf2f
 				'app_cert_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_cert.pem',
 				'app_key_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_key.pem',
 				'fee_type'  => 'CNY',
+				'notify_url' => $params['weburl'] . "/notify/{$this->paymethod}.html",
 				'return_raw' => true
 			];
 			
