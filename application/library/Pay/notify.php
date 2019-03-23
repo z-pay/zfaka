@@ -175,10 +175,9 @@ class notify
 				$data =array('code'=>1003,'msg'=>'订单号不存在');
 			}
 		} catch(\Exception $e) {
-			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.$e->getMessage().PHP_EOL, FILE_APPEND);
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-reuslt:-notify'.$e->getMessage().PHP_EOL, FILE_APPEND);
 			$data =array('code'=>1001,'msg'=>$e->getMessage());
 		}
-		//file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.'异步处理结果:'.json_encode($data).PHP_EOL, FILE_APPEND);
 		return $data;
 	}
 }

@@ -70,8 +70,7 @@ class wxf2f
 	public function notify(array $payconfig)
 	{
 		try {
-			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
-			unset($_POST['paymethod']);
+			file_put_contents(YEWU_FILE, CUR_DATETIME.'-params:'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 			$config = [
 				'use_sandbox' => false,
 				'app_id' => $payconfig['app_id'],
