@@ -83,7 +83,6 @@ class wxf2f
 				'notify_url' => $params['weburl'] . "/notify/{$this->paymethod}.html",
 				'return_raw' => true
 			];
-			
 			$callback = new \Pay\wxf2f\callback();
 			return $ret = Notify::run("wx_charge", $config,$callback);// 处理回调，内部进行了签名检查	
 		} catch (\Exception $e) {
