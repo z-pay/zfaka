@@ -31,7 +31,7 @@ class wxh5
 			'fee_type'  => 'CNY',
 			'redirect_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
 			'notify_url' => $params['weburl'] . "/notify/{$this->paymethod}.html",
-			'return_raw' => false
+			'return_raw' => true
 		];
 
 		$data = [
@@ -77,9 +77,7 @@ class wxh5
 				'app_cert_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_cert.pem',
 				'app_key_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_key.pem',
 				'fee_type'  => 'CNY',
-				'redirect_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
-				'notify_url' => $params['weburl'] . "/notify/{$this->paymethod}.html",
-				'return_raw' => false
+				'return_raw' => true
 			];
 			$callback = new \Pay\wxh5\callback();
 			return $ret = Notify::run("wx_charge", $config,$callback);// 处理回调，内部进行了签名检查	
