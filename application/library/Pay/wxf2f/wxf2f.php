@@ -64,8 +64,22 @@ class wxf2f
 		try {
 			file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 			unset($_POST['paymethod']);
+			$config = [
+				'use_sandbox' => false,
+				'app_id' => $payconfig['app_id'],
+				'mch_id' => $payconfig['configure3'],
+				'md5_key' => $payconfig['app_secret'],
+				'sign_type' => $payconfig['sign_type'],
+				'app_cert_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_cert.pem',
+				'app_key_pem' => LIB_PATH.'Pay/'.$this->paymethod.'/pem/weixin_app_key.pem',
+				'fee_type'  => 'CNY',
+				'redirect_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
+				'notify_url' => $params['weburl'] . "/notify/{$this->paymethod}.html",
+				'return_raw' => false
+			];
+			
 			$callback = new \Pay\wxf2f\callback();
-			return $ret = Notify::run("wx_charge", $payconfig,$callback);// 处理回调，内部进行了签名检查	
+			return $ret = Notify::run("wx_charge", $config,$callback);// 处理回调，内部进行了签名检查	
 		} catch (\Exception $e) {
 			return 'error|Exception:'.$e->getMessage();
 		}
