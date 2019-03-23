@@ -140,7 +140,9 @@ CREATE TABLE IF NOT EXISTS `t_email` (
   `sendname` varchar(255) NOT NULL DEFAULT '' COMMENT '发送人昵称',
   `port` varchar(55) NOT NULL DEFAULT '' COMMENT '端口号',
   `host` varchar(255) NOT NULL DEFAULT '' COMMENT '发送邮件服务端',
-  `isssl` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0关，1开'
+  `isssl` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0关，1开',
+  `isactive` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '0未激活 1激活',
+  `isdelete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -269,7 +271,8 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (7, '有赞接口', '微信', '/res/images/pay/yzpay.jpg', 'yzpay', 'RSA2', '', '', '', '', '', '',0, 0),
 (8, '收款宝(微信)', '微信', '/res/images/pay/weixin.jpg', 'zlkbcodepaywx', 'RSA2', '', '', '', '', 'https://codepay.zlkb.net/api/order', '0',300, 0),
 (9, '收款宝(支付宝)', '支付宝', '/res/images/pay/alipay.jpg', 'zlkbcodepayalipay', 'RSA2', '', '', '', '', 'https://codepay.zlkb.net/api/order', '0',300, 0),
-(10, '收款宝(QQ)', 'QQ', '/res/images/pay/qqpay.jpg', 'zlkbcodepayqq', 'RSA2', '', '', '', '', 'https://codepay.zlkb.net/api/order', '0',300, 0);
+(10, '收款宝(QQ)', 'QQ', '/res/images/pay/qqpay.jpg', 'zlkbcodepayqq', 'RSA2', '', '', '', '', 'https://codepay.zlkb.net/api/order', '0',300, 0),
+(11, '微信H5支付', '微信', '/res/images/pay/weixin.jpg', 'wxh5', 'MD5', '', '', '', '', '','', 0, 0);
 
 -- --------------------------------------------------------
 
