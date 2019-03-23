@@ -50,7 +50,7 @@ class wxh5
 		];
 		try {
 			$qr = Charge::run(Config::WX_CHANNEL_WAP, $config, $data);
-			if(is_array($qr) AND !empty($qr){
+			if(is_array($qr) AND !empty($qr)){
 				if(isset($qr['return_code']) AND $qr['return_code']=="SUCCESS"){
 					if($qr['result_code']=="SUCCESS"){
 						$result_params = array('type'=>0,'subjump'=>0,'paymethod'=>$this->paymethod,'qr'=>$params['qrserver'].$qr['code_url'],'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
