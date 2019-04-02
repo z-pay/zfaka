@@ -39,6 +39,20 @@ class ReportController extends AdminBasicController
 			$today_report['money'] = 0.00;
 		}
 		$data['today_report'] = $today_report;
+		//昨日统计
+		$preday_report = array();
+		$starttime = strtotime(date("Y-m-d 00:00:00",strtotime("-1 day")));
+		$endtime = strtotime(date("Y-m-d 23:59:59",$starttime));
+		$sql ="SELECT count(*) AS total,sum(money) AS shouru FROM `t_order` Where isdelete=0 AND status>0 AND addtime>={$starttime} AND addtime<={$endtime}";
+		$total_result = $this->m_order->Query($sql);
+		if(is_array($total_result) AND !empty($total_result)){
+			$preday_report['total'] = $total_result[0]['total'];
+			$preday_report['money'] = number_format($total_result[0]['shouru'],2,".",".");
+		}else{
+			$preday_report['total'] = 0;
+			$preday_report['money'] = 0.00;
+		}
+		$data['preday_report'] = $preday_report;
 		//本周统计
 		$week_report = array();
 		$starttime = mktime(0,0,0,date('m'),date('d')-date('w')+1,date('y')); 
@@ -56,7 +70,7 @@ class ReportController extends AdminBasicController
 		//当月统计
 		$month_report = array();
 		$firstday = date('Y-m-01', strtotime(date("Y-m-d")));
-		$lastday = date('Y-m-d', strtotime("{$firstday} +1 month -1 day"));
+		$lastday = date('Y-m-d 23:59:59', strtotime("{$firstday} +1 month -1 day"));
 		$firstday = strtotime($firstday);
 		$lastday = strtotime($lastday);
 		
