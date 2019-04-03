@@ -17,7 +17,8 @@ class callback implements PayNotifyInterface
 	//处理返回回调callback
 	public function notifyProcess(array $params)
 	{
-		$config = array('paymethod'=>'wxh5','tradeid'=>$params['transaction_id'],'paymoney'=>$params['total_fee'],'orderid'=>$params['out_trade_no']);
+		$paymoney = $params['total_fee']/100;
+		$config = array('paymethod'=>'wxh5','tradeid'=>$params['transaction_id'],'paymoney'=>$paymoney,'orderid'=>$params['out_trade_no']);
 		$notify = new \Pay\notify();
 		return	$data = $notify->run($config);;
 	}
