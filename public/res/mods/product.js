@@ -42,6 +42,7 @@
 		}
 		money = changeTwoDecimal_f(money);
 		$('#money').val(money);
+		form.render('select');
     });
 	
 	form.verify({
