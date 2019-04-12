@@ -19,7 +19,7 @@
 		var qty = Number($('#qty').val());
 		if(number<1){
 			number =1;
-			$('#number').val(qty);
+			$('#number').val(1);
 		}
 		if(stockcontrol>0){
 			if(number>qty){
