@@ -27,7 +27,6 @@
 				number = qty;
 			}
 		}
-		
 		var money = $('#money').val();
 		var price = parseFloat($('#price').val());
 		money = price*number;
