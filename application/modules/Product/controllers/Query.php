@@ -48,7 +48,7 @@ class QueryController extends PcBasicController
 			}
 		}
 
-		if($zlkbmethod == "contact" AND $this->config['querycontactswitch']<1){
+		if($zlkbmethod == "contact" AND isset($this->config['querycontactswitch']) AND $this->config['querycontactswitch']<0){
 			$this->show_message('error','当前查询方式已关闭','/');
 			return FALSE; 
 		}
@@ -70,9 +70,11 @@ class QueryController extends PcBasicController
 		if($zlkbmethod AND $csrf_token){
 			if(in_array($zlkbmethod,$this->method_array)){
 				if($zlkbmethod == 'contact'){
-					if($this->config['querycontactswitch']>0){
-						$chapwd    = $this->getPost('chapwd');
-						if($chapwd){
+					if($zlkbmethod == "contact" AND isset($this->config['querycontactswitch']) AND $this->config['querycontactswitch']<0){
+						$data = array('code' => 1000, 'msg' => '当前查询方式已关闭');
+					}else{
+						$chapwd = $this->getPost('chapwd');
+						if($chapwd AND strlen($chapwd)>0){
 							if ($this->VerifyCsrfToken($csrf_token)) {
 								if(isset($this->config['orderinputtype']) AND $this->config['orderinputtype']=='2'){
 									$qq = $this->getPost('qq');
@@ -123,8 +125,6 @@ class QueryController extends PcBasicController
 						}else{
 							$data = array('code' => 1000, 'msg' => '丢失参数');
 						}
-					}else{
-						$data = array('code' => 1000, 'msg' => '当前查询方式已关闭');
 					}
 				//订单号查询	
 				}elseif($zlkbmethod == 'orderid'){
