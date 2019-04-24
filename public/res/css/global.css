@@ -639,12 +639,13 @@ body .fly-user-main{position: relative; min-height: 600px;}
 /*20181231 新增首页列表*/
 .goodsdetail{}
 .goodsdetail-img{}
+.product-list-two-view>* {padding: 15px;}
 .goodsdetail-container {background: #fff;border: 1px solid #ededed;}
 .goodsdetail-container img {width: 100%;}
 .goodsdetail-text {padding: 10px;}
 .goodsdetail-text .title {margin-top: 6px;text-overflow: ellipsis;white-space: nowrap;font-size: 14px;line-height: 20px;width: 100%;overflow: hidden;color: #666;}
 .goodsdetail-text .price {color: #F40;font-size: 16px;margin-right: 20px;font-family: arial; letter-spacing: 0.8px;font-weight: 700;display: inline-block;}
-.goodsdetail-text .kucun {float: right;color: #888;}
+.goodsdetail-text .kucun {font-size: 12px;float: right;color: #888;}
 /*20190102 新增移动端*/
 .goodslist-mobile{line-height: 24px;}
 .goodsdetail-mobile{background: #fff;border-bottom: 1px solid #dbdbdb;padding: 10px;position: relative;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;}
