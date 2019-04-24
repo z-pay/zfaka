@@ -10,7 +10,7 @@
         <div class="layui-card layui-form-pane">
             <div class="layui-card-header layui-hide-xs">商品列表</div>
 			<div class="layui-tab-brief layui-hide-md"><ul class="layui-tab-title"><li class="layui-this">商品列表</li><li class=""><a href="/product/query">查询订单</a></li></ul></div>
-            <div class="layui-card-body">
+            <div class="goodslist-mobile">
 				<div class="layui-row layui-col-space30" id ="product-list-two-view"></div>
 				<div id="more" class="layui-row"></div>
 			</div>
@@ -34,15 +34,31 @@
 					</a>
 				</div>
 				<div class="goodsdetail-text">
-					<p class="price"><b>￥{{ item.price}}</b></p>
-					<p class="info">
+					<!-- 第一行 -->
+					<div class="row">
+						<div class="price"><b>￥{{ item.price}}</b></div>
+						<div class="kucun">
+							{{#  if(item.stockcontrol=="1"){ }}
+								{{#  if(item.qty=="0"){ }}
+									库存不足
+								{{# }else{ }}
+									库存:{{ item.qty}}
+								{{#  } }}
+							{{# }else{ }}
+								不限量
+							{{#  } }}
+						</div>
+					</div>
+					
+					<div class="title">
 						{{#  if(item.auto=="1"){ }}
 							<span class="layui-badge layui-bg-green">自动发货</span>
 						{{# }else{ }}
 							<span class="layui-badge layui-bg-black">手工发货</span>
 						{{#  } }} 
 						{{ item.name}}
-					</p>	
+					</div>	
+					
 				</div>
 			</div>
 		</div>
@@ -66,7 +82,7 @@
                 </div>
                 <div class="goodsdetail-mobile-text">
                     <p class="price"><b>￥{{ item.price}}</b></p>
-					<p class="info">{{ item.name}}</p>
+					<p class="title">{{ item.name}}</p>
                 </div>
             </div>
 		</div>

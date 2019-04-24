@@ -638,19 +638,19 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .trade-youhui {background-color: #fff2e9;padding: 10px; margin-bottom: 5px;padding-left: 35px;}
 /*20181231 新增首页列表*/
 .goodsdetail{}
-.goodsdetail-img{padding: 10px;}
-.goodsdetail-container {background: #fff;border: 1px dashed #d2d2d2;}
+.goodsdetail-img{}
+.goodsdetail-container {background: #fff;border: 1px solid #ededed;}
 .goodsdetail-container img {width: 100%;}
 .goodsdetail-text {padding: 10px;}
-.goodsdetail-text .info {text-overflow: ellipsis;white-space: nowrap;font-size: 14px;line-height: 20px;width: 100%;overflow: hidden;color: #666;}
-.goodsdetail-text .price {color: red;font-size: 14px;}
-.goodsdetail-text .price b {margin-right: 20px;}
-.goodsdetail-text .price p {display: inline-block;}
+.goodsdetail-text .title {margin-top: 6px;text-overflow: ellipsis;white-space: nowrap;font-size: 14px;line-height: 20px;width: 100%;overflow: hidden;color: #666;}
+.goodsdetail-text .price {color: #F40;font-size: 16px;margin-right: 20px;font-family: arial; letter-spacing: 0.8px;font-weight: 700;display: inline-block;}
+.goodsdetail-text .kucun {float: right;color: #888;}
 /*20190102 新增移动端*/
-.goodsdetail-mobile{background: #fff;border: 1px dashed #d2d2d2;padding: 10px;position: relative;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;}
+.goodslist-mobile{line-height: 24px;}
+.goodsdetail-mobile{background: #fff;border-bottom: 1px solid #dbdbdb;padding: 10px;position: relative;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;}
 .goodsdetail-mobile-img{position: relative;margin-right: 10px;}
 .goodsdetail-mobile-img img{width: 50px;display: block;}
 .goodsdetail-mobile-text{-webkit-box-flex: 1;-webkit-flex: 1;flex: 1;overflow: hidden;}
-.goodsdetail-mobile-text .info{text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+.goodsdetail-mobile-text .title{line-height: 22px;margin-bottom: 3px;position: relative; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-break: break-all;color: #4b566a;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .goodsdetail-mobile-text .price{color: red;font-size: 13px;}
 .goodsdetail-mobile-btn {}
