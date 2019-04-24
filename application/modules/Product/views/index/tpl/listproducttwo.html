@@ -67,14 +67,9 @@
 					</a>
                 </div>
                 <div class="goodsdetail-mobile-text">
-                    <p class="info">{{ item.name}}</p>
                     <p class="price"><b>￥{{ item.price}}</b></p>
+					<p class="info">{{ item.name}}</p>
                 </div>
-				{{#  if(item.stockcontrol=="1" && item.qty=="0"){ }}
-				<div class="goodsdetail-mobile-btn"><a class="layui-btn layui-btn-xs layui-btn-disabled" href="javascript:;">购买</a></div>
-				{{# }else{ }}
-				<div class="goodsdetail-mobile-btn"><a class="layui-btn layui-btn-xs" href="/product/{{item.id}}.html">购买</a></div>
-				{{#  } }} 
             </div>
 		</div>
 	{{#  }); }}
