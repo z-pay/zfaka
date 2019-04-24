@@ -25,7 +25,7 @@ layui.define(['layer','jquery','laytpl','element','flow'], function(exports){
 					$("#product-list-two-view").attr("class", "layui-row layui-col-space10");
 				}else{
 					getTpl = product_list_two_tpl.innerHTML;
-					$("#product-list-two-view").attr("class", "layui-row layui-col-space30");
+					$("#product-list-two-view").attr("class", "layui-row product-list-two-view");
 				}
 				laytpl(getTpl).render(res, function(html){
 					$("#product-list-two-view").append(html);
