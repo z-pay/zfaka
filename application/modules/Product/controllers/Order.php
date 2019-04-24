@@ -32,12 +32,19 @@ class OrderController extends PcBasicController
 		$addons = $this->getPost('addons');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
-		$chapwd_string = new \Safe\MyString($chapwd);
-		$chapwd = $chapwd_string->trimall()->qufuhao2()->getValue();
-		
-		
-		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND strlen($chapwd)>0 AND $csrf_token){
+		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND  AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				
+				if(isset($config['querycontactswitch']) AND $config['querycontactswitch']>0){
+					if($chapwd AND strlen($chapwd)>0){
+						$chapwd_string = new \Safe\MyString($chapwd);
+						$chapwd = $chapwd_string->trimall()->qufuhao2()->getValue();	
+					}else{
+						$data = array('code' => 1006, 'msg' => '丢失参数');
+						Helper::response($data);
+					}
+				}
+				
 				if(isset($this->config['orderinputtype']) AND $this->config['orderinputtype']=='2'){
 					if($this->login AND $this->userid){
 						$email = $this->uinfo['email'];

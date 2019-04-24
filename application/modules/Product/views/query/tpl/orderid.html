@@ -13,7 +13,7 @@
 							<ul class="layui-tab-title">
 								<li><a href="/product/query/?zlkbmethod=cookie">浏览器缓存</a></li>
 								<li class="layui-this">订单号</a></li>
-								<li><a href="/product/query/?zlkbmethod=contact">联系方式</a></li>
+								<?php if(isset($config['querycontactswitch']) AND $config['querycontactswitch']>0):?><li><a href="/product/query/?zlkbmethod=contact">联系方式</a></li><?php endif;?>
 							</ul>
 							<div class="layui-tab-content">
 								<div class="layui-tab-item layui-show">
