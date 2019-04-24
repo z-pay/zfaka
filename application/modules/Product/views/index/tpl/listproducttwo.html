@@ -35,7 +35,14 @@
 				</div>
 				<div class="goodsdetail-text">
 					<p class="price"><b>￥{{ item.price}}</b></p>
-					<p class="info">{{ item.name}}</p>
+					<p class="info">
+						{{#  if(item.auto=="1"){ }}
+							<span class="layui-badge layui-bg-green">自动发货</span>
+						{{# }else{ }}
+							<span class="layui-badge layui-bg-black">手工发货</span>
+						{{#  } }} 
+						{{ item.name}}
+					</p>	
 				</div>
 			</div>
 		</div>

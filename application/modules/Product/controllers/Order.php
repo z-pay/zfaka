@@ -35,7 +35,7 @@ class OrderController extends PcBasicController
 		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND  AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				
-				if(isset($config['querycontactswitch']) AND $config['querycontactswitch']>0){
+				if(isset($this->config['querycontactswitch']) AND $this->config['querycontactswitch']>0){
 					if($chapwd AND strlen($chapwd)>0){
 						$chapwd_string = new \Safe\MyString($chapwd);
 						$chapwd = $chapwd_string->trimall()->qufuhao2()->getValue();	
