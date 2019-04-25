@@ -32,7 +32,7 @@ class OrderController extends PcBasicController
 		$addons = $this->getPost('addons');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
-		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0  AND  AND $csrf_token){
+		if(is_numeric($pid) AND $pid>0 AND is_numeric($number) AND $number>0 AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				
 				if(isset($this->config['querycontactswitch']) AND $this->config['querycontactswitch']>0){
