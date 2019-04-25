@@ -12,11 +12,28 @@
 		$(".layui-input-inline").attr("class", "layui-input-block");
 	}
 	
+	//判断是否为数字
+	function isNotANumber(inputData) {
+	　　if (parseFloat(inputData).toString() == "NaN") {
+	　　　　return false;
+	　　} else {
+	　　　　return true;
+	　　}
+	}
+	
 	//订单金额
     $("#number").on('input',function(e){
 		var stockcontrol = Number($('#stockcontrol').val());
-		var number = Number($('#number').val());
+		var number = $('#number').val();
 		var qty = Number($('#qty').val());
+		
+		if(isNotANumber(number)){
+			if(number<1){
+				number =1;
+				$('#number').val(1);
+			}
+		}
+		
 		if(stockcontrol>0){
 			if(number>qty){
 				$('#number').val(qty);
