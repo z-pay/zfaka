@@ -57,11 +57,15 @@
 						{{#  if(item.auto=="1"){ }}
 							<span class="layui-badge layui-bg-green">自动发货</span>
 						{{# }else{ }}
-							<span class="layui-badge layui-bg-black">手工发货</span>
+							<span class="layui-badge layui-bg-gray">手工发货</span>
 						{{#  } }} 
 						
 						{{#  if(item.iszhekou=="1"){ }}
 						<span class="layui-badge layui-bg-orange">有折扣</span>
+						{{#  } }} 
+						
+						{{#  if(item.password.length>0){ }}
+						<span class="layui-badge layui-bg-black">密码</span>
 						{{#  } }} 
 					</div>
 					
@@ -94,11 +98,15 @@
 						{{#  if(item.auto=="1"){ }}
 							<span class="layui-badge layui-bg-green">自动发货</span>
 						{{# }else{ }}
-							<span class="layui-badge layui-bg-black">手工发货</span>
+							<span class="layui-badge layui-bg-gray">手工发货</span>
 						{{#  } }} 
 						
 						{{#  if(item.iszhekou=="1"){ }}
 						<span class="layui-badge layui-bg-orange">有折扣</span>
+						{{#  } }} 
+						
+						{{#  if(item.password.length>0){ }}
+						<span class="layui-badge layui-bg-black">密码</span>
 						{{#  } }} 
 					</p>
                 </div>
