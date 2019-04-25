@@ -81,15 +81,14 @@
 {{# }else{ }}
 	{{# layui.each(d.data, function(index, item){ }}
 		<div class="layui-col-md3 layui-col-sm4 goodsdetail">
+			<a href="/product/{{item.id}}.html">
 			<div class="goodsdetail-mobile">
                 <div class="goodsdetail-mobile-img">
-					<a href="/product/{{item.id}}.html">
 					{{#  if(item.imgurl.length === 0){ }}
 						<img src="/res/images/noimg.jpg"> 
 					{{# }else{ }}
 						<img src="{{ item.imgurl}}"> 
 					{{#  } }} 
-					</a>
                 </div>
                 <div class="goodsdetail-mobile-text">
                     <p class="price"><b>￥{{ item.price}}</b></p>
@@ -111,6 +110,7 @@
 					</p>
                 </div>
             </div>
+			</a>
 		</div>
 	{{#  }); }}
 {{#  } }} 
