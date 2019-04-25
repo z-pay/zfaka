@@ -54,21 +54,25 @@ class ProductspifaController extends AdminBasicController
 		
 		if($pid AND is_numeric($pid) AND $pid>0){
 			$where = array('pid'=>$pid,'isdelete'=>0);
-			$total=$this->m_products_pifa->Where($where)->Total();
-			
+			$total = $this->m_products_pifa->Where($where)->Total();
 			if ($total > 0) {
 				if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
 					$pagenum = ($page - 1) * $limit;
 				} else {
 					$pagenum = 0;
 				}
-				
 				$limits = "{$pagenum},{$limit}";
-				
-				$items=$this->m_products_pifa->Where($where)->Limit($limits)->Order(array('qty'=>'ASC'))->Select();
+				$items = $this->m_products_pifa->Where($where)->Limit($limits)->Order(array('qty'=>'ASC'))->Select();
+				$product = $this->m_products->SelectByID('',$pid);
 				if (empty($items)) {
+					if($product['iszhekou']>0){
+						$this->m_products->UpdateByID(array('iszhekou'=>0),$pid);
+					}
 					$data = array('code'=>1002,'count'=>0,'data'=>array(),'msg'=>'无数据');
 				} else {
+					if($product['iszhekou']<1){
+						$this->m_products->UpdateByID(array('iszhekou'=>1),$pid);
+					}
 					$data = array('code'=>0,'count'=>$total,'data'=>$items,'msg'=>'有数据');
 				}
 			} else {
@@ -178,6 +182,8 @@ class ProductspifaController extends AdminBasicController
 					}else{
 						$data = array('code' => 1003, 'msg' => '更新失败');
 					}
+					//更新商品状态
+					$this->m_products->UpdateByID(array('iszhekou'=>1),$pid);
 				}elseif($method == 'add'){
 					if($pid<0){
 						$data = array('code' => 1001, 'msg' => '商品ID错误');
@@ -188,6 +194,8 @@ class ProductspifaController extends AdminBasicController
 					$u = $this->m_products_pifa->Insert($m);
 					if($u){
 						$data = array('code' => 1, 'msg' => '新增成功');
+						//更新商品状态
+						$this->m_products->UpdateByID(array('iszhekou'=>1),$pid);
 					}else{
 						$data = array('code' => 1003, 'msg' => '新增失败');
 					}
@@ -215,6 +223,8 @@ class ProductspifaController extends AdminBasicController
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				$delete = $this->m_products_pifa->UpdateByID(array('isdelete'=>1),$id);
 				if($delete){
+					$where = array('pid'=>$pid,'isdelete'=>0);
+					$total = $this->m_products_pifa->Where($where)->Total();
 					$data = array('code' => 1, 'msg' => '删除成功', 'data' => '');
 				}else{
 					$data = array('code' => 1003, 'msg' => '删除失败', 'data' => '');

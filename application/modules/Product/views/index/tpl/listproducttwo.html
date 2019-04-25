@@ -40,7 +40,7 @@
 						<div class="kucun">
 							{{#  if(item.stockcontrol=="1"){ }}
 								{{#  if(item.qty=="0"){ }}
-									库存不足
+									缺货中
 								{{# }else{ }}
 									库存:{{ item.qty}}
 								{{#  } }}
@@ -51,13 +51,20 @@
 					</div>
 					
 					<div class="title">
+						{{ item.name}}
+					</div>	
+					
+					<div class="biaozhi">
 						{{#  if(item.auto=="1"){ }}
 							<span class="layui-badge layui-bg-green">自动发货</span>
 						{{# }else{ }}
 							<span class="layui-badge layui-bg-black">手工发货</span>
 						{{#  } }} 
-						{{ item.name}}
-					</div>	
+						
+						{{#  if(item.iszhekou=="1"){ }}
+						<span class="layui-badge layui-bg-orange">有折扣</span>
+						{{#  } }} 
+					</div>
 					
 				</div>
 			</div>
