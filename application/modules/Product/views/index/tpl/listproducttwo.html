@@ -23,15 +23,14 @@
 {{# }else{ }}
 	{{# layui.each(d.data, function(index, item){ }}
 		<div class="layui-col-md3 layui-col-sm4 goodsdetail">
+			<a href="/product/{{item.id}}.html">
 			<div class="goodsdetail-container">
 				<div class="goodsdetail-img">
-					<a href="/product/{{item.id}}.html">
 						{{#  if(item.imgurl.length === 0){ }}
 							<img src="/res/images/noimg.jpg"> 
 							{{# }else{ }}
 							<img src="{{ item.imgurl}}"> 
 						{{#  } }} 
-					</a>
 				</div>
 				<div class="goodsdetail-text">
 					<!-- 第一行 -->
@@ -68,6 +67,7 @@
 					
 				</div>
 			</div>
+			</a>
 		</div>
 	{{#  }); }}
 {{#  } }} 
@@ -90,6 +90,17 @@
                 <div class="goodsdetail-mobile-text">
                     <p class="price"><b>￥{{ item.price}}</b></p>
 					<p class="title">{{ item.name}}</p>
+					<p class="biaozhi"> 
+						{{#  if(item.auto=="1"){ }}
+							<span class="layui-badge layui-bg-green">自动发货</span>
+						{{# }else{ }}
+							<span class="layui-badge layui-bg-black">手工发货</span>
+						{{#  } }} 
+						
+						{{#  if(item.iszhekou=="1"){ }}
+						<span class="layui-badge layui-bg-orange">有折扣</span>
+						{{#  } }} 
+					</p>
                 </div>
             </div>
 		</div>
