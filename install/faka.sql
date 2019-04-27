@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `t_products` (
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除',
   `imgurl` text NOT NULL DEFAULT '' COMMENT '产品图片',
-  `iszhekou` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0无折扣,1有折扣',
+  `iszhekou` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0无折扣,1有折扣'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
