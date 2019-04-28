@@ -154,7 +154,7 @@ class QueryController extends PcBasicController
 							$ip = getClientIP();
 							$order = $this->m_order->Where(array('orderid'=>$orderid,'isdelete'=>0,'ip'=>$ip))->Where("addtime>={$starttime}")->Order(array('id'=>'desc'))->Select();
 							if(empty($order)){
-								$data=array('code'=>1005,'msg'=>'订单不存在(最近1个月)');
+								$data=array('code'=>1005,'msg'=>'订单不存在/当前IP与下单IP不符(最近1个月)');
 							}else{
 								$data=array('code'=>1,'msg'=>'查询成功','data'=>$order,'count'=>count($order));
 							}
