@@ -30,12 +30,11 @@
 
 * 官方接口－微信H5支付
 
+* 四方接口－收款宝---[资料空白出品-必属精品](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
+
 * 四方接口－码支付
 
-* 四方接口－有赞支付[有赞云(听说新注册账户已经不支持申请API接口了)－支付API开通教程](https://github.com/zlkbdotnet/zfaka/wiki/%E6%9C%89%E8%B5%9E%E4%BA%91%EF%BC%8D%E6%94%AF%E4%BB%98API%E5%BC%80%E9%80%9A%E6%95%99%E7%A8%8B)
-
-* 四方接口－收款宝[收款宝](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
-
+* 四方接口－有赞支付[听说凉凉了]
 
 # 二、系统部署
 >**友情提示：很多人安装失败都是因为没有仔细看所有的wiki，所以请仔细看完所有的wiki再操作**
