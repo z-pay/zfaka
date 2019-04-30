@@ -22,15 +22,19 @@
 * 包含设置模块、订单模块、商品模块、配置模块、卡密导入导出等；后台可对首页模版进行切换，验证码、注册、登录、找回密码进行后台开关控制；
 	
 1.4 支付渠道
-* 支付宝当面付(官方接口)
+* 官方接口－支付宝当面付
 
-* 支付宝即时到账(官方接口)
+* 官方接口－支付宝电脑网站支付
 
-* 码支付(第三方辅助工具)
+* 官方接口－微信扫码支付
 
-* 有赞支付(第三方支付平台)---[有赞云(听说新注册账户已经不支持申请API接口了)－支付API开通教程](https://github.com/zlkbdotnet/zfaka/wiki/%E6%9C%89%E8%B5%9E%E4%BA%91%EF%BC%8D%E6%94%AF%E4%BB%98API%E5%BC%80%E9%80%9A%E6%95%99%E7%A8%8B)
+* 官方接口－微信H5支付
 
-* 强烈推荐，收款宝(第三方辅助工具)---[收款宝](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
+* 四方接口－码支付
+
+* 四方接口－有赞支付[有赞云(听说新注册账户已经不支持申请API接口了)－支付API开通教程](https://github.com/zlkbdotnet/zfaka/wiki/%E6%9C%89%E8%B5%9E%E4%BA%91%EF%BC%8D%E6%94%AF%E4%BB%98API%E5%BC%80%E9%80%9A%E6%95%99%E7%A8%8B)
+
+* 四方接口－收款宝[收款宝](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
 
 
 # 二、系统部署
@@ -119,7 +123,6 @@
 * 全国IDC行业精英群:572511758   
 * DirectAdmin用户交流群:337686498
 * 收款宝: [https://codepay.zlkb.net/](https://codepay.zlkb.net/)
-* 新的开源项目预告：[https://github.com/zlkbdotnet/zspay](https://github.com/zlkbdotnet/zspay)
 
 # 六、捐赠&打赏
 >捐赠名单：[查看名单](https://github.com/zlkbdotnet/zfaka/wiki/%E6%8D%90%E8%B5%A0%E5%90%8D%E5%8D%95)
