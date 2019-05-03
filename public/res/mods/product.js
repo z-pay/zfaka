@@ -24,7 +24,7 @@
 	//订单金额
     $("#number").on('input',function(e){
 		var stockcontrol = Number($('#stockcontrol').val());
-		var number = $('#number').val();
+		var number = Number($('#number').val());
 		var qty = Number($('#qty').val());
 		
 		if(isNotANumber(number)){
