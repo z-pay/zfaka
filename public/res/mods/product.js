@@ -24,10 +24,11 @@
 	//订单金额
     $("#number").on('input',function(e){
 		var stockcontrol = Number($('#stockcontrol').val());
-		var number = Number($('#number').val());
 		var qty = Number($('#qty').val());
+		var number_value = $('#number').val();
+		var number = Number(number_value);
 		
-		if(isNotANumber(number)){
+		if(isNotANumber(number_value)){
 			if(number<1){
 				number =1;
 				$('#number').val(1);
