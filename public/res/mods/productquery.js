@@ -71,7 +71,7 @@ layui.define(['layer', 'form','jquery','base64','laytpl','element'], function(ex
 					var html = "";
 					var list = res.data;
 					for (var i = 0, j = list.length; i < j; i++) {
-						html += '<textarea id="km">'+list[i]+'</textarea >';
+						html += '<p id="km">'+list[i]+'</p>';
 					}
 					layer.open({
 						type: 1
