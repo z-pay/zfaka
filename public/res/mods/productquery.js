@@ -71,7 +71,7 @@ layui.define(['layer', 'form','jquery','base64','laytpl','element'], function(ex
 					var html = "";
 					var list = res.data;
 					for (var i = 0, j = list.length; i < j; i++) {
-						html += '<p>'+list[i]+'</p>';
+						html += '<p id="km">'+list[i]+'</p>';
 					}
 					layer.open({
 						type: 1
@@ -79,12 +79,28 @@ layui.define(['layer', 'form','jquery','base64','laytpl','element'], function(ex
 						,offset: 'auto'
 						,id: 'layerDemoauto' //防止重复弹出
 						,content: '<div style="text-align: center;padding: 20px 100px;">'+html+'</div>'
-						,btn: '关闭'
+						,btn: ['复制卡密','关闭']
 						,btnAlign: 'c' //按钮居中
 						,shade: 0 //不显示遮罩
 						,yes: function(){
-						  layer.closeAll();
-						}
+							var copy = function (e) {
+								e.preventDefault();
+								var text = document.getElementById("km").innerHTML;
+								//console.log(text);
+								if (e.clipboardData) {
+									e.clipboardData.setData('text/plain', text);
+								} else if (window.clipboardData) {
+									window.clipboardData.setData('Text', text);
+								}
+							}
+							window.addEventListener('copy', copy);
+							document.execCommand('copy');
+							window.removeEventListener('copy', copy);
+							layer.msg("复制成功");
+						 }
+						 ,no: function(){
+							 layer.closeAll();
+						 }
 					});
                 } else {
 					layer.msg(res.msg,{icon:2,time:5000});
