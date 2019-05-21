@@ -1,4 +1,4 @@
-<?php include '../../common/header.html';?>
+<?php include $this->tplBase.'/common/header.html';?>
 <div class="layui-container fly-marginTop fly-user-main">
     <div class="layui-row">
 		<!-- 公告-->
@@ -44,7 +44,7 @@
 </script>
 <div id="layerad" style="display: none;"><?php echo $config['layerad'];?></div>
 <!--引入公共底文件-->
-<?php include '../../common/footer.html';?>
+<?php include $this->tplBase.'/common/footer.html';?>
 <script>
 layui.use('product-list');
 </script>

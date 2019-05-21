@@ -15,7 +15,7 @@ class PcBasicController extends BasicController
 	//登录标识
 	protected $login = FALSE;
 	//模版基础路径
-	protected $tpl = "";
+	protected $tplBase = "";
 	
     public $serverPrivateKey = "MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAPiKwTi/M+PNwqvKI37LyTDWF3sRDHuOariVfBpIEv3976jViWDsTHNL5oxd+D2mRqdty3KM3SySItPE2DCQj/j7FoDn7Gz+F34GiqOmGKoRIBZy4N6C2P4d7G2x2DtMk2dMwg6/ZMzXumuyeziEXUMnPlpIomroaTCGWPr2/tmxAgMBAAECgYEAjK3FNoCLN2sUwDX3J2Ljqx/TRJZe0WTIJVh/WUTocxmT2KWdT94QW8ZfZZ4ez45ZOZWc7WasHflNez5U/BAnXLH89XmCuAWdCUqbkDm7fD76qa0gO0ScQrZQ34fTkBYaW2EAM40Mqd8rCAEuCBu6JVkP7wnaAU1MeQEvmVtv0H0CQQD848oh3WYoWZacUmq84udlnbycRAySka/J8/VImYVmQ2O/i4Y/GAZOeHtjrtfNZAtOxCbAkpnpmZfdgoIx3bd3AkEA+5lGwc5krprOHFVsJLiWLLpV+aFBPD5IrATaJ6X+l6EAxl1gUhaGlz85r9Jy6HCGi6Mv07gmPmgzUVjb+XsSFwJAKtzhEcRY4FXu9Sfy93juB4coxMOz7dPLm8tBs8Bxn9ekPH8FjgQgbYR2RXsJEML4N61/c/xlIfbqipzoPFN8GQJBAMnp+ZoBvFVQEUc12sMhjAu7QtJCcmsZhRLgFf+pvMcNQ+Tt/SYDw+HPsMkEuIkH/UJFJVXhPHfrAfwvtuHhveMCQQCMXoBkqc8GhjaXPvW0ZJ2IVu+5lo/YhCG4GY2YsLPysA7XMJMwojuETHwcuqMJ2fXvIxrlGTLjGJmV9Bi7nebO";
     public $serverPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD4isE4vzPjzcKryiN+y8kw1hd7EQx7jmq4lXwaSBL9/e+o1Ylg7ExzS+aMXfg9pkanbctyjN0skiLTxNgwkI/4+xaA5+xs/hd+BoqjphiqESAWcuDegtj+Hextsdg7TJNnTMIOv2TM17prsns4hF1DJz5aSKJq6Gkwhlj69v7ZsQIDAQAB";
@@ -51,6 +51,7 @@ class PcBasicController extends BasicController
 		//模版基础路径赋值
 		if(isset($this->config['tpl'])){
 			$this->getView()->setScriptPath( APP_PATH."/templates/".$this->config['tpl']."/".$this->getRequest()->getModuleName());
+			$this->tplBase = APP_PATH."/templates/".$this->config['tpl'];
 		}
 		//防csrf攻击
 		$data['csrf_token'] = $this->createCsrfToken();
