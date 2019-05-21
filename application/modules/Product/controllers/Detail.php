@@ -42,13 +42,7 @@ class DetailController extends PcBasicController
 				
 				//如果是密码商品
 				if(strlen($product['password'])>0){
-					if($this->config['tplproduct']=="default"){
-						$tpl = "password";
-					}else{
-						$tpl = $this->config['tplproduct']."password";
-					}
-					
-
+					$tpl = "password";
 					$data['product'] = $product;
 					$data['title'] = $product['name']."_购买商品";
 					if($this->config['tplproduct']=="default"){
@@ -62,12 +56,7 @@ class DetailController extends PcBasicController
 				//否则
 					$data['product'] = $product;
 					$data['title'] = $product['name']."_购买商品";
-					if($this->config['tplproduct']=="default"){
-						$this->getView()->assign($data);
-					}else{
-						$this->display("tpl_".$this->config['tplproduct'], $data);
-						return FALSE;
-					}
+					$this->getView()->assign($data);
 				}
 			}else{
 				$this->redirect("/product/");
