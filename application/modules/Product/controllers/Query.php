@@ -54,13 +54,9 @@ class QueryController extends PcBasicController
 		}
 		
 		$data['title'] = "订单查询";
-		if(file_exists(APP_PATH.'/application/modules/Product/views/query/tpl/'.$zlkbmethod.'.html')){
-			$tpl = 'tpl_'.$zlkbmethod;
-			$this->display($tpl, $data);
-			return FALSE;
-		}else{
-			$this->getView()->assign($data);
-		}
+		$tpl = 'tpl_'.$zlkbmethod;
+		$this->display($tpl, $data);
+		return FALSE;
     }
 	
 	public function ajaxAction()

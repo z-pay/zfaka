@@ -24,15 +24,10 @@ class GroupController extends PcBasicController
 				//如果是密码分类
 				if(strlen($products_type['password'])>0){
 					$tpl = "password";
-					if(file_exists(APP_PATH.'/application/modules/Product/views/group/tpl/'.$tpl.'.html')){
-						$data['products_type'] = $products_type;
-						$data['title'] = $products_type['name']."_分类下的商品列表";
-						$this->display("tpl_".$tpl, $data);
-						return FALSE;
-					}else{
-						$this->redirect("/product/");
-						return FALSE;	
-					}
+					$data['products_type'] = $products_type;
+					$data['title'] = $products_type['name']."_分类下的商品列表";
+					$this->display("tpl_".$tpl, $data);
+					return FALSE;
 				}else{
 				//否则
 					$data['products_type'] = $products_type;

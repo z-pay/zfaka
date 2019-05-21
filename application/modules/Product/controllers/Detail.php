@@ -48,19 +48,15 @@ class DetailController extends PcBasicController
 						$tpl = $this->config['tplproduct']."password";
 					}
 					
-					if(file_exists(APP_PATH.'/application/modules/Product/views/detail/tpl/'.$tpl.'.html')){
-						$data['product'] = $product;
-						$data['title'] = $product['name']."_购买商品";
-						if($this->config['tplproduct']=="default"){
-							$this->display("tpl_".$tpl, $data);
-							return FALSE;
-						}else{
-							$this->display("tpl_".$tpl, $data);
-							return FALSE;
-						}
+
+					$data['product'] = $product;
+					$data['title'] = $product['name']."_购买商品";
+					if($this->config['tplproduct']=="default"){
+						$this->display("tpl_".$tpl, $data);
+						return FALSE;
 					}else{
-						$this->show_message('error','丢失模版','/product/');
-						return FALSE; 
+						$this->display("tpl_".$tpl, $data);
+						return FALSE;
 					}
 				}else{
 				//否则
