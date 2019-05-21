@@ -54,7 +54,7 @@ class QueryController extends PcBasicController
 		}
 		
 		$data['title'] = "订单查询";
-		$tpl = 'tpl_'.$zlkbmethod;
+		$tpl = $zlkbmethod;
 		$this->display($tpl, $data);
 		return FALSE;
     }
