@@ -14,7 +14,6 @@ define('LIB_PATH',     APP_PATH.'/application/library/');
 define('CORE_PATH',    LIB_PATH.'/Core/');
 define('MODEL_PATH',   APP_PATH.'/application/model/');
 define('FUNC_PATH',    APP_PATH.'/application/function/');
-define('COMMON_PATH',  APP_PATH.'/application/views/common/');
 define('ADMIN_COMMON_PATH', APP_PATH . '/application/modules/'.ADMIN_DIR.'/views/common/');
 define('TEMP_PATH',    APP_PATH.'/temp/');
 define('UPLOAD_PATH', APP_PATH.'/public/res/upload/');
