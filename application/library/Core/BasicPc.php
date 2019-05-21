@@ -51,7 +51,7 @@ class PcBasicController extends BasicController
 		//模版基础路径赋值
 		if(isset($this->config['tpl'])){
 			$this->getView()->setScriptPath( APP_PATH."/templates/".$this->config['tpl']."/".$this->getRequest()->getModuleName());
-			$this->tplBase = APP_PATH."/templates/".$this->config['tpl'];
+			$data['tplBase'] = $this->tplBase = APP_PATH."/templates/".$this->config['tpl'];
 		}
 		//防csrf攻击
 		$data['csrf_token'] = $this->createCsrfToken();
