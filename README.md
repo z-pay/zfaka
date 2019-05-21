@@ -39,7 +39,7 @@
 # 二、系统部署
 >**友情提示：很多人安装失败都是因为没有仔细看所有的wiki，所以请仔细看完所有的wiki再操作**
 
->**友情提示：感谢佰阅部落友情提供Docker版 [直达链接](https://github.com/Baiyuetribe/zfaka)
+>**友情提示：感谢佰阅部落友情提供Docker版 [直达链接](https://github.com/Baiyuetribe/zfaka)**
 
 ## 2.1 环境安装
 
