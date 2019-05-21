@@ -1,7 +1,6 @@
 <?php
-
 /*
- * 功能：会员中心－个人中心
+ * 功能：产品模块－默认首页
  * Author:资料空白
  * Date:20180509
  */
@@ -19,16 +18,13 @@ class IndexController extends PcBasicController
     {
 		if(file_exists(INSTALL_LOCK)){
 			$data = array();
-			if(isset($this->config['tplindex']) AND file_exists(APP_PATH.'/application/modules/Product/views/index/tpl/'.$this->config['tplindex'].'.html')){
-				$data['title'] = "购买商品";
-				$tpl = 'tpl_'.$this->config['tplindex'];
-				$this->display($tpl, $data);
+			$products_type = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order(array('sort_num' => 'DESC'))->Select();
+			$data['products_type'] = $products_type;
+			$data['title'] = "购买商品";
+			if($this->tpl){
+				$this->display($this->tpl, $data);
 				return FALSE;
 			}else{
-				$order = array('sort_num' => 'DESC');
-				$products_type = $this->m_products_type->Where(array('active'=>1,'isdelete'=>0))->Order($order)->Select();
-				$data['products_type'] = $products_type;
-				$data['title'] = "购买商品";
 				$this->getView()->assign($data);
 			}
 		}else{
