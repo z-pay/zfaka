@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `t_admin_user` (
 --
 
 INSERT INTO `t_admin_user` (`id`, `email`, `password`, `secret`, `updatetime`) VALUES
-(1, '43036456@qq.com', '76b1807fc1c914f15588520b0833fbc3', '78e055', 0);
+(1, 'demo@demo.com', '76b1807fc1c914f15588520b0833fbc3', '78e055', 0);
 
 -- --------------------------------------------------------
 
