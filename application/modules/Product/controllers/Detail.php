@@ -46,10 +46,10 @@ class DetailController extends PcBasicController
 					$data['product'] = $product;
 					$data['title'] = $product['name']."_购买商品";
 					if($this->config['tplproduct']=="default"){
-						$this->display("tpl_".$tpl, $data);
+						$this->display($tpl, $data);
 						return FALSE;
 					}else{
-						$this->display("tpl_".$tpl, $data);
+						$this->display($tpl, $data);
 						return FALSE;
 					}
 				}else{
