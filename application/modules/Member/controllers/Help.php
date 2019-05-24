@@ -6,7 +6,7 @@
  * Date:20180508
  */
 
-class IndexController extends MemberBasicController
+class HelpController extends MemberBasicController
 {
 
     private $m_help;
