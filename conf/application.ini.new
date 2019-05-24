@@ -17,7 +17,7 @@ application.dispatcher.defaultAction  = index
 application.view.ext                  = "html"
 
 ;声明存在的模块名,多个用,分隔
-application.modules                   = Index,Member,Help,Product,Admin,Crontab,Install
+application.modules                   = Index,Member,Product,Admin,Crontab,Install
 
 
 ; 生产环境

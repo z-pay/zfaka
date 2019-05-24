@@ -6,7 +6,7 @@
  * Date:20180509
  */
 
-class ProductController extends PcBasicController
+class ProductController extends MemberBasicController
 {
 	private $m_order;
     public function init()

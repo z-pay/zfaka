@@ -6,7 +6,7 @@
  * Date:20180509
  */
 
-class ProfilesController extends PcBasicController
+class ProfilesController extends MemberBasicController
 {
     private $m_user;
 	

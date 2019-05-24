@@ -1,18 +1,19 @@
 <?php
 
 /*
- * 功能：会员中心－日志中心
+ * 功能：帮助文档
  * Author:资料空白
- * Date:20150902
+ * Date:20180508
  */
 
-class LoggerController extends MemberBasicController
+class IndexController extends MemberBasicController
 {
-	private $m_user_login_logs;
-    public function init()
+
+    private $m_help;
+	public function init()
     {
         parent::init();
-		$this->m_user_login_logs = $this->load('user_login_logs');
+		$this->m_help = $this->load('help');
     }
 
     public function indexAction()
@@ -22,12 +23,10 @@ class LoggerController extends MemberBasicController
             return FALSE;
         }
 		$data = array();
-		$data['title'] = "登录日志";
+		$data['title'] = "帮助中心";
         $this->getView()->assign($data);
     }
-
 	
-	//登录日志ajax
 	public function ajaxAction()
 	{
         if ($this->login==FALSE AND !$this->userid) {
@@ -35,7 +34,8 @@ class LoggerController extends MemberBasicController
 			Helper::response($data);
         }
 		
-		$where = array('userid'=>$this->userid);
+		
+		$where = array('isactive'=>1);
 		
 		$page = $this->get('page');
 		$page = is_numeric($page) ? $page : 1;
@@ -43,7 +43,7 @@ class LoggerController extends MemberBasicController
 		$limit = $this->get('limit');
 		$limit = is_numeric($limit) ? $limit : 10;
 		
-		$total=$this->m_user_login_logs->Where($where)->Total();
+		$total=$this->m_help->Where($where)->Total();
 		
         if ($total > 0) {
             if ($page > 0 && $page < (ceil($total / $limit) + 1)) {
@@ -53,7 +53,7 @@ class LoggerController extends MemberBasicController
             }
 			
             $limits = "{$pagenum},{$limit}";
-			$items=$this->m_user_login_logs->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
+			$items=$this->m_help->Where($where)->Limit($limits)->Order(array('id'=>'DESC'))->Select();
 			
             if (empty($items)) {
                 $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
@@ -64,5 +64,25 @@ class LoggerController extends MemberBasicController
             $data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
         }
 		Helper::response($data);
+	}
+	
+	public function detailAction()
+	{
+        if ($this->login==FALSE AND !$this->userid) {
+            $this->redirect("/member/login");
+            return FALSE;
+        }
+		$id=$this->get('id');
+		if(is_numeric($id) AND $id>0){
+			$where = array('isactive'=>1);
+			$items=$this->m_help->Where($where)->SelectByID('',$id);
+			$data = array();
+			$data['items'] = $items;
+			$data['title'] = "帮助中心";
+			$this->getView()->assign($data);
+		}else{
+            $this->redirect("/member/help/");
+            return FALSE;
+		}
 	}
 }

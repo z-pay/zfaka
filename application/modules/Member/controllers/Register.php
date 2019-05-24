@@ -6,7 +6,7 @@
  * Date:20180528
  */
 
-class RegisterController extends PcBasicController
+class RegisterController extends MemberBasicController
 {
 
     private $m_user;

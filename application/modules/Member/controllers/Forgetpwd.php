@@ -6,7 +6,7 @@
  * Date:20150909
  */
 
-class ForgetpwdController extends PcBasicController
+class ForgetpwdController extends MemberBasicController
 {
 	private $m_user;
 	private $m_email_code;

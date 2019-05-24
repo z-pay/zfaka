@@ -15,7 +15,6 @@ class ErrorController extends BasicController
 		if($ip){
 			file_put_contents(REQUEST_FILE, $time.'-'.$ip.'-'.$msg.PHP_EOL, FILE_APPEND);	
 			$data['title']='系统异常';
-			$this->getView()->setScriptPath( APP_PATH."/templates");
 			$this->getView()->assign($data);
 		}else{
 			file_put_contents(LOG_FILE, $time.'-'.$msg.PHP_EOL, FILE_APPEND);

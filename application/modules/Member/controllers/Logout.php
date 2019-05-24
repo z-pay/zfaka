@@ -6,7 +6,7 @@
  * Date:20150902
  */
 
-class LogoutController extends PcBasicController
+class LogoutController extends MemberBasicController
 {
 
     public function init()

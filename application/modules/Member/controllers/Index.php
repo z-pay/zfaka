@@ -6,7 +6,7 @@
  * Date:20180509
  */
 
-class IndexController extends PcBasicController
+class IndexController extends MemberBasicController
 {
 
     public function init()

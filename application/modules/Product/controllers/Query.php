@@ -5,7 +5,7 @@
  * Date:20180509
  */
 
-class QueryController extends PcBasicController
+class QueryController extends ProductBasicController
 {
 	private $m_order;
 	private $method_array = array();

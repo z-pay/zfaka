@@ -6,7 +6,7 @@
  * Date:20180509
  */
 
-class GetController extends PcBasicController
+class GetController extends ProductBasicController
 {
 	private $m_products;
 	private $m_products_type;

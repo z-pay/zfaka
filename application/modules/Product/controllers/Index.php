@@ -5,7 +5,7 @@
  * Date:20180509
  */
 
-class IndexController extends PcBasicController
+class IndexController extends ProductBasicController
 {
 	private $m_products_type;
     public function init()

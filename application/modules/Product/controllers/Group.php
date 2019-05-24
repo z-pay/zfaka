@@ -5,7 +5,7 @@
  * Date:20181101
  */
 
-class GroupController extends PcBasicController
+class GroupController extends ProductBasicController
 {
 	private $m_products_type;
     public function init()

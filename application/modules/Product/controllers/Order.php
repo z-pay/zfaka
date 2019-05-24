@@ -5,7 +5,7 @@
  * Date:20180509
  */
 
-class OrderController extends PcBasicController
+class OrderController extends ProductBasicController
 {
 	private $m_products;
 	private $m_order;

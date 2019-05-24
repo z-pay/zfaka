@@ -6,7 +6,7 @@
  * Date:20180528
  */
 
-class LoginController extends PcBasicController
+class LoginController extends MemberBasicController
 {
 	private $m_user;
 	private $m_user_login_logs;

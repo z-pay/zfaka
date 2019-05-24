@@ -6,7 +6,7 @@
  * Date:20180707
  */
 
-class DetailController extends PcBasicController
+class DetailController extends ProductBasicController
 {
 	private $m_products;
 	private $m_products_pifa;

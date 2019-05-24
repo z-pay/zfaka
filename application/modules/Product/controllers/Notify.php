@@ -4,7 +4,7 @@
  * Author:资料空白
  * Date:20180509
  */
-class NotifyController extends PcBasicController
+class NotifyController extends ProductBasicController
 {
 	private $m_payment;
     public function init()
