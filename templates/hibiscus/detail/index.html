@@ -23,7 +23,8 @@
 								<p><?php if(isset($product['auto']) AND ($product['auto']>0) ):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-black">手工发货</span><?php endif;?>&nbsp;&nbsp;<span class="trade-goodname"><?php echo $product['name'];?></span></p><hr>
 								<p class="trade-goodinfo">
 									<span style="color:#6c6c6c">价格：</span>
-									<span class="trade-price"><?php echo $product['price'];?></span>
+									<span class="trade-price">¥ <?php echo $product['price'];?></span>
+									<?php if(isset($product['price_ori']) AND $product['price_ori']>0):?><span class="trade-price-ori">¥ <?php echo $product['price_ori'];?></span><?php endif;?>
 								</p> 
 								
 								<?php if(strlen($pifa)>0):?>

@@ -651,3 +651,5 @@ body .fly-user-main{position: relative; min-height: 600px;}
 .goodsdetail-mobile-text .title{line-height: 22px;margin-bottom: 3px;position: relative; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;word-break: break-all;color: #4b566a;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
 .goodsdetail-mobile-text .price{color: red;font-size: 13px;}
 .goodsdetail-mobile-btn {}
+/*20190524 原价*/
+.trade-price-ori{text-decoration: line-through;padding-left: 10px;}

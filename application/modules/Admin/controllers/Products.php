@@ -194,8 +194,9 @@ class ProductsController extends AdminBasicController
 		$password = $this->getPost('password',false);
 		$description = $this->getPost('description',false);
 		$stockcontrol = $this->getPost('stockcontrol',false);
-		$qty = $this->getPost('qty',false);
-		$price = $this->getPost('price',false);
+		$qty = $this->getPost('qty');
+		$price = $this->getPost('price');
+		$price_ori = $this->getPost('price_ori');
 		$auto = $this->getPost('auto',false);
 		$addons = $this->getPost('addons',false);
 		$active = $this->getPost('active',false);
@@ -225,6 +226,7 @@ class ProductsController extends AdminBasicController
 					'stockcontrol'=>$stockcontrol,
 					'qty'=>$qty,
 					'price'=>$price,
+					'price_ori'=>$price_ori,
 					'auto'=>$auto,
 					'addons'=>$addons,
 					'active'=>$active,
