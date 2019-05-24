@@ -7,7 +7,7 @@ layui.define(['layer', 'table', 'element'], function(exports){
 
 	table.render({
 		elem: '#question',
-		url: '/member/help/index/ajax',
+		url: '/member/help/ajax',
 		page: true,
 		cols: [[
 			{field: 'title', title: '常见问题'},
