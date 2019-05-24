@@ -48,7 +48,7 @@
 								,area: '300px;'
 								,shade: 0.8
 								,id: 'LAY_layuipro'
-								,btn: ['点击支付', '放弃支付']
+								,btn: ['点击跳转', '放弃支付']
 								,btnAlign: 'c'
 								,moveType: 1 //拖拽模式，0或者1
 								,content: html
