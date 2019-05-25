@@ -42,9 +42,9 @@ class DetailController extends ProductBasicController
 				
 				//显示库存字段－处理虚拟库存与真实库存
 				if($product['qty_switch']>0){
-					$qty = $product['qty_virtual']
+					$qty = $product['qty_virtual'];
 				}else{
-					$qty = $product['qty']
+					$qty = $product['qty'];
 				}
 				$data['qty'] = $qty;
 				
