@@ -72,6 +72,28 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
+                            <label class="layui-form-label">虚拟开关</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="qty_switch" value="0" title="关" <?php if($product['qty_switch']=='0' ):?>checked=""<?php endif;?>>
+                                <input type="radio" name="qty_switch" value="1" title="开" <?php if($product['qty_switch']=='1' ):?>checked=""<?php endif;?>>
+                            </div>
+							<div class="layui-form-mid layui-word-aux">虚拟开关，关：显示真实库存；开：显示虚拟库存</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="qty_virtual" class="layui-form-label">虚拟库存</label>
+                            <div class="layui-input-inline">
+                                <input type="number" id="qty_virtual" name="qty_virtual" lay-verify="required" autocomplete="off" value="<?php echo $product['qty_virtual'];?>" class="layui-input">
+                            </div>
+							<div class="layui-form-mid layui-word-aux">虚拟库存可随意修改，每销售一笔销量会变更</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="qty_sell" class="layui-form-label">销量</label>
+                            <div class="layui-input-inline">
+                                <input type="number" id="qty_sell" name="qty_sell" lay-verify="required" autocomplete="off" value="<?php echo $product['qty_sell'];?>" class="layui-input">
+                            </div>
+							<div class="layui-form-mid layui-word-aux">销量可随意修改，每销售一笔销量会变更</div>
+                        </div>
+                        <div class="layui-form-item">
                             <label for="price" class="layui-form-label">单价</label>
                             <div class="layui-input-inline">
                                 <input type="number" id="price" name="price" lay-verify="required" autocomplete="off" value="<?php echo $product['price'];?>" class="layui-input">

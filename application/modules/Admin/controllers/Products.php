@@ -195,6 +195,9 @@ class ProductsController extends AdminBasicController
 		$description = $this->getPost('description',false);
 		$stockcontrol = $this->getPost('stockcontrol',false);
 		$qty = $this->getPost('qty');
+		$qty_switch = $this->getPost('qty_switch');
+		$qty_virtual = $this->getPost('qty_virtual');
+		$qty_sell = $this->getPost('qty_sell');
 		$price = $this->getPost('price');
 		$price_ori = $this->getPost('price_ori');
 		$auto = $this->getPost('auto',false);
@@ -225,6 +228,9 @@ class ProductsController extends AdminBasicController
 					'description'=>htmlspecialchars($description),
 					'stockcontrol'=>$stockcontrol,
 					'qty'=>$qty,
+					'qty_switch'=>$qty_switch,
+					'qty_virtual'=>$qty_virtual,
+					'qty_sell'=>$qty_sell,
 					'price'=>$price,
 					'price_ori'=>$price_ori,
 					'auto'=>$auto,
