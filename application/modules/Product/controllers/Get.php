@@ -59,11 +59,14 @@ class GetController extends ProductBasicController
 					if (empty($items)) {
 						$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
 					} else {
-						//对密码进行特别处理
+						//对密码与库存做特别处理
 						if(!empty($items)){
 							foreach($items AS $k=>$p){
 								if(isset($p['password']) AND strlen($p['password'])>0){
 									$items[$k]['password'] = "hidden";
+								}
+								if($p['qty_switch']>0){
+									$items[$k]['qty'] = $p['qty_virtual']
 								}
 							}
 						}
@@ -93,11 +96,14 @@ class GetController extends ProductBasicController
 					if (empty($items)) {
 						$data = array('code'=>0,'count'=>0,'data'=>array(),'msg'=>'无数据');
 					} else {
-						//对密码进行特别处理
+						//对密码与库存做特别处理
 						if(!empty($items)){
 							foreach($items AS $k=>$p){
 								if(isset($p['password']) AND strlen($p['password'])>0){
 									$items[$k]['password'] = "hidden";
+								}
+								if($p['qty_switch']>0){
+									$items[$k]['qty'] = $p['qty_virtual']
 								}
 							}
 						}

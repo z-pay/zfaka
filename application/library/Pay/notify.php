@@ -73,7 +73,7 @@ class notify
 										//3.1.2.1 直接进行密码与订单的关联
 										$m_products_card->Where("id in ({$card_id_str})")->Where(array('active'=>0))->Update(array('active'=>1));
 										//3.1.2.2 然后进行库存清减
-										$qty_m = array('qty' => 'qty-'.$order['number']);
+										$qty_m = array('qty' => 'qty-'.$order['number'],'qty_virtual' => 'qty_virtual-'.$order['number'],'qty_sell'=>'qty_sell+'.$order['number']);
 										$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
 										$kucunNotic=";当前商品库存剩余:".($product['qty']-$order['number']);
 									}else{
@@ -137,7 +137,7 @@ class notify
 								//4.手工操作
 								//4.1如果商品有进行库存控制，就减库存
 								if($product['stockcontrol']>0){
-									$qty_m = array('qty' => 'qty-'.$order['number']);
+									$qty_m = array('qty' => 'qty-'.$order['number'],'qty_virtual' => 'qty_virtual-'.$order['number'],'qty_sell'=>'qty_sell+'.$order['number']);
 									$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
 								}
 								//4.2邮件通知写到消息队列中，然后用定时任务去执行即可
