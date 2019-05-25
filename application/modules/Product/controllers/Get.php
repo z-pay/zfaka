@@ -66,7 +66,7 @@ class GetController extends ProductBasicController
 									$items[$k]['password'] = "hidden";
 								}
 								if($p['qty_switch']>0){
-									$items[$k]['qty'] = $p['qty_virtual']
+									$items[$k]['qty'] = $p['qty_virtual'];
 								}
 							}
 						}
@@ -103,7 +103,7 @@ class GetController extends ProductBasicController
 									$items[$k]['password'] = "hidden";
 								}
 								if($p['qty_switch']>0){
-									$items[$k]['qty'] = $p['qty_virtual']
+									$items[$k]['qty'] = $p['qty_virtual'];
 								}
 							}
 						}
