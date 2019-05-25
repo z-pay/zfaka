@@ -39,7 +39,7 @@
 									<div class="layui-input-inline">
 										<input type="number" name="number" id="number" lay-verify="required|numberCheck" maxlength=10 value="1" placeholder="" autocomplete="off" class="layui-input">
 									</div>
-									<div class="layui-form-mid layui-word-aux layui-hide-xs">件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($qty>0):?><?php echo $qty;?><?php else:?>库存不足<?php endif;?><?php else:?>不限量<?php endif;?>)</div>
+									<div class="layui-form-mid layui-word-aux layui-hide-xs">件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>缺货中<?php endif;?><?php else:?>不限量<?php endif;?>)</div>
 								</div>							
 								<?php if($login):?>
 								<div class="layui-form-item">

@@ -40,13 +40,10 @@ class DetailController extends ProductBasicController
 					$data['addons'] = array();
 				}
 				
-				//显示库存字段－处理虚拟库存与真实库存
+				//库存字段－处理虚拟库存与真实库存
 				if($product['qty_switch']>0){
-					$qty = $product['qty_virtual'];
-				}else{
-					$qty = $product['qty'];
+					$product['qty'] = $product['qty_virtual'];
 				}
-				$data['qty'] = $qty;
 				
 				//如果是密码商品
 				if(strlen($product['password'])>0){
