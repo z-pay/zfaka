@@ -59,6 +59,7 @@ layui.define(['layer', 'table'], function(exports){
 									{field: 'name', title: '商品名称',templet: '#name',minWidth:120},
 									{field: 'price', title: '单价', width:80,},
 									{field: 'qty', title: '库存', width:80, templet: '#qty',align:'center'},
+									{field: 'qty_sell', title: '销量', width:80,align:'center'},
 									{field: 'auto', title: '发货模式', width:100, templet: '#auto',align:'center'},
 									{field: 'opt', title: '操作', width:120, templet: '#opt',align:'center',fixed: 'right'},
 								]],
