@@ -36,17 +36,7 @@
 					<!-- 第一行 -->
 					<div class="row">
 						<div class="price"><b>￥{{ item.price}}</b></div>
-						<div class="kucun">
-							{{#  if(item.stockcontrol=="1"){ }}
-								{{#  if(item.qty=="0"){ }}
-									缺货中
-								{{# }else{ }}
-									库存:{{ item.qty}}
-								{{#  } }}
-							{{# }else{ }}
-								不限量
-							{{#  } }}
-						</div>
+						<div class="kucun">{{ item.qty_sell}}人付款</div>
 					</div>
 					
 					<div class="title">
