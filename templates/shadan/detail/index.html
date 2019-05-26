@@ -101,19 +101,21 @@
 								</div>
 							</form>
                         </div>
+						
+
+						<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+							<ul class="layui-tab-title">
+								<li class="layui-this">商品描述</li>
+							</ul>
+							<div class="layui-tab-content" style="">
+								<div class="layui-tab-item layui-show">
+									<?php if(isset($product['description'])):?><?php echo htmlspecialchars_decode(htmlspecialchars_decode($product['description']));?><?php endif;?>
+								</div>	  
+							</div>
+						</div>
 					</div>
 				</div>
 
-			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-				<ul class="layui-tab-title">
-					<li class="layui-this">商品描述</li>
-				</ul>
-				<div class="layui-tab-content" style="">
-					<div class="layui-tab-item layui-show">
-						<?php if(isset($product['description'])):?><?php echo htmlspecialchars_decode(htmlspecialchars_decode($product['description']));?><?php endif;?>
-					</div>	  
-				</div>
-			</div>
         </div>
      </div>
 
