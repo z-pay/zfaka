@@ -25,6 +25,7 @@
 									<span style="color:#6c6c6c">价格：</span>
 									<span class="trade-price">¥ <?php echo $product['price'];?></span>
 									<?php if(isset($product['price_ori']) AND $product['price_ori']>0):?><span class="trade-price-ori">¥ <?php echo $product['price_ori'];?></span><?php endif;?>
+									<span class="trade-goodqty">库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>缺货中<?php endif;?><?php else:?>不限量<?php endif;?></span>
 								</p> 
 								
 								<?php if(strlen($pifa)>0):?>
@@ -39,7 +40,6 @@
 									<div class="layui-input-block">
 										<input type="number" name="number" id="number" lay-verify="required|numberCheck" maxlength=10 value="1" placeholder="" autocomplete="off" class="layui-input">
 									</div>
-									<div class="layui-form-mid layui-word-aux layui-hide-xs">件&nbsp;(库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>缺货中<?php endif;?><?php else:?>不限量<?php endif;?>)</div>
 								</div>							
 								<?php if($login):?>
 								<div class="layui-form-item">
