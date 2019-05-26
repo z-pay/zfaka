@@ -12,10 +12,15 @@
 
                 <div class="layui-row">
                     <div class="layui-col-xs12 layui-col-md4">
-                        <div class="layui-field-box">
-                            <p><img src="<?php if(strlen($product['imgurl'])>0):?><?php echo $product['imgurl'];?><?else:?>/templates/hyacinth/images/noimg.jpg<?php endif;?>" alt="" height="300px" width="100%"></p>
+						<div class="layui-card">
+							<div class="layui-card-body">
+								<div class="layui-field-box">
+									<p><img src="<?php if(strlen($product['imgurl'])>0):?><?php echo $product['imgurl'];?><?else:?>/templates/hyacinth/images/noimg.jpg<?php endif;?>" alt="" height="300px" width="100%"></p>
+								</div>					
+							</div>
 						</div>
                     </div>
+					
                     <div class="layui-col-xs12 layui-col-md8">
                         <div class="layui-field-box">
 							<form class="layui-form layui-form-pane" method="post">
