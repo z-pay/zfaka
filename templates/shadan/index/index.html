@@ -1,0 +1,58 @@
+<?php include '../templates/shadan/common/header.html';?>
+<div class="layui-container fly-marginTop fly-user-main">
+    <div class="layui-row">
+		<!-- 公告-->
+		<?php if(isset($config['notice']) AND $config['notice']):?>
+		<blockquote class="layui-elem-quote layui-text" style="background-color: #ffffff;">
+			<i class="layui-icon layui-icon-speaker"></i><?php echo $config['notice'];?>
+		</blockquote>
+		<?php endif;?>
+        
+		
+		
+		<?php if(!empty($products)):?>
+			<?php foreach($products_type AS $type):?>
+			<div class="layui-card">
+				<div class="layui-card-header"><?php echo $type['name'];?></div>
+				<div class="layui-card-body">
+					<table class="layui-table" lay-skin="line">
+						<colgroup>
+							<col width="150">
+							<col width="200">
+							<col>
+						</colgroup>
+						<thead>
+							<tr>
+								<th>商品名称</th>
+								<th>发货模式</th>
+								<th>商品库存</th>
+								<th>商品销量</th>
+								<th>商品价格</th>
+								<th>操作</th>
+							</tr> 
+						 </thead>
+						 <tbody>
+					<?php foreach($products AS $p):?>
+						<?php if($p['typeid']==$type['id']):?>
+							<tr>
+								<td><?php echo $p['name'];?></td>
+								<td><?php if($p['auto']>0):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-gray">手工发货</span><?php endif;?></td>
+								<td><?php echo $p['qty'];?></td>
+								<td><?php echo $p['qty_sell'];?></td>
+								<td><?php echo $p['price'];?></td>
+								<td><a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/<?php echo $p['id'];?>.html">购买</a></td>
+							</tr>
+						<?php endif;?>
+							</tbody>
+						</table>
+					<?php endforeach;?>
+				</div>
+			</div>
+			<?php endforeach;?>
+		<?php endif;?>
+		
+    </div>
+</div>
+<div id="layerad" style="display: none;"><?php echo $config['layerad'];?></div>
+<!--引入公共底文件-->
+<?php include '../templates/shadan/common/footer.html';?>
