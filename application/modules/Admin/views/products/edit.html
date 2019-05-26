@@ -54,11 +54,12 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">是否库存控制</label>
+                            <label class="layui-form-label">库存控制</label>
                             <div class="layui-input-block">
                                 <input type="radio" name="stockcontrol" lay-filter="stockcontrol" value="1" title="限制" <?php if($product['stockcontrol']=='1' ):?>checked=""<?php endif;?>>
                                 <input type="radio" name="stockcontrol" lay-filter="stockcontrol" value="0" title="不限制" <?php if($product['stockcontrol']=='0' ):?>checked=""<?php endif;?>>
                             </div>
+							<div class="layui-form-mid layui-word-aux">限制库存：自动发货时卡密一次性；不限制库存：自动发货时卡密重复使用；</div>
                         </div>
                         <div class="layui-form-item">
                             <label for="qty" class="layui-form-label">库存数量</label>
@@ -73,7 +74,7 @@
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">虚拟开关</label>
-                            <div class="layui-input-block">
+                            <div class="layui-input-inline">
                                 <input type="radio" name="qty_switch" value="0" title="关" <?php if($product['qty_switch']=='0' ):?>checked=""<?php endif;?>>
                                 <input type="radio" name="qty_switch" value="1" title="开" <?php if($product['qty_switch']=='1' ):?>checked=""<?php endif;?>>
                             </div>
