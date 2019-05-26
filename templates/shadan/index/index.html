@@ -31,7 +31,7 @@
 								<th>库存</th>
 								<th>销量</th>
 								<th>单价</th>
-								<th>操作</th>
+								<th align="center">操作</th>
 							</tr> 
 						 </thead>
 						 <tbody>
@@ -43,7 +43,7 @@
 								<td><?php echo $p['qty'];?></td>
 								<td><?php echo $p['qty_sell'];?></td>
 								<td><?php echo $p['price'];?></td>
-								<td><a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/<?php echo $p['id'];?>.html">购买</a></td>
+								<td align="center"><a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/<?php echo $p['id'];?>.html">购买</a></td>
 							</tr>
 						<?php endif;?>
 					<?php endforeach;?>
