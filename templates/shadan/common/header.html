@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html<?php if(isset($config['backgroundimage']) AND strlen($config['backgroundimage'])>0):?> style="background-size: cover; background-image: url(<?php echo $config['backgroundimage'];?>);"<?php endif;?>>
 <head>
     <meta charset="utf-8">
     <title><?php echo $title.'_'.$config['webname'];?></title>
