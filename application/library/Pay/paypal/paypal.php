@@ -94,32 +94,37 @@ class paypal
 	{
 		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 		
-		$ipn = new \Pay\paypal\PaypalIPN();
+		try{
+			$ipn = new \Pay\paypal\PaypalIPN();
 
-		if($payconfig['configure3']=="sandbox"){
-			$ipn->useSandbox();
-		}
-		
-		$verified = $ipn->verifyIPN();
-		
-		if ($verified) {
-			/*invoice
-			
-			//业务处理
-			$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
-			$notify = new \Pay\notify();
-			$data = $notify->run($config);
-			if($data['code']>1){
-				return 'error|Notify: '.$data['msg'];
-			}else{
-				return 'success';
+			if($payconfig['configure3']=="sandbox"){
+				$ipn->useSandbox();
 			}
-			*/
-			header("HTTP/1.1 200 OK");
-			echo  'success';
-			exit;
-		}else{
 			
+			$verified = $ipn->verifyIPN();
+			
+			if ($verified) {
+				/*invoice
+				
+				//业务处理
+				$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
+				$notify = new \Pay\notify();
+				$data = $notify->run($config);
+				if($data['code']>1){
+					return 'error|Notify: '.$data['msg'];
+				}else{
+					return 'success';
+				}
+				*/
+				header("HTTP/1.1 200 OK");
+				echo  'success';
+				exit;
+			}else{
+				
+			}
+		} catch (\Exception $e) {
+			echo $e->getMessage();
+			exit;
 		}
 	}
 }
