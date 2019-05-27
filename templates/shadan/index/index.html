@@ -65,6 +65,13 @@
 						<a href="/product/<?php echo $p['id'];?>.html">
 							<div class="layui-col-md3 layui-col-sm4 goodsdetail">
 								<div class="goodsdetail-mobile">
+									<div class="goodsdetail-img">
+											<?php if(strlen($p['imgurl'])>0):?>
+												<img src="/res/images/noimg.jpg"> 
+											<?php else:?>
+												<img src="<?php echo $p['imgurl'];?>"> 
+											<?php endif;?>
+									</div>
 									<div class="goodsdetail-mobile-text">
 										<p class="title"><?php echo $p['name'];?></p>
 										<p class="biaozhi"> 
@@ -73,9 +80,6 @@
 											<span>库存: <?php echo $p['qty'];?>&nbsp;|&nbsp;销量: <?php echo $p['qty_sell'];?></span>
 											<span><b>￥<?php echo $p['price'];?></b></span>
 										</p>
-									</div>
-									<div class="goodsdetail-mobile-text">
-										<a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/<?php echo $p['id'];?>.html">购买</a>
 									</div>
 								</div>
 							</div>
