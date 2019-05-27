@@ -168,34 +168,35 @@
     },
     {
         "name": "guzzlehttp/psr7",
-        "version": "1.4.2",
-        "version_normalized": "1.4.2.0",
+        "version": "1.5.2",
+        "version_normalized": "1.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+            "reference": "9f83dded91781a01c63574e387eaa769be769115"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-            "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
+            "reference": "9f83dded91781a01c63574e387eaa769be769115",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.0",
-            "psr/http-message": "~1.0"
+            "psr/http-message": "~1.0",
+            "ralouphie/getallheaders": "^2.0.5"
         },
         "provide": {
             "psr/http-message-implementation": "1.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "~4.0"
+            "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
         },
-        "time": "2017-03-20T17:10:46+00:00",
+        "time": "2018-12-04T20:46:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.4-dev"
+                "dev-master": "1.5-dev"
             }
         },
         "installation-source": "dist",
@@ -226,6 +227,7 @@
         "keywords": [
             "http",
             "message",
+            "psr-7",
             "request",
             "response",
             "stream",
@@ -235,27 +237,27 @@
     },
     {
         "name": "magicalex/write-ini-file",
-        "version": "v1.2.3",
-        "version_normalized": "1.2.3.0",
+        "version": "v1.2.4",
+        "version_normalized": "1.2.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Magicalex/WriteiniFile.git",
-            "reference": "d77f20c9a4ba7e713541539c74d0f14d92283bb6"
+            "reference": "3a933e8222ed2b0ff724c2d4278666fa257e42ac"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Magicalex/WriteiniFile/zipball/d77f20c9a4ba7e713541539c74d0f14d92283bb6",
-            "reference": "d77f20c9a4ba7e713541539c74d0f14d92283bb6",
+            "url": "https://api.github.com/repos/Magicalex/WriteiniFile/zipball/3a933e8222ed2b0ff724c2d4278666fa257e42ac",
+            "reference": "3a933e8222ed2b0ff724c2d4278666fa257e42ac",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "5.7.*",
-            "satooshi/php-coveralls": "1.0.1"
+            "php-coveralls/php-coveralls": "2.1.0",
+            "phpunit/phpunit": "5.7.*"
         },
-        "time": "2017-03-21T02:45:50+00:00",
+        "time": "2018-09-09T12:40:38+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -269,7 +271,7 @@
         ],
         "authors": [
             {
-                "name": "Magicalex",
+                "name": "magicalex",
                 "email": "magicalex@mondedie.fr"
             }
         ],
@@ -280,6 +282,57 @@
             "ini",
             "write",
             "write_ini_file"
+        ]
+    },
+    {
+        "name": "paypal/rest-api-sdk-php",
+        "version": "1.14.0",
+        "version_normalized": "1.14.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
+            "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
+            "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "ext-json": "*",
+            "php": ">=5.3.0",
+            "psr/log": "^1.0.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8.35"
+        },
+        "time": "2019-01-04T20:04:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PayPal": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "PayPal",
+                "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+            }
+        ],
+        "description": "PayPal's PHP SDK for REST APIs",
+        "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
+        "keywords": [
+            "payments",
+            "paypal",
+            "rest",
+            "sdk"
         ]
     },
     {
@@ -333,6 +386,97 @@
             "request",
             "response"
         ]
+    },
+    {
+        "name": "psr/log",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2018-11-20T15:27:04+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "ralouphie/getallheaders",
+        "version": "2.0.5",
+        "version_normalized": "2.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ralouphie/getallheaders.git",
+            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~3.7.0",
+            "satooshi/php-coveralls": ">=1.0"
+        },
+        "time": "2016-02-11T07:05:27+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/getallheaders.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ralph Khattar",
+                "email": "ralph.khattar@gmail.com"
+            }
+        ],
+        "description": "A polyfill for getallheaders."
     },
     {
         "name": "riverslei/payment",

@@ -141,7 +141,7 @@ class WriteiniFile
             }
         } // @codeCoverageIgnore
 
-        return '"'.$value.'"';
+        return '"'.str_replace('"', '\"', $value).'"';
     }
 
     /**

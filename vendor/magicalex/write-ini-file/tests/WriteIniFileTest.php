@@ -18,8 +18,8 @@ class WriteIniFileTest extends TestCase
                 'string',
                 10.3,
                 true,
-                false,
-            ],
+                false
+            ]
         ],
         'section 2' => [
             'foo'              => 'string',
@@ -29,87 +29,104 @@ class WriteIniFileTest extends TestCase
             'int_false_string' => '0',
             'float_string'     => '10.5L',
             'empty_string'     => ''
-        ],
+        ]
     ];
 
     public function testCreate()
     {
-        $actual = 'tests/file_ini/testCreate2.ini';
+        $writingTest = 'tests/file_ini/testCreate2.ini';
         $expected = 'tests/file_ini/testCreate1.ini';
-        $object = new WriteiniFile($actual);
+        $object = new WriteiniFile($writingTest);
         $object->create($this->var);
         $object->write();
 
-        $this->assertFileEquals($expected, $actual);
+        $this->assertFileEquals($expected, $writingTest);
     }
 
     public function testUpdate()
     {
-        $actual = 'tests/file_ini/testUpdate2.ini';
+        $writingTest = 'tests/file_ini/testUpdate2.ini';
         $expected = 'tests/file_ini/testUpdate1.ini';
 
-        $object = new WriteiniFile($actual);
+        $object = new WriteiniFile($writingTest);
         $object->create($this->var);
         $object->write();
         $object->update([
-            'section 1' => ['foo' => 'bar', 'int' => 100],
+            'section 1' => ['foo' => 'bar', 'int' => 100]
         ]);
         $object->write();
 
-        $this->assertFileEquals($expected, $actual);
+        $this->assertFileEquals($expected, $writingTest);
     }
 
     public function testRm()
     {
-        $actual = 'tests/file_ini/testRm2.ini';
+        $writingTest = 'tests/file_ini/testRm2.ini';
         $expected = 'tests/file_ini/testRm1.ini';
 
-        $object = new WriteiniFile($actual);
+        $object = new WriteiniFile($writingTest);
         $object->create($this->var);
         $object->write();
         $object->rm([
-            'section 1' => ['foo' => 'string', 'int' => 10],
+            'section 1' => ['foo' => 'string', 'int' => 10]
         ]);
         $object->write();
 
-        $this->assertFileEquals($expected, $actual);
+        $this->assertFileEquals($expected, $writingTest);
     }
 
     public function testErase()
     {
-        $actual = 'tests/file_ini/testErase2.ini';
+        $writingTest = 'tests/file_ini/testErase2.ini';
         $expected = 'tests/file_ini/testErase1.ini';
 
-        $object = new WriteiniFile($actual);
+        $object = new WriteiniFile($writingTest);
         $object->create($this->var);
         $object->write();
         $object->erase();
         $object->write();
 
-        $this->assertFileEquals($expected, $actual);
+        $this->assertFileEquals($expected, $writingTest);
     }
 
     public function testAdd()
     {
-        $actual = 'tests/file_ini/testAdd2.ini';
+        $writingTest = 'tests/file_ini/testAdd2.ini';
         $expected = 'tests/file_ini/testAdd1.ini';
 
-        $object = new WriteiniFile($actual);
+        $object = new WriteiniFile($writingTest);
         $object->create($this->var);
         $object->write();
         $object->add([
-            'section 3' => ['foo' => 'bar', 'var_float' => 10.5],
+            'section 3' => ['foo' => 'bar', 'var_float' => 10.5]
         ]);
         $object->write();
 
-        $this->assertFileEquals($expected, $actual);
+        $this->assertFileEquals($expected, $writingTest);
     }
 
     public function testWithFiledoesnotExist()
     {
-        $actual = 'tests/file_ini/donotExist.ini';
-        $object = new WriteiniFile($actual);
+        $writingTest = 'tests/file_ini/donotExist.ini';
+        $object = new WriteiniFile($writingTest);
 
-        $this->assertFileNotExists($actual);
+        $this->assertFileNotExists($writingTest);
+    }
+
+    public function testEscapeCharacters()
+    {
+        $writingTest = 'tests/file_ini/testEscapeCharacters2.ini';
+        $expected = 'tests/file_ini/testEscapeCharacters1.ini';
+
+        $object = new WriteiniFile($writingTest);
+        $object->create([
+            'section 1' => [
+                'foo' => '/usr/bin/example --name="Greg\'s test" --output=./dist/',
+                'bar' => 'Exclamation!question?period.'
+            ]
+        ]);
+        $object->write();
+
+        $this->assertFileEquals($expected, $writingTest);
     }
 }

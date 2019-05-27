@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WriteiniFile\\' => array($vendorDir . '/magicalex/write-ini-file/src'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Payment\\' => array($vendorDir . '/riverslei/payment/src'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
