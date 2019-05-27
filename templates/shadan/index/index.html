@@ -8,11 +8,10 @@
 		</blockquote>
 		<?php endif;?>
         
-		
-		
+		<!--电脑端-->
 		<?php if(!empty($products)):?>
 			<?php foreach($products_type_active AS $type):?>
-			<div class="layui-card">
+			<div class="layui-card layui-hide-xs">
 				<div class="layui-card-header"><?php echo $type['name'];?></div>
 				<div class="layui-card-body">
 					<table class="layui-table">
@@ -49,6 +48,37 @@
 					<?php endforeach;?>
 						</tbody>
 					</table>
+				</div>
+			</div>
+			<?php endforeach;?>
+		<?php endif;?>
+		
+		<!--移动端-->
+		<?php if(!empty($products)):?>
+			<?php foreach($products_type_active AS $type):?>
+			<div class="layui-card layui-hide-md">
+				<div class="layui-card-header"><?php echo $type['name'];?></div>
+				<div class="layui-card-body">
+
+					<?php foreach($products AS $p):?>
+						<?php if($p['typeid']==$type['id']):?>
+						<a href="/product/<?php echo $p['id'];?>.html">
+							<div class="layui-col-md3 layui-col-sm4 goodsdetail">
+								<div class="goodsdetail-mobile">
+									<div class="goodsdetail-mobile-text">
+										<p class="price"><b>￥<?php echo $p['price'];?></b></p>
+										<p class="title"><?php echo $p['name'];?></p>
+										<p class="biaozhi"> 
+											<?php if($p['auto']>0):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-gray">手工发货</span><?php endif;?>
+											<?php if($p['iszhekou']>0):?><span class="layui-badge layui-bg-orange">有折扣</span><?php endif;?>
+										</p>
+									</div>
+								</div>
+							</div>
+						</a>
+						<?php endif;?>
+					<?php endforeach;?>
+
 				</div>
 			</div>
 			<?php endforeach;?>
