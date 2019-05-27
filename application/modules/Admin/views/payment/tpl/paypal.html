@@ -29,30 +29,24 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label for="app_id" class="layui-form-label">app_id</label>
+                            <label for="app_id" class="layui-form-label">Client ID</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="app_id" name="app_id" required lay-verify="required" autocomplete="off" value="<?php echo $item['app_id'];?>" class="layui-input">
                             </div>
                         </div>
 
-                        <div class="layui-form-item layui-form-text">
-                            <label for="ali_public_key" class="layui-form-label">ali_public_key</label>
-                            <div class="layui-input-block">
-                                <textarea placeholder="" id="ali_public_key" name="ali_public_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['ali_public_key'];?></textarea>
-                            </div>
-                        </div>
-                        <div class="layui-form-item layui-form-text">
-                            <label for="rsa_private_key" class="layui-form-label">rsa_private_key</label>
-                            <div class="layui-input-block">
-                                <textarea placeholder="" id="rsa_private_key" name="rsa_private_key" lay-verify="required" autocomplete="off" class="layui-textarea" style="height: 80px;"><?php echo $item['rsa_private_key'];?></textarea>
+                        <div class="layui-form-item">
+                            <label for="app_secret" class="layui-form-label">Secret</label>
+                            <div class="layui-input-inline">
+								<input type="text" id="app_secret" name="app_secret" required lay-verify="required" autocomplete="off" value="<?php echo $item['app_secret'];?>" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">签名方式</label>
+                            <label class="layui-form-label">模式</label>
                             <div class="layui-input-inline">
-                                <select name="sign_type" lay-filter="required">
-                                    <option value="RSA" <?php if($item['sign_type']=='RSA' ):?>checked=""<?php endif;?>>RSA</option>
-                                    <option value="RSA2"<?php if($item['sign_type']=='RSA2' ):?>checked=""<?php endif;?>>RSA2</option>
+                                <select name="configure3" lay-filter="required">
+                                    <option value="sandbox" <?php if($item['configure3']=='sandbox' ):?>checked=""<?php endif;?>>沙盒</option>
+                                    <option value="live" <?php if($item['configure3']=='live' ):?>checked=""<?php endif;?>>生产</option>
                                 </select>
                             </div>
                         </div>
