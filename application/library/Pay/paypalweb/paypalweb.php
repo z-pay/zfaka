@@ -6,7 +6,6 @@
  * Date: 2019-05-27
  */
 namespace Pay\paypalweb;
-use \Pay\paypalweb;
 use \Pay\paypalweb\PaypalIPN;
 
 use \PayPal\Api\Amount;
