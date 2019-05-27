@@ -17,6 +17,7 @@ use \PayPal\Api\Payment;
 use \PayPal\Api\RedirectUrls;
 use \PayPal\Api\Transaction;
 use \PayPal\Rest\ApiContext;
+use \PayPal\Auth\OAuthTokenCredential;
 class paypal
 {
 	private $paymethod = "paypal";
