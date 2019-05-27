@@ -66,13 +66,11 @@
 							<div class="layui-col-md3 layui-col-sm4 goodsdetail">
 								<div class="goodsdetail-mobile">
 									<div class="goodsdetail-mobile-img">
-										<a href="/product/<?php echo $p['id'];?>.html">
 										<?php if(strlen($p['imgurl'])>0):?>
 											<img src="/res/images/noimg.jpg"> 
 										<?php else:?>
 											<img src="<?php echo $p['imgurl'];?>"> 
 										<?php endif;?>
-										</a>
 									</div>
 									<div class="goodsdetail-mobile-text">
 										<p class="price"><b>￥<?php echo $p['price'];?></b></p>
