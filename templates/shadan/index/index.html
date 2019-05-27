@@ -66,12 +66,16 @@
 							<div class="layui-col-md3 layui-col-sm4 goodsdetail">
 								<div class="goodsdetail-mobile">
 									<div class="goodsdetail-mobile-text">
-										<p class="price"><b>￥<?php echo $p['price'];?></b></p>
 										<p class="title"><?php echo $p['name'];?></p>
 										<p class="biaozhi"> 
 											<?php if($p['auto']>0):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-gray">手工发货</span><?php endif;?>
 											<?php if($p['iszhekou']>0):?><span class="layui-badge layui-bg-orange">有折扣</span><?php endif;?>
+											<span>库存: <?php echo $p['qty'];?>&nbsp;|&nbsp;销量: <?php echo $p['qty_sell'];?></span>
+											<span><b>￥<?php echo $p['price'];?></b></span>
 										</p>
+									</div>
+									<div class="goodsdetail-mobile-text">
+										<a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/<?php echo $p['id'];?>.html">购买</a>
 									</div>
 								</div>
 							</div>
