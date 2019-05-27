@@ -27,7 +27,7 @@
 								<p>
 									<?php if(isset($product['auto']) AND ($product['auto']>0) ):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-black">手工发货</span><?php endif;?>&nbsp;&nbsp;
 									<span class="trade-goodname"><?php echo $product['name'];?></span>
-									<span class="trade-goodqty">库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>缺货中<?php endif;?><?php else:?>不限量<?php endif;?></span>
+									<span class="trade-goodqty layui-hide-sm">库存:<?php if($product['stockcontrol']>0):?><?php if($product['qty']>0):?><?php echo $product['qty'];?><?php else:?>缺货中<?php endif;?><?php else:?>不限量<?php endif;?></span>
 								</p>
 								<hr>
 								<p class="trade-goodinfo">
