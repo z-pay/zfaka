@@ -272,7 +272,7 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (9, '收款宝(支付宝)', '支付宝', '/res/images/pay/alipay.jpg', 'zlkbcodepayalipay', 'RSA2', '', '', '', '', 'https://codepay.zlkb.net/api/order', '0',300, 0),
 (10, '收款宝(QQ)', 'QQ', '/res/images/pay/qqpay.jpg', 'zlkbcodepayqq', 'RSA2', '', '', '', '', 'https://codepay.zlkb.net/api/order', '0',300, 0),
 (11, '微信H5支付', '微信', '/res/images/pay/weixin.jpg', 'wxh5', 'MD5', '', '', '', '', '','', 0, 0),
-(12, 'PAYPAL', 'PAYPAL', '/res/images/pay/paypal.jpg', 'paypal', 'RSA2', '', '', '', '', 'live', 0, 0);
+(12, 'PAYPAL', 'PAYPAL', '/res/images/pay/paypal.jpg', 'paypalweb', 'RSA2', '', '', '', '', 'live', 0, 0);
 
 -- --------------------------------------------------------
 

@@ -1,5 +1,5 @@
 <?php
-namespace Pay\paypal;
+namespace Pay\paypalweb;
 class PaypalIPN
 {
     /** @var bool Indicates if the sandbox endpoint is used. */
