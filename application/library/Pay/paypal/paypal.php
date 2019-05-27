@@ -1,12 +1,12 @@
 <?php
 /**
- * File: paypalweb.php
+ * File: paypal.php
  * Functionality: paypal支付
  * Author: 资料空白
  * Date: 2019-05-27
  */
-namespace Pay\paypalweb;
-use \Pay\paypalweb\PaypalIPN;
+namespace Pay\paypal;
+use \Pay\paypal\PaypalIPN;
 
 use \PayPal\Api\Amount;
 use \PayPal\Api\Details;
@@ -16,10 +16,10 @@ use \PayPal\Api\Payer;
 use \PayPal\Api\Payment;
 use \PayPal\Api\RedirectUrls;
 use \PayPal\Api\Transaction;
-
-class paypalweb
+use \PayPal\Rest\ApiContext;
+class paypal
 {
-	private $paymethod = "paypalweb";
+	private $paymethod = "paypal";
 	
 	//处理请求
 	public function pay($payconfig,$params)
@@ -94,7 +94,7 @@ class paypalweb
 	{
 		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 		
-		$ipn = new \Pay\paypalweb\PaypalIPN();
+		$ipn = new \Pay\paypal\PaypalIPN();
 
 		if($payconfig['configure3']=="sandbox"){
 			$ipn->useSandbox();
