@@ -68,7 +68,6 @@ class paypal
 				->setDescription("亲，请请核对以下付款信息:")
 				->setInvoiceNumber($params['orderid']);			
 			
-			$baseUrl = getBaseUrl();
 			$redirectUrls = new RedirectUrls();
 			$redirectUrls->setReturnUrl($params['weburl']. "/query/auto/{$params['orderid']}.html")
 				->setCancelUrl($params['weburl']);
