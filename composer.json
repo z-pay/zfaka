@@ -2,6 +2,7 @@
     "require": {
         "riverslei/payment": "*",
 		"aferrandini/phpqrcode": "1.0.1",
-		"magicalex/write-ini-file": "1.2.*"
+		"magicalex/write-ini-file": "1.2.*",
+		"paypal/rest-api-sdk-php:*"
     }
 }
