@@ -13,7 +13,7 @@ use \PayPalCheckoutSdk\Core\SandboxEnvironment;
 use \PayPalCheckoutSdk\Core\ProductionEnvironment;
 
 use \PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-
+use \PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 
 class paypal
 {
@@ -35,10 +35,10 @@ class paypal
 			$request = new OrdersCreateRequest();
 			$request->headers["prefer"] = "return=minimal";
 			$request->body = array(
-					'intent' => 'AUTHORIZE',
+					'intent' => 'CAPTURE',
 					'application_context' =>
 						array(
-							'return_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
+							'return_url' => $params['weburl']. "/product/order/payjump?paymethod=paypal&orderid={$params['orderid']}",
 							'cancel_url' => $params['weburl'],
 							'brand_name' => $params['webname'],
 							'locale' => 'zh-CN',
@@ -85,15 +85,19 @@ class paypal
 
 			
 			$response = $client->execute($request);
-			foreach($response->result->links as $link)
-			{
-				if($link->rel == "approve"){
-					$url = $link->href;
-					break; 
+			if ($response->statusCode == 201)
+				foreach($response->result->links as $link)
+				{
+					if($link->rel == "approve"){
+						$url = $link->href;
+						break; 
+					}
 				}
+				$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
+				return array('code'=>1,'msg'=>'success','data'=>$result);
+			}else{
+				return array('code'=>1000,'msg'=>"失败",'data'=>'');
 			}
-			$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
-			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (\Exception $e) {
 			return array('code'=>1000,'msg'=>$e->getMessage(),'data'=>'');
 		}
@@ -132,6 +136,37 @@ class paypal
 			}else{
 				
 			}
+		} catch (\Exception $e) {
+			echo $e->getMessage();
+			exit;
+		}
+	}
+	
+	//处理回调
+	public function jump($payconfig,$params)
+	{
+		try{
+			print_r($_GET);
+			exit();
+			$request = new OrdersCaptureRequest($orderId);
+
+			if($payconfig['configure3']=="live"){
+				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			}else{
+				$environment = new SandboxEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			}
+				
+			$client = new PayPalHttpClient($environment);
+			$response = $client->execute($request);
+			
+			if ($response->statusCode == 201)
+			{
+				
+			}else{
+				
+			}
+			header("location:/query/auto/{$params['orderid']}.html");
+			exit();
 		} catch (\Exception $e) {
 			echo $e->getMessage();
 			exit;
