@@ -35,7 +35,7 @@ class paypal
 			$request = new OrdersCreateRequest();
 			$request->headers["prefer"] = "return=minimal";
 			$request->body = array(
-					'intent' => 'CAPTURE',
+					'intent' => 'AUTHORIZE',
 					'application_context' =>
 						array(
 							'return_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
