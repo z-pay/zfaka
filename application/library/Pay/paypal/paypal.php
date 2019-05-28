@@ -33,7 +33,7 @@ class paypal
 			$client = new PayPalHttpClient($environment);
 			
 			$request = new OrdersCreateRequest();
-			$request->headers["prefer"] = "return=representation";
+			$request->headers["prefer"] = "return=minimal";
 			$request->body = array(
 					'intent' => 'CAPTURE',
 					'application_context' =>
@@ -85,7 +85,13 @@ class paypal
 
 			
 			$response = $client->execute($request);
-			print_r($response);
+			foreach($response->result->links as $link)
+			{
+				if($link->rel == "approve"){
+					$url = $link->href;
+					break; 
+				}
+			}
 			$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (\Exception $e) {
