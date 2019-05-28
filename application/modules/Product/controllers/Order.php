@@ -349,7 +349,7 @@ class OrderController extends ProductBasicController
 							try{
 								$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 								$PAY = new $payclass();
-								$params =array('orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'weburl'=>$this->config['weburl']);
+								$params =array('orderid'=>$orderid,'money'=>$order['money'],'productname'=>$order['productname'],'weburl'=>$this->config['weburl'],'order'=>$order);
 								$msg = $PAY->jump($payconfig,$params);
 							} catch (\Exception $e) {
 								$msg = $e->getMessage();

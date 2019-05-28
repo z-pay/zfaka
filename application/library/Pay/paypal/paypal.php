@@ -93,6 +93,10 @@ class paypal
 						break; 
 					}
 				}
+				//更新paypal的支付id，到数据库
+				$m_order =  \Helper::load('order');
+				$m_order->Where(array('orderid'=>$params['orderid'],'status'=>1))->Update(array('configure1'=>$response->result->id));
+				
 				$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result);
 			}else{
@@ -146,7 +150,7 @@ class paypal
 	public function jump($payconfig,$params)
 	{
 		try{
-			$request = new OrdersCaptureRequest($_GET['PayerID']);
+			$request = new OrdersCaptureRequest($params['order']['configure1']);
 
 			if($payconfig['configure3']=="live"){
 				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
@@ -156,6 +160,7 @@ class paypal
 				
 			$client = new PayPalHttpClient($environment);
 			$response = $client->execute($request);
+			print_r($response);exit();
 			
 			if ($response->statusCode == 201)
 			{

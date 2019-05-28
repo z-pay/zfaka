@@ -1,1 +1,2 @@
 INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_type`, `app_id`, `app_secret`, `ali_public_key`, `rsa_private_key`, `configure3`, `overtime`, `active`) VALUES(12, 'PAYPAL', 'PAYPAL', '/res/images/pay/paypal.jpg', 'paypal', 'RSA2', '', '', '', '', 'live', 0, 0);
+ALTER TABLE `t_order` ADD `configure1` TEXT NOT NULL COMMENT '额外配置1' AFTER `kami`;
