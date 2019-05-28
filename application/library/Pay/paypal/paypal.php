@@ -153,10 +153,9 @@ class paypal
 			$client = new PayPalHttpClient($environment);
 			$response = $client->execute($request);
 
-			
 			if ($response->statusCode == "201")
 			{
-				if($response->status=="COMPLETED"){
+				if($response->result->status=="COMPLETED"){
 					$result = json_decode($response->result,true);
 					print_r($result);
 					echo "==================".PHP_EOL;
