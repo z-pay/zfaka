@@ -47,6 +47,47 @@
         "abandoned": "endroid/qr-code"
     },
     {
+        "name": "braintree/braintreehttp",
+        "version": "0.3.0",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/braintree/braintreehttp_php.git",
+            "reference": "204e36494d9e4b31033328df96af54b17f68b698"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/braintree/braintreehttp_php/zipball/204e36494d9e4b31033328df96af54b17f68b698",
+            "reference": "204e36494d9e4b31033328df96af54b17f68b698",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.7",
+            "wiremock-php/wiremock-php": "1.43.2"
+        },
+        "time": "2018-04-17T20:53:31+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "BraintreeHttp\\": "lib/BraintreeHttp"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Braintree",
+                "email": "code@getbraintree.com"
+            }
+        ]
+    },
+    {
         "name": "guzzlehttp/guzzle",
         "version": "6.3.3",
         "version_normalized": "6.3.3.0",
@@ -285,50 +326,50 @@
         ]
     },
     {
-        "name": "paypal/rest-api-sdk-php",
-        "version": "1.14.0",
-        "version_normalized": "1.14.0.0",
+        "name": "paypal/paypal-checkout-sdk",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
-            "reference": "72e2f2466975bf128a31e02b15110180f059fc04"
+            "url": "https://github.com/paypal/Checkout-PHP-SDK.git",
+            "reference": "b321066fdce122cd63368b559d54674bdf2f12a8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/72e2f2466975bf128a31e02b15110180f059fc04",
-            "reference": "72e2f2466975bf128a31e02b15110180f059fc04",
+            "url": "https://api.github.com/repos/paypal/Checkout-PHP-SDK/zipball/b321066fdce122cd63368b559d54674bdf2f12a8",
+            "reference": "b321066fdce122cd63368b559d54674bdf2f12a8",
             "shasum": ""
         },
         "require": {
-            "ext-curl": "*",
-            "ext-json": "*",
-            "php": ">=5.3.0",
-            "psr/log": "^1.0.0"
+            "braintree/braintreehttp": "0.3.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "^4.8.35"
+            "phpunit/phpunit": "^5.7"
         },
-        "time": "2019-01-04T20:04:25+00:00",
+        "time": "2019-02-04T06:59:08+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "PayPal": "lib/"
+            "psr-4": {
+                "PayPalCheckoutSdk\\": "lib/PayPalCheckoutSdk",
+                "Sample\\": "samples/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "Apache-2.0"
+            "MIT"
         ],
         "authors": [
             {
                 "name": "PayPal",
-                "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                "homepage": "https://github.com/paypal/Checkout-PHP-SDK/contributors"
             }
         ],
-        "description": "PayPal's PHP SDK for REST APIs",
-        "homepage": "http://paypal.github.io/PayPal-PHP-SDK/",
+        "description": "PayPal's PHP SDK for Checkout REST APIs",
+        "homepage": "http://github.com/paypal/Checkout-PHP-SDK/",
         "keywords": [
+            "checkout",
+            "orders",
             "payments",
             "paypal",
             "rest",
@@ -385,55 +426,6 @@
             "psr-7",
             "request",
             "response"
-        ]
-    },
-    {
-        "name": "psr/log",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/log.git",
-            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-            "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2018-11-20T15:27:04+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Log\\": "Psr/Log/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for logging libraries",
-        "homepage": "https://github.com/php-fig/log",
-        "keywords": [
-            "log",
-            "psr",
-            "psr-3"
         ]
     },
     {

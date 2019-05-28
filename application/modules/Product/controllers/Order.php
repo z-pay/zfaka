@@ -272,7 +272,7 @@ class OrderController extends ProductBasicController
 									}
 									$payclass = "\\Pay\\".$paymethod."\\".$paymethod;
 									$PAY = new $payclass();
-									$params =array('pid'=>$order['pid'],'orderid'=>$orderid,'money'=>$order['money'],'productname'=>$productname,'weburl'=>$this->config['weburl'],'qrserver'=>$this->config['qrserver']);
+									$params =array('pid'=>$order['pid'],'orderid'=>$orderid,'money'=>$order['money'],'productname'=>$productname,'webname'=>$this->config['webname'],'weburl'=>$this->config['weburl'],'qrserver'=>$this->config['qrserver']);
 									$data = $PAY->pay($payconfig,$params);
 								} catch (\Exception $e) {
 									$data = array('code' => 1005, 'msg' => $e->getMessage());

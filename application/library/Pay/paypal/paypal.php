@@ -8,16 +8,13 @@
 namespace Pay\paypal;
 use \Pay\paypal\PaypalIPN;
 
-use \PayPal\Api\Amount;
-use \PayPal\Api\Details;
-use \PayPal\Api\Item;
-use \PayPal\Api\ItemList;
-use \PayPal\Api\Payer;
-use \PayPal\Api\Payment;
-use \PayPal\Api\RedirectUrls;
-use \PayPal\Api\Transaction;
-use \PayPal\Rest\ApiContext;
-use \PayPal\Auth\OAuthTokenCredential;
+use \PayPalCheckoutSdk\Core\PayPalHttpClient;
+use \PayPalCheckoutSdk\Core\SandboxEnvironment;
+use \PayPalCheckoutSdk\Core\ProductionEnvironment;
+
+use \PayPalCheckoutSdk\Orders\OrdersCreateRequest;
+
+
 class paypal
 {
 	private $paymethod = "paypal";
@@ -26,61 +23,61 @@ class paypal
 	public function pay($payconfig,$params)
 	{
 		try{
-			$apiContext = new ApiContext(
-				new OAuthTokenCredential(
-					$payconfig['app_id'],
-					$payconfig['app_secret']
-				)
-			);
+			
+			if($payconfig['configure3']=="live"){
+				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			}else{
+				$environment = new SandboxEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			}
+			
+			$client = new PayPalHttpClient($environment);
+			
+			$request = new OrdersCreateRequest();
+			$request->headers["prefer"] = "return=representation";
+			$request->body = array(
+					'intent' => 'CAPTURE',
+					'application_context' =>
+						array(
+							'return_url' => $params['weburl']. "/query/auto/{$params['orderid']}.html",
+							'cancel_url' => $params['weburl'],
+							'brand_name' => $params['webname'],
+							'locale' => 'zh-CN',
+							'landing_page' => 'BILLING',
+							'shipping_preferences' => 'NO_SHIPPING',
+							'user_action' => 'PAY_NOW',
+						),
+					'purchase_units' =>
+						array(
+							0 =>
+								array(
+									'invoice_id'=>"{$params['orderid']}",
+									'description' => '亲，请请核对以下付款信息:',
+									'soft_descriptor' => "{$params['productname']}",
+									'amount' =>
+										array(
+											'currency_code' => 'USD',
+											'value' => "{$params['money']}"
+										),
+									'items' =>
+										array(
+											0 =>
+												array(
+													'name' => "{$params['productname']}",
+													'unit_amount' =>
+														array(
+															'currency_code' => 'USD',
+															'value' => "{$params['money']}",
+														),
+													'quantity' => '1',
+												)
+										),
+								),
+						),
+				);
 
-			$apiContext->setConfig(
-				array(
-					'mode' => $payconfig['configure3'],
-					'log.LogEnabled' => false,
-					'cache.enabled' => false,
-					//'http.CURLOPT_CONNECTTIMEOUT' => 30
-				)
-			);
 			
-			
-			$payer = new Payer();
-			$payer->setPaymentMethod("paypal");
-			
-			$item1 = new Item();
-			$item1->setName($params['productname'])
-				->setCurrency('USD')
-				->setQuantity(1)
-				->setPrice($params['money']);
-			$itemList = new ItemList();
-			$itemList->setItems(array($item1));			
-			
-			$details = new Details();
-			$details->setSubtotal($params['money']);
-			
-			$amount = new Amount();
-			$amount->setCurrency("USD")
-				->setTotal(1)
-				->setDetails($details);			
-			
-			$transaction = new Transaction();
-			$transaction->setAmount($amount)
-				->setItemList($itemList)
-				->setDescription("亲，请请核对以下付款信息:")
-				->setInvoiceNumber($params['orderid']);			
-			
-			$redirectUrls = new RedirectUrls();
-			$redirectUrls->setReturnUrl($params['weburl']. "/query/auto/{$params['orderid']}.html")
-				->setCancelUrl($params['weburl']);
-	
-			$payment = new Payment();
-			$payment->setIntent("order")
-				->setPayer($payer)
-				->setRedirectUrls($redirectUrls)
-				->setTransactions(array($transaction));
-				
-			$payment->create($apiContext);	
-			$url = $payment->getApprovalLink();	
-	
+			$response = $client->execute($request);
+			print_r($response);
 			$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 			return array('code'=>1,'msg'=>'success','data'=>$result);
 		} catch (\Exception $e) {
@@ -104,10 +101,9 @@ class paypal
 			$verified = $ipn->verifyIPN();
 			
 			if ($verified) {
-				/*invoice
 				
 				//业务处理
-				$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['pay_no'],'paymoney'=>$params['money'],'orderid'=>$params['pay_id'] );
+				$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['txn_id'],'paymoney'=>$params['mc_gross'],'orderid'=>$params['invoice'] );
 				$notify = new \Pay\notify();
 				$data = $notify->run($config);
 				if($data['code']>1){
@@ -115,7 +111,7 @@ class paypal
 				}else{
 					return 'success';
 				}
-				*/
+				
 				header("HTTP/1.1 200 OK");
 				echo  'success';
 				exit;

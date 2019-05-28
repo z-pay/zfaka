@@ -7,10 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WriteiniFile\\' => array($vendorDir . '/magicalex/write-ini-file/src'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Sample\\' => array($vendorDir . '/paypal/paypal-checkout-sdk/samples'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Payment\\' => array($vendorDir . '/riverslei/payment/src'),
+    'PayPalCheckoutSdk\\' => array($vendorDir . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'BraintreeHttp\\' => array($vendorDir . '/braintree/braintreehttp/lib/BraintreeHttp'),
 );

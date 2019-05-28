@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitf2e1970cfe36a01865e08b3d75223495
+class ComposerStaticInit726a210eedb371e5cd2e9c37fab07589
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -18,17 +18,25 @@ class ComposerStaticInitf2e1970cfe36a01865e08b3d75223495
         array (
             'WriteiniFile\\' => 13,
         ),
+        'S' => 
+        array (
+            'Sample\\' => 7,
+        ),
         'P' => 
         array (
-            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Payment\\' => 8,
+            'PayPalCheckoutSdk\\' => 18,
         ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+        ),
+        'B' => 
+        array (
+            'BraintreeHttp\\' => 14,
         ),
     );
 
@@ -37,9 +45,9 @@ class ComposerStaticInitf2e1970cfe36a01865e08b3d75223495
         array (
             0 => __DIR__ . '/..' . '/magicalex/write-ini-file/src',
         ),
-        'Psr\\Log\\' => 
+        'Sample\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+            0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/samples',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -48,6 +56,10 @@ class ComposerStaticInitf2e1970cfe36a01865e08b3d75223495
         'Payment\\' => 
         array (
             0 => __DIR__ . '/..' . '/riverslei/payment/src',
+        ),
+        'PayPalCheckoutSdk\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -61,15 +73,15 @@ class ComposerStaticInitf2e1970cfe36a01865e08b3d75223495
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'BraintreeHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/braintree/braintreehttp/lib/BraintreeHttp',
+        ),
     );
 
     public static $prefixesPsr0 = array (
         'P' => 
         array (
-            'PayPal' => 
-            array (
-                0 => __DIR__ . '/..' . '/paypal/rest-api-sdk-php/lib',
-            ),
             'PHPQRCode' => 
             array (
                 0 => __DIR__ . '/..' . '/aferrandini/phpqrcode/lib',
@@ -80,9 +92,9 @@ class ComposerStaticInitf2e1970cfe36a01865e08b3d75223495
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitf2e1970cfe36a01865e08b3d75223495::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitf2e1970cfe36a01865e08b3d75223495::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitf2e1970cfe36a01865e08b3d75223495::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit726a210eedb371e5cd2e9c37fab07589::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit726a210eedb371e5cd2e9c37fab07589::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit726a210eedb371e5cd2e9c37fab07589::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

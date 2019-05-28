@@ -46,6 +46,7 @@ class AliNotify extends NotifyStrategy
         if (empty($data) || ! is_array($data)) {
             return false;
         }
+
         return $data;
     }
 
@@ -141,7 +142,7 @@ class AliNotify extends NotifyStrategy
         if ($flag) {
             return 'success';
         } else {
-            return 'fail'.$msg;
+            return 'fail';
         }
     }
 
@@ -168,25 +169,26 @@ class AliNotify extends NotifyStrategy
      */
     protected function verifySign(array $data)
     {
-	$signType = strtoupper($data['sign_type']);
+        $signType = strtoupper($data['sign_type']);
         $sign = $data['sign'];
 
         // 1. 剔除sign与sign_type参数
         $values = ArrayUtil::removeKeys($data, ['sign', 'sign_type']);
-	  //  2. 移除数组中的空值
+        //  2. 移除数组中的空值
         $values = ArrayUtil::paraFilter($values);
-	// 3. 对待签名参数数组排序
+        // 3. 对待签名参数数组排序
         $values = ArrayUtil::arraySort($values);
-	// 4. 将排序后的参数与其对应值，组合成“参数=参数值”的格式,用&字符连接起来
+        // 4. 将排序后的参数与其对应值，组合成“参数=参数值”的格式,用&字符连接起来
         $preStr = ArrayUtil::createLinkstring($values);
-	if ($signType === 'RSA') {// 使用rsa方式
+
+        if ($signType === 'RSA') {// 使用rsa方式
             $rsa = new RsaEncrypt($this->config->rsaAliPubKey);
 
             return $rsa->rsaVerify($preStr, $sign);
         } elseif ($signType === 'RSA2') {
-		$this->config->rsaAliPubKey;
-           $rsa = new Rsa2Encrypt($this->config->rsaAliPubKey);
-	return $rsa->rsaVerify($preStr, $sign);
+            $rsa = new Rsa2Encrypt($this->config->rsaAliPubKey);
+
+            return $rsa->rsaVerify($preStr, $sign);
         } else {
             return false;
         }
