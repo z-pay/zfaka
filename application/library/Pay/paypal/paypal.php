@@ -95,7 +95,7 @@ class paypal
 				}
 				//更新paypal的支付id，到数据库
 				$m_order =  \Helper::load('order');
-				$m_order->Where(array('orderid'=>$params['orderid'],'status'=>1))->Update(array('configure1'=>$response->result->id));
+				$m_order->Where(array('orderid'=>$params['orderid'],'status'=>0))->Update(array('configure1'=>$response->result->id));
 				
 				$result = array('type'=>1,'subjump'=>0,'paymethod'=>$this->paymethod,'url'=>$url,'payname'=>$payconfig['payname'],'overtime'=>$payconfig['overtime'],'money'=>$params['money']);
 				return array('code'=>1,'msg'=>'success','data'=>$result);
