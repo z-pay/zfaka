@@ -156,16 +156,10 @@ class paypal
 			if ($response->statusCode == "201")
 			{
 				if($response->result->status=="COMPLETED"){
-					$result = json_decode($response->result,true);
-					print_r($result);
-					echo "==================".PHP_EOL;
-					print_r($response);exit();
-					$amount = $result['purchase_units'][0]['payments']['captures'][0]['amount']['value']; 
 					//业务处理
-					$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['order']['configure1'],'paymoney'=>$params['mc_gross'],'orderid'=>$params['orderid'] );
+					$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['order']['configure1'],'paymoney'=>$params['order']['money'],'orderid'=>$params['orderid'] );
 					$notify = new \Pay\notify();
 					$data = $notify->run($config);
-					exit();
 				}else{
 					
 				}
