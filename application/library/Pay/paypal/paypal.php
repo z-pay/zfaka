@@ -85,7 +85,7 @@ class paypal
 
 			
 			$response = $client->execute($request);
-			if ($response->statusCode == 201)
+			if ($response->statusCode == 201){
 				foreach($response->result->links as $link)
 				{
 					if($link->rel == "approve"){
