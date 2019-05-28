@@ -124,15 +124,7 @@ class paypal
 			
 			if ($verified) {
 				
-				//业务处理
-				$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['txn_id'],'paymoney'=>$params['mc_gross'],'orderid'=>$params['invoice'] );
-				$notify = new \Pay\notify();
-				$data = $notify->run($config);
-				if($data['code']>1){
-					return 'error|Notify: '.$data['msg'];
-				}else{
-					return 'success';
-				}
+
 				
 				header("HTTP/1.1 200 OK");
 				echo  'success';
@@ -160,11 +152,21 @@ class paypal
 				
 			$client = new PayPalHttpClient($environment);
 			$response = $client->execute($request);
-			print_r($response);exit();
 			
 			if ($response->statusCode == 201)
 			{
-				
+				if($response->status=="COMPLETED"){
+					$result = json_decode($response->result,true);
+					print_r($result);
+					$amount = $result['purchase_units'][0]['payments']['captures'][0]['amount']['value']; 
+					//业务处理
+					$config = array('paymethod'=>$this->paymethod,'tradeid'=>$params['order']['configure1'],'paymoney'=>$params['mc_gross'],'orderid'=>$params['orderid'] );
+					$notify = new \Pay\notify();
+					$data = $notify->run($config);
+					exit();
+				}else{
+					
+				}
 			}else{
 				
 			}
