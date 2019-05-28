@@ -146,9 +146,7 @@ class paypal
 	public function jump($payconfig,$params)
 	{
 		try{
-			print_r($_GET);
-			exit();
-			$request = new OrdersCaptureRequest($orderId);
+			$request = new OrdersCaptureRequest($_GET['PayerID']);
 
 			if($payconfig['configure3']=="live"){
 				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
