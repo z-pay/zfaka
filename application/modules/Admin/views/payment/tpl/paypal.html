@@ -42,11 +42,18 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
+                            <label for="configure4" class="layui-form-label">汇率</label>
+                            <div class="layui-input-inline">
+								<input type="text" id="configure4" name="configure4" required lay-verify="required" autocomplete="off" value="<?php echo $item['configure4'];?>" class="layui-input">
+                            </div>
+							<div class="layui-form-mid layui-word-aux">默认为7,所有订单金额都会转为美金，请自行设置汇率；</div>
+                        </div>
+                        <div class="layui-form-item">
                             <label class="layui-form-label">模式</label>
                             <div class="layui-input-inline">
                                 <select name="configure3" lay-filter="required">
-                                    <option value="sandbox" <?php if($item['configure3']=='sandbox' ):?>checked=""<?php endif;?>>沙盒</option>
-                                    <option value="live" <?php if($item['configure3']=='live' ):?>checked=""<?php endif;?>>生产</option>
+                                    <option value="sandbox" <?php if($item['configure3']=='sandbox' ):?>selected=""<?php endif;?>>沙盒</option>
+                                    <option value="live" <?php if($item['configure3']=='live'):?>selected=""<?php endif;?>>生产</option>
                                 </select>
                             </div>
                         </div>

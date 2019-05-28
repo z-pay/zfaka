@@ -6,7 +6,6 @@
  * Date: 2019-05-27
  */
 namespace Pay\paypal;
-use \Pay\paypal\PaypalIPN;
 
 use \PayPalCheckoutSdk\Core\PayPalHttpClient;
 use \PayPalCheckoutSdk\Core\SandboxEnvironment;
@@ -28,6 +27,14 @@ class paypal
 				$environment = new ProductionEnvironment($payconfig['app_id'], $payconfig['app_secret']);
 			}else{
 				$environment = new SandboxEnvironment($payconfig['app_id'], $payconfig['app_secret']);
+			}
+			
+			//进行金额的转换
+			$rate = (double)$payconfig['configure4'];
+			if($rate>0){
+				$money = number_format($params['money']/$payconfig['configure4'],2);
+			}else{
+				$money = number_format($params['money'],2);
 			}
 			
 			$client = new PayPalHttpClient($environment);
@@ -56,13 +63,13 @@ class paypal
 									'amount' =>
 										array(
 											'currency_code' => 'USD',
-											'value' => "{$params['money']}",
+											'value' => "{$money}",
 											'breakdown' =>
 												array(
 													'item_total' =>
 														array(
 															'currency_code' => 'USD',
-															'value' => "{$params['money']}",
+															'value' => "{$money}",
 														),
 												),
 										),
@@ -74,7 +81,7 @@ class paypal
 													'unit_amount' =>
 														array(
 															'currency_code' => 'USD',
-															'value' => "{$params['money']}",
+															'value' => "{$money}",
 														),
 													'quantity' => '1',
 												)
@@ -111,31 +118,7 @@ class paypal
 	//处理返回
 	public function notify($payconfig)
 	{
-		file_put_contents(YEWU_FILE, CUR_DATETIME.'-'.json_encode($_POST).PHP_EOL, FILE_APPEND);
 		
-		try{
-			$ipn = new \Pay\paypal\PaypalIPN();
-
-			if($payconfig['configure3']=="sandbox"){
-				$ipn->useSandbox();
-			}
-			
-			$verified = $ipn->verifyIPN();
-			
-			if ($verified) {
-				
-
-				
-				header("HTTP/1.1 200 OK");
-				echo  'success';
-				exit;
-			}else{
-				
-			}
-		} catch (\Exception $e) {
-			echo $e->getMessage();
-			exit;
-		}
 	}
 	
 	//处理回调
