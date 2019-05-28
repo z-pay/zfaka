@@ -56,7 +56,7 @@ class paypal
 									'amount' =>
 										array(
 											'currency_code' => 'USD',
-											'value' => "{$params['money']}"
+											'value' => "{$params['money']}",
 											'breakdown' =>
 												array(
 													'item_total' =>
