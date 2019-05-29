@@ -49,6 +49,9 @@
                     <a href="/product/query">查询订单</a>
                 </li>
                 <?php endif;?>
+                <li class="layui-nav-item layui-hide-xs">
+                    <a href="/about/">关于我们</a>
+                </li>				
             </ul>
 			
 			<ul class="layui-nav fly-nav-user">
@@ -114,12 +117,16 @@
 			aMenu[2].className += ' layui-this';
 		} else if (aName.indexOf('/member/help') > -1) {
 			aMenu[3].className += ' layui-this';
+		} else if (aName.indexOf('/about') > -1) {
+			aMenu[4].className += ' layui-this';
 		}
 		<?php else:?>
 		if (aName.indexOf('/product/query') > -1) {
 			aMenu[2].className += ' layui-this';
 		} else if (aName.indexOf('/product') > -1 || aName.indexOf('/group') > -1) {
 			aMenu[1].className += ' layui-this';
+		} else if (aName.indexOf('/about') > -1) {
+			aMenu[3].className += ' layui-this';
 		}
 		<?php endif;?>
 	}
