@@ -39,7 +39,7 @@
 							<tr>
 								<td><?php echo $p['name'];?></td>
 								<td><?php if($p['auto']>0):?><span class="layui-badge layui-bg-green">自动发货</span><?php else:?><span class="layui-badge layui-bg-gray">手工发货</span><?php endif;?></td>
-								<td><?php echo $p['qty'];?></td>
+								<td><?php if($p['stockcontrol']>0):?><?php echo $p['qty'];?><?php else:?>不限量<?php endif;?></td>
 								<td><?php echo $p['qty_sell'];?></td>
 								<td><?php echo $p['price'];?></td>
 								<td align="center"><a class="layui-btn layui-btn-warm layui-btn-xs" href="/product/<?php echo $p['id'];?>.html">购买</a></td>
@@ -79,7 +79,7 @@
 										</p>
 										<p class="title"><?php echo $p['name'];?></p>
 										<p>
-											<span>库存: <?php echo $p['qty'];?>&nbsp;|&nbsp;销量: <?php echo $p['qty_sell'];?>&nbsp;|&nbsp;</span>
+											<span>库存: <?php if($p['stockcontrol']>0):?><?php echo $p['qty'];?><?php else:?>不限量<?php endif;?>&nbsp;|&nbsp;销量: <?php echo $p['qty_sell'];?>&nbsp;|&nbsp;</span>
 											<span class="price"><b>￥<?php echo $p['price'];?></b></span>
 										</p>
 									</div>
