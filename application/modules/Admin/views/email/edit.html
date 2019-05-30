@@ -32,7 +32,7 @@
 						<div class="layui-form-item">
 							<label for="protocol" class="layui-form-label">邮件协议</label>
 							<div class="layui-input-inline">
-								 <select name="protocol" lay-filter="protocol">
+								 <select name="protocol" lay-filter="protocol" id="protocol">
 									<option value="smtp" <?php if($email['protocol']=="smtp"):?>selected=""<?php endif;?>>smtp</option>
 									<option value="mail" <?php if($email['protocol']=="mail"):?>selected=""<?php endif;?>>mail</option>
 									<option value="sendmail" <?php if($email['protocol']=="sendmail"):?>selected=""<?php endif;?>>sendmail</option>

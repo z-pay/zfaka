@@ -20,6 +20,14 @@ layui.define(['layer', 'form', 'table'], function(exports){
 		]]
 	});
 
+	//页面加载完之后进行判断
+	var protocol = $('#protocol option:selected').val();
+	if(protocol=='smtp'){
+		$(".smtp-input").show();
+	}else{
+		$(".smtp-input").hide();
+	}
+	//选项卡选择后进行判断
 	form.on('select(protocol)', function(data){
 		if(data.value=='smtp'){
 			$(".smtp-input").show();
