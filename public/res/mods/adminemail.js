@@ -22,9 +22,9 @@ layui.define(['layer', 'form', 'table'], function(exports){
 
 	form.on('select(protocol)', function(data){
 		if(data.value=='smtp'){
-			$(".smtp-input").hide();
-		}else{
 			$(".smtp-input").show();
+		}else{
+			$(".smtp-input").hide();
 		}
 	}); 
 
