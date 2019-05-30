@@ -98,16 +98,10 @@ class EmailController extends AdminBasicController
 	{
 		$method = $this->getPost('method',false);
 		$id = $this->getPost('id',false);
-		$mailaddress = $this->getPost('mailaddress',false);
-		$mailpassword = $this->getPost('mailpassword',false);
 		$sendmail = $this->getPost('sendmail',false);
 		$sendname = $this->getPost('sendname',false);
-		$host = $this->getPost('host',false);
-		$port = $this->getPost('port',false);
-		$smtp_crypto = $this->getPost('smtp_crypto');
 		$protocol = $this->getPost('protocol');
 		$csrf_token = $this->getPost('csrf_token', false);
-		
 		$data = array();
 		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
@@ -115,8 +109,20 @@ class EmailController extends AdminBasicController
 			Helper::response($data);
         }
 		
-		if($method AND $mailaddress AND $mailpassword AND $sendmail AND $sendname AND $host AND $port AND is_numeric($isssl) AND $csrf_token){
+		if($method AND $sendmail AND $sendname AND $csrf_token AND $protocol){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				if($protocol == "smpt"){
+					$mailaddress = $this->getPost('mailaddress',false);
+					$mailpassword = $this->getPost('mailpassword',false);
+					$host = $this->getPost('host',false);
+					$port = $this->getPost('port',false);
+					$smtp_crypto = $this->getPost('smtp_crypto');
+					if(($mailaddress AND $mailpassword AND $host AND $port AND is_numeric($smtp_crypto))==false){
+						$data = array('code' => 1000, 'msg' => '丢失参数');
+						Helper::response($data);
+					}
+				}
+				
 				$m = array(
 					'mailaddress'=>$mailaddress,
 					'mailpassword'=>$mailpassword,
