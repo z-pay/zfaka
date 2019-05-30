@@ -30,7 +30,9 @@
 
 * 官方接口－微信H5支付
 
-* 四方接口－收款宝---[资料空白出品-必属精品](https://github.com/zlkbdotnet/zfaka/wiki/%E6%94%AF%E4%BB%98%E6%8E%A5%E5%8F%A3-%E6%94%B6%E6%AC%BE%E5%AE%9D)
+* 官方接口－PayPal支付
+
+* 四方接口－收款宝
 
 * 四方接口－码支付
 

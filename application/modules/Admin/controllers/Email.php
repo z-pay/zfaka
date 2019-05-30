@@ -104,7 +104,8 @@ class EmailController extends AdminBasicController
 		$sendname = $this->getPost('sendname',false);
 		$host = $this->getPost('host',false);
 		$port = $this->getPost('port',false);
-		$isssl = $this->getPost('isssl');
+		$smtp_crypto = $this->getPost('smtp_crypto');
+		$protocol = $this->getPost('protocol');
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
@@ -123,7 +124,8 @@ class EmailController extends AdminBasicController
 					'sendname'=>$sendname,
 					'host'=>$host,
 					'port'=>$port,
-					'isssl'=>$isssl
+					'smtp_crypto'=>$smtp_crypto,
+					'protocol'=>$protocol
 				);
 				if($method == 'edit' AND $id>0){
 					$isactive = $this->getPost('isactive');

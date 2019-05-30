@@ -20,16 +20,25 @@ class Sendemail
     {
 		$emainConfig = $this->m_email->getConfig();
 		$config = array();
-		if($emainConfig['isssl']>0){
-			$config['smtp_host'] = 'ssl://' . $emainConfig['host'];
-		}else{
+		
+		if($emainConfig['protocol']=="smtp"){
+			//对smtp进行特别配置
+			if($emainConfig['smtp_crypto']>1){
+				$config['smtp_crypto'] = 'tls';
+			}elseif($emainConfig['smtp_crypto']>0){	
+				$config['smtp_crypto'] = 'ssl';
+			}else{
+				$config['smtp_crypto'] = '';
+			}
 			$config['smtp_host'] = $emainConfig['host'];
+			$config['smtp_user'] = $emainConfig['mailaddress'];
+			$config['smtp_pass'] = $emainConfig['mailpassword'];
+			$config['smtp_port'] = $emainConfig['port'];
 		}
-		$config['smtp_user'] = $emainConfig['mailaddress'];
-		$config['smtp_pass'] = $emainConfig['mailpassword'];
-		$config['smtp_port'] = $emainConfig['port'];
+		
 		$config['sendmail'] = $emainConfig['sendmail'];
 		$config['sendname'] = $emainConfig['sendname'];
+		
 		foreach($params AS $q){
 			if(isEmail($q['email'])){
 				$results[] = $this->_send($config,$q);

@@ -133,13 +133,14 @@ INSERT INTO `t_config_cat` (`id`, `catname`, `catkey`) VALUES
 
 CREATE TABLE IF NOT EXISTS `t_email` (
   `id` int(11) NOT NULL,
-  `mailaddress` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱地址',
-  `mailpassword` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱密码',
   `sendmail` varchar(255) NOT NULL DEFAULT '' COMMENT '	发件人email',
   `sendname` varchar(255) NOT NULL DEFAULT '' COMMENT '发送人昵称',
-  `port` varchar(55) NOT NULL DEFAULT '' COMMENT '端口号',
-  `host` varchar(255) NOT NULL DEFAULT '' COMMENT '发送邮件服务端',
-  `isssl` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0关，1开',
+  `protocol` varchar(255) NOT NULL DEFAULT 'smtp' COMMENT '邮件发送协议',
+  `host` varchar(255) NOT NULL DEFAULT '' COMMENT 'SMTP发送邮件服务端',
+  `port` varchar(55) NOT NULL DEFAULT '' COMMENT 'SMTP端口号',
+  `mailaddress` varchar(255) NOT NULL DEFAULT '' COMMENT 'SMTP邮箱地址',
+  `mailpassword` varchar(255) NOT NULL DEFAULT '' COMMENT 'SMTP邮箱密码',
+  `smtp_crypto` TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'SMTP加密方式 0关，1ssl,2tls',
   `isactive` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '0未激活 1激活',
   `isdelete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;

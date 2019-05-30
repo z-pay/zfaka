@@ -20,6 +20,15 @@ layui.define(['layer', 'form', 'table'], function(exports){
 		]]
 	});
 
+	form.on('select(protocol)', function(data){
+		if(data.value=='smtp'){
+			$(".smtp-input").hide();
+		}else{
+			$(".smtp-input").show();
+		}
+	}); 
+
+
 	//修改资料
 	form.on('submit(email)', function(data){
 		data.field.csrf_token = TOKEN;
