@@ -25,7 +25,7 @@ class IndexController extends ProductBasicController
 			$data['products_type'] = $products_type;
 			//获取有效的商品与有效的商品分类
 			$products_type_active = array();
-			$sql = "SELECT p1.*,p2.id AS products_type_id,p2.name AS products_type_name FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC";
+			$sql = "SELECT p1.*,p2.id AS products_type_id,p2.name AS products_type_name FROM `t_products` as p1 left join t_products_type as p2 on p1.typeid =p2.id where p1.active=1 and p1.isdelete=0 and p2.active=1 and p2.isdelete=0 order by p2.sort_num DESC, p1.sort_num DESC";
 			$items = $this->m_products->Query($sql);
 			if (empty($items)) {
 				$data['products'] = array();
