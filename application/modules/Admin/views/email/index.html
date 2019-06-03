@@ -24,13 +24,6 @@
     <span class="layui-badge layui-bg-gray">未激活</span>
     {{# } }}
 </script>
-<script type="text/html" id="isssl">
-    {{# if(d.isssl >0){ }}
-    <span class="layui-badge layui-bg-green">使用</span>
-    {{# } else { }}
-    <span class="layui-badge layui-bg-gray">不使用</span>
-    {{# } }}
-</script>
 <script type="text/html" id="opt">
 <a class="layui-btn layui-btn-warm layui-btn-xs" href="/<?php echo ADMIN_DIR;?>/email/edit/?id={{d.id}}">编辑</a>
 <a data-href="/<?php echo ADMIN_DIR;?>/email/delete/?id={{d.id}}" class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>

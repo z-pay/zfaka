@@ -11,14 +11,31 @@ layui.define(['layer', 'form', 'table'], function(exports){
 		cellMinWidth:60,
 		cols: [[
 			{field: 'id', title: 'ID', width:80},
-			{field: 'mailaddress', title: '邮箱账号'},
+			{field: 'sendmail', title: '邮箱账号'},
 			{field: 'sendname', title: '发件人', minWidth:200},
-			{field: 'isssl', title: '使用SSL', width:100, templet: '#isssl',align:'center'},
+			{field: 'protocol', title: '协议', width:100, align:'center'},
 			{field: 'port', title: '端口', width:100, align:'center'},
 			{field: 'isactive', title: '是否激活', width:100, templet: '#isactive',align:'center'},
 			{field: 'opt', title: '操作', width:120, templet: '#opt',align:'center'}
 		]]
 	});
+
+	//页面加载完之后进行判断
+	var protocol = $('#protocol option:selected').val();
+	if(protocol=='smtp'){
+		$(".smtp-input").show();
+	}else{
+		$(".smtp-input").hide();
+	}
+	//选项卡选择后进行判断
+	form.on('select(protocol)', function(data){
+		if(data.value=='smtp'){
+			$(".smtp-input").show();
+		}else{
+			$(".smtp-input").hide();
+		}
+	}); 
+
 
 	//修改资料
 	form.on('submit(email)', function(data){

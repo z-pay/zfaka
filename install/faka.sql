@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `t_admin_login_log` (
 
 CREATE TABLE IF NOT EXISTS `t_admin_user` (
   `id` int(11) NOT NULL,
-  `email` varchar(55) NOT NULL,
+  `email` varchar(55) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `secret` varchar(55) NOT NULL DEFAULT '',
   `updatetime` int(11) NOT NULL DEFAULT '0'
@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `t_config` (
   `id` int(11) NOT NULL,
   `catid` int(11) NOT NULL DEFAULT '1' COMMENT '分类ID',
   `name` varchar(32) NOT NULL DEFAULT '' COMMENT '配置名',
-  `value` text NOT NULL COMMENT '配置内容',
-  `tag` text NOT NULL COMMENT '备注',
+  `value` text NOT NULL DEFAULT '' COMMENT '配置内容',
+  `tag` text NOT NULL DEFAULT '' COMMENT '备注',
   `lock` tinyint(1) NOT NULL DEFAULT '0' COMMENT '锁',
   `updatetime` int(11) NOT NULL DEFAULT '0' COMMENT '最后修改时间'
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='基础配置';
@@ -133,13 +133,14 @@ INSERT INTO `t_config_cat` (`id`, `catname`, `catkey`) VALUES
 
 CREATE TABLE IF NOT EXISTS `t_email` (
   `id` int(11) NOT NULL,
-  `mailaddress` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱地址',
-  `mailpassword` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱密码',
   `sendmail` varchar(255) NOT NULL DEFAULT '' COMMENT '	发件人email',
   `sendname` varchar(255) NOT NULL DEFAULT '' COMMENT '发送人昵称',
-  `port` varchar(55) NOT NULL DEFAULT '' COMMENT '端口号',
-  `host` varchar(255) NOT NULL DEFAULT '' COMMENT '发送邮件服务端',
-  `isssl` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0关，1开',
+  `protocol` varchar(255) NOT NULL DEFAULT 'smtp' COMMENT '邮件发送协议',
+  `host` varchar(255) NOT NULL DEFAULT '' COMMENT 'SMTP发送邮件服务端',
+  `port` varchar(55) NOT NULL DEFAULT '' COMMENT 'SMTP端口号',
+  `mailaddress` varchar(255) NOT NULL DEFAULT '' COMMENT 'SMTP邮箱地址',
+  `mailpassword` varchar(255) NOT NULL DEFAULT '' COMMENT 'SMTP邮箱密码',
+  `smtp_crypto` TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'SMTP加密方式 0关，1ssl,2tls',
   `isactive` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '0未激活 1激活',
   `isdelete` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
@@ -157,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `t_email_code` (
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱',
   `code` varchar(50) NOT NULL DEFAULT '' COMMENT '内容',
   `ip` varchar(50) NOT NULL DEFAULT '' COMMENT 'IP',
-  `result` text COMMENT '结果',
+  `result` text NOT NULL DEFAULT '' COMMENT '结果',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '结果0未发送 1已发送',
   `checkedStatus` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未校验，1已校验'
@@ -173,10 +174,10 @@ CREATE TABLE IF NOT EXISTS `t_email_queue` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT ' 收件人',
   `subject` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
-  `content` text COMMENT '内容',
+  `content` text NOT NULL DEFAULT '' COMMENT '内容',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '发送时间',
   `sendtime` int(11) NOT NULL DEFAULT '0' COMMENT '发送时间',
-  `sendresult` text COMMENT '发送错误',
+  `sendresult` text NOT NULL DEFAULT '' COMMENT '发送错误',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0,未发送 ，1已发送，-1,失败',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -191,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `t_help` (
   `id` int(11) NOT NULL,
   `typeid` int(11) NOT NULL DEFAULT '1' COMMENT '类型',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
-  `content` text COMMENT '内容',
+  `content` text NOT NULL DEFAULT '' COMMENT '内容',
   `isactive` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1是激活，0是不激活',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
@@ -214,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `orderid` varchar(55) NOT NULL DEFAULT '0' COMMENT '订单号',
   `userid` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT '邮箱',
-  `qq` varchar(50) NOT NULL COMMENT 'QQ号码',
+  `qq` varchar(50) NOT NULL DEFAULT '' COMMENT 'QQ号码',
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '产品id',
   `productname` varchar(255) NOT NULL DEFAULT '' COMMENT '订单名称',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '单价',
@@ -228,9 +229,9 @@ CREATE TABLE IF NOT EXISTS `t_order` (
   `tradeid` varchar(255) NOT NULL DEFAULT '' COMMENT '外部订单id',
   `paymethod` varchar(255) NOT NULL DEFAULT '' COMMENT '支付渠道',
   `paymoney` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '支付总金额',
-  `kami` text COMMENT '卡密',
-  `configure1` TEXT NOT NULL COMMENT '额外配置1',
-  `addons` text NOT NULL COMMENT '备注',
+  `kami` text NOT NULL DEFAULT '' COMMENT '卡密',
+  `configure1` text NOT NULL DEFAULT '' COMMENT '额外配置1',
+  `addons` text NOT NULL DEFAULT '' COMMENT '备注',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -249,10 +250,10 @@ CREATE TABLE IF NOT EXISTS `t_payment` (
   `sign_type` enum('RSA','RSA2','MD5','HMAC-SHA256') NOT NULL DEFAULT 'RSA2',
   `app_id` varchar(255) NOT NULL DEFAULT '',
   `app_secret` varchar(255) NOT NULL DEFAULT '',
-  `ali_public_key` text,
-  `rsa_private_key` text,
-  `configure3` text NOT NULL COMMENT '配置3',
-  `configure4` text NOT NULL COMMENT '配置4',
+  `ali_public_key` text NOT NULL DEFAULT '' COMMENT '配置1',
+  `rsa_private_key` text NOT NULL DEFAULT '' COMMENT '配置2',
+  `configure3` text NOT NULL DEFAULT '' COMMENT '配置3',
+  `configure4` text NOT NULL DEFAULT '' COMMENT '配置4',
   `overtime` int(11) NOT NULL DEFAULT '0' COMMENT '支付超时,0是不限制',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活,1已激活'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
@@ -287,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `t_products` (
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未激活 1激活',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '产品名',
   `password` varchar(60) NOT NULL DEFAULT '' COMMENT '密码',
-  `description` text COMMENT '描述',
+  `description` text NOT NULL DEFAULT '' COMMENT '描述',
   `stockcontrol` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0不控制,1控制',
   `qty` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
   `qty_virtual` int(11) NOT NULL DEFAULT '0' COMMENT '虚拟库存',
@@ -296,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `t_products` (
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '销售价',
   `price_ori` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '销售价',
   `auto` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0手动,1自动',
-  `addons` text NOT NULL COMMENT '备注',
+  `addons` text NOT NULL DEFAULT '' COMMENT '备注',
   `sort_num` int(11) NOT NULL DEFAULT '1' COMMENT '排序',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除',
@@ -320,7 +321,7 @@ INSERT INTO `t_products` (`id`, `typeid`, `active`, `name`, `password`,`descript
 CREATE TABLE IF NOT EXISTS `t_products_card` (
   `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '商品id',
-  `card` text COMMENT '卡密',
+  `card` text NOT NULL DEFAULT '' COMMENT '卡密',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `active` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0可用 1已使用',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
@@ -339,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `t_products_pifa` (
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '商品d',
   `qty` int(11) NOT NULL DEFAULT '0' COMMENT '数量',
   `discount` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '优惠价格',
-  `tag` varchar(255) NOT NULL COMMENT '简单说明',
+  `tag` varchar(255) NOT NULL DEFAULT '' COMMENT '简单说明',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
   `isdelete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0未删除,1已删除'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -389,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `t_ticket` (
   `typeid` int(11) NOT NULL DEFAULT '1' COMMENT '类型',
   `priority` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0不重要 1重要',
   `subject` varchar(255) NOT NULL DEFAULT '' COMMENT '主题',
-  `content` text COMMENT '内容',
+  `content` text NOT NULL DEFAULT '' COMMENT '内容',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0,刚创建;1,已回复;5已完结',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

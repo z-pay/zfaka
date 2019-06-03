@@ -11,25 +11,11 @@
                 <div class="layui-form-pane layui-tab-item layui-show">
 						<blockquote class="layui-elem-quote">
 							<p> 注意事项： </p>
-							<p> 1.邮件发送模式只支持SMTP</p>
-							<p> 2.注意看清楚是否使用SSL</p>
+							<p> 1.邮件发送模式支持SMTP/mail/sendmail三种模式，推荐SMTP</p>
+							<p> 2.注意看清楚是否使用SSL/TLS</p>
 							<p> 3.端口号参考：SSL协议下一般为465/587,非SSL协议下一般为25;当然最好根据邮件服务商的说明来进行配置</p>
 						</blockquote>
                     <form class="layui-form layui-show" method="post">
-                        <div class="layui-form-item">
-                            <label for="mailaddress" class="layui-form-label">邮箱地址</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="mailaddress" name="mailaddress" lay-verify="required|email" autocomplete="off" value="" class="layui-input">
-                            </div>
-							<div class="layui-form-mid layui-word-aux">这个是邮箱账号</div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label for="mailpassword" class="layui-form-label">邮箱密码</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="mailpassword" name="mailpassword" required lay-verify="required" autocomplete="off" value="" class="layui-input">
-                            </div>
-							<div class="layui-form-mid layui-word-aux">这个是邮箱密码，也可能是授权码</div>
-                        </div>
                         <div class="layui-form-item">
                             <label for="sendmail" class="layui-form-label">发件人邮箱</label>
                             <div class="layui-input-inline">
@@ -43,28 +29,54 @@
                                 <input type="text" id="sendname" name="sendname" autocomplete="off" lay-verify="required" value="" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label for="host" class="layui-form-label">发送服务器</label>
-                            <div class="layui-input-inline">
-                                <input type="text" id="host" name="host" autocomplete="off" lay-verify="required" value="smtp.exmail.qq.com" class="layui-input">
-                            </div>
-							<div class="layui-form-mid layui-word-aux">smtp.exmail.qq.com是QQ企业邮箱smtp地址</div>
-                        </div>
 						<div class="layui-form-item">
-							<label for="isssl" class="layui-form-label">使用SSL</label>
+							<label for="protocol" class="layui-form-label">邮件协议</label>
 							<div class="layui-input-inline">
-								 <select name="isssl">
-									<option value="0" selected="">不使用</option>
-									<option value="1" >使用</option>
+								 <select name="protocol" lay-filter="protocol" id="protocol">
+									<option value="smtp" selected="">smtp</option>
+									<option value="mail">mail</option>
+									<option value="sendmail">sendmail</option>
 								  </select>
 							</div>
 						</div> 
-                        <div class="layui-form-item">
+                        <div class="layui-form-item smtp-input">
+                            <label for="host" class="layui-form-label">服务器地址</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="host" name="host" autocomplete="off" lay-verify="" value="smtp.exmail.qq.com" class="layui-input">
+                            </div>
+							<div class="layui-form-mid layui-word-aux">smtp.exmail.qq.com是QQ企业邮箱smtp地址</div>
+                        </div>
+                        <div class="layui-form-item smtp-input">
+                            <label for="mailaddress" class="layui-form-label">邮箱地址</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="mailaddress" name="mailaddress" lay-verify="email" autocomplete="off" value="" class="layui-input">
+                            </div>
+							<div class="layui-form-mid layui-word-aux">这个是SMTP邮箱账号</div>
+                        </div>
+                        <div class="layui-form-item smtp-input">
+                            <label for="mailpassword" class="layui-form-label">邮箱密码</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="mailpassword" name="mailpassword" lay-verify="" autocomplete="off" value="" class="layui-input">
+                            </div>
+							<div class="layui-form-mid layui-word-aux">这个是SMTP邮箱密码，也可能是授权码</div>
+                        </div>
+						<div class="layui-form-item smtp-input">
+							<label for="smtp_crypto" class="layui-form-label">加密方式</label>
+							<div class="layui-input-inline">
+								 <select name="smtp_crypto">
+									<option value="0" selected="">不加密</option>
+									<option value="1" >SSL</option>
+									<option value="2" >TLS</option>
+								  </select>
+							</div>
+						</div> 
+                        <div class="layui-form-item smtp-input">
                             <label for="port" class="layui-form-label">端口号</label>
                             <div class="layui-input-inline">
                                 <input type="text" id="port" name="port" autocomplete="off" lay-verify="required" value="465" class="layui-input">
                             </div>
                         </div>
+						
                         <div class="layui-form-item">
 							<input type="hidden" name="id" value="0">
 							<input type="hidden" name="method" value="add">
