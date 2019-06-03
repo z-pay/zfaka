@@ -1,5 +1,6 @@
 <?php
 header('content-Type:text/html;charset=utf-8;');
+date_default_timezone_set('PRC');
 define('APP_PATH',  dirname(dirname(__FILE__)));
 
 if(!file_exists(APP_PATH.'/install/install.lock')){
