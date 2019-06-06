@@ -49,6 +49,7 @@ class ForgetpwdController extends MemberBasicController
                 $code = $key_array[0];
                 $id = (int)$key_array[1];
 				$email = $key_array[2];
+				$email = strtolower($email);
 				
 				$code_string = new \Safe\MyString($code);
 				$code = $code_string->trimall()->qufuhao2()->getValue();
@@ -96,19 +97,24 @@ class ForgetpwdController extends MemberBasicController
 		
 		if($email AND $code AND $password AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-                //从数据库中读取
-                $where = array('email' => $email, 'code' => $code, 'status' => 1,'action'=>'forgetpwd' ,'checkedStatus'=>0);
-                $email_code = $this->m_email_code->Where($where)->SelectOne();
-                if (!empty($email_code)) {
-					$change = $this->m_user->changePWD($email_code['userid'], $password);
-					if($change){
-						$data = array('code' => 1, 'msg' => 'success');
+				$email = strtolower($email);
+				if(isEmail($email)){
+					//从数据库中读取
+					$where = array('email' => $email, 'code' => $code, 'status' => 1,'action'=>'forgetpwd' ,'checkedStatus'=>0);
+					$email_code = $this->m_email_code->Where($where)->SelectOne();
+					if (!empty($email_code)) {
+						$change = $this->m_user->changePWD($email_code['userid'], $password);
+						if($change){
+							$data = array('code' => 1, 'msg' => 'success');
+						}else{
+							$data = array('code' => 1003, 'msg' => '修改失败');
+						}
+						$this->m_email_code->UpdateByID(array('checkedStatus'=>1),$email_code['id']);
 					}else{
-						$data = array('code' => 1003, 'msg' => '修改失败');
+						$data = array('code' => 1002, 'msg' => '验证失败');
 					}
-					$this->m_email_code->UpdateByID(array('checkedStatus'=>1),$email_code['id']);
-                }else{
-					$data = array('code' => 1002, 'msg' => '验证失败');
+				} else {
+					$data = array('code' => 1001, 'msg' => '邮箱账户有误!');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
@@ -133,6 +139,7 @@ class ForgetpwdController extends MemberBasicController
 		
 		if($email AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				$email = strtolower($email);
 				if(isEmail($email)){
 					if(isset($this->config['yzmswitch']) AND $this->config['yzmswitch']>0){
 						$vercode = $this->getPost('vercode');
@@ -212,7 +219,7 @@ class ForgetpwdController extends MemberBasicController
 							$data = array('code' => 1002, 'msg' =>'邮箱不存在');
 						}
 				} else {
-					$data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+					$data = array('code' => 1001, 'msg' => '邮箱账户有误!');
 				}
 			} else {
                 $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');

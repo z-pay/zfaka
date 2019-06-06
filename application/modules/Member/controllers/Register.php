@@ -46,6 +46,7 @@ class RegisterController extends MemberBasicController
 
 		if($email AND $password AND $nickname AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
+				$email = strtolower($email);
 				if(isEmail($email)){
 					if(isset($this->config['yzmswitch']) AND $this->config['yzmswitch']>0){
 						$vercode = $this->getPost('vercode');
