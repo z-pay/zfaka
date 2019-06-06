@@ -24,17 +24,31 @@ layui.define(['layer', 'form', 'table'], function(exports){
 	var protocol = $('#protocol option:selected').val();
 	if(protocol=='smtp'){
 		$(".smtp-input").show();
-		$('#mailaddress').attr('lay-verify','email');
+		$('#host').attr('lay-verify','required');
+		$('#mailaddress').attr('lay-verify','required|email');
+		$('#mailpassword').attr('lay-verify','required');
+		$('#port').attr('lay-verify','required');
 	}else{
 		$(".smtp-input").hide();
+		$('#host').attr('lay-verify','');
 		$('#mailaddress').attr('lay-verify','');
+		$('#mailpassword').attr('lay-verify','');
+		$('#port').attr('lay-verify','');
 	}
 	//选项卡选择后进行判断
 	form.on('select(protocol)', function(data){
 		if(data.value=='smtp'){
 			$(".smtp-input").show();
+			$('#host').attr('lay-verify','required');
+			$('#mailaddress').attr('lay-verify','required|email');
+			$('#mailpassword').attr('lay-verify','required');
+			$('#port').attr('lay-verify','required');
 		}else{
 			$(".smtp-input").hide();
+			$('#host').attr('lay-verify','');
+			$('#mailaddress').attr('lay-verify','');
+			$('#mailpassword').attr('lay-verify','');
+			$('#port').attr('lay-verify','');
 		}
 	}); 
 

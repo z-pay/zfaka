@@ -111,7 +111,13 @@ class EmailController extends AdminBasicController
 		
 		if($method AND $sendmail AND $sendname AND $csrf_token AND $protocol){
 			if ($this->VerifyCsrfToken($csrf_token)) {
-				if($protocol == "smpt"){
+				$m = array(
+					'sendmail'=>$sendmail,
+					'sendname'=>$sendname,
+					'protocol'=>$protocol
+				);
+				
+				if($protocol == "smtp"){
 					$mailaddress = $this->getPost('mailaddress',false);
 					$mailpassword = $this->getPost('mailpassword',false);
 					$host = $this->getPost('host',false);
@@ -121,18 +127,15 @@ class EmailController extends AdminBasicController
 						$data = array('code' => 1000, 'msg' => '丢失参数');
 						Helper::response($data);
 					}
+					
+					$m['mailaddress'] = $mailaddress;
+					$m['mailpassword'] = $mailpassword;
+					$m['host'] = $host;
+					$m['port'] = $port;
+					$m['smtp_crypto'] = $smtp_crypto;
 				}
 				
-				$m = array(
-					'mailaddress'=>$mailaddress,
-					'mailpassword'=>$mailpassword,
-					'sendmail'=>$sendmail,
-					'sendname'=>$sendname,
-					'host'=>$host,
-					'port'=>$port,
-					'smtp_crypto'=>$smtp_crypto,
-					'protocol'=>$protocol
-				);
+
 				if($method == 'edit' AND $id>0){
 					$isactive = $this->getPost('isactive');
 					$m['isactive'] = $isactive;
