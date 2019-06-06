@@ -24,8 +24,10 @@ layui.define(['layer', 'form', 'table'], function(exports){
 	var protocol = $('#protocol option:selected').val();
 	if(protocol=='smtp'){
 		$(".smtp-input").show();
+		$('#mailaddress').attr('lay-verify','email');
 	}else{
 		$(".smtp-input").hide();
+		$('#mailaddress').attr('lay-verify','');
 	}
 	//选项卡选择后进行判断
 	form.on('select(protocol)', function(data){
