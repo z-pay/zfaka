@@ -117,9 +117,7 @@
 * 相关问题QQ交流群：701035212 [收费群]
    
 # 五、推广时间
-* 全国IDC行业精英群:572511758   
-* DirectAdmin用户交流群:337686498
-* 收款宝: [https://codepay.zlkb.net/](https://codepay.zlkb.net/)
+* 全国IDC行业精英群:572511758
 
 # 六、捐赠&打赏
 >捐赠名单：[查看名单](https://github.com/zlkbdotnet/zfaka/wiki/%E6%8D%90%E8%B5%A0%E5%90%8D%E5%8D%95)
