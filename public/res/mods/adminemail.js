@@ -25,7 +25,7 @@ layui.define(['layer', 'form', 'table'], function(exports){
 	if(protocol=='smtp'){
 		$(".smtp-input").show();
 		$('#host').attr('lay-verify','required');
-		$('#mailaddress').attr('lay-verify','required|email');
+		$('#mailaddress').attr('lay-verify','required');
 		$('#mailpassword').attr('lay-verify','required');
 		$('#port').attr('lay-verify','required');
 	}else{
@@ -40,7 +40,7 @@ layui.define(['layer', 'form', 'table'], function(exports){
 		if(data.value=='smtp'){
 			$(".smtp-input").show();
 			$('#host').attr('lay-verify','required');
-			$('#mailaddress').attr('lay-verify','required|email');
+			$('#mailaddress').attr('lay-verify','required');
 			$('#mailpassword').attr('lay-verify','required');
 			$('#port').attr('lay-verify','required');
 		}else{
