@@ -78,6 +78,8 @@ class notify
 										$kucunNotic=";当前商品库存剩余:".($product['qty']-$order['number']);
 									}else{
 										//3.1.2.3不进行库存控制时,自动发货商品是不需要减库存，也不需要取消密码；因为这种情况下的密码是通用的；
+										$qty_m = array('qty_sell'=>'qty_sell+'.$order['number']);
+										$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>0))->Update($qty_m,TRUE);
 										$kucunNotic="";
 									}
 									//3.1.3 更新订单状态,同时把密码写到订单中
@@ -139,6 +141,9 @@ class notify
 								if($product['stockcontrol']>0){
 									$qty_m = array('qty' => 'qty-'.$order['number'],'qty_virtual' => 'qty_virtual-'.$order['number'],'qty_sell'=>'qty_sell+'.$order['number']);
 									$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>1))->Update($qty_m,TRUE);
+								}else{
+									$qty_m = array('qty_sell'=>'qty_sell+'.$order['number']);
+									$m_products->Where(array('id'=>$order['pid'],'stockcontrol'=>0))->Update($qty_m,TRUE);
 								}
 								//4.2邮件通知写到消息队列中，然后用定时任务去执行即可
 								$m = array();
