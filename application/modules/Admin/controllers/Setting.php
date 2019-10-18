@@ -90,6 +90,10 @@ class SettingController extends AdminBasicController
     }
 	public function editajaxAction()
 	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
 		$method = $this->getPost('method',false);
 		$id = $this->getPost('id',false);
 		$name = $this->getPost('name',false);
@@ -98,11 +102,6 @@ class SettingController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
-		
-        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $data = array('code' => 1000, 'msg' => '请登录');
-			Helper::response($data);
-        }
 		
 		if($method AND $name AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
@@ -144,15 +143,14 @@ class SettingController extends AdminBasicController
 	
 	public function repairajaxAction()
 	{
-		$method = $this->getPost('method',false);
-		$csrf_token = $this->getPost('csrf_token', false);
-		
-		$data = array();
-		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
+		$method = $this->getPost('method',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
 		
 		if($method AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {

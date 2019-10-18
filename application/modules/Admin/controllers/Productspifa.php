@@ -141,7 +141,10 @@ class ProductspifaController extends AdminBasicController
 	
 	public function editajaxAction()
 	{
-		$method = $this->getPost('method',false);
+		if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }		$method = $this->getPost('method',false);
 		$qty = $this->getPost('qty');
 		$discount = $this->getPost('discount');
 		$id = $this->getPost('id');
@@ -150,11 +153,6 @@ class ProductspifaController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token');
 		
 		$data = array();
-		
-        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $data = array('code' => 1000, 'msg' => '请登录');
-			Helper::response($data);
-        }
 		
 		if($method AND $qty AND $discount AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {

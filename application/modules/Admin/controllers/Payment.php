@@ -90,6 +90,10 @@ class PaymentController extends AdminBasicController
     }
 	public function editajaxAction()
 	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
 		$method = $this->getPost('method',false);
 		$id = $this->getPost('id',false);
 		$payname = $this->getPost('payname',false);
@@ -106,12 +110,6 @@ class PaymentController extends AdminBasicController
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
-		
-        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $data = array('code' => 1000, 'msg' => '请登录');
-			Helper::response($data);
-        }
-		
 		
 		if($method AND $payname AND is_numeric($active) AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {

@@ -18,7 +18,9 @@ class UpgradeController extends AdminBasicController
     public function indexAction()
     {
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $this->redirect('/'.ADMIN_DIR."/login");
+            //$this->redirect('/'.ADMIN_DIR."/login");
+			//未登录时，不再跳转至后台，避免被人恶意利用
+			$this->redirect("/product/");
             return FALSE;
         }
 		if(file_exists(INSTALL_LOCK)){

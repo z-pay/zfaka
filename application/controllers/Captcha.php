@@ -26,7 +26,7 @@ class CaptchaController extends BasicController
 	{
 		$code = $this->getPost('code');
         $t = $this->get('t');
-		if($code){
+		if($code AND strlen($code)>0){
 			if(strtolower($this->getSession($t.'Captcha')) ==strtolower($code)){
 				$this->unsetSession($t.'Captcha');
 				$data=array('code'=>1,'msg'=>'success');

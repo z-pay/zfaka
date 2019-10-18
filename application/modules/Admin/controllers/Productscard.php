@@ -114,17 +114,16 @@ class ProductscardController extends AdminBasicController
 	
 	public function addajaxAction()
 	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
 		$method = $this->getPost('method',false);
 		$pid = $this->getPost('pid',false);
 		$card = $this->getPost('card',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
-		
-        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $data = array('code' => 1000, 'msg' => '请登录');
-			Helper::response($data);
-        }
 		
 		if($method AND $pid AND $card AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
@@ -185,15 +184,14 @@ class ProductscardController extends AdminBasicController
 
 	public function deleteAction()
 	{
-		$id = $this->get('id',false);
-		$csrf_token = $this->getPost('csrf_token', false);
-		
-		$data = array();
-		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
+		$id = $this->get('id',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
 		
 		if($csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
@@ -240,15 +238,14 @@ class ProductscardController extends AdminBasicController
 	
 	public function deleteemptyAction()
 	{
-		$method = $this->get('method',false);
-		$csrf_token = $this->getPost('csrf_token', false);
-		
-		$data = array();
-		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
+		$method = $this->get('method',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
 		
 		if($method AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
@@ -361,13 +358,12 @@ class ProductscardController extends AdminBasicController
     }
 	
 	public function downloadajaxAction(){
-		$pid = $this->getPost('pid');
-		$csrf_token = $this->getPost('csrf_token', false);
-		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $this->redirect('/'.ADMIN_DIR."/login");
             return FALSE;
         }
+		$pid = $this->getPost('pid');
+		$csrf_token = $this->getPost('csrf_token', false);
 		
 		if ($this->VerifyCsrfToken($csrf_token)) {
 			if(is_numeric($pid) AND $pid>0){
@@ -415,15 +411,14 @@ class ProductscardController extends AdminBasicController
 	}
 	public function repairajaxAction()
 	{
-		$method = $this->getPost('method',false);
-		$csrf_token = $this->getPost('csrf_token', false);
-		
-		$data = array();
-		
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
             $data = array('code' => 1000, 'msg' => '请登录');
 			Helper::response($data);
         }
+		$method = $this->getPost('method',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
 		
 		if($method AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {

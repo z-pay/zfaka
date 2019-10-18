@@ -39,17 +39,16 @@ class ProfilesController extends AdminBasicController
 	
 	public function passwordajaxAction()
 	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
 		$password = $this->getPost('password',false);
 		$oldpassword = $this->getPost('oldpassword',false);
 		$csrf_token = $this->getPost('csrf_token', false);
 		
 		$data = array();
-		
-        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
-            $data = array('code' => 1000, 'msg' => '请登录');
-			Helper::response($data);
-        }
-		
+
 		if($password AND $oldpassword AND $csrf_token){
 			if ($this->VerifyCsrfToken($csrf_token)) {
 				if ($oldpassword !== $password) {
