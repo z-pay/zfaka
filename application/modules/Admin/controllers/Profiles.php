@@ -37,6 +37,44 @@ class ProfilesController extends AdminBasicController
         $this->getView()->assign($data);
 	}
 	
+	public function emailajaxAction()
+	{
+        if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {
+            $data = array('code' => 1000, 'msg' => '请登录');
+			Helper::response($data);
+        }
+		$password = $this->getPost('email',false);
+		$csrf_token = $this->getPost('csrf_token', false);
+		
+		$data = array();
+
+		if($email AND $csrf_token AND isEmail($email)){
+			if ($this->VerifyCsrfToken($csrf_token)) {
+				if ($email!=$this->AdminUser['email']) {
+					if ($this->AdminUser['email']!="demo@demo.com") {
+						$data = array('code' => 1002, 'msg' => '管理账户只允许修改一次');
+					} else {
+						$m = array("email"=>$email);
+						$u = $this->m_admin_user->UpdateByID($m,$AdminUser['id']);
+						if ($u) {
+							$data = array('code' => 1, 'msg' => '修改密码成功');
+							$this->unsetSession('AdminUser');
+						} else {
+							$data = array('code' => 1004, 'msg' => '数据更新异常');
+						}
+					}
+				} else {
+					$data = array('code' => 1001, 'msg' => '您没有进行任何有效的修改');
+				}
+			} else {
+                $data = array('code' => 1001, 'msg' => '页面超时，请刷新页面后重试!');
+            }
+		}else{
+			$data = array('code' => 1000, 'msg' => '丢失参数/参数格式不正确');
+		}
+		Helper::response($data);
+	}
+	
 	public function passwordajaxAction()
 	{
         if ($this->AdminUser==FALSE AND empty($this->AdminUser)) {

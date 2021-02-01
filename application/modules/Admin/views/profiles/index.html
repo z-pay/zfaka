@@ -11,15 +11,20 @@
                 <div class="layui-form-pane layui-tab-item layui-show">
                     <blockquote class="layui-elem-quote">
                         <p>
-							注意事项： 由于管理员账户属于敏感信息，所以不支持后台直接修改，请管理员登录phpmyadmin进行直接修改即可。
+							注意事项： 由于管理员账户属于敏感信息，只允许修改一次。
 						</p>
                     </blockquote>
                     <form class="layui-form layui-show" method="post">
                         <div class="layui-form-item">
                             <label for="L_email" class="layui-form-label">邮箱</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="L_email" disabled autocomplete="off" value="<?php echo $AdminUser['email'];?>" class="layui-input">
+                                <input type="text" name="email" id="L_email" autocomplete="off" lay-verify="required|email" value="<?php echo $AdminUser['email'];?>" class="layui-input">
                             </div>
+                        </div>
+                        <div class="layui-form-item">
+							<input type="hidden" name="id" value="<?php echo $AdminUser['id'];?>">
+							<input type="hidden" name="method" value="edit">
+                            <button class="layui-btn" key="set-mine" lay-filter="email" lay-submit>确认修改</button>
                         </div>
                     </form>
                 </div>
