@@ -55,7 +55,7 @@ class ProfilesController extends AdminBasicController
 						$data = array('code' => 1002, 'msg' => '管理账户只允许修改一次');
 					} else {
 						$m = array("email"=>$email);
-						$u = $this->m_admin_user->UpdateByID($m,$AdminUser['id']);
+						$u = $this->m_admin_user->UpdateByID($m,$this->AdminUser['id']);
 						if ($u) {
 							$data = array('code' => 1, 'msg' => '修改密码成功');
 							$this->unsetSession('AdminUser');
