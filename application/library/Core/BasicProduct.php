@@ -22,40 +22,49 @@ class ProductBasicController extends BasicController
   	
 	public function init(){	
 		parent::init();
-		$sysvars = $data = array();
-		$this->config=$this->load('config')->getConfig();
-		if((isset($this->config['web_name']) AND strlen($this->config['web_name'])>0)==false){
-			$this->config['web_name'] = WEB_NAME;
+		if(file_exists(INSTALL_LOCK)){
+			//系统相关参数
+			$sysvars = $data = array();
+			$sysvars['isHttps']=$this->isHttps=isHttps();
+			$sysvars['isAjax']=$this->isAjax=isAjax();
+			$sysvars['isGet']=$this->isGet=isGet();
+			$sysvars['isPost']=$this->isPost=isPost();
+			$sysvars['currentUrl']=stripHTML(str_replace('//', '/',$_SERVER['REQUEST_URI']));
+			$sysvars['currentUrlSign']=md5(URL_KEY.$sysvars['currentUrl']);
+			$data['sysvars']=$sysvars;
+
+			//登录相关判断
+			$uinfo = $this->getSession('uinfo');
+			if(is_array($uinfo) AND !empty($uinfo) AND $uinfo['expiretime']>time()){
+				$groupName = $this->load('user_group')->getConfig();
+				$uinfo['groupName'] = $groupName[$uinfo['groupid']];
+				$uinfo['expiretime'] = time() + 15*60;
+				$this->setSession('uinfo',$uinfo);
+				$data['login']=$this->login=true;
+				$data['uinfo']= $this->uinfo=$uinfo;
+				$this->userid=$uinfo['id'];
+			}else{
+				$data['login'] = $this->login = false;
+				$this->unsetSession('uinfo');
+			}
+			
+				//基础配置config
+				$this->config = $this->load('config')->getConfig();
+				if((isset($this->config['web_name']) AND strlen($this->config['web_name'])>0)==false){
+					$this->config['web_name'] = WEB_NAME;
+				}
+				$data['config']= $this->config;		
+				//模版基础路径赋值
+				if(isset($this->config['tpl'])){
+					$this->getView()->setScriptPath( APP_PATH."/templates/".$this->config['tpl']);
+					$data['tplBase'] = $this->tplBase = APP_PATH."/templates/".$this->config['tpl'];
+				}
+			
+			//防csrf攻击
+			$data['csrf_token'] = $this->createCsrfToken();
+			
+			$this->getView()->assign($data);
 		}
-		$data['config']= $this->config;
-		$sysvars['isHttps']=$this->isHttps=isHttps();
-		$sysvars['isAjax']=$this->isAjax=isAjax();
-		$sysvars['isGet']=$this->isGet=isGet();
-		$sysvars['isPost']=$this->isPost=isPost();
-		$sysvars['currentUrl']=stripHTML(str_replace('//', '/',$_SERVER['REQUEST_URI']));
-		$sysvars['currentUrlSign']=md5(URL_KEY.$sysvars['currentUrl']);
-		$data['sysvars']=$sysvars; 
-        $uinfo = $this->getSession('uinfo');
-		if(is_array($uinfo) AND !empty($uinfo) AND $uinfo['expiretime']>time()){
-			$groupName=$this->load('user_group')->getConfig();
-			$uinfo['groupName'] = $groupName[$uinfo['groupid']];
-			$uinfo['expiretime'] = time() + 15*60;
-			$this->setSession('uinfo',$uinfo);
-			$data['login']=$this->login=true;
-			$data['uinfo']= $this->uinfo=$uinfo;
-			$this->userid=$uinfo['id'];
-		}else{
-			$data['login']=$this->login=false;
-			$this->unsetSession('uinfo');
-		}
-		//模版基础路径赋值
-		if(isset($this->config['tpl'])){
-			$this->getView()->setScriptPath( APP_PATH."/templates/".$this->config['tpl']);
-			$data['tplBase'] = $this->tplBase = APP_PATH."/templates/".$this->config['tpl'];
-		}
-		//防csrf攻击
-		$data['csrf_token'] = $this->createCsrfToken();
-        $this->getView()->assign($data);
 	}
 
     //生成JWT token

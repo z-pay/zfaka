@@ -4,7 +4,7 @@
  * Author:资料空白
  * Date:20180604
  */
-class IndexController extends BasicController
+class IndexController extends ProductBasicController
 {
 	private $m_products_type;
 	private $m_products;
@@ -14,11 +14,6 @@ class IndexController extends BasicController
 		if(file_exists(INSTALL_LOCK)){
 			$this->m_products_type = $this->load('products_type');
 			$this->m_products = $this->load('products');
-			//模版基础路径赋值
-			if(isset($this->config['tpl'])){
-				$this->getView()->setScriptPath( APP_PATH."/templates/".$this->config['tpl']);
-				$data['tplBase'] = $this->tplBase = APP_PATH."/templates/".$this->config['tpl'];
-			}
 		}
 	}
 
