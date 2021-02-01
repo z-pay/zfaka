@@ -57,7 +57,7 @@ class ProfilesController extends AdminBasicController
 						$m = array("email"=>$email);
 						$u = $this->m_admin_user->UpdateByID($m,$this->AdminUser['id']);
 						if ($u) {
-							$data = array('code' => 1, 'msg' => '修改密码成功');
+							$data = array('code' => 1, 'msg' => '修改成功');
 							$this->unsetSession('AdminUser');
 						} else {
 							$data = array('code' => 1004, 'msg' => '数据更新异常');
