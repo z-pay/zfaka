@@ -271,12 +271,11 @@ INSERT INTO `t_payment` (`id`, `payment`, `payname`, `payimage`, `alias`, `sign_
 (6, '微信扫码支付', '微信', '/res/images/pay/weixin.jpg', 'wxf2f', 'MD5', '', '', '', '', '', '',0, 0),
 (7, '有赞接口', '微信', '/res/images/pay/yzpay.jpg', 'yzpay', 'RSA2', '', '', '', '', '', '',0, 0),
 (11, '微信H5支付', '微信', '/res/images/pay/weixin.jpg', 'wxh5', 'MD5', '', '', '', '', '','', 0, 0),
-(12, 'PAYPAL', 'PAYPAL', '/res/images/pay/paypal.jpg', 'paypal', 'RSA2', '', '', '', '', 'live','7', 0, 0);
+(12, 'PAYPAL', 'PAYPAL', '/res/images/pay/paypal.jpg', 'paypal', 'RSA2', '', '', '', '', 'live','7', 0, 0),
+(13, 'Z支付宝', '支付宝', '/res/images/pay/alipay.jpg', 'zalipay', 'MD5', '', '', '', '', '','', 300, 0),
+(14, 'Z微信', '微信', '/res/images/pay/weixin.jpg', 'zwxpay', 'MD5', '', '', '', '', '','', 300, 0),
+(15, 'ZQQ', 'QQ', '/res/images/pay/qqpay.jpg', 'zqqpay', 'MD5', '', '', '', '', '','', 300, 0);
 
-INSERT INTO `t_payment`( `payment`, `payname`, `payimage`, `alias`, `sign_type`) VALUES 
-('Z支付宝', '支付宝', '/res/images/pay/alipay.jpg', 'zalipay', 'MD5'),
-('Z微信', '微信支付', '/res/images/pay/weixin.jpg', 'zwxpay', 'MD5'),
-('ZQQ', 'QQ支付', '/res/images/pay/qqpay.jpg', 'zqqpay', 'MD5');
 -- --------------------------------------------------------
 
 --
