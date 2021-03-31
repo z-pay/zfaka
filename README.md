@@ -1,8 +1,8 @@
 # 安装
 
-已经成功对接z发卡，直接下载安装即可
+已经成功对接z发卡，直接下载安装即可，原作开发者：资料空白
 
-按照https://github.com/zlkbdotnet/zfaka 要求安装zfaka，建议使用页面中提示的宝塔教程进行安装，省时省力
+按照https://github.com/zlkbdotnet/zfaka 要求安装zfaka，建议使用页面中提示的宝塔教程进行安装，省时省力，感谢zfaka提供的发卡
 
 登录zfaka的后台，依次点击：设置中心->配置中心，在第三页修改参数“weburl”的值为你自己的网站域名url（必须修改，否则无法回调）
 
