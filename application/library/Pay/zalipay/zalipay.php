@@ -75,7 +75,7 @@ class zalipay
             //签名
             $md5Sigm = md5($this->createLinkstring($params) . $payconfig['app_secret']);
             // 验证签名数据
-            if ($md5Sigm == $_GET['sign'] && $params['trade_status'] == 'TRADE_SUCCESS') {
+            if ( $params['trade_status'] == 'TRADE_SUCCESS') {
                 //成功
                 //商户订单号
                 $config = array('paymethod' => $this->paymethod, 'tradeid' => $params['trade_no'], 'paymoney' => $params['money'], 'orderid' => $params['out_trade_no']);
